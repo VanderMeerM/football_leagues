@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eredivisie</title>  
+    <link rel="shortcut icon" href="https://www.api-football.com/public/img/favicon.ico">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/smoothness/jquery-ui.css"> 
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+   <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
+   <link rel="stylesheet" type="text/css" href="./teams.css" />   
+  
+</head>
+<body>
+
+<?php 
+
+$array_leagues = [88, 89, 78, 79, 135, 140, 39, 40, 179, 357];
+
+$current_season = 2024;
+
+$_GET['league'] ? $league_id = $_GET['league'] : $league_id = 88; 
+
+$complete_season = $current_season + 1; 
+
+include('./translations.php');
+
+include('./league_header.php');
+
+$json_league_season_path = './JSON/' . $league_id . '_' . $current_season . '.json'; 
+
+
+if (!file_exists($json_league_season_path)) { 
+
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://v3.football.api-sports.io/fixtures?&league=' . $league_id . '&season='. $current_season,
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'GET',
+  CURLOPT_HTTPHEADER => array(
+    'x-rapidapi-key: f7e1aa54fd70dd93a3c920f503282930',
+    'x-rapidapi-host: v3.football.api-sports.io',
+    
+  ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+}
+
+//if ($day < date('Y-m-d', strtotime('today'))) {
+
+if (5 < 4) {
+$json_file_mt = fopen($json_league_season_path, "w");
+
+fwrite($json_file_mt, $response);
+
+fclose($json_file_mt);
+
+$response_json = file_get_contents($json_league_season_path, true);
+
+$response= json_decode($response_json, true);
+}
+
+$response= json_decode($response, true);
+
+
+// Deze 5 regels uitcommentariëren
+
+/*
+$array_season = './season_20242025.json';
+$curr_season = fopen($array_season, 'r');
+fclose($curr_season);
+$response_json = file_get_contents($array_season, true);
+$response= json_decode($response_json, true);
+*/
+
+$prevent_loop = false;
+
+$enddate_selected_round = [];
+$games_per_round = [];
+
+$numGames = $response['results'];
+
+if ($numGames > 0 ) {
+
+  for ($i = 0; $i < $numGames; $i++) {
+
+  if (!$prevent_loop) {
+
+  $homeTeam = $response['response'][$i]['teams']['home']['name'];
+  $awayTeam = $response['response'][$i]['teams']['away']['name'];
+  $matchId = $response['response'][$i]['fixture']['id'];
+  $matchStatus = $response['response'][$i]['fixture']['status']['short'];
+  $selectedround = intval(explode(' ', $response['response'][$i]['league']['round'])[3]);
+
+  $enddate_selected_round['Ronde '. $selectedround] = $response["response"][$i]["fixture"]["timestamp"];
+
+  if ((!$_GET['round_selection']) || is_null($_GET['round_selection'])) { 
+    $_GET['round_selection'] = 1;
+    $selectedround = 1;
+  }
+
+  if ($_GET['round_selection'] == $selectedround) {
+       
+  if ((!$_GET['id']) || ($_GET['id'] && $_GET['id'] == $matchId)) {
+
+  echo '
+  <div class="main_container">'; 
+
+  if (!$_GET['id']) {
+
+   echo '<a href="' . $_SERVER['PHP_SELF'] . '?id=' . $matchId . '">';
+  }
+
+  echo '
+  <div class="country_container">
+  <div class="flag_container">
+  <img src="'.$response['response'][$i]['teams']['home']['logo'] . '"/>
+  <p>
+  ' . $response['response'][$i]['teams']['home']['name'] . '</div>'; 
+
+  
+  echo '</div>
+          <div class="stscore_container">';
+                     
+         if ($_GET['id']) { echo $response['response'][$i]['fixture']['venue']['name'] . '<br>'; }
+
+         if (!$_GET['id'])  { echo $response['response'][$i]['fixture']['venue']['city'] . '<br>'; }
+
+         $date = date_create($response['response'][$i]['fixture']['date']);
+         echo date_format($date, 'd-m-Y') . ' ';
+         echo date('H:i', $response['response'][$i]['fixture']['timestamp'])  . '<br>';
+
+         echo 
+         '<div class=' . (in_array($matchStatus, $statusInPlay)? '"score red"' : "score") . '>' . 
+         $response['response'][$i]['goals']['home'] . '-' . 
+         $response['response'][$i]['goals']['away'];
+          
+         echo '<div style="font-size:15pt">'. (array_key_exists($matchStatus, $status)? 
+         $status[$matchStatus] : null) . 
+          '</div>
+          </div>'; 
+
+        if ($_GET['id']) { 
+
+            echo '<p><div class="stscore_ref">
+            <img id="ref" src="../ref.png">' . '<br> ' . explode(',', $response['response'][$i]['fixture']['referee'])[0] . 
+           '<br>'; 
+
+           
+        /*  if (sizeof(explode(',', $response['response'][$i]['fixture']['referee'])) > 1) {
+
+            echo
+
+           (array_search(explode(', ', $response['response'][$i]['fixture']['referee'])[1], $countries) ? 
+           '(' . array_search(explode(', ', $response['response'][$i]['fixture']['referee'])[1], $countries) : 
+           '(' . explode(', ', $response['response'][$i]['fixture']['referee'])[1]) . ')
+           <br></div>'; 
+                   
+           }
+
+           else {
+            echo '</div>';
+           }
+         
+           */
+        }
+        echo '
+        </div>';
+
+        if ($_GET['id']) {
+          echo '</div>';
+        }
+         
+   echo '<div class="country_container">
+   <div class="flag_container">
+   <img src="'.$response['response'][$i]['teams']['away']['logo'] . '"/>
+   <p>' . 
+   $response['response'][$i]['teams']['away']['name'] . '
+   </div>'; 
+
+ 
+   echo '</div>
+   </div>';
+
+   if (!$_GET['id']) {
+    echo '</a>';
+   }
+
+   if ($_GET['id']) {
+   include ('./events.php');
+   include ('./lineup.php');
+   }      
+  }}
+  }}
+}
+
+$json_file_enddate = fopen($json_enddates, "w");
+
+fwrite($json_file_enddate, json_encode($enddate_selected_round));
+
+fclose($json_file_enddate);
+
+?>
+
+</body>
+</html>
