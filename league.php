@@ -29,13 +29,20 @@ include('./league_header.php');
 
 $json_league_season_path = './JSON/' . $league_id . '_' . $current_season . '.json'; 
 
+if ($_GET['id']) {
+    $cur_url = 'https://v3.football.api-sports.io/fixtures?&id=' . $_GET['id'];
+
+} else {
+$cur_url = 'https://v3.football.api-sports.io/fixtures?&league=' . $league_id . '&season='. $current_season;
+}
+
 
 if (!file_exists($json_league_season_path)) { 
 
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://v3.football.api-sports.io/fixtures?&league=' . $league_id . '&season='. $current_season,
+  CURLOPT_URL => $cur_url,
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_MAXREDIRS => 10,
@@ -109,8 +116,8 @@ if ($numGames > 0 ) {
   }
 
   if ($_GET['round_selection'] == $selectedround) {
-       
-  if ((!$_GET['id']) || ($_GET['id'] && $_GET['id'] == $matchId)) {
+    
+  //if ((!$_GET['id']) || ($_GET['id'] == $matchId)) {
 
   echo '
   <div class="main_container">'; 
@@ -201,7 +208,9 @@ if ($numGames > 0 ) {
    }      
   }}
   }}
-}
+
+
+
 
 $json_file_enddate = fopen($json_enddates, "w");
 

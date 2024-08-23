@@ -44,21 +44,19 @@ echo "
 
 <p> 
 
-<form action='./league.php?league=$league_id&round_selection=$selectedround method='get'>
+<form action='./league.php?round_selection=$selectedround method='get'>
 
 <select id='round_selection' name='round_selection'>";
-
-echo $league_id;
 
 for ($i =0; $i < sizeof($allrounds); $i++) {
 
   if ($allrounds[$i] == $_GET['round_selection']) {
 
-    echo '<option selected  value= ' . $allrounds[$i] . '> Ronde ' . $allrounds[$i] . ' (' . $IntlDateFormatter-> format($php_array_for_dates['Ronde ' . $allrounds[$i]]) .')</option>'; 
+    echo '<option selected value= ' . $allrounds[$i] . '> Ronde ' . $allrounds[$i] . ' (' . $IntlDateFormatter-> format($php_array_for_dates['Ronde ' . $allrounds[$i]]) .')</option>'; 
   } 
   else 
   { 
-    echo '<option  value= ' . $allrounds[$i] . '> Ronde ' . $allrounds[$i] . ' (' . $IntlDateFormatter-> format($php_array_for_dates['Ronde ' . $allrounds[$i]]) .')</option>';
+    echo '<option value= ' . $allrounds[$i] . '> Ronde ' . $allrounds[$i] . ' (' . $IntlDateFormatter-> format($php_array_for_dates['Ronde ' . $allrounds[$i]]) .')</option>';
    
   }
 } 
@@ -78,7 +76,7 @@ foreach ($array_leagues as $al) {
 }
 
 echo "
-</div>
+
 </div> 
 </div>
 </div>";
@@ -94,6 +92,7 @@ echo "
 
  document.getElementById('round_selection').addEventListener('change', (ev) => {
  roundSelection = ev.target.value;
+ //regSeason = 'Regular Season - ';
  window.location.href='./league.php?league='+leagueId+'&round_selection='+roundSelection
 });
 
@@ -103,7 +102,7 @@ echo "
     roundSelection = <?php if (isset($_GET['round_selection'])) { echo json_encode($_GET['round_selection']); }
     else { echo json_encode(1); } ?>
     
-      window.location.href='./league.php?league='+document.getElementById(idBtn).id+'&round_selection='+roundSelection
+      window.location.href='./league.php?league='+document.getElementById(idBtn).id+'&round='+roundSelection
  });
 
  }
