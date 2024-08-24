@@ -102,7 +102,7 @@ echo "
     roundSelection = <?php if (isset($_GET['round_selection'])) { echo json_encode($_GET['round_selection']); }
     else { echo json_encode(1); } ?>
     
-      window.location.href='./league.php?league='+document.getElementById(idBtn).id+'&round='+roundSelection
+      window.location.href='./league.php?league='+document.getElementById(idBtn).id+'&round_selection='+roundSelection
  });
 
  }
