@@ -274,7 +274,8 @@ color: rgb(75, 230, 75);
     font-style: italic;
 }
 
-#show_hide_lineup {
+#show_hide_lineup, 
+#show_hide_league {
     margin-left: 3%;
     background-color: var(--blue);
     color: white;
@@ -287,6 +288,11 @@ color: rgb(75, 230, 75);
 
 .hide {
     visibility: hidden;
+}
+
+.logo_standings {
+    width: 50px;
+    height: auto;
 }
 
 @media (max-width: 1500px) {

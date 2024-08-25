@@ -209,6 +209,10 @@ if ($numGames > 0 ) {
   }}
   }}
 
+  echo '
+  <form action="./standings.php?league=' . $league_id . '&season=' . $current_season . '" method="post">
+ <button id="show_hide_league">Toon stand </button>
+ </form>';
 
 
 
