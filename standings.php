@@ -17,8 +17,9 @@
 
 include('./translations.php');
 
-//include('./league_header.php');
+$numTeams =  $_POST['numGames'] / ($_POST['played_rounds'] / 2);
 
+//include('./league_header.php');
 
 $curl = curl_init();
 
@@ -53,33 +54,40 @@ $response= json_decode($response, true);
 
 //print_r ($response['response'][0]['league']['standings'][0]);
  
-for ($i = 0; $i < 18; $i++) {
+echo 
+'<table>
+<tr>';
 
-echo $response['response'][0]['league']['standings'][0][$i]['rank'] .  '. ' .
+for ($i = 0; $i < $numTeams; $i++) {
 
-'<img class="logo_standings" src=' . $response['response'][0]['league']['standings'][0][$i]['team']['logo'] . '>' .  
+echo '<td>' . $response['response'][0]['league']['standings'][0][$i]['rank'] .  '. </td>' .
 
-$response['response'][0]['league']['standings'][0][$i]['team']['name'] . '   ' . 
+'<td><img class="logo_standings" src=' . $response['response'][0]['league']['standings'][0][$i]['team']['logo'] . '></td>' .  
 
-$response['response'][0]['league']['standings'][0][$i]['all']['played'] . ' - ' .
+'<td>' . $response['response'][0]['league']['standings'][0][$i]['team']['name'] . '</td>' .  
 
-$response['response'][0]['league']['standings'][0][$i]['all']['win']  . ' - ' . 
+'<td>' . $response['response'][0]['league']['standings'][0][$i]['all']['played'] . '</td>' . 
 
-$response['response'][0]['league']['standings'][0][$i]['all']['draw']  . ' - ' . 
+'<td>' . $response['response'][0]['league']['standings'][0][$i]['all']['win']  . '</td>' . 
 
-$response['response'][0]['league']['standings'][0][$i]['all']['lose']  . ' - ' . 
+'<td>' . $response['response'][0]['league']['standings'][0][$i]['all']['draw']  . '</td>' . 
 
-$response['response'][0]['league']['standings'][0][$i]['points']  . ' - ' . 
+'<td>' . $response['response'][0]['league']['standings'][0][$i]['all']['lose']  . '</td>' . 
 
-$response['response'][0]['league']['standings'][0][$i]['all']['goals']['for']  . ' - ' . 
+'<td><strong>' . $response['response'][0]['league']['standings'][0][$i]['points']  . '</strong></td>' . 
 
-$response['response'][0]['league']['standings'][0][$i]['all']['goals']['against']  .  
+'<td>' . $response['response'][0]['league']['standings'][0][$i]['all']['goals']['for']  . '</td>' . 
 
-' ('.  ($response['response'][0]['league']['standings'][0][$i]['goalsDiff'] > 0 ? '+' : null) . $response['response'][0]['league']['standings'][0][$i]['goalsDiff']  . ')' . 
+'<td>' . $response['response'][0]['league']['standings'][0][$i]['all']['goals']['against']  . '</td>' . 
 
- '<p>';
+'<td> ('.  ($response['response'][0]['league']['standings'][0][$i]['goalsDiff'] > 0 ? '+' : null) . $response['response'][0]['league']['standings'][0][$i]['goalsDiff']  . ')' . 
+
+ '</td>
+ </tr>';
 
   }
+
+  echo '</table>';
 
 ?>
 

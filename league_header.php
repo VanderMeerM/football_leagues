@@ -81,6 +81,16 @@ echo "
 </div>
 </div>";
 
+
+echo '
+<form action="./standings.php?league=' . $league_id . '&season=' . $current_season . '" method="post">
+ <div style="display:none"> 
+ <input name= "played_rounds" value = ' . $played_rounds . '>
+ <input name= "numGames" value = ' . $numGames . '>
+ </div>
+ <button id="show_league">Toon stand </button>
+</form>';
+
 ?>
 
 <script>

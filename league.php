@@ -25,7 +25,6 @@ $complete_season = $current_season + 1;
 
 include('./translations.php');
 
-include('./league_header.php');
 
 $json_league_season_path = './JSON/' . $league_id . '_' . $current_season . '.json'; 
 
@@ -95,6 +94,9 @@ $enddate_selected_round = [];
 $games_per_round = [];
 
 $numGames = $response['results'];
+
+include('./league_header.php');
+
 
 if ($numGames > 0 ) {
 
@@ -208,12 +210,6 @@ if ($numGames > 0 ) {
    }      
   }}
   }}
-
-  echo '
-  <form action="./standings.php?league=' . $league_id . '&season=' . $current_season . '" method="post">
- <button id="show_hide_league">Toon stand </button>
- </form>';
-
 
 
 $json_file_enddate = fopen($json_enddates, "w");
