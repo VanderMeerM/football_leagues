@@ -17,8 +17,6 @@
 
 include('./translations.php');
 
-$numTeams =  $_POST['numGames'] / ($_POST['played_rounds'] / 2);
-
 //include('./league_header.php');
 
 $curl = curl_init();
@@ -46,14 +44,19 @@ curl_setopt_array($curl, array(
   curl_close($curl);
   
 
-//$json_standings = './JSON/standings_88.json';
+/* Onderstaande twee regels uitcommentariëren 
 
-//$response = file_get_contents($json_standings, true);
+$json_standings = './JSON/standings_88.json';
+
+$response = file_get_contents($json_standings, true);
+
+*/
 
 $response= json_decode($response, true);
 
-//print_r ($response['response'][0]['league']['standings'][0]);
- 
+$numTeams = sizeof($response['response'][0]['league']['standings'][0]);
+
+
 echo 
 '<table>
 <tr>';

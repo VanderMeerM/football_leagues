@@ -12,7 +12,8 @@
 
 .title_container,
 .main_container, 
-.main_container_event {
+.main_container_event, 
+.container_league_logos {
     width: 70%;
     padding: 10px 0;
     margin-bottom: 20px;
@@ -21,10 +22,11 @@
 
 table {
     margin: auto;
+    width: 70%;
 }
 
-td:nth-child(even) {
-    background-color: lightgray;
+tr:nth-child(odd) {
+    background-color: rgb(229, 223, 223);
 }
 
 td {
@@ -81,8 +83,8 @@ label {
 }
 
 .btn_container {
-   margin: 0 auto;
-    max-width: 500px;
+   margin: 10% auto;
+   max-width: 500px;
 }
 
 label {
