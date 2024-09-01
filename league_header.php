@@ -27,8 +27,8 @@ for ($i = 1; $i < $played_rounds + 1; $i++) {
 echo $foundDate = var_dump(array_filter($php_array_for_dates, function ($d) {
   return date('d-M-Y', $d) == date('d-M-Y'); 
 }, ARRAY_FILTER_USE_BOTH));
-*/ 
 
+*/
 echo "
 <div class='title_container'> 
 
@@ -42,7 +42,11 @@ echo "
 
 <div id='season_title'> Seizoen " . $current_season . '-' . $complete_season . "</div> 
 
-<p> 
+<p>";
+
+if (!$_GET['id']) {
+
+  echo "
 
 <form action='./league.php?round_selection=$selectedround method='get'>
 
@@ -64,6 +68,7 @@ for ($i =0; $i < sizeof($allrounds); $i++) {
 echo "
 </select>
 </form>";
+}
 
 echo "
 </div>
@@ -84,9 +89,12 @@ echo "
 </div>";
 
 echo '
-<form action="./standings.php?league=' . $league_id . '&season=' . $current_season . '" method="post">
- <button id="show_league">Toon stand </button>
-</form>';
+<div class="menubar">
+<ul>
+<li><a href="./standings.php?league=' . $league_id . '&season=' . $current_season . '">Toon stand</a></li>
+<li><a href="./league.php?league=' . $league_id . '&season=' . $current_season . '">Toon programma</a></li>
+</ul>
+</div>';
 
 ?>
 

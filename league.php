@@ -23,6 +23,8 @@ $_GET['league'] ? $league_id = $_GET['league'] : $league_id = 88;
 
 $complete_season = $current_season + 1; 
 
+$backgr_today_match = '#f1e3bc';
+
 include('./translations.php');
 
 
@@ -121,16 +123,37 @@ if ($numGames > 0 ) {
     
   //if ((!$_GET['id']) || ($_GET['id'] == $matchId)) {
 
-  echo '
-  <div class="main_container">'; 
+  $date = date_create($response['response'][$i]['fixture']['date']);
+
+  if (date('d-m-Y') === date_format($date, 'd-m-Y')) {
+
+    echo '<<div class="main_container" style="background-color: ' . $backgr_today_match . '">';
+   }
+  
+else { 
+
+ echo '<div class="main_container">'; 
+}
+
 
   if (!$_GET['id']) {
 
+    if (date('d-m-Y') === date_format($date, 'd-m-Y')) {
+
+      echo '<a style="background-color: ' . $backgr_today_match . '" href="' . $_SERVER['PHP_SELF'] . '?id=' . $matchId . '">';
+     }
+    
+  else { 
+
    echo '<a href="' . $_SERVER['PHP_SELF'] . '?id=' . $matchId . '">';
   }
+}
 
   echo '
-  <div class="country_container">
+  <div class="country_container">'; 
+
+
+  echo '
   <div class="flag_container">
   <img src="'.$response['response'][$i]['teams']['home']['logo'] . '"/>
   <p>
@@ -138,13 +161,14 @@ if ($numGames > 0 ) {
 
   
   echo '</div>
-          <div class="stscore_container">';
-                     
+
+  <div class="stscore_container">'; 
+
+                   
          if ($_GET['id']) { echo $response['response'][$i]['fixture']['venue']['name'] . '<br>'; }
 
          if (!$_GET['id'])  { echo $response['response'][$i]['fixture']['venue']['city'] . '<br>'; }
 
-         $date = date_create($response['response'][$i]['fixture']['date']);
          echo date_format($date, 'd-m-Y') . ' ';
          echo date('H:i', $response['response'][$i]['fixture']['timestamp'])  . '<br>';
 

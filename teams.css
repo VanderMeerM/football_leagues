@@ -8,7 +8,25 @@
 .main_container_lineup_coach,
 .title_container, a  {
     display: flex;
-}   
+} 
+
+.menubar {
+position: fixed;
+top: 0px;
+}
+
+ul {
+display: flex;
+list-style-type: none;
+}
+
+ul li a {
+background-color: var(--blue);
+padding: 10px;
+width: 150px;
+color:white;
+margin: 0 5px;
+}
 
 .title_container,
 .main_container, 
