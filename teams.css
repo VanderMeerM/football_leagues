@@ -162,7 +162,7 @@ a {
 }
 
 .main_container_event,
-.main_container, 
+
 .main_container a {
     background-color: var(--lightgray);
 }

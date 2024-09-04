@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/smoothness/jquery-ui.css"> 
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
+   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
    <link rel="stylesheet" type="text/css" href="./teams.css" />   
   
 </head>
@@ -243,6 +245,9 @@ fwrite($json_file_enddate, json_encode($enddate_selected_round));
 fclose($json_file_enddate);
 
 ?>
+
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js">
+</script>
 
 </body>
 </html>
