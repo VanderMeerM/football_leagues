@@ -90,10 +90,12 @@ echo "
 
 echo '
 <div class="menubar">
+<div class="menubuttons">
 <ul>
 <li><a href="./standings.php?league=' . $league_id . '&season=' . $current_season . '">Toon stand</a></li>
 <li><a href="./league.php?league=' . $league_id . '&season=' . $current_season . '">Toon programma</a></li>
 </ul>
+</div>
 </div>';
 
 ?>

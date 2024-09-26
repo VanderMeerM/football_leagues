@@ -101,6 +101,7 @@ $numGames = $response['results'];
 
 include('./league_header.php');
 
+$matchesInRound = [];
 
 if ($numGames > 0 ) {
 
@@ -123,6 +124,8 @@ if ($numGames > 0 ) {
 
   if ($_GET['round_selection'] == $selectedround) {
     
+    array_push($matchesInRound, $response['response'][$i]);
+
   //if ((!$_GET['id']) || ($_GET['id'] == $matchId)) {
 
   $date = date_create($response['response'][$i]['fixture']['date']);
@@ -237,6 +240,16 @@ else {
   }}
   }}
 
+  
+/*
+  $miR_sorted = array_map(function ($mt) {
+    return $mt['timestamp'];
+  }, $matchesInRound);
+
+  array_multisort($miR_sorted, SORT_ASC, $matchesInRound);
+
+print_r($matchesInRound);
+*/
 
 $json_file_enddate = fopen($json_enddates, "w");
 
