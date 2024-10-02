@@ -17,7 +17,8 @@
 
 include('./translations.php');
 
-//include('./league_header.php');
+
+include('./league_header.php');
 
 $curl = curl_init();
 
@@ -58,7 +59,9 @@ $numTeams = sizeof($response['response'][0]['league']['standings'][0]);
 
 
 echo 
-'<table>
+'
+<div class="top_standings">
+<table>
 <tr>';
 
 for ($i = 0; $i < $numTeams; $i++) {
@@ -90,7 +93,8 @@ echo '<td>' . $response['response'][0]['league']['standings'][0][$i]['rank'] .  
 
   }
 
-  echo '</table>';
+  echo '</table>
+  </div>';
 
 ?>
 

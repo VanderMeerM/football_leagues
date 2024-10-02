@@ -241,15 +241,17 @@ else {
   }}
 
   
-/*
+
   $miR_sorted = array_map(function ($mt) {
     return $mt['timestamp'];
   }, $matchesInRound);
 
-  array_multisort($miR_sorted, SORT_ASC, $matchesInRound);
+array_multisort($miR_sorted, SORT_ASC, $matchesInRound);
 
-print_r($matchesInRound);
-*/
+//sort_by_end($matchesInRound); 
+
+//print_r($matchesInRound[0]);
+
 
 $json_file_enddate = fopen($json_enddates, "w");
 

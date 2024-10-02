@@ -1,6 +1,24 @@
 
 <?php 
 
+function sort_by_end($arr) {
+	// Sorteert van klein naar groot 
+    usort($arr, function($a, $b) {
+        if ($a['fixture']['timestamp'] > $b['fixture']['timestamp']) {
+            return 1;
+        }
+
+        elseif ($a['fixture']['timestamp'] < $b['fixture']['timestamp']) {
+            return -1;
+        }
+
+        return 0;
+    });
+    return $arr;
+}
+
+$current_page = explode('/', $_SERVER['PHP_SELF'])[4];
+
 $json_enddates = './JSON/enddates_'. $league_id . '_' . $current_season . $complete_season . '.json'; 
 
 $enddates = file_get_contents($json_enddates, true);
@@ -10,6 +28,16 @@ $php_array_for_dates = json_decode($enddates, true);
 $played_rounds = sizeof($php_array_for_dates);
 
 $allrounds = [];
+
+$array_leagues = [88, 89, 78, 79, 135, 140, 39, 40, 179, 357];
+
+$current_season = 2024;
+
+$_GET['league'] ? $league_id = $_GET['league'] : $league_id = 88; 
+
+$complete_season = $current_season + 1; 
+
+
 
 $IntlDateFormatter = new IntlDateFormatter(
   'nl_NL',
@@ -44,7 +72,7 @@ echo "
 
 <p>";
 
-if (!$_GET['id']) {
+if ((!$_GET['id']) || ($current_page !== 'standings.php')) {
 
   echo "
 
@@ -91,9 +119,16 @@ echo "
 echo '
 <div class="menubar">
 <div class="menubuttons">
-<ul>
-<li><a href="./standings.php?league=' . $league_id . '&season=' . $current_season . '">Toon stand</a></li>
-<li><a href="./league.php?league=' . $league_id . '&season=' . $current_season . '">Toon programma</a></li>
+<ul>';
+ 
+if ($current_page === "league.php") {
+echo '<li><a href="./standings.php?league=' . $league_id . '&season=' . $current_season . '">Toon stand</a></li>';
+}
+else {
+echo '<li><a href="./league.php?league=' . $league_id . '&season=' . $current_season . '">Toon programma</a></li>';
+}
+
+echo '
 </ul>
 </div>
 </div>';

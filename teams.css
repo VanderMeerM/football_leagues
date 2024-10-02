@@ -10,6 +10,10 @@
     display: flex;
 } 
 
+.top_standings {
+    margin: 120px 0 auto;
+}
+
 .menubar {
 position: fixed;
 top: 20px;
@@ -43,10 +47,16 @@ margin: 0 5px;
 .main_container, 
 .main_container_event, 
 .container_league_logos {
-    width: 70%;
-    padding: 10px 0;
+    width: 600px;
+    /* padding: 10px 0; */
     margin-bottom: 20px;
-    margin: 150px auto;
+    margin: 80px auto;
+}
+
+.container_league_logos {
+    margin: 0 auto;
+    max-height: fit-content;
+    width: 600px;
 }
 
 table {
@@ -60,6 +70,7 @@ tr:nth-child(odd) {
 
 td {
     padding: 10px;
+    text-align: center;
 }
 
 
@@ -98,7 +109,7 @@ button {
 .lineup_container, 
 #start_sub_team, 
 #play_min, 
-label {
+label, td {
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -112,7 +123,7 @@ label {
 }
 
 .btn_container {
-   margin: 10% auto;
+   margin: 10px auto;
    padding: 10px;
    max-width: 500px;
 }
@@ -220,7 +231,7 @@ a {
     /* display: flex; */
     justify-content: center;
     align-items: center;
-    height: 150px;
+    height: fit-content;
 }
 
 img {
@@ -309,7 +320,7 @@ color: rgb(75, 230, 75);
 }
 
 .align-right{
-    margin-left: 60%;
+    margin-left: 50%;
 }
 
 .nomatches {
@@ -354,11 +365,7 @@ color: rgb(75, 230, 75);
  
 @media (max-width: 900px) {
 
-    .country_container,
-    .stscore_container {
-    width: 150px;
-    }
-
+  
     .flag_container img {
         width: 125px;
     }
@@ -392,6 +399,14 @@ color: rgb(75, 230, 75);
         width: 100px;
     }
 }
+
+@media (max-width: 600px) {
+
+.container_league_logos {
+    width: 400px;
+}
+}
+
 
 @media (max-width: 550px) {
 
