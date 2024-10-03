@@ -37,8 +37,6 @@ $_GET['league'] ? $league_id = $_GET['league'] : $league_id = 88;
 
 $complete_season = $current_season + 1; 
 
-
-
 $IntlDateFormatter = new IntlDateFormatter(
   'nl_NL',
   IntlDateFormatter::LONG,
@@ -49,6 +47,7 @@ $IntlDateFormatter = new IntlDateFormatter(
 for ($i = 1; $i < $played_rounds + 1; $i++) {
     array_push($allrounds, $i);
 }
+
 
 /* test voor controleren op huidige datum speelronde 
 
@@ -140,7 +139,31 @@ echo '
   let leagueId = <?php echo json_encode($league_id); ?>;
   if (Object.is(leagueId, null)) { leagueId == 88 };
 
- document.getElementById('logo').addEventListener('click', () => window.location.href='./league.php?league='+leagueId+'&round_selection='+roundSelection);
+ document.getElementById('logo').addEventListener('click', () => 
+
+ <?php 
+ for ($i=1; $i < $played_rounds; $i++) {
+
+if (
+  (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) ===  date('Y-m-d')) ||
+  (date('Y-m-d', $php_array_for_dates['Ronde ' . $i] - 86400) ===  date('Y-m-d')) ||
+  (date('Y-m-d', $php_array_for_dates['Ronde ' . $i] - 2 * 86400) ===  date('Y-m-d')) || 
+  (date('Y-m-d', $php_array_for_dates['Ronde ' . $i] + 86400) ===  date('Y-m-d'))
+  )
+  
+{
+  $round = $i;
+  break;
+}
+
+}
+?>
+
+//window.location.href='./league.php?league='+leagueId+'&round_selection='+<?php //echo json_encode($round); ?>)
+window.location.href='./league.php?league='+leagueId+'&round_selection=10');
+
+
+
 
  document.getElementById('round_selection').addEventListener('change', (ev) => {
  roundSelection = ev.target.value;
@@ -150,14 +173,21 @@ echo '
 
  function clickBtnLeague(idBtn){
   document.getElementById(idBtn).addEventListener('click', () => { 
+
+    currentPage = <?php echo json_encode($current_page) ?>;
     
-    roundSelection = <?php if (isset($_GET['round_selection'])) { echo json_encode($_GET['round_selection']); }
+    roundSelection = <?php 
+    if (isset($_GET['round_selection'])) { echo json_encode($_GET['round_selection']); }
     else { echo json_encode(1); } ?>
-    
+
+    if (currentPage === 'standings.php') {
+      window.location.href='./standings.php?league='+document.getElementById(idBtn).id+'&season='+<?php echo json_encode($_GET['season']); ?>
+      }
+      else       
       window.location.href='./league.php?league='+document.getElementById(idBtn).id+'&round_selection='+roundSelection
  });
 
- }
+}
  clickBtnLeague(88);
  clickBtnLeague(89);
  clickBtnLeague(78);
