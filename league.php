@@ -132,7 +132,7 @@ if ($numGames > 0 ) {
 
   if (date('d-m-Y') === date_format($date, 'd-m-Y')) {
 
-    echo '<<div class="main_container" style="background-color: ' . $backgr_today_match . '">';
+    echo '<div class="main_container">';
    }
   
 else { 

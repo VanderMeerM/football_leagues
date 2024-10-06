@@ -101,7 +101,8 @@ echo "
 </div>
 </div>";
 
-echo "<div class='container_league_logos'>";
+echo "<div class='container_league_logos'>
+<form action='./league.php?league=' . $league_id . '&round_selection='. $round' method='post'>";
 
 foreach ($array_leagues as $al) {
 
@@ -113,6 +114,7 @@ foreach ($array_leagues as $al) {
 
 echo "
 
+</form>
 </div>";
 
 echo '
@@ -139,10 +141,21 @@ echo '
   let leagueId = <?php echo json_encode($league_id); ?>;
   if (Object.is(leagueId, null)) { leagueId == 88 };
 
- document.getElementById('logo').addEventListener('click', () => 
+ //document.getElementById('logo').addEventListener('click', () => 
 
- <?php 
- for ($i=1; $i < $played_rounds; $i++) {
+
+document.getElementById('round_selection').addEventListener('change', (ev) => {
+roundSelection = ev.target.value;
+ //regSeason = 'Regular Season - ';
+ window.location.href='./league.php?league='+leagueId+'&round_selection='+roundSelection
+});
+
+ function clickBtnLeague(idBtn) {
+  document.getElementById(idBtn).addEventListener('click', () => { 
+
+<?php
+
+for ($i=1; $i < $played_rounds; $i++) {
 
 if (
   (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) ===  date('Y-m-d')) ||
@@ -154,28 +167,13 @@ if (
 {
   $round = $i;
   break;
-}
-
-}
+}}
 ?>
 
-//window.location.href='./league.php?league='+leagueId+'&round_selection='+<?php //echo json_encode($round); ?>)
-window.location.href='./league.php?league='+leagueId+'&round_selection=10');
-
-
-
-
- document.getElementById('round_selection').addEventListener('change', (ev) => {
- roundSelection = ev.target.value;
- //regSeason = 'Regular Season - ';
- window.location.href='./league.php?league='+leagueId+'&round_selection='+roundSelection
-});
-
- function clickBtnLeague(idBtn){
-  document.getElementById(idBtn).addEventListener('click', () => { 
-
     currentPage = <?php echo json_encode($current_page) ?>;
-    
+
+    console.log(round = <?php echo json_encode($round) ?>);
+
     roundSelection = <?php 
     if (isset($_GET['round_selection'])) { echo json_encode($_GET['round_selection']); }
     else { echo json_encode(1); } ?>
@@ -183,11 +181,13 @@ window.location.href='./league.php?league='+leagueId+'&round_selection=10');
     if (currentPage === 'standings.php') {
       window.location.href='./standings.php?league='+document.getElementById(idBtn).id+'&season='+<?php echo json_encode($_GET['season']); ?>
       }
-      else       
-      window.location.href='./league.php?league='+document.getElementById(idBtn).id+'&round_selection='+roundSelection
- });
+      else {      
+      window.location.href='./league.php?league='+document.getElementById(idBtn).id+'&round_selection='+round;
+      }
+ })
 
 }
+
  clickBtnLeague(88);
  clickBtnLeague(89);
  clickBtnLeague(78);
@@ -199,5 +199,4 @@ window.location.href='./league.php?league='+leagueId+'&round_selection=10');
  clickBtnLeague(179);
  clickBtnLeague(357);
 
-</script>
-
+ </script>
