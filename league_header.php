@@ -158,21 +158,22 @@ roundSelection = ev.target.value;
 for ($i=1; $i < $played_rounds; $i++) {
 
 if (
-  (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) ===  date('Y-m-d')) ||
-  (date('Y-m-d', $php_array_for_dates['Ronde ' . $i] - 86400) ===  date('Y-m-d')) ||
-  (date('Y-m-d', $php_array_for_dates['Ronde ' . $i] - 2 * 86400) ===  date('Y-m-d')) || 
-  (date('Y-m-d', $php_array_for_dates['Ronde ' . $i] + 86400) ===  date('Y-m-d'))
+  (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) ==  date('Y-m-d')) ||
+  (date('Y-m-d', $php_array_for_dates['Ronde ' . $i] - 86400) ==  date('Y-m-d')) ||
+  (date('Y-m-d', $php_array_for_dates['Ronde ' . $i] - (2 * 86400)) ==  date('Y-m-d')) || 
+  (date('Y-m-d', $php_array_for_dates['Ronde ' . $i] + 86400) == date('Y-m-d'))
   )
   
-{
+{ 
   $round = $i;
-  break;
+ 
 }}
 ?>
 
     currentPage = <?php echo json_encode($current_page) ?>;
 
-    console.log(round = <?php echo json_encode($round) ?>);
+    round = <?php echo json_encode($round) ?>;
+    console.log(round);
 
     roundSelection = <?php 
     if (isset($_GET['round_selection'])) { echo json_encode($_GET['round_selection']); }
