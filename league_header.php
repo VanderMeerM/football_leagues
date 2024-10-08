@@ -1,6 +1,8 @@
 
 <?php 
 
+ setcookie('current_round', 7, time()+86400, '/');
+
 function sort_by_end($arr) {
 	// Sorteert van klein naar groot 
     usort($arr, function($a, $b) {
@@ -150,6 +152,7 @@ roundSelection = ev.target.value;
  window.location.href='./league.php?league='+leagueId+'&round_selection='+roundSelection
 });
 
+
  function clickBtnLeague(idBtn) {
   document.getElementById(idBtn).addEventListener('click', () => { 
 
@@ -158,21 +161,24 @@ roundSelection = ev.target.value;
 for ($i=1; $i < $played_rounds; $i++) {
 
 if (
-  (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) ==  date('Y-m-d')) ||
-  (date('Y-m-d', $php_array_for_dates['Ronde ' . $i] - 86400) ==  date('Y-m-d')) ||
-  (date('Y-m-d', $php_array_for_dates['Ronde ' . $i] - (2 * 86400)) ==  date('Y-m-d')) || 
-  (date('Y-m-d', $php_array_for_dates['Ronde ' . $i] + 86400) == date('Y-m-d'))
+  (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) == date('Y-m-d')) ||
+  (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) == date("Y-m-d", strtotime('yesterday'))) ||
+  (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) == date('Y-m-d', strtotime('-2 days'))) || 
+  (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) == date('Y-m-d', strtotime('tomorrow')))
   )
   
 { 
-  $round = $i;
- 
-}}
+ $round = $i;
+ setcookie('current_round', $i, time()+86400, '/');
+ break;
+}
+}
 ?>
 
     currentPage = <?php echo json_encode($current_page) ?>;
 
-    round = <?php echo json_encode($round) ?>;
+    //round = <?php echo json_encode($round) ?>;
+    round = <?php echo $_COOKIE['current_round'] ?>;
     console.log(round);
 
     roundSelection = <?php 
@@ -182,9 +188,10 @@ if (
     if (currentPage === 'standings.php') {
       window.location.href='./standings.php?league='+document.getElementById(idBtn).id+'&season='+<?php echo json_encode($_GET['season']); ?>
       }
-      else {      
+      else { 
       window.location.href='./league.php?league='+document.getElementById(idBtn).id+'&round_selection='+round;
       }
+      
  })
 
 }
