@@ -30,7 +30,8 @@ $backgr_today_match = '#f1e3bc';
 include('./translations.php');
 
 
-$json_league_season_path = './JSON/' . $league_id . '_' . $current_season . '.json'; 
+//$json_league_season_path = './JSON/enddates_'. $league_id . '_' . $current_season . $complete_season . '.json'; 
+
 
 if ($_GET['id']) {
     $cur_url = 'https://v3.football.api-sports.io/fixtures?&id=' . $_GET['id'];

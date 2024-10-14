@@ -1,23 +1,7 @@
 
 <?php 
 
- setcookie('current_round', 7, time()+86400, '/');
-
-function sort_by_end($arr) {
-	// Sorteert van klein naar groot 
-    usort($arr, function($a, $b) {
-        if ($a['fixture']['timestamp'] > $b['fixture']['timestamp']) {
-            return 1;
-        }
-
-        elseif ($a['fixture']['timestamp'] < $b['fixture']['timestamp']) {
-            return -1;
-        }
-
-        return 0;
-    });
-    return $arr;
-}
+$round_determination = [];
 
 $current_page = explode('/', $_SERVER['PHP_SELF'])[4];
 
@@ -51,13 +35,6 @@ for ($i = 1; $i < $played_rounds + 1; $i++) {
 }
 
 
-/* test voor controleren op huidige datum speelronde 
-
-echo $foundDate = var_dump(array_filter($php_array_for_dates, function ($d) {
-  return date('d-M-Y', $d) == date('d-M-Y'); 
-}, ARRAY_FILTER_USE_BOTH));
-
-*/
 echo "
 <div class='title_container'> 
 
@@ -115,14 +92,11 @@ foreach ($array_leagues as $al) {
 }
 
 echo "
-
 </form>
-</div>";
-
-echo '
-<div class="menubar">
-<div class="menubuttons">
-<ul>';
+</div>
+<div class='menubar'>
+<div class='menubuttons'>
+<ul>";
  
 if ($current_page === "league.php") {
 echo '<li><a href="./standings.php?league=' . $league_id . '&season=' . $current_season . '">Toon stand</a></li>';
@@ -136,7 +110,29 @@ echo '
 </div>
 </div>';
 
+
+for ($i=1; $i < $played_rounds; $i++) {
+
+if (
+
+
+  (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) >= date('Y-m-d')) 
+
+  /*
+  (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) == date("Y-m-d", strtotime('yesterday'))) ||
+  (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) == date('Y-m-d', strtotime('-2 days'))) || 
+  (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) == date('Y-m-d', strtotime('tomorrow')))
+*/
+  
+  )
+
+ { 
+  array_push($round_determination, $i);
+}
+}
+
 ?>
+
 
 <script>
 
@@ -153,36 +149,17 @@ roundSelection = ev.target.value;
 });
 
 
- function clickBtnLeague(idBtn) {
+function clickBtnLeague(idBtn) {
   document.getElementById(idBtn).addEventListener('click', () => { 
-
-<?php
-
-for ($i=1; $i < $played_rounds; $i++) {
-
-if (
-  (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) == date('Y-m-d')) ||
-  (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) == date("Y-m-d", strtotime('yesterday'))) ||
-  (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) == date('Y-m-d', strtotime('-2 days'))) || 
-  (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) == date('Y-m-d', strtotime('tomorrow')))
-  )
-  
-{ 
- $round = $i;
- setcookie('current_round', $i, time()+86400, '/');
- break;
-}
-}
-?>
-
+ 
     currentPage = <?php echo json_encode($current_page) ?>;
 
-    //round = <?php echo json_encode($round) ?>;
-    round = <?php echo $_COOKIE['current_round'] ?>;
+    round = <?php echo json_encode($round_determination[0]) ?>;
     console.log(round);
+    
 
     roundSelection = <?php 
-    if (isset($_GET['round_selection'])) { echo json_encode($_GET['round_selection']); }
+    if (isset($_GET['round_selection'])) { echo json_encode($_COOKIE['round_selection']); }
     else { echo json_encode(1); } ?>
 
     if (currentPage === 'standings.php') {
@@ -193,7 +170,7 @@ if (
       }
       
  })
-
+      
 }
 
  clickBtnLeague(88);
@@ -208,3 +185,5 @@ if (
  clickBtnLeague(357);
 
  </script>
+ 
+ 

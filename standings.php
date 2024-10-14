@@ -39,18 +39,18 @@ curl_setopt_array($curl, array(
     'x-rapidapi-host: v3.football.api-sports.io'
   )));
  
-
   $response = curl_exec($curl);
 
   curl_close($curl);
-  
+ 
 
-/* Onderstaande twee regels uitcommentariëren 
+/* 
+
+Onderstaande twee regels uitcommentariëren 
 
 $json_standings = './JSON/standings_88.json';
 
 $response = file_get_contents($json_standings, true);
-
 */
 
 $response= json_decode($response, true);
