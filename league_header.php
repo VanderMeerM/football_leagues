@@ -102,8 +102,12 @@ if ($current_page === "league.php") {
 echo '<li><a href="./standings.php?league=' . $league_id . '&season=' . $current_season . '">Toon stand</a></li>';
 }
 else {
-echo '<li><a href="./league.php?league=' . $league_id . '&season=' . $current_season . '">Toon programma</a></li>';
+
+  echo '<li><a href="./league.php?league=' . $league_id . '&season=' . $current_season . '+round_selection=' . $round_of_first_upcoming_matches . '">Toon programma</a></li>';
+
 }
+
+
 
 echo '
 </ul>
@@ -127,9 +131,14 @@ if (
   )
 
  { 
-  array_push($round_determination, $i);
+  array_push($round_determination, $php_array_for_dates['Ronde ' . $i] . '+' . $i);
 }
 }
+
+asort($round_determination);
+$array_of_round_of_first_upcoming_matches = $round_determination[array_key_first($round_determination)];
+
+$round_of_first_upcoming_matches = explode('+', $array_of_round_of_first_upcoming_matches)[1];
 
 ?>
 
@@ -139,13 +148,10 @@ if (
   let leagueId = <?php echo json_encode($league_id); ?>;
   if (Object.is(leagueId, null)) { leagueId == 88 };
 
- //document.getElementById('logo').addEventListener('click', () => 
 
-
-document.getElementById('round_selection').addEventListener('change', (ev) => {
+  document.getElementById('round_selection').addEventListener('change', (ev) => {
 roundSelection = ev.target.value;
- //regSeason = 'Regular Season - ';
- window.location.href='./league.php?league='+leagueId+'&round_selection='+roundSelection
+window.location.href='./league.php?league='+leagueId+'&round_selection='+roundSelection
 });
 
 
@@ -154,19 +160,12 @@ function clickBtnLeague(idBtn) {
  
     currentPage = <?php echo json_encode($current_page) ?>;
 
-    round = <?php echo json_encode($round_determination[0]) ?>;
-    console.log(round);
-    
-
-    roundSelection = <?php 
-    if (isset($_GET['round_selection'])) { echo json_encode($_COOKIE['round_selection']); }
-    else { echo json_encode(1); } ?>
-
+     
     if (currentPage === 'standings.php') {
       window.location.href='./standings.php?league='+document.getElementById(idBtn).id+'&season='+<?php echo json_encode($_GET['season']); ?>
       }
       else { 
-      window.location.href='./league.php?league='+document.getElementById(idBtn).id+'&round_selection='+round;
+      window.location.href='./league.php?league='+document.getElementById(idBtn).id+'&round_selection='+<?php echo json_encode($round_of_first_upcoming_matches) ?>;
       }
       
  })
