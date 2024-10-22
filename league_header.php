@@ -77,13 +77,11 @@ echo "
 
 if ($current_page !== 'standings.php') {
 
-  // <select " . (!$_GET['id'] ? "style=visibility: hidden" : null) . " id='round_selection' name='round_selection'>";
-
 echo "
 
 <form action='./league.php?round_selection=$selectedround method='get'>
 
-<select " . (!$_GET['id'] ? "style=visibility: hidden" : null) . " id='round_selection' name='round_selection'>";
+<select " . ($_GET['id'] ? 'style=visibility: hidden' : null) . " id='round_selection' name='round_selection'>";
 
 for ($i =0; $i < sizeof($allrounds); $i++) {
 
@@ -103,6 +101,17 @@ echo "
 </form>";
 
 }
+
+if ($_GET['id']) {
+  echo 
+  "<div class='menubuttons'>
+<ul>
+ <li><a href='./league.php?league=' . $league_id . '&round_selection=' . $round_selection . '>Terug naar overzicht</a></li>
+ </ul>
+ </div>'
+ ";
+}
+
 
 echo "
 </div>
