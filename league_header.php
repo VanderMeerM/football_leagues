@@ -23,6 +23,31 @@ $_GET['league'] ? $league_id = $_GET['league'] : $league_id = 88;
 
 $complete_season = $current_season + 1; 
 
+for ($i=1; $i < $played_rounds; $i++) {
+
+  if (
+  
+    (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) >= date('Y-m-d')) 
+  
+    /*
+    (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) == date("Y-m-d", strtotime('yesterday'))) ||
+    (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) == date('Y-m-d', strtotime('-2 days'))) || 
+    (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) == date('Y-m-d', strtotime('tomorrow')))
+  */
+    
+    )
+  
+   { 
+    array_push($round_determination, $php_array_for_dates['Ronde ' . $i] . '+' . $i);
+  }
+  }
+  
+  asort($round_determination);
+  $array_of_round_of_first_upcoming_matches = $round_determination[array_key_first($round_determination)];
+  
+  $round_of_first_upcoming_matches = explode('+', $array_of_round_of_first_upcoming_matches)[1];
+
+
 $IntlDateFormatter = new IntlDateFormatter(
   'nl_NL',
   IntlDateFormatter::LONG,
@@ -50,13 +75,15 @@ echo "
 
 <p>";
 
-if ((!$_GET['id']) || ($current_page !== 'standings.php')) {
+if ($current_page !== 'standings.php') {
 
-  echo "
+  // <select " . (!$_GET['id'] ? "style=visibility: hidden" : null) . " id='round_selection' name='round_selection'>";
+
+echo "
 
 <form action='./league.php?round_selection=$selectedround method='get'>
 
-<select id='round_selection' name='round_selection'>";
+<select " . (!$_GET['id'] ? "style=visibility: hidden" : null) . " id='round_selection' name='round_selection'>";
 
 for ($i =0; $i < sizeof($allrounds); $i++) {
 
@@ -74,6 +101,7 @@ for ($i =0; $i < sizeof($allrounds); $i++) {
 echo "
 </select>
 </form>";
+
 }
 
 echo "
@@ -107,38 +135,10 @@ else {
 
 }
 
-
-
 echo '
 </ul>
 </div>
 </div>';
-
-
-for ($i=1; $i < $played_rounds; $i++) {
-
-if (
-
-
-  (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) >= date('Y-m-d')) 
-
-  /*
-  (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) == date("Y-m-d", strtotime('yesterday'))) ||
-  (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) == date('Y-m-d', strtotime('-2 days'))) || 
-  (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) == date('Y-m-d', strtotime('tomorrow')))
-*/
-  
-  )
-
- { 
-  array_push($round_determination, $php_array_for_dates['Ronde ' . $i] . '+' . $i);
-}
-}
-
-asort($round_determination);
-$array_of_round_of_first_upcoming_matches = $round_determination[array_key_first($round_determination)];
-
-$round_of_first_upcoming_matches = explode('+', $array_of_round_of_first_upcoming_matches)[1];
 
 ?>
 
@@ -165,8 +165,9 @@ function clickBtnLeague(idBtn) {
       window.location.href='./standings.php?league='+document.getElementById(idBtn).id+'&season='+<?php echo json_encode($_GET['season']); ?>
       }
       else { 
-      window.location.href='./league.php?league='+document.getElementById(idBtn).id+'&round_selection='+<?php echo json_encode($round_of_first_upcoming_matches) ?>;
-      }
+      window.location.href='./league.php?league='+document.getElementById(idBtn).id+'&round_selection='+<?php echo json_encode($round_of_first_upcoming_matches) ?>
+      
+    }
       
  })
       

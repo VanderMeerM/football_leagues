@@ -87,6 +87,7 @@ td {
 #round_selection {
  width: fit-content;
  color: rgb(136, 27, 27);
+ /*visibility: hidden; */
 }
 
 #round_selection>option { 
@@ -185,7 +186,7 @@ a {
 }
 
 .main_container_event,
-
+.main_container,
 .main_container a {
     background-color: var(--lightgray);
 }

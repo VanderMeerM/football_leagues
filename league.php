@@ -151,7 +151,7 @@ else {
     
   else { 
 
-   echo '<a href="' . $_SERVER['PHP_SELF'] . '?id=' . $matchId . '">';
+   echo '<a href="' . $_SERVER['PHP_SELF'] . '?league=' . $league_id . '&id=' . $matchId . '">';
   }
 }
 
