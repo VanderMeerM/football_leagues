@@ -118,13 +118,13 @@ echo "
 </div>";
 
 echo "<div class='container_league_logos'>
-<form action='./league.php?league=' . $league_id . '&round_selection='. $round' method='post'>";
+<form action='./league.php?league=' . $league_id . '&round_selection='. $round_of_first_upcoming_matches' method='post'>";
 
 foreach ($array_leagues as $al) {
 
   echo "
  
-  <img id=$al class='league_icon' src='https://media.api-sports.io/football/leagues/$al.png'/>"; 
+  <button type='submit'><img id=$al class='league_icon' src='https://media.api-sports.io/football/leagues/$al.png'/></button>"; 
 
 }
 
@@ -173,10 +173,11 @@ function clickBtnLeague(idBtn) {
     if (currentPage === 'standings.php') {
       window.location.href='./standings.php?league='+document.getElementById(idBtn).id+'&season='+<?php echo json_encode($_GET['season']); ?>
       }
-      else { 
+     /* else { 
       window.location.href='./league.php?league='+document.getElementById(idBtn).id+'&round_selection='+<?php echo json_encode($round_of_first_upcoming_matches) ?>
       
     }
+      */
       
  })
       
