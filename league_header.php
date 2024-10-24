@@ -15,13 +15,15 @@ $played_rounds = sizeof($php_array_for_dates);
 
 $allrounds = [];
 
-$array_leagues = [88, 89, 78, 79, 135, 140, 39, 40, 179, 357];
+$array_leagues = [88, 89, 78, 79, 135, 140, 39, 40, 179, 357, 408];
 
 $current_season = 2024;
 
 $_GET['league'] ? $league_id = $_GET['league'] : $league_id = 88; 
 
-$complete_season = $current_season + 1; 
+$complete_season = $current_season + 1;
+
+$round_from_match_to_overview = setcookie('round_from_match_to_overview', $_GET['round_selection'], 3600, '/');
 
 for ($i=1; $i < $played_rounds; $i++) {
 
@@ -102,11 +104,14 @@ echo "
 
 }
 
+//echo 'Ronde: ' . $round_from_match_to_overview;
+
 if ($_GET['id']) {
+
   echo 
   "<div class='menubuttons'>
 <ul>
- <li><a href='./league.php?league=' . $league_id . '&round_selection=' . $round_selection . '>Terug naar overzicht</a></li>
+ <li><a href='./league.php?league=$league_id&round_selection=$round_from_match_to_overview'>Terug naar overzicht</a></li>
  </ul>
  </div>'
  ";
@@ -115,17 +120,17 @@ if ($_GET['id']) {
 
 echo "
 </div>
-</div>";
+</div>
 
-echo "<div class='container_league_logos'>
-<form action='./league.php?league=' . $league_id . '&round_selection='. $round_of_first_upcoming_matches' method='post'>";
+<div class='container_league_logos'>
+<form action='./league.php?league=$league_id'&round_selection=$round_of_first_upcoming_matches method='post'>";
 
 foreach ($array_leagues as $al) {
 
   echo "
  
-  <button type='submit'><img id=$al class='league_icon' src='https://media.api-sports.io/football/leagues/$al.png'/></button>"; 
-
+  <img id=$al class='league_icon' src='https://media.api-sports.io/football/leagues/$al.png'/>"; 
+  
 }
 
 echo "
@@ -134,6 +139,7 @@ echo "
 <div class='menubar'>
 <div class='menubuttons'>
 <ul>";
+
  
 if ($current_page === "league.php") {
 echo '<li><a href="./standings.php?league=' . $league_id . '&season=' . $current_season . '">Toon stand</a></li>';
@@ -157,28 +163,30 @@ echo '
   let leagueId = <?php echo json_encode($league_id); ?>;
   if (Object.is(leagueId, null)) { leagueId == 88 };
 
+  currentPage = <?php echo json_encode($current_page) ?>;
 
-  document.getElementById('round_selection').addEventListener('change', (ev) => {
+if (currentPage !="standings.php") {
+
+document.getElementById('round_selection').addEventListener('change', (ev) => {
 roundSelection = ev.target.value;
 window.location.href='./league.php?league='+leagueId+'&round_selection='+roundSelection
 });
-
+}
 
 function clickBtnLeague(idBtn) {
   document.getElementById(idBtn).addEventListener('click', () => { 
  
-    currentPage = <?php echo json_encode($current_page) ?>;
 
      
     if (currentPage === 'standings.php') {
       window.location.href='./standings.php?league='+document.getElementById(idBtn).id+'&season='+<?php echo json_encode($_GET['season']); ?>
       }
-     /* else { 
+     
+     else { 
       window.location.href='./league.php?league='+document.getElementById(idBtn).id+'&round_selection='+<?php echo json_encode($round_of_first_upcoming_matches) ?>
       
     }
-      */
-      
+       
  })
       
 }
@@ -193,6 +201,8 @@ function clickBtnLeague(idBtn) {
  clickBtnLeague(40);
  clickBtnLeague(179);
  clickBtnLeague(357);
+ clickBtnLeague(408);
+
 
  </script>
  
