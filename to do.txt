@@ -1,0 +1,25 @@
+
+- styling voor league_header optimaliseren voor kleinere schermen 
+
+- in menu Programma moet bij aanklikken icoontje voor competitie selectievenster worden geselecteerd op ronde met actuele datum (ipv laatst geselecteerde ronde) 
+
+ - afgelopen seizoenen (1 dag na laatste dag competitie) geheel opslaan als json 
+
+- wedstrijden 1 dag nadat ze zijn gespeeld opslaan als json 
+
+- in menu Stand laatste update-info 
+
+
+- selectievenster niet tonen bij weergave afzonderlijke wedstrijd 
+
+- menu voor Stand en Programma bovenaan 
+
+- terugknop bij tonen afzonderlijke wedstrijd 
+
+----
+
+- wedstrijden in chronologische volgorde v (via API)
+
+- in menu Stand moet bij aanklikken icoontje voor competitie stand van betreffende competitie worden getoond v
+
+- header altijd zichtbaar (icoon geselecteerde competitie, seizoen en icoontjes) v 
