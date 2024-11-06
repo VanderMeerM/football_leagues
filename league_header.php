@@ -120,18 +120,21 @@ echo "
 </div>
 </div>
 
-<div class='container_league_logos'>
-<form action='./league.php?league=$league_id'&round_selection=$round_of_first_upcoming_matches' method='post'>";
+<div class='container_league_logos'>";
 
 foreach ($array_leagues as $al) {
 
   echo "
-  <img id=$al name=$al class='league_icon' src='https://media.api-sports.io/football/leagues/$al.png'/>";
+  <form action='./league.php?league=$al&round_selection=$round_of_first_upcoming_matches' name='form_leagues$al' method='post'>
+
+  <a onClick='document.form_leagues$al.submit();'>
+  <img class='league_icon' src='https://media.api-sports.io/football/leagues/$al.png'/>
+  </a>
+  </form>";
  
 }
 
 echo "
-</form>
 </div>
 <div class='menubar'>
 <div class='menubuttons'>
@@ -189,7 +192,7 @@ function clickBtnLeague(idBtn) {
       
 }
 
- 
+/* 
  clickBtnLeague(88);
  clickBtnLeague(89);
  clickBtnLeague(78);
@@ -200,7 +203,8 @@ function clickBtnLeague(idBtn) {
  clickBtnLeague(40);
  clickBtnLeague(179);
  clickBtnLeague(357);
-
+ clickBtnLeague(408);
+*/
 
  </script>
  
