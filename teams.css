@@ -134,7 +134,7 @@ label {
 }
 
 form {
-    display: inline;
+    display: inline-flex;
 }
 
 /*.btn_container a, */

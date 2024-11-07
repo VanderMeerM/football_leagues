@@ -15,6 +15,9 @@
 
 <?php 
 
+$current_season = 2024;
+$complete_season = $current_season +1;
+
 include('./translations.php');
 
 

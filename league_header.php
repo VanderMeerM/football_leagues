@@ -1,23 +1,16 @@
 
 <?php 
 
-$round_determination = [];
-
 $current_page = explode('/', $_SERVER['PHP_SELF'])[4];
 
-$json_enddates = './JSON/enddates_'. $league_id . '_' . $current_season . $complete_season . '.json'; 
 
-$enddates = file_get_contents($json_enddates, true);
-
-$php_array_for_dates = json_decode($enddates, true);
-
-$played_rounds = sizeof($php_array_for_dates);
+// $played_rounds = sizeof($php_array_for_dates);
 
 $allrounds = [];
 
 $array_leagues = [88, 89, 78, 79, 135, 140, 39, 40, 179, 357, 408];
 
-$current_season = 2024;
+//$current_season = 2024;
 
 $_GET['league'] ? $league_id = $_GET['league'] : $league_id = 88; 
 
@@ -25,29 +18,13 @@ $complete_season = $current_season + 1;
 
 $round_from_match_to_overview = setcookie('round_from_match_to_overview', $_GET['round_selection'], 3600, '/');
 
-for ($i=1; $i < $played_rounds; $i++) {
+$json_enddates = './JSON/enddates_'. $league_id . '_' . $current_season . $complete_season . '.json'; 
 
-  if (
-  
-    (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) >= date('Y-m-d')) 
-  
-    /*
-    (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) == date("Y-m-d", strtotime('yesterday'))) ||
-    (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) == date('Y-m-d', strtotime('-2 days'))) || 
-    (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) == date('Y-m-d', strtotime('tomorrow')))
-  */
-    
-    )
-  
-   { 
-    array_push($round_determination, $php_array_for_dates['Ronde ' . $i] . '+' . $i);
-  }
-  }
-  
-  asort($round_determination);
-  $array_of_round_of_first_upcoming_matches = $round_determination[array_key_first($round_determination)];
-  
-  $round_of_first_upcoming_matches = explode('+', $array_of_round_of_first_upcoming_matches)[1];
+$enddates = file_get_contents($json_enddates, true);
+
+$php_array_for_dates = json_decode($enddates, true);
+
+
 
 
 $IntlDateFormatter = new IntlDateFormatter(
@@ -57,7 +34,7 @@ $IntlDateFormatter = new IntlDateFormatter(
 
 );
 
-for ($i = 1; $i < $played_rounds + 1; $i++) {
+for ($i = 1; $i < sizeof($php_array_for_dates) + 1; $i++) {
     array_push($allrounds, $i);
 }
 
@@ -111,10 +88,8 @@ if ($_GET['id']) {
 <ul>
  <li><a href='./league.php?league=$league_id&round_selection=$round_from_match_to_overview'>Terug naar overzicht</a></li>
  </ul>
- </div>'
- ";
+ </div>'";
 }
-
 
 echo "
 </div>
@@ -124,8 +99,43 @@ echo "
 
 foreach ($array_leagues as $al) {
 
+$round_determination = [];
+
+$json_enddates = './JSON/enddates_'. $al . '_' . $current_season . $complete_season . '.json'; 
+
+$enddates = file_get_contents($json_enddates, true);
+
+$php_array_for_dates = json_decode($enddates, true);
+
+for ($i=1; $i < sizeof($php_array_for_dates); $i++) {
+
+  if (
+  
+    (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) >= date('Y-m-d')) 
+      
+    )
+  
+   { 
+    array_push($round_determination, $php_array_for_dates['Ronde ' . $i] . '+' . $i);
+  }
+  }
+  
+  asort($round_determination);
+  $array_of_round_of_first_upcoming_matches = $round_determination[array_key_first($round_determination)];
+  
+  $round_of_first_upcoming_matches = explode('+', $array_of_round_of_first_upcoming_matches)[1];
+
+  $page_to_go; 
+
+  if ($current_page === 'league.php') {
+    $page_to_go = "./league.php?league=$al&round_selection=$round_of_first_upcoming_matches";
+  }
+  else {
+    $page_to_go = "./standings.php?league=$al&season=$current_season";
+  }
+
   echo "
-  <form action='./league.php?league=$al&round_selection=$round_of_first_upcoming_matches' name='form_leagues$al' method='post'>
+  <form action=$page_to_go name='form_leagues$al' method='post'>
 
   <a onClick='document.form_leagues$al.submit();'>
   <img class='league_icon' src='https://media.api-sports.io/football/leagues/$al.png'/>
@@ -146,7 +156,7 @@ echo '<li><a href="./standings.php?league=' . $league_id . '&season=' . $current
 }
 else {
 
-  echo '<li><a href="./league.php?league=' . $league_id . '&season=' . $current_season . '+round_selection=' . $round_of_first_upcoming_matches . '">Toon programma</a></li>';
+  echo '<li><a href="./league.php?league=' . $league_id . '&season=' . $current_season . '&round_selection=' . $round_of_first_upcoming_matches . '">Toon programma</a></li>';
 
 }
 
