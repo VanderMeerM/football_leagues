@@ -175,8 +175,9 @@ a {
 #startteam,
  a {
     justify-content: center;
-    margin: 25px auto;
+   /* margin: 25px auto;
     padding-bottom: 10px;
+    */
 }
 
 #start_sub_team {
