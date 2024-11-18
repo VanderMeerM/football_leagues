@@ -10,7 +10,7 @@ $allrounds = [];
 
 $array_leagues = [88, 89, 78, 79, 135, 140, 39, 40, 179, 357, 408];
 
-//$current_season = 2024;
+$current_season = 2024;
 
 $_GET['league'] ? $league_id = $_GET['league'] : $league_id = 88; 
 
@@ -183,7 +183,7 @@ window.location.href='./league.php?league='+leagueId+'&round_selection='+roundSe
 });
 }
 
-
+/* 
 function clickBtnLeague(idBtn) {
   document.getElementById(idBtn).addEventListener('click', () => { 
  
@@ -202,7 +202,7 @@ function clickBtnLeague(idBtn) {
       
 }
 
-/* 
+
  clickBtnLeague(88);
  clickBtnLeague(89);
  clickBtnLeague(78);

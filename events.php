@@ -24,7 +24,7 @@ if (!file_exists($json_events_path)) {
     ));
     
     $response_event = curl_exec($curl_event);
-    
+
     curl_close($curl_event);
     
       
@@ -46,8 +46,9 @@ if (5 < 4 ) {
     $response_json = file_get_contents($json_events_path, true);
   
     $response_event= json_decode($response_json, true);
-  
-  }
+ }
+
+ echo 'Test: ' . $response_event['response'][0]['fixture']['date'];
 
 $num_events = $response_event['results'];
 

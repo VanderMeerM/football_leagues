@@ -30,7 +30,7 @@ $backgr_today_match = '#f1e3bc';
 include('./translations.php');
 
 
-//$json_league_season_path = './JSON/enddates_'. $league_id . '_' . $current_season . $complete_season . '.json'; 
+$json_league_season_path = './JSON/seasons/'. $league_id . '_season_'. $current_season . $complete_season . '.json'; 
 
 
 if ($_GET['id']) {
