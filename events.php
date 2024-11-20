@@ -48,8 +48,6 @@ if (5 < 4 ) {
     $response_event= json_decode($response_json, true);
  }
 
- echo 'Test: ' . $response_event['response'][0]['fixture']['date'];
-
 $num_events = $response_event['results'];
 
 $min_playing_minute = 

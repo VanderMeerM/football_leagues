@@ -143,17 +143,10 @@ else {
 
 
   if (!$_GET['id']) {
-
-    if (date('d-m-Y') === date_format($date, 'd-m-Y')) {
-
-      echo '<a style="background-color: ' . $backgr_today_match . '" href="' . $_SERVER['PHP_SELF'] . '?id=' . $matchId . '">';
-     }
+   
+      echo '<a '. (date('d-m-Y') === date_format($date, 'd-m-Y') ? 'style="background-color: ' . $backgr_today_match : null) . '" href="' . $_SERVER['PHP_SELF'] . '?round_selection=' . $selectedround . '&league=' . $league_id . '&id=' . $matchId . '">';
     
-  else { 
-
-   echo '<a href="' . $_SERVER['PHP_SELF'] . '?league=' . $league_id . '&id=' . $matchId . '">';
   }
-}
 
   echo '
   <div class="country_container">'; 

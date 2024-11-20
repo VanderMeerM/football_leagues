@@ -14,17 +14,15 @@ $current_season = 2024;
 
 $_GET['league'] ? $league_id = $_GET['league'] : $league_id = 88; 
 
-$complete_season = $current_season + 1;
+// $complete_season = $current_season + 1;
 
 $round_from_match_to_overview = setcookie('round_from_match_to_overview', $_GET['round_selection'], 3600, '/');
 
-$json_enddates = './JSON/enddates_'. $league_id . '_' . $current_season . $complete_season . '.json'; 
+$json_enddates = './JSON/enddates_'. $league_id . '_' . $current_season . ($current_season + 1) . '.json'; 
 
 $enddates = file_get_contents($json_enddates, true);
 
 $php_array_for_dates = json_decode($enddates, true);
-
-
 
 
 $IntlDateFormatter = new IntlDateFormatter(
@@ -38,7 +36,6 @@ for ($i = 1; $i < sizeof($php_array_for_dates) + 1; $i++) {
     array_push($allrounds, $i);
 }
 
-
 echo "
 <div class='title_container'> 
 
@@ -50,7 +47,7 @@ echo "
 
 <div class= 'btn_container'> 
 
-<div id='season_title'> Seizoen " . $current_season . '-' . $complete_season . "</div> 
+<div id='season_title'> Seizoen " . $current_season . '-' . ($current_season + 1) . "</div> 
 
 <p>";
 
@@ -63,18 +60,10 @@ echo "
 <select " . ($_GET['id'] ? 'style=visibility: hidden' : null) . " id='round_selection' name='round_selection'>";
 
 for ($i =0; $i < sizeof($allrounds); $i++) {
-
-  if ($allrounds[$i] == $_GET['round_selection']) {
-
-    echo '<option selected value= ' . $allrounds[$i] . '> Ronde ' . $allrounds[$i] . ' (' . $IntlDateFormatter-> format($php_array_for_dates['Ronde ' . $allrounds[$i]]) .')</option>'; 
-  } 
-  else 
-  { 
-    echo '<option value= ' . $allrounds[$i] . '> Ronde ' . $allrounds[$i] . ' (' . $IntlDateFormatter-> format($php_array_for_dates['Ronde ' . $allrounds[$i]]) .')</option>';
-   
-  }
-} 
-
+ 
+    echo '<option '. ($allrounds[$i] == $_GET['round_selection'] ? 'selected' : null) . ' value= ' . $allrounds[$i] . '> Ronde ' . $allrounds[$i] . ' (' . $IntlDateFormatter-> format($php_array_for_dates['Ronde ' . $allrounds[$i]]) .')</option>'; 
+  }; 
+  
 echo "
 </select>
 </form>";
@@ -83,10 +72,12 @@ echo "
 
 if ($_GET['id']) {
 
+  $round_to_match = $_GET['round_selection']; 
+
   echo 
   "<div class='menubuttons'>
 <ul>
- <li><a href='./league.php?league=$league_id&round_selection=$round_from_match_to_overview'>Terug naar overzicht</a></li>
+ <li><a href='./league.php?league=$league_id&round_selection=$round_to_match'>Terug naar overzicht</a></li>
  </ul>
  </div>'";
 }
@@ -101,7 +92,7 @@ foreach ($array_leagues as $al) {
 
 $round_determination = [];
 
-$json_enddates = './JSON/enddates_'. $al . '_' . $current_season . $complete_season . '.json'; 
+$json_enddates = './JSON/enddates_'. $al . '_' . $current_season . ($current_season + 1) . '.json'; 
 
 $enddates = file_get_contents($json_enddates, true);
 
