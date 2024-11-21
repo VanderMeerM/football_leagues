@@ -194,10 +194,20 @@ a {
 
 .btn_lineup {
     background-color: rgb(247, 244, 244);
-    width: 70%;
+    width: 600px;
     margin: 0 auto;
     position: relative;
     height: 80px;
+}
+
+#show_hide {
+    width: 600px;
+    margin: 0 auto;
+}
+
+#standing_update {
+    text-align: right;
+    width: 85%;
 }
 
 .main_container_event,
@@ -389,7 +399,8 @@ color: rgb(75, 230, 75);
 
     .main_container, 
     .main_container_event, 
-    .btn_lineup {
+    .btn_lineup, 
+    #show_hide {
         width: 90%;
     }
 
