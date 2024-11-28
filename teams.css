@@ -109,6 +109,7 @@ button {
 .event_container,
 .lineup_container, 
 #start_sub_team, 
+#standing_update,
 #play_min, 
 label, td {
     font-family: Arial, Helvetica, sans-serif;

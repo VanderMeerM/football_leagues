@@ -65,7 +65,7 @@ $last_update = $response['response'][0]['league']['standings'][0][0]['update'];
 echo 
 '
 <div class="top_standings">
-<div id="standing_update">Laatste update: ' . $last_update . '</div>
+<div id="standing_update"><i>Laatste update: ' . date('d-m-Y H:i', strtotime($last_update)) . '</i></div>
 <table>
 <tr>';
 
