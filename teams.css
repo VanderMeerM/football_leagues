@@ -253,7 +253,7 @@ img {
 }
 
 .league_icon {
-    width: 50px;
+    width: 75px;
     height: auto; 
     margin: 10px;
 }
@@ -319,7 +319,7 @@ color: rgb(75, 230, 75);
 .lineup_container
  {
     padding: 5px;
-    justify-content: center;
+    display: flex;
     line-height: 1.8;
 }
 

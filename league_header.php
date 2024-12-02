@@ -8,7 +8,7 @@ $current_page = explode('/', $_SERVER['PHP_SELF'])[4];
 
 $allrounds = [];
 
-$array_leagues = [88, 89, 78, 79, 135, 140, 39, 40, 179, 357, 408];
+$array_leagues = [88, 89, 78, 79, 135, 140, 39, 40, 179, 408]; // 357 = Ierse competitie
 
 $current_season = 2024;
 
@@ -137,8 +137,15 @@ for ($i=1; $i < sizeof($php_array_for_dates); $i++) {
 
 echo "
 </div>
+
+<div class='fixed top-0 left-10 bg-blue-500' style='width: 600px'>
+<div class='items-center'>
+
 <div class='menubar'>
 <div class='menubuttons'>
+</div>
+</div>
+
 <ul>";
 
  
