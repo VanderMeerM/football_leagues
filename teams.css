@@ -250,6 +250,7 @@ a {
 img {
     width: 150px;
     height: auto;
+    margin: 0 auto 5%;
 }
 
 .league_icon {
