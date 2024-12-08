@@ -138,8 +138,8 @@ for ($i=1; $i < sizeof($php_array_for_dates); $i++) {
 echo "
 </div>
 
-<div class='fixed top-0 left-10 bg-blue-500' style='width: 600px'>
-<div class='items-center'>
+<div class='fixed top-0 left-0 bg-blue-500' style='width: 600px;'>
+<div class='center_buttons'>
 
 <div class='menubar'>
 <div class='menubuttons'>
