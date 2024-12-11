@@ -2,6 +2,7 @@
 :root {
     --lightgray:  rgb(246, 246, 246);
     --blue: blue;
+    --black: rgb(31, 28, 28);
 }
 
 .main_container,
@@ -55,9 +56,10 @@ cursor :pointer;
 .main_container_event, 
 .container_league_logos {
     width: 600px;
-    /* padding: 10px 0; */
     margin-bottom: 20px;
     margin: 80px auto;
+    flex-wrap: wrap;
+    align-content: center;
 }
 
 .container_league_logos {
@@ -165,7 +167,7 @@ form {
 a {
    /* background-color: black; */
     color: black;
-    padding: 10px;
+    padding: 20px;
     font-size: medium;
     text-decoration: none;
     margin: 0 10px;
@@ -197,7 +199,7 @@ a {
 .main_container_event,
 .main_container,
 .main_container a {
-    background-color: var(--lightgray);
+    background-color: var(--black);
 }
 
 .btn_lineup {
@@ -254,6 +256,10 @@ a {
     height: fit-content;
 }
 
+.flag_container p, .white_color {
+    color: white;
+}
+
 img {
     width: 150px;
     height: auto;
@@ -299,6 +305,7 @@ img {
     margin-top: 3%;
     text-align: center;
     width: 200px;
+   /* color:white; */
 }
 
 .stscore_ref {
@@ -310,10 +317,33 @@ img {
         font-weight: 500;
         font-size: 30pt;
         padding-top: 5%;
+        display: inline-flex;
+        justify-content: center;
+
+}
+
+.score_home, 
+.score_away {
+    background-color: whitesmoke;
+    /* width: 50px;
+    padding: 20%; */
+    color: black;
+    font-size: 40px;
+    margin: 5%;
+}
+
+.vs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .red {
     color: red;
+}
+
+.black_color {
+    color: black;
 }
 
 .p_shootout {
@@ -462,7 +492,7 @@ color: rgb(75, 230, 75);
         padding-top: 25%;
     }
 
-    .align-right {
+       .align-right {
         margin-left: 25%;
     }
 }

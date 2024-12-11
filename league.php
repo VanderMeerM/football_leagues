@@ -34,11 +34,21 @@ include('./translations.php');
 
 $json_league_season_path = './JSON/seasons/'. $league_id . '_season_'. $current_season . $complete_season . '.json'; 
 
+$json_fixture = './JSON/fixtures/' . $_GET['id'] . '.json'; 
+
 
 if ($_GET['id']) {
-    $cur_url = 'https://v3.football.api-sports.io/fixtures?&id=' . $_GET['id'];
 
-} else {
+  if (file_exists($json_fixtures)) {
+
+    $response_json_fixture = file_get_contents($json_fixture, true);
+    $response = json_decode($response_json_fixture, true);   
+  } 
+  else {
+    $cur_url = 'https://v3.football.api-sports.io/fixtures?&id=' . $_GET['id'];
+  }
+  }
+  else {
 $cur_url = 'https://v3.football.api-sports.io/fixtures?&league=' . $league_id . '&season='. $current_season;
 }
 
@@ -84,6 +94,17 @@ $response= json_decode($response_json, true);
 
 $response= json_decode($response, true);
 
+//echo date('d-m-Y', $response['response']['fixture']['timestamp']);
+
+if ( ($_GET['id']) && (!file_exists($json_fixture)) &&
+(date('d-m-Y', strtotime($response['response'][0]['fixture']['timestamp'])) < date('d-m-Y', strtotime('Today'))) ) {
+  
+$json_file_fixture = fopen($json_fixture, "w");
+
+fwrite($json_file_fixture, $response);
+
+fclose($json_file_fixture);
+}
 
 // Deze 5 regels uitcommentariëren
 
@@ -103,6 +124,10 @@ $games_per_round = [];
 $numGames = $response['results'];
 
 include('./league_header.php');
+
+//echo 'Test: ' . date('d-m-Y', strtotime($response['response'][0]['fixture']['timestamp']));
+//echo 'Vandaag: ' . date('d-m-Y', strtotime('Today'));
+
 
 $matchesInRound = [];
 
@@ -163,9 +188,9 @@ else {
   
   echo '</div>
 
-  <div class="stscore_container">'; 
+  <div class="stscore_container'. (date('d-m-Y') === date_format($date, 'd-m-Y') ? ' black_color' : ' white_color') . '">'; 
 
-                   
+                  
          if ($_GET['id']) { echo $response['response'][$i]['fixture']['venue']['name'] . '<br>'; }
 
          if (!$_GET['id'])  { echo $response['response'][$i]['fixture']['venue']['city'] . '<br>'; }
@@ -175,10 +200,11 @@ else {
 
          echo 
          '<div class=' . (in_array($matchStatus, $statusInPlay)? '"score red"' : "score") . '>' . 
-         $response['response'][$i]['goals']['home'] . '-' . 
-         $response['response'][$i]['goals']['away'];
+         '<div class="score_home ' . (!is_null($response['response'][$i]['goals']['home']) ? 'w-12' : null) . '">' . $response['response'][$i]['goals']['home'] . '</div>' . 
+         '<div class="vs"> - </div>' .  
+         '<div class="score_away '. (!is_null($response['response'][$i]['goals']['away']) ? 'w-12' : null) . '">'. $response['response'][$i]['goals']['away'] . '</div>
           
-         echo '<div style="font-size:15pt">'. (array_key_exists($matchStatus, $status)? 
+         <div style="font-size:15pt">'. (array_key_exists($matchStatus, $status)? 
          $status[$matchStatus] : null) . 
           '</div>
           </div>'; 
