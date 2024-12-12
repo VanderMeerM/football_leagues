@@ -39,21 +39,21 @@ $json_fixture = './JSON/fixtures/' . $_GET['id'] . '.json';
 
 if ($_GET['id']) {
 
-  if (file_exists($json_fixtures)) {
+     $cur_url = 'https://v3.football.api-sports.io/fixtures?&id=' . $_GET['id'];
+  }
+   else {
+    $cur_url = 'https://v3.football.api-sports.io/fixtures?&league=' . $league_id . '&season='. $current_season;
+  }
+
+  /*
+  if (file_exists($json_fixture)) {
 
     $response_json_fixture = file_get_contents($json_fixture, true);
     $response = json_decode($response_json_fixture, true);   
-  } 
-  else {
-    $cur_url = 'https://v3.football.api-sports.io/fixtures?&id=' . $_GET['id'];
   }
-  }
+
   else {
-$cur_url = 'https://v3.football.api-sports.io/fixtures?&league=' . $league_id . '&season='. $current_season;
-}
-
-
-if (!file_exists($json_league_season_path)) { 
+*/
 
 $curl = curl_init();
 
@@ -76,7 +76,8 @@ curl_setopt_array($curl, array(
 $response = curl_exec($curl);
 
 curl_close($curl);
-}
+
+
 
 //if ($day < date('Y-m-d', strtotime('today'))) {
 
@@ -92,12 +93,12 @@ $response_json = file_get_contents($json_league_season_path, true);
 $response= json_decode($response_json, true);
 }
 
-$response= json_decode($response, true);
+//$response= json_decode($response, true);
 
-//echo date('d-m-Y', $response['response']['fixture']['timestamp']);
+echo date('d-m-Y', $response[0]['response']['fixture']['timestamp']);
 
 if ( ($_GET['id']) && (!file_exists($json_fixture)) &&
-(date('d-m-Y', strtotime($response['response'][0]['fixture']['timestamp'])) < date('d-m-Y', strtotime('Today'))) ) {
+(date('d-m-Y', strtotime($response['response']['fixture']['timestamp'])) < date('d-m-Y', strtotime('Today'))) ) {
   
 $json_file_fixture = fopen($json_fixture, "w");
 
@@ -115,6 +116,8 @@ fclose($curr_season);
 $response_json = file_get_contents($array_season, true);
 $response= json_decode($response_json, true);
 */
+
+$response = json_decode($response, true);
 
 $prevent_loop = false;
 

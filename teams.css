@@ -3,6 +3,7 @@
     --lightgray:  rgb(246, 246, 246);
     --blue: blue;
     --black: rgb(31, 28, 28);
+    --grassgreen: #35682D;
 }
 
 .main_container,
@@ -45,7 +46,6 @@ list-style-type: none;
 ul li a {
 background-color: var(--blue);
 padding: 10px;
-width: 150px;
 color:white;
 margin: 0 5px;
 cursor :pointer;
@@ -57,15 +57,17 @@ cursor :pointer;
 .container_league_logos {
     width: 600px;
     margin-bottom: 20px;
-    margin: 80px auto;
+    margin: 50px auto 0px;
     flex-wrap: wrap;
     align-content: center;
+    background-color: var(--grassgreen);
 }
 
 .container_league_logos {
     margin: 0 auto;
     max-height: fit-content;
     width: 600px;
+    background-color: var(--grassgreen);
 }
 
 table {
@@ -131,6 +133,7 @@ label {
     text-align: center;
     height: fit-content;
     max-width: 250px;
+    color: white;
 }
 
 .btn_container {
@@ -167,7 +170,7 @@ form {
 a {
    /* background-color: black; */
     color: black;
-    padding: 20px;
+    padding: 20px 0px;
     font-size: medium;
     text-decoration: none;
     margin: 0 10px;
@@ -238,9 +241,10 @@ a {
 
 }
 
-.main_container_event div:nth-child(even) 
+.main_container_event div 
  {
     background-color: #eeeaea;
+    margin: 3px 0px;
 }
 
 .country_container
@@ -389,8 +393,7 @@ color: rgb(75, 230, 75);
     padding: 10px;
     position: absolute;
     top: 25%;
-    width: 145px;
-}
+    }
 
 .hide {
     visibility: hidden;

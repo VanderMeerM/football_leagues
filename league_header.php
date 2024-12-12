@@ -70,18 +70,6 @@ echo "
 
 }
 
-if ($_GET['id']) {
-
-  $round_to_match = $_GET['round_selection']; 
-
-  echo 
-  "<div class='menubuttons'>
-<ul>
- <li><a href='./league.php?league=$league_id&round_selection=$round_to_match'>Terug naar overzicht</a></li>
- </ul>
- </div>'";
-}
-
 echo "
 </div>
 </div>
@@ -138,7 +126,7 @@ for ($i=1; $i < sizeof($php_array_for_dates); $i++) {
 echo "
 </div>
 
-<div class='fixed top-0 left-0 bg-blue-500' style='width: 600px;'>
+<div class='fixed bg-blue-500' style='width: 600px; top: 12%; left: 45%; margin-top: -100px; margin-left: -250px'>
 <div class='center_buttons'>
 
 <div class='menubar'>
@@ -156,6 +144,18 @@ else {
 
   echo '<li><a href="./league.php?league=' . $league_id . '&season=' . $current_season . '&round_selection=' . $round_of_first_upcoming_matches . '">Toon programma</a></li>';
 
+}
+
+if ($_GET['id']) {
+
+  $round_to_match = $_GET['round_selection']; 
+
+  echo 
+  "<div class='menubuttons'>
+<ul>
+ <li><a href='./league.php?league=$league_id&round_selection=$round_to_match'>Terug naar overzicht</a></li>
+ </ul>
+ </div>'";
 }
 
 echo '
