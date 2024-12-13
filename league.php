@@ -52,7 +52,16 @@ if ($_GET['id']) {
     $response = json_decode($response_json_fixture, true);   
   }
 
-  else {
+  
+       if ( ($_GET['id']) && (!file_exists($json_fixture)) &&
+           (date('d-m-Y', strtotime($response['response'][$i]['fixture']['timestamp'])) < date('d-m-Y', strtotime('Today'))) ) {
+             
+           $json_file_fixture = fopen($json_fixture, "w");
+           
+           fwrite($json_file_fixture, $response);
+           
+           fclose($json_file_fixture);
+           }
 */
 
 $curl = curl_init();
@@ -95,17 +104,8 @@ $response= json_decode($response_json, true);
 
 //$response= json_decode($response, true);
 
-echo date('d-m-Y', $response[0]['response']['fixture']['timestamp']);
+//echo date('d-m-Y', $response[0]['response']['fixture']['timestamp']);
 
-if ( ($_GET['id']) && (!file_exists($json_fixture)) &&
-(date('d-m-Y', strtotime($response['response']['fixture']['timestamp'])) < date('d-m-Y', strtotime('Today'))) ) {
-  
-$json_file_fixture = fopen($json_fixture, "w");
-
-fwrite($json_file_fixture, $response);
-
-fclose($json_file_fixture);
-}
 
 // Deze 5 regels uitcommentariëren
 
@@ -183,7 +183,7 @@ else {
 
 
   echo '
-  <div class="flag_container">
+  <div class="flag_container' . (date('d-m-Y') === date_format($date, 'd-m-Y') ? ' black_color' : ' white_color') .'">
   <img src="'.$response['response'][$i]['teams']['home']['logo'] . '"/>
   <p>
   ' . $response['response'][$i]['teams']['home']['name'] . '</div>'; 
@@ -218,7 +218,7 @@ else {
             <img id="ref" src="../ref.png">' . '<br> ' . explode(',', $response['response'][$i]['fixture']['referee'])[0] . 
            '<br>'; 
 
-           
+                 
         /*  if (sizeof(explode(',', $response['response'][$i]['fixture']['referee'])) > 1) {
 
             echo
@@ -244,7 +244,7 @@ else {
         }
          
    echo '<div class="country_container">
-   <div class="flag_container">
+   <div class="flag_container'. (date('d-m-Y') === date_format($date, 'd-m-Y') ? ' black_color' : ' white_color') .'">
    <img src="'.$response['response'][$i]['teams']['away']['logo'] . '"/>
    <p>' . 
    $response['response'][$i]['teams']['away']['name'] . '
@@ -264,8 +264,6 @@ else {
    }      
   }}
   }}
-
-  
 
   $miR_sorted = array_map(function ($mt) {
     return $mt['timestamp'];

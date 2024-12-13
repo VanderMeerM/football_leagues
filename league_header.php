@@ -10,6 +10,10 @@ $allrounds = [];
 
 $array_leagues = [88, 89, 78, 79, 135, 140, 39, 40, 179, 408]; // 357 = Ierse competitie
 
+$array_bgcolor_leagues = ['#002e61', '#c9152a', '#cf0513', '#cf0513', '#0c90fd', '#ff4b44', '#3d185c', '#9ba5d0', '#301b76', '#264439']; 
+
+$array_bgcolor_menubar = array_combine($array_leagues, $array_bgcolor_leagues); 
+
 $current_season = 2024;
 
 $_GET['league'] ? $league_id = $_GET['league'] : $league_id = 88; 
@@ -126,7 +130,7 @@ for ($i=1; $i < sizeof($php_array_for_dates); $i++) {
 echo "
 </div>
 
-<div class='fixed bg-blue-500' style='width: 600px; top: 12%; left: 45%; margin-top: -100px; margin-left: -250px'>
+<div class='fixed fixed_menubar' style='background-color:  $array_bgcolor_menubar[$league_id]; '>
 <div class='center_buttons'>
 
 <div class='menubar'>
