@@ -4,6 +4,7 @@
     --blue: blue;
     --black: rgb(31, 28, 28);
     --grassgreen: #7ee26e;
+    --bg_today_match: #e4cd84;
 }
 
 .menubar
@@ -19,7 +20,7 @@
 
 .fixed_menubar {
     width: 600px; 
-    top: 12%; 
+    top: 13%; 
     left: 45%;
     height: 44px; 
     margin-top: -100px; 
@@ -61,6 +62,7 @@ margin: 0 5px;
 cursor :pointer;
 }
 
+
 .title_container,
 .main_container, 
 .main_container_event, 
@@ -72,6 +74,10 @@ cursor :pointer;
     align-content: center;
     background-color: var(--grassgreen);
 }
+
+.main_container {
+    display: flex;
+} 
 
 .container_league_logos {
     margin: 10px auto;
@@ -183,7 +189,7 @@ a {
     padding: 20px 0px;
     font-size: medium;
     text-decoration: none;
-    margin: 0 10px;
+    /* margin: 0 10px; */
 }
 
 .main_container_line {
@@ -213,6 +219,10 @@ a {
 .main_container,
 .main_container a {
     background-color: var(--black);
+}
+
+.background_today_match {
+    background-color: var(--bg_today_match);
 }
 
 .btn_lineup {
@@ -339,11 +349,12 @@ img {
 .score_home, 
 .score_away {
     background-color: whitesmoke;
-    /* width: 50px;
-    padding: 20%; */
-    color: black;
-    font-size: 40px;
-    margin: 5%;
+    font-size: 50px;
+    margin: 10%;
+}
+
+.pd_score {
+ padding: 5% 10%;
 }
 
 .vs {

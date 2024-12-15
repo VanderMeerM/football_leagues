@@ -27,7 +27,7 @@ $_GET['league'] ? $league_id = $_GET['league'] : $league_id = 88;
 
 $complete_season = $current_season + 1; 
 
-$backgr_today_match = '#f1e3bc';
+$backgr_today_match = '#e4cd84';
 
 include('./translations.php');
 
@@ -175,8 +175,7 @@ else {
   if (!$_GET['id']) {
    
       echo '<a '. (date('d-m-Y') === date_format($date, 'd-m-Y') ? 'style="background-color: ' . $backgr_today_match : null) . '" href="' . $_SERVER['PHP_SELF'] . '?round_selection=' . $selectedround . '&league=' . $league_id . '&id=' . $matchId . '">';
-    
-  }
+  }  
 
   echo '
   <div class="country_container">'; 
@@ -202,16 +201,19 @@ else {
          echo date('H:i', $response['response'][$i]['fixture']['timestamp'])  . '<br>';
 
          echo 
-         '<div class=' . (in_array($matchStatus, $statusInPlay)? '"score red"' : "score") . '>' . 
-         '<div class="score_home ' . (!is_null($response['response'][$i]['goals']['home']) ? 'w-12' : null) . '">' . $response['response'][$i]['goals']['home'] . '</div>' . 
-         '<div class="vs"> - </div>' .  
-         '<div class="score_away '. (!is_null($response['response'][$i]['goals']['away']) ? 'w-12' : null) . '">'. $response['response'][$i]['goals']['away'] . '</div>
+         '<div style="font-size:15pt; font-weight:600" '. (array_key_exists($matchStatus, $status)? 'class="red">' 
+         . $status[$matchStatus] : 'class="black_color"') . 
+         '<br>
+         <div class="score">' .
+        '<div class="score_home ' . (!is_null($response['response'][$i]['goals']['home']) ? 'w-12 pd_score' : null) . '">' . $response['response'][$i]['goals']['home'] . '</div>' . 
+        
+        '<div class="vs '. (array_key_exists($matchStatus, $status) ? 'red' : 'white_color') . '"> - ' . '</div>' .   
+         '<div class="score_away '. (!is_null($response['response'][$i]['goals']['away']) ? 'w-12 pd_score' : null) . '">'. $response['response'][$i]['goals']['away'] . '</div>
           
-         <div style="font-size:15pt">'. (array_key_exists($matchStatus, $status)? 
-         $status[$matchStatus] : null) . 
-          '</div>
-          </div>'; 
+        </div>
+        </div>';
 
+       
         if ($_GET['id']) { 
 
             echo '<p><div class="stscore_ref">
