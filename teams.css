@@ -72,7 +72,6 @@ cursor :pointer;
     margin: 50px auto 0px;
     flex-wrap: wrap;
     align-content: center;
-    background-color: var(--grassgreen);
 }
 
 .main_container {
@@ -111,14 +110,16 @@ td {
     margin-left: 10px;
 }
 
-#round_selection {
+#round_selection,
+#round_selection>option {
  width: fit-content;
  color: rgb(136, 27, 27);
  /*visibility: hidden; */
 }
 
-#round_selection>option { 
-    color: rgb(136, 27, 27);
+
+#season_selection {
+    width: fit-content;
 }
 
 button {
@@ -149,7 +150,6 @@ label {
     text-align: center;
     height: fit-content;
     max-width: 250px;
-    color: white;
 }
 
 .btn_container {

@@ -23,16 +23,16 @@ $array_leagues = [88, 89, 78, 79, 135, 140, 39, 40, 179, 357, 408];
 
 $current_season = 2024;
 
-$_GET['league'] ? $league_id = $_GET['league'] : $league_id = 88; 
+$_GET['season'] ? $selected_season = $_GET['season'] : $selected_season = $current_season; 
 
-$complete_season = $current_season + 1; 
+$_GET['league'] ? $league_id = $_GET['league'] : $league_id = 88; 
 
 $backgr_today_match = '#e4cd84';
 
 include('./translations.php');
 
 
-$json_league_season_path = './JSON/seasons/'. $league_id . '_season_'. $current_season . $complete_season . '.json'; 
+$json_league_season_path = './JSON/seasons/'. $league_id . '_season_'. $current_season . ($current_season+1) . '.json'; 
 
 $json_fixture = './JSON/fixtures/' . $_GET['id'] . '.json'; 
 
