@@ -11,9 +11,21 @@ $array_bgcolor_leagues = ['#002e61', '#c9152a', '#cf0513', '#cf0513', '#0c90fd',
 
 $array_bgcolor_menubar = array_combine($array_leagues, $array_bgcolor_leagues); 
 
+<<<<<<< HEAD
 $round_from_match_to_overview = setcookie('round_from_match_to_overview', $_GET['round_selection'], 3600, '/');
 
 $json_enddates = './JSON/enddates_'. $league_id . '_' . $selected_season . ($selected_season + 1) . '.json'; 
+=======
+$current_season = 2024;
+
+$_GET['season'] ? $selected_season = $_GET['season'] : $selected_season = $current_season; 
+
+$_GET['league'] ? $league_id = $_GET['league'] : $league_id = 88; 
+
+$round_from_match_to_overview = setcookie('round_from_match_to_overview', $_GET['round_selection'], 3600, '/');
+
+$json_enddates = './JSON/enddates_'. $league_id . '_' . $selected_season . ($selected_season +1) . '.json'; 
+>>>>>>> 19623a48a11b6e63888eb9a6476774fe8c673eb9
 
 $enddates = file_get_contents($json_enddates, true);
 
@@ -40,26 +52,42 @@ echo "
   </a>
 </div>
 
-<div class= 'btn_container'> 
+<div class='btn_container'> 
 
+<<<<<<< HEAD
 <div id='season_title'> Seizoen 
 <select id='season_selection'>";
 
 for ($i = $current_season; $i >= 2020; $i--) {
   $end_season = $i + 1; 
   echo "<option value=$i> $i-$end_season </option>";
+=======
+<form action='./league.php?season=$selected_season&round_selection=$selectedround ' method='get'>
+
+<div id='season_title'>Seizoen 
+
+<select id='season_selection' name='season_selection'>";
+
+for ($i = $current_season; $i >= 2018 ; $i--) {
+  $end_season = $i+1;
+ echo '<option value='. $i . '> '. $i . '-' . $end_season . '</option>';
+>>>>>>> 19623a48a11b6e63888eb9a6476774fe8c673eb9
 }
 
 echo "
 </select>
 </div>
+<<<<<<< HEAD
+=======
+</form>
+>>>>>>> 19623a48a11b6e63888eb9a6476774fe8c673eb9
 <p>";
 
 if ($current_page !== 'standings.php') {
 
 echo "
 
-<form action='./league.php?round_selection=$selectedround method='get'>
+<form action='./league.php?season=$selected_season&round_selection=$selectedround' method='get'>
 
 <select " . ($_GET['id'] ? 'style=visibility: hidden' : null) . " id='round_selection' name='round_selection'>";
 
@@ -75,7 +103,6 @@ echo "
 }
 
 echo "
-</div>
 </div>
 
 <div class='container_league_logos'>";
@@ -187,6 +214,7 @@ window.location.href='./league.php?league='+leagueId+'&round_selection='+roundSe
 }
 
 document.getElementById('season_selection').addEventListener('change', (ev) => {
+<<<<<<< HEAD
 seasonSelection = ev.target.value;
 console.log(seasonSelection);
 //window.location.href='./league.php?league='+leagueId+'&season='+seasonSelection+'&round_selection='+roundSelection
@@ -194,6 +222,13 @@ console.log(seasonSelection);
 
 
 
+=======
+roundSelection = <?php echo json_decode($_GET['round_selection']); ?> 
+seasonSelection = ev.target.value;
+window.location.href='./league.php?season='+seasonSelection+'&league='+leagueId+'&round_selection='+roundSelection
+});
+
+>>>>>>> 19623a48a11b6e63888eb9a6476774fe8c673eb9
 /* 
 function clickBtnLeague(idBtn) {
   document.getElementById(idBtn).addEventListener('click', () => { 

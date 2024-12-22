@@ -21,18 +21,28 @@
 
 $current_season = 2024;
 
+<<<<<<< HEAD
 $array_leagues = [88, 89, 78, 79, 135, 140, 39, 40, 179, 408]; // 357 = Ierse competitie
 
 $_GET['league'] ? $league_id = $_GET['league'] : $league_id = 88; 
 
 $_GET['season'] ? $selected_season = $_GET['season'] : $selected_season = $current_season; 
+=======
+$_GET['season'] ? $selected_season = $_GET['season'] : $selected_season = $current_season; 
+
+$_GET['league'] ? $league_id = $_GET['league'] : $league_id = 88; 
+>>>>>>> 19623a48a11b6e63888eb9a6476774fe8c673eb9
 
 $backgr_today_match = '#e4cd84';
 
 include('./translations.php');
 
 
+<<<<<<< HEAD
 $json_league_season_path = './JSON/seasons/'. $league_id . '_season_'. $selected_season . ($selected_season + 1) . '.json'; 
+=======
+$json_league_season_path = './JSON/seasons/'. $league_id . '_season_'. $current_season . ($current_season+1) . '.json'; 
+>>>>>>> 19623a48a11b6e63888eb9a6476774fe8c673eb9
 
 $json_fixture = './JSON/fixtures/' . $_GET['id'] . '.json'; 
 
