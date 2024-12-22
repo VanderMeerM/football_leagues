@@ -19,20 +19,20 @@
 
 <?php 
 
-$array_leagues = [88, 89, 78, 79, 135, 140, 39, 40, 179, 357, 408];
-
 $current_season = 2024;
+
+$array_leagues = [88, 89, 78, 79, 135, 140, 39, 40, 179, 408]; // 357 = Ierse competitie
 
 $_GET['league'] ? $league_id = $_GET['league'] : $league_id = 88; 
 
-$complete_season = $current_season + 1; 
+$_GET['season'] ? $selected_season = $_GET['season'] : $selected_season = $current_season; 
 
 $backgr_today_match = '#e4cd84';
 
 include('./translations.php');
 
 
-$json_league_season_path = './JSON/seasons/'. $league_id . '_season_'. $current_season . $complete_season . '.json'; 
+$json_league_season_path = './JSON/seasons/'. $league_id . '_season_'. $selected_season . ($selected_season + 1) . '.json'; 
 
 $json_fixture = './JSON/fixtures/' . $_GET['id'] . '.json'; 
 
@@ -42,7 +42,7 @@ if ($_GET['id']) {
      $cur_url = 'https://v3.football.api-sports.io/fixtures?&id=' . $_GET['id'];
   }
    else {
-    $cur_url = 'https://v3.football.api-sports.io/fixtures?&league=' . $league_id . '&season='. $current_season;
+    $cur_url = 'https://v3.football.api-sports.io/fixtures?&league=' . $league_id . '&season='. $selected_season;
   }
 
   /*

@@ -3,26 +3,17 @@
 
 $current_page = explode('/', $_SERVER['PHP_SELF'])[4];
 
-
 // $played_rounds = sizeof($php_array_for_dates);
 
 $allrounds = [];
-
-$array_leagues = [88, 89, 78, 79, 135, 140, 39, 40, 179, 408]; // 357 = Ierse competitie
 
 $array_bgcolor_leagues = ['#002e61', '#c9152a', '#cf0513', '#cf0513', '#0c90fd', '#ff4b44', '#3d185c', '#9ba5d0', '#301b76', '#264439']; 
 
 $array_bgcolor_menubar = array_combine($array_leagues, $array_bgcolor_leagues); 
 
-$current_season = 2024;
-
-$_GET['league'] ? $league_id = $_GET['league'] : $league_id = 88; 
-
-// $complete_season = $current_season + 1;
-
 $round_from_match_to_overview = setcookie('round_from_match_to_overview', $_GET['round_selection'], 3600, '/');
 
-$json_enddates = './JSON/enddates_'. $league_id . '_' . $current_season . ($current_season + 1) . '.json'; 
+$json_enddates = './JSON/enddates_'. $league_id . '_' . $selected_season . ($selected_season + 1) . '.json'; 
 
 $enddates = file_get_contents($json_enddates, true);
 
@@ -51,8 +42,17 @@ echo "
 
 <div class= 'btn_container'> 
 
-<div id='season_title'> Seizoen " . $current_season . '-' . ($current_season + 1) . "</div> 
+<div id='season_title'> Seizoen 
+<select id='season_selection'>";
 
+for ($i = $current_season; $i >= 2020; $i--) {
+  $end_season = $i + 1; 
+  echo "<option value=$i> $i-$end_season </option>";
+}
+
+echo "
+</select>
+</div>
 <p>";
 
 if ($current_page !== 'standings.php') {
@@ -84,7 +84,7 @@ foreach ($array_leagues as $al) {
 
 $round_determination = [];
 
-$json_enddates = './JSON/enddates_'. $al . '_' . $current_season . ($current_season + 1) . '.json'; 
+$json_enddates = './JSON/enddates_'. $al . '_' . $selected_season . ($selected_season + 1) . '.json'; 
 
 $enddates = file_get_contents($json_enddates, true);
 
@@ -114,7 +114,7 @@ for ($i=1; $i < sizeof($php_array_for_dates); $i++) {
     $page_to_go = "./league.php?league=$al&round_selection=$round_of_first_upcoming_matches";
   }
   else {
-    $page_to_go = "./standings.php?league=$al&season=$current_season";
+    $page_to_go = "./standings.php?league=$al&season=$selected_season";
   }
 
   echo "
@@ -142,11 +142,11 @@ echo "
 
  
 if ($current_page === "league.php") {
-echo '<li><a href="./standings.php?league=' . $league_id . '&season=' . $current_season . '">Toon stand</a></li>';
+echo '<li><a href="./standings.php?league=' . $league_id . '&season=' . $selected_season . '">Toon stand</a></li>';
 }
 else {
 
-  echo '<li><a href="./league.php?league=' . $league_id . '&season=' . $current_season . '&round_selection=' . $round_of_first_upcoming_matches . '">Toon programma</a></li>';
+  echo '<li><a href="./league.php?league=' . $league_id . '&season=' . $selected_season . '&round_selection=' . $round_of_first_upcoming_matches . '">Toon programma</a></li>';
 
 }
 
@@ -183,7 +183,16 @@ document.getElementById('round_selection').addEventListener('change', (ev) => {
 roundSelection = ev.target.value;
 window.location.href='./league.php?league='+leagueId+'&round_selection='+roundSelection
 });
+
 }
+
+document.getElementById('season_selection').addEventListener('change', (ev) => {
+seasonSelection = ev.target.value;
+console.log(seasonSelection);
+//window.location.href='./league.php?league='+leagueId+'&season='+seasonSelection+'&round_selection='+roundSelection
+});
+
+
 
 /* 
 function clickBtnLeague(idBtn) {
