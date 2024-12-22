@@ -186,7 +186,6 @@ window.location.href='./league.php?league='+leagueId+'&round_selection='+roundSe
 }
 
 document.getElementById('season_selection').addEventListener('change', (ev) => {
-<<<<<<< HEAD
 seasonSelection = ev.target.value;
 console.log(seasonSelection);
 //window.location.href='./league.php?league='+leagueId+'&season='+seasonSelection+'&round_selection='+roundSelection
@@ -194,13 +193,6 @@ console.log(seasonSelection);
 
 
 
-=======
-roundSelection = <?php echo json_decode($_GET['round_selection']); ?> 
-seasonSelection = ev.target.value;
-window.location.href='./league.php?season='+seasonSelection+'&league='+leagueId+'&round_selection='+roundSelection
-});
-
->>>>>>> 19623a48a11b6e63888eb9a6476774fe8c673eb9
 /* 
 function clickBtnLeague(idBtn) {
   document.getElementById(idBtn).addEventListener('click', () => { 
