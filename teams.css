@@ -148,9 +148,9 @@ label {
     margin: 0 auto;    
     text-align: center;
     height: fit-content;
-    max-width: 250px;
-    color: white;
+    width: fit-content;
 }
+
 
 .btn_container {
    margin: 10px auto;
@@ -176,6 +176,12 @@ form {
     text-align: center;
     font-weight: bold;
     border: 0px;
+}
+
+#season_selection {
+    width: fit-content;
+    background-color: var(--grassgreen);
+
 }
 
 .txt-underline {
