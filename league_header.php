@@ -11,21 +11,9 @@ $array_bgcolor_leagues = ['#002e61', '#c9152a', '#cf0513', '#cf0513', '#0c90fd',
 
 $array_bgcolor_menubar = array_combine($array_leagues, $array_bgcolor_leagues); 
 
-<<<<<<< HEAD
 $round_from_match_to_overview = setcookie('round_from_match_to_overview', $_GET['round_selection'], 3600, '/');
 
 $json_enddates = './JSON/enddates_'. $league_id . '_' . $selected_season . ($selected_season + 1) . '.json'; 
-=======
-$current_season = 2024;
-
-$_GET['season'] ? $selected_season = $_GET['season'] : $selected_season = $current_season; 
-
-$_GET['league'] ? $league_id = $_GET['league'] : $league_id = 88; 
-
-$round_from_match_to_overview = setcookie('round_from_match_to_overview', $_GET['round_selection'], 3600, '/');
-
-$json_enddates = './JSON/enddates_'. $league_id . '_' . $selected_season . ($selected_season +1) . '.json'; 
->>>>>>> 19623a48a11b6e63888eb9a6476774fe8c673eb9
 
 $enddates = file_get_contents($json_enddates, true);
 
@@ -54,33 +42,17 @@ echo "
 
 <div class='btn_container'> 
 
-<<<<<<< HEAD
 <div id='season_title'> Seizoen 
 <select id='season_selection'>";
 
 for ($i = $current_season; $i >= 2020; $i--) {
   $end_season = $i + 1; 
   echo "<option value=$i> $i-$end_season </option>";
-=======
-<form action='./league.php?season=$selected_season&round_selection=$selectedround ' method='get'>
-
-<div id='season_title'>Seizoen 
-
-<select id='season_selection' name='season_selection'>";
-
-for ($i = $current_season; $i >= 2018 ; $i--) {
-  $end_season = $i+1;
- echo '<option value='. $i . '> '. $i . '-' . $end_season . '</option>';
->>>>>>> 19623a48a11b6e63888eb9a6476774fe8c673eb9
 }
 
 echo "
 </select>
 </div>
-<<<<<<< HEAD
-=======
-</form>
->>>>>>> 19623a48a11b6e63888eb9a6476774fe8c673eb9
 <p>";
 
 if ($current_page !== 'standings.php') {

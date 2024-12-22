@@ -149,11 +149,7 @@ label {
     margin: 0 auto;    
     text-align: center;
     height: fit-content;
-<<<<<<< HEAD
     width: fit-content;
-=======
-    max-width: 250px;
->>>>>>> 19623a48a11b6e63888eb9a6476774fe8c673eb9
 }
 
 
@@ -186,7 +182,6 @@ form {
 #season_selection {
     width: fit-content;
     background-color: var(--grassgreen);
-
 }
 
 .txt-underline {
