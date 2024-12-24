@@ -142,7 +142,7 @@ $numGames = $response['results'];
   
    
   echo '</div>
-          <div class="stscore_container">';
+          <div class="stscore_container white_color">';
                      
          if ($_GET['id']) { echo $response['response'][$i]['fixture']['venue']['name'] . '<br>'; }
 

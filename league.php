@@ -153,7 +153,7 @@ if ($numGames > 0 ) {
   $matchStatus = $response['response'][$i]['fixture']['status']['short'];
   $selectedround = intval(explode(' ', $response['response'][$i]['league']['round'])[3]);
 
-  $enddate_selected_round['Ronde '. $selectedround] = $response["response"][$i]["fixture"]["timestamp"];
+  var_dump($enddate_selected_round['Ronde '. $selectedround] = $response["response"][$i]["fixture"]["timestamp"]);
 
   if ((!$_GET['round_selection']) || is_null($_GET['round_selection'])) { 
     $_GET['round_selection'] = 1;

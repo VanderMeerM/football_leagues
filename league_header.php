@@ -98,7 +98,7 @@ for ($i=1; $i < sizeof($php_array_for_dates); $i++) {
 
   if (
   
-    (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) >= date('Y-m-d')) 
+    (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) >= date('Y-m-d', strtotime('tomorrow'))) 
       
     )
   
@@ -115,7 +115,7 @@ for ($i=1; $i < sizeof($php_array_for_dates); $i++) {
   $page_to_go; 
 
   if ($current_page === 'league.php') {
-    $page_to_go = "./league.php?league=$al&round_selection=$round_of_first_upcoming_matches";
+    $page_to_go = "./league.php?league=$al&season=$selected_season&round_selection=$round_of_first_upcoming_matches";
   }
   else {
     $page_to_go = "./standings.php?league=$al&season=$selected_season";
