@@ -15,7 +15,7 @@
 } 
 
 .top_standings {
-    margin: 120px 0 auto;
+    margin: 20px 0 auto;
 }
 
 .fixed_menubar {
@@ -87,7 +87,7 @@ cursor :pointer;
 
 table {
     margin: auto;
-    width: 70%;
+    width: 600px;
 }
 
 tr:nth-child(odd) {
@@ -245,7 +245,7 @@ a {
 
 #standing_update {
     text-align: right;
-    width: 85%;
+    width: 600px;
 }
 
 .main_container_event,
@@ -383,9 +383,7 @@ color: rgb(75, 230, 75);
 }
 
 .event_container, 
-.event_container,
-.lineup_container
- {
+.event_container {
     padding: 5px;
     display: flex;
     line-height: 1.8;
@@ -480,11 +478,21 @@ color: rgb(75, 230, 75);
 @media (max-width: 600px) {
 
 .container_league_logos, 
-.title_container {
+.title_container, 
+#standing_update, 
+table {
     width: 400px;
 }
+
+#hidden_cell {
+    display: none;
 }
 
+.fixed_menubar {
+  width: 400px;
+  left: 59%;
+}
+}
 
 @media (max-width: 550px) {
 

@@ -7,18 +7,23 @@ $current_page = explode('/', $_SERVER['PHP_SELF'])[4];
 
 $allrounds = [];
 
+$array_leagues = [88, 89, 78, 79, 135, 140, 39, 40, 179, 408]; // 357 = Ierse competitie
+
 $array_bgcolor_leagues = ['#002e61', '#c9152a', '#cf0513', '#cf0513', '#0c90fd', '#ff4b44', '#3d185c', '#9ba5d0', '#301b76', '#264439']; 
 
 $array_bgcolor_menubar = array_combine($array_leagues, $array_bgcolor_leagues); 
 
 $round_from_match_to_overview = setcookie('round_from_match_to_overview', $_GET['round_selection'], 3600, '/');
 
+$_GET['league'] ? $league_id = $_GET['league'] : $league_id = 88; 
+
+$_GET['season'] ? $selected_season = $_GET['season'] : $selected_season = $current_season; 
+
 $json_enddates = './JSON/enddates_'. $league_id . '_' . $selected_season . ($selected_season + 1) . '.json'; 
 
 $enddates = file_get_contents($json_enddates, true);
 
 $php_array_for_dates = json_decode($enddates, true);
-
 
 $IntlDateFormatter = new IntlDateFormatter(
   'nl_NL',
@@ -188,7 +193,8 @@ window.location.href='./league.php?league='+leagueId+'&round_selection='+roundSe
 document.getElementById('season_selection').addEventListener('change', (ev) => {
 seasonSelection = ev.target.value;
 console.log(seasonSelection);
-//window.location.href='./league.php?league='+leagueId+'&season='+seasonSelection+'&round_selection='+roundSelection
+//window.location.href='./league.php?league='+leagueId+'&season='+seasonSelection
+//+'&round_selection='+roundSelection
 });
 
 

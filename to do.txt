@@ -1,19 +1,19 @@
 
 - styling voor league_header optimaliseren voor kleinere schermen 
 
- - afgelopen seizoenen (1 dag na laatste dag competitie) geheel opslaan als json 
-
-- wedstrijden 1 dag nadat ze zijn gespeeld opslaan als json 
-
-- in menu Stand laatste update-info (stylen)
-
-- menu voor Stand en Programma bovenaan 
+- afgelopen seizoenen (1 dag na laatste dag competitie) geheel opslaan als json 
 
 - GET-waarden niet tonen in url (.htaccess)
 
 ----
 
 - wedstrijden in chronologische volgorde v (via API)
+
+- in menu Stand laatste update-info v
+
+- menu voor Stand en Programma bovenaan v
+
+- wedstrijden 1 dag nadat ze zijn gespeeld opslaan als json v
 
 - in menu Stand moet bij aanklikken icoontje voor competitie stand van betreffende competitie worden getoond v
 

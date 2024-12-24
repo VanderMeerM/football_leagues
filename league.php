@@ -21,8 +21,6 @@
 
 $current_season = 2024;
 
-$array_leagues = [88, 89, 78, 79, 135, 140, 39, 40, 179, 408]; // 357 = Ierse competitie
-
 $_GET['league'] ? $league_id = $_GET['league'] : $league_id = 88; 
 
 $_GET['season'] ? $selected_season = $_GET['season'] : $selected_season = $current_season; 
@@ -36,6 +34,23 @@ $json_league_season_path = './JSON/seasons/'. $league_id . '_season_'. $selected
 
 $json_fixture = './JSON/fixtures/' . $_GET['id'] . '.json'; 
 
+if (!$_GET['id'] && file_exists($json_league_season_path)) {
+
+  $response_json_season = file_get_contents($json_league_season_path, true);
+
+  $response = json_decode($response_json_season, true);
+
+}
+
+else if ($_GET['id'] && file_exists($json_fixture)) {
+
+  $response_json_fixture = file_get_contents($json_fixture, true);
+
+  $response = json_decode($response_json_fixture, true);
+
+}
+
+else {
 
 if ($_GET['id']) {
 
@@ -44,25 +59,6 @@ if ($_GET['id']) {
    else {
     $cur_url = 'https://v3.football.api-sports.io/fixtures?&league=' . $league_id . '&season='. $selected_season;
   }
-
-  /*
-  if (file_exists($json_fixture)) {
-
-    $response_json_fixture = file_get_contents($json_fixture, true);
-    $response = json_decode($response_json_fixture, true);   
-  }
-
-  
-       if ( ($_GET['id']) && (!file_exists($json_fixture)) &&
-           (date('d-m-Y', strtotime($response['response'][$i]['fixture']['timestamp'])) < date('d-m-Y', strtotime('Today'))) ) {
-             
-           $json_file_fixture = fopen($json_fixture, "w");
-           
-           fwrite($json_file_fixture, $response);
-           
-           fclose($json_file_fixture);
-           }
-*/
 
 $curl = curl_init();
 
@@ -86,9 +82,29 @@ $response = curl_exec($curl);
 
 curl_close($curl);
 
+$response = json_decode($response, true);
+
+}
 
 
-//if ($day < date('Y-m-d', strtotime('today'))) {
+// Wedstrijd opslaan nadat deze een dag in het verleden ligt..
+
+if ( ($_GET['id']) && (!file_exists($json_fixture)) &&
+(date('d-m-Y', strtotime($response['response']['fixture']['timestamp'])) < 
+date('d-m-Y', strtotime('Today'))) )
+
+{ 
+      
+ $json_file_fixture = fopen($json_fixture, "w");
+   
+  fwrite($json_file_fixture, json_encode($response));
+   
+  fclose($json_file_fixture);
+ 
+  }
+
+
+// Even iets buiten werking zetten...
 
 if (5 < 4) {
 $json_file_mt = fopen($json_league_season_path, "w");
@@ -102,10 +118,6 @@ $response_json = file_get_contents($json_league_season_path, true);
 $response= json_decode($response_json, true);
 }
 
-//$response= json_decode($response, true);
-
-//echo date('d-m-Y', $response[0]['response']['fixture']['timestamp']);
-
 
 // Deze 5 regels uitcommentariëren
 
@@ -117,8 +129,6 @@ $response_json = file_get_contents($array_season, true);
 $response= json_decode($response_json, true);
 */
 
-$response = json_decode($response, true);
-
 $prevent_loop = false;
 
 $enddate_selected_round = [];
@@ -127,9 +137,6 @@ $games_per_round = [];
 $numGames = $response['results'];
 
 include('./league_header.php');
-
-//echo 'Test: ' . date('d-m-Y', strtotime($response['response'][0]['fixture']['timestamp']));
-//echo 'Vandaag: ' . date('d-m-Y', strtotime('Today'));
 
 
 $matchesInRound = [];
@@ -207,7 +214,7 @@ else {
          <div class="score">' .
         '<div class="score_home ' . (!is_null($response['response'][$i]['goals']['home']) ? 'w-12 pd_score' : null) . '">' . $response['response'][$i]['goals']['home'] . '</div>' . 
         
-        '<div class="vs '. (array_key_exists($matchStatus, $status) ? 'red' : 'white_color') . '"> - ' . '</div>' .   
+        '<div class="vs '. (date('d-m-Y') === date_format($date, 'd-m-Y') ? 'black_color' : 'white_color') . '"> - ' . '</div>' .   
          '<div class="score_away '. (!is_null($response['response'][$i]['goals']['away']) ? 'w-12 pd_score' : null) . '">'. $response['response'][$i]['goals']['away'] . '</div>
           
         </div>

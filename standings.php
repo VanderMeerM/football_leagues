@@ -77,23 +77,23 @@ for ($i = 0; $i < $numTeams; $i++) {
 
 echo '<td>' . $response['response'][0]['league']['standings'][0][$i]['rank'] .  '. </td>' .
 
-'<td><img class="logo_standings" src=' . $response['response'][0]['league']['standings'][0][$i]['team']['logo'] . '></td>' .  
+'<td id="hidden_cell"><img class="logo_standings" src=' . $response['response'][0]['league']['standings'][0][$i]['team']['logo'] . '></td>' .  
 
 '<td>' . $response['response'][0]['league']['standings'][0][$i]['team']['name'] . '</td>' .  
 
 '<td>' . $response['response'][0]['league']['standings'][0][$i]['all']['played'] . '</td>' . 
 
-'<td>' . $response['response'][0]['league']['standings'][0][$i]['all']['win']  . '</td>' . 
+'<td id="hidden_cell">' . $response['response'][0]['league']['standings'][0][$i]['all']['win']  . '</td>' . 
 
-'<td>' . $response['response'][0]['league']['standings'][0][$i]['all']['draw']  . '</td>' . 
+'<td id="hidden_cell">' . $response['response'][0]['league']['standings'][0][$i]['all']['draw']  . '</td>' . 
 
-'<td>' . $response['response'][0]['league']['standings'][0][$i]['all']['lose']  . '</td>' . 
+'<td id="hidden_cell">' . $response['response'][0]['league']['standings'][0][$i]['all']['lose']  . '</td>' . 
 
 '<td><strong>' . $response['response'][0]['league']['standings'][0][$i]['points']  . '</strong></td>' . 
 
-'<td>' . $response['response'][0]['league']['standings'][0][$i]['all']['goals']['for']  . '</td>' . 
+'<td id="hidden_cell">' . $response['response'][0]['league']['standings'][0][$i]['all']['goals']['for']  . '</td>' . 
 
-'<td>' . $response['response'][0]['league']['standings'][0][$i]['all']['goals']['against']  . '</td>' . 
+'<td id="hidden_cell">' . $response['response'][0]['league']['standings'][0][$i]['all']['goals']['against']  . '</td>' . 
 
 '<td> ('.  ($response['response'][0]['league']['standings'][0][$i]['goalsDiff'] > 0 ? '+' : null) . $response['response'][0]['league']['standings'][0][$i]['goalsDiff']  . ')' . 
 
