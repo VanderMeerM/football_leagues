@@ -50,9 +50,9 @@ echo "
 <div id='season_title'> Seizoen 
 <select id='season_selection'>";
 
-for ($i = $current_season; $i >= 2020; $i--) {
+for ($i = $current_season; $i >= 2021; $i--) {
   $end_season = $i + 1; 
-  echo "<option value=$i> $i-$end_season </option>";
+  echo '<option ' . ($i == $_GET['season'] ? 'selected ' : null) . 'value= ' . $i . '>' . $i . '-' . $end_season . '</option>';
 }
 
 echo "
@@ -185,18 +185,23 @@ if (currentPage !="standings.php") {
 
 document.getElementById('round_selection').addEventListener('change', (ev) => {
 roundSelection = ev.target.value;
-window.location.href='./league.php?league='+leagueId+'&round_selection='+roundSelection
+
+(window.location.href.split('season=')[1] == undefined) ? seasonSelection = 1 :
+seasonSelection = window.location.href.split('season=')[1].slice(0,4);
+
+window.location.href='./league.php?league='+leagueId+'&season='+seasonSelection+'&round_selection='+roundSelection;
 });
 
 }
 
 document.getElementById('season_selection').addEventListener('change', (ev) => {
 seasonSelection = ev.target.value;
-console.log(seasonSelection);
-//window.location.href='./league.php?league='+leagueId+'&season='+seasonSelection
-//+'&round_selection='+roundSelection
-});
 
+(window.location.href.split('round_selection=')[1] == undefined) ? roundSelection = 1 :
+roundSelection = window.location.href.split('round_selection=')[1];
+
+window.location.href='./league.php?league='+leagueId+'&season='+seasonSelection+'&round_selection='+roundSelection;
+});
 
 
 /* 

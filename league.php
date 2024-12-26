@@ -86,7 +86,20 @@ $response = json_decode($response, true);
 
 }
 
+// Oudere seizoenen downloaden...
 
+if ( (date('Ý') >  $selected_season) && (!file_exists($json_league_season_path)) ) {
+
+  $json_file_mt = fopen($json_league_season_path, "w");
+  
+  fwrite($json_file_mt, $response);
+  
+  fclose($json_file_mt);
+  
+  //$response = file_get_contents($json_league_season_path, true);
+  
+ }
+ 
 // Wedstrijd opslaan nadat deze een dag in het verleden ligt..
 
 if ( ($_GET['id']) && (!file_exists($json_fixture)) &&
@@ -102,21 +115,6 @@ date('d-m-Y', strtotime('Today'))) )
   fclose($json_file_fixture);
  
   }
-
-
-// Even iets buiten werking zetten...
-
-if (5 < 4) {
-$json_file_mt = fopen($json_league_season_path, "w");
-
-fwrite($json_file_mt, $response);
-
-fclose($json_file_mt);
-
-$response_json = file_get_contents($json_league_season_path, true);
-
-$response= json_decode($response_json, true);
-}
 
 
 // Deze 5 regels uitcommentariëren
@@ -136,6 +134,7 @@ $games_per_round = [];
 
 $numGames = $response['results'];
 
+// Uitcommentariëren bij binnenhalen einddata afgelopen seizoenen (zie ook 289)
 include('./league_header.php');
 
 
@@ -153,7 +152,7 @@ if ($numGames > 0 ) {
   $matchStatus = $response['response'][$i]['fixture']['status']['short'];
   $selectedround = intval(explode(' ', $response['response'][$i]['league']['round'])[3]);
 
-  var_dump($enddate_selected_round['Ronde '. $selectedround] = $response["response"][$i]["fixture"]["timestamp"]);
+  $enddate_selected_round['Ronde '. $selectedround] = $response["response"][$i]["fixture"]["timestamp"];
 
   if ((!$_GET['round_selection']) || is_null($_GET['round_selection'])) { 
     $_GET['round_selection'] = 1;
@@ -163,8 +162,6 @@ if ($numGames > 0 ) {
   if ($_GET['round_selection'] == $selectedround) {
     
     array_push($matchesInRound, $response['response'][$i]);
-
-  //if ((!$_GET['id']) || ($_GET['id'] == $matchId)) {
 
   $date = date_create($response['response'][$i]['fixture']['date']);
 
@@ -285,12 +282,22 @@ array_multisort($miR_sorted, SORT_ASC, $matchesInRound);
 //print_r($matchesInRound[0]);
 
 
+// Binnenhalen einddata seizoenen (seizoen invullen in url; include league_header uitcommentariëren (zie 139))
+
+/*
+$array_leagues = [88, 89, 78, 79, 135, 140, 39, 40, 179, 408]; // 357 = Ierse competitie
+
+foreach($array_leagues as $al) {
+
+$json_enddates = './JSON/enddates_'. $al . '_' . $selected_season . ($selected_season + 1) . '.json'; 
+
 $json_file_enddate = fopen($json_enddates, "w");
 
 fwrite($json_file_enddate, json_encode($enddate_selected_round));
 
 fclose($json_file_enddate);
-
+}
+*/
 ?>
 
 <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js">
