@@ -32,7 +32,12 @@ include('./translations.php');
 
 $json_league_season_path = './JSON/seasons/'. $league_id . '_season_'. $selected_season . ($selected_season + 1) . '.json'; 
 
-$json_fixture = './JSON/fixtures/' . $_GET['id'] . '.json'; 
+$json_fixture = './JSON/fixtures/fixture_' . $_GET['id'] . '.json';
+
+$json_lineup_path = './JSON/lineups/lineup_' . $_GET['id'] . '.json'; 
+
+
+// Controleer of er al een seizoen (uit het verleden) is opgeslagen..
 
 if (!$_GET['id'] && file_exists($json_league_season_path)) {
 
@@ -41,6 +46,8 @@ if (!$_GET['id'] && file_exists($json_league_season_path)) {
   $response = json_decode($response_json_season, true);
 
 }
+
+// Controleer of er al een wedstrijd is opgeslagen...
 
 else if ($_GET['id'] && file_exists($json_fixture)) {
 
@@ -84,38 +91,7 @@ curl_close($curl);
 
 $response = json_decode($response, true);
 
-}
-
-// Oudere seizoenen downloaden...
-
-if ( (date('Ý') >  $selected_season) && (!file_exists($json_league_season_path)) ) {
-
-  $json_file_mt = fopen($json_league_season_path, "w");
-  
-  fwrite($json_file_mt, $response);
-  
-  fclose($json_file_mt);
-  
-  //$response = file_get_contents($json_league_season_path, true);
-  
- }
- 
-// Wedstrijd opslaan nadat deze een dag in het verleden ligt..
-
-if ( ($_GET['id']) && (!file_exists($json_fixture)) &&
-(date('d-m-Y', strtotime($response['response']['fixture']['timestamp'])) < 
-date('d-m-Y', strtotime('Today'))) )
-
-{ 
-      
- $json_file_fixture = fopen($json_fixture, "w");
-   
-  fwrite($json_file_fixture, json_encode($response));
-   
-  fclose($json_file_fixture);
- 
-  }
-
+} 
 
 // Deze 5 regels uitcommentariëren
 
@@ -178,7 +154,7 @@ else {
 
   if (!$_GET['id']) {
    
-      echo '<a '. (date('d-m-Y') === date_format($date, 'd-m-Y') ? 'style="background-color: ' . $backgr_today_match : null) . '" href="' . $_SERVER['PHP_SELF'] . '?round_selection=' . $selectedround . '&league=' . $league_id . '&id=' . $matchId . '">';
+      echo '<a '. (date('d-m-Y') === date_format($date, 'd-m-Y') ? 'style="background-color: ' . $backgr_today_match : null) . '" href="' . $_SERVER['PHP_SELF'] . '?round_selection=' . $selectedround . '&season=' . $selected_season . '&league=' . $league_id . '&id=' . $matchId . '">';
   }  
 
   echo '
@@ -224,7 +200,26 @@ else {
             <img id="ref" src="../ref.png">' . '<br> ' . explode(',', $response['response'][$i]['fixture']['referee'])[0] . 
            '<br>'; 
 
-                 
+           // Wedstrijd opslaan nadat deze een dag in het verleden ligt..
+
+          if ( (!file_exists($json_fixture)) &&
+            (date('Y-m-d', $response['response'][$i]['fixture']['timestamp'])) < 
+              date('Y-m-d', strtotime('Today')) &&
+                ($response['response'][$i]['fixture']['status']['short'] === 'FT')  )
+
+          {
+    
+           $json_file_fixture = fopen($json_fixture, "w");
+   
+           fwrite($json_file_fixture, json_encode($response));
+   
+           fclose($json_file_fixture);
+
+                
+           }
+ 
+                    
+
         /*  if (sizeof(explode(',', $response['response'][$i]['fixture']['referee'])) > 1) {
 
             echo
@@ -262,12 +257,25 @@ else {
 
    if (!$_GET['id']) {
     echo '</a>';
-   }
+
+// Oudere seizoenen opslaan...
+
+if ( (date('Y') >=  ($selected_season + 1)) && (date('m') >= 6) && (!file_exists($json_league_season_path)) ) {
+
+  $json_file_mt = fopen($json_league_season_path, "w");
+  
+  fwrite($json_file_mt, json_encode($response));
+  
+  fclose($json_file_mt);
+      
+ }
+ }
 
    if ($_GET['id']) {
    include ('./events.php');
    include ('./lineup.php');
-   }      
+   }
+
   }}
   }}
 
@@ -298,6 +306,7 @@ fwrite($json_file_enddate, json_encode($enddate_selected_round));
 fclose($json_file_enddate);
 }
 */
+
 ?>
 
 <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js">

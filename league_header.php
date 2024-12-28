@@ -19,7 +19,7 @@ $_GET['league'] ? $league_id = $_GET['league'] : $league_id = 88;
 
 $_GET['season'] ? $selected_season = $_GET['season'] : $selected_season = $current_season; 
 
-$json_enddates = './JSON/enddates_'. $league_id . '_' . $selected_season . ($selected_season + 1) . '.json'; 
+$json_enddates = './JSON/enddates/enddates_'. $league_id . '_' . $selected_season . ($selected_season + 1) . '.json'; 
 
 $enddates = file_get_contents($json_enddates, true);
 
@@ -45,7 +45,11 @@ echo "
   </a>
 </div>
 
-<div class='btn_container'> 
+<div class='btn_container'>"; 
+
+if (!$_GET['id']) {
+
+echo"
 
 <div id='season_title'> Seizoen 
 <select id='season_selection'>";
@@ -59,6 +63,7 @@ echo "
 </select>
 </div>
 <p>";
+};
 
 if ($current_page !== 'standings.php') {
 
@@ -88,7 +93,7 @@ foreach ($array_leagues as $al) {
 
 $round_determination = [];
 
-$json_enddates = './JSON/enddates_'. $al . '_' . $selected_season . ($selected_season + 1) . '.json'; 
+$json_enddates = './JSON/enddates/enddates_'. $al . '_' . $selected_season . ($selected_season + 1) . '.json'; 
 
 $enddates = file_get_contents($json_enddates, true);
 
@@ -98,7 +103,7 @@ for ($i=1; $i < sizeof($php_array_for_dates); $i++) {
 
   if (
   
-    (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) >= date('Y-m-d', strtotime('tomorrow'))) 
+    (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) >= date('Y-m-d', strtotime('Tomorrow'))) 
       
     )
   
@@ -156,12 +161,13 @@ else {
 
 if ($_GET['id']) {
 
-  $round_to_match = $_GET['round_selection']; 
+  $round_to_match = $_GET['round_selection'];
+  $season_to_fixture = $_GET['season'];
 
   echo 
   "<div class='menubuttons'>
 <ul>
- <li><a href='./league.php?league=$league_id&round_selection=$round_to_match'>Terug naar overzicht</a></li>
+ <li><a href='./league.php?league=$league_id&season=$season_to_fixture&round_selection=$round_to_match'>Terug naar overzicht</a></li>
  </ul>
  </div>'";
 }
@@ -200,8 +206,16 @@ seasonSelection = ev.target.value;
 (window.location.href.split('round_selection=')[1] == undefined) ? roundSelection = 1 :
 roundSelection = window.location.href.split('round_selection=')[1];
 
+if (currentPage !="standings.php") {
+
 window.location.href='./league.php?league='+leagueId+'&season='+seasonSelection+'&round_selection='+roundSelection;
-});
+}
+else 
+{
+  window.location.href='./standings.php?league='+leagueId+'&season='+seasonSelection;
+
+}}
+);
 
 
 /* 

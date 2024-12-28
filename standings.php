@@ -20,12 +20,23 @@
 <?php 
 
 $current_season = 2024;
-$complete_season = $current_season +1;
 
 include('./translations.php');
 
-
 include('./league_header.php');
+
+$json_standings_path = './JSON/standings/standing_'. $league_id . '_season_'. $selected_season . ($selected_season + 1) . '.json'; 
+
+
+if (file_exists($json_standings_path)) {
+
+  $response_json_standing = file_get_contents($json_standings_path, true);
+
+  $response = json_decode($response_json_standing, true);
+
+}
+
+else {
 
 $curl = curl_init();
 
@@ -49,8 +60,10 @@ curl_setopt_array($curl, array(
   $response = curl_exec($curl);
 
   curl_close($curl);
- 
 
+  $response= json_decode($response, true);
+
+}
 /* 
 
 Onderstaande twee regels uitcommentariëren 
@@ -60,7 +73,18 @@ $json_standings = './JSON/standings_88.json';
 $response = file_get_contents($json_standings, true);
 */
 
-$response= json_decode($response, true);
+// Oudere standen opslaan (indien seizoen is afgelopen)...
+
+if ( (date('Y') >=  ($_GET['season'] + 1)) && (date('m') >= 6) && (!file_exists($json_standings_path)) ) {
+
+  $json_file_standing = fopen($json_standings_path, "w");
+  
+  fwrite($json_file_standing, json_encode($response));
+  
+  fclose($json_file_standing);
+      
+ }
+
 
 $numTeams = sizeof($response['response'][0]['league']['standings'][0]);
 

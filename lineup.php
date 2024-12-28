@@ -1,13 +1,11 @@
 
 <?php
 
-$json_lineup_path = './JSON/lineups/' . $_GET['id'] . '.json'; 
-
 if ($_GET['id'] && file_exists($json_lineup_path)) {
 
-  $response_json_lineup = file_get_contents($json_lineup_path, true);
+ $response_json_lineup = file_get_contents($json_lineup_path, true);
 
-  $response_lineup = json_decode($response_json_lineup, true);
+ $response_lineup = json_decode($response_json_lineup, true);
 
 }
 
@@ -34,37 +32,26 @@ else {
     $response_lineup = curl_exec($curl_lineup);
     
     curl_close($curl_lineup);
+
+    $response_lineup = json_decode($response_lineup, true);
+
+    // Sla opstelling op als wedstrijd bestaat... 
+
+    if ( file_exists($json_fixture) && (!file_exists($json_lineup_path)) )
+
+  {
+
+   $json_file_lineup = fopen($json_lineup_path, "w");
     
-      
-//if ( ($_GET['date'] < date('Y-m-d', strtotime('today')))) {
+   fwrite($json_file_lineup, json_encode($response_lineup));
+    
+   fclose($json_file_lineup);
+    
+   }
+}
 
-if (5<4) {
-  $json_file_lu = fopen($json_lineup_path, "w");
   
-  fwrite($json_file_lu, $response_lineup);
-  
-  fclose($json_file_lu);
-  }
-  
-  $response_lineup = json_decode($response_lineup, true);
-
-  if ( ($_GET['id']) && (!file_exists($json_lineup_path)) && 
-  ($response_lineup['results'] !=0) )
-
-{ 
-      
- $json_file_lineup = fopen($json_lineup_path, "w");
-   
-  fwrite($json_file_lineup, json_encode($response_lineup));
-   
-  fclose($json_file_lineup);
- 
-  }
-  
-  }
-  
-  
-  $num_lineups = $response_lineup['results'];
+ $num_lineups = $response_lineup['results'];
 
 $home_team_lineup = array();
 $away_team_lineup = array();
