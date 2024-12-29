@@ -1,7 +1,13 @@
 
 - styling voor league_header optimaliseren voor kleinere schermen 
 
-- afgelopen seizoenen (1 dag na laatste dag competitie) geheel opslaan als json 
+- array voor enddates ahv season/response aanmaken 
+
+- begin- en einddatum onder options bij rondes 
+
+- virtuele stand inbouwen 
+
+- markering voor kampioen, degradatie etc. 
 
 - GET-waarden niet tonen in url (.htaccess)
 
@@ -10,6 +16,8 @@
 - wedstrijden in chronologische volgorde v (via API)
 
 - in menu Stand laatste update-info v
+
+- afgelopen seizoenen (vanaf juni) geheel opslaan als json v
 
 - menu voor Stand en Programma bovenaan v
 

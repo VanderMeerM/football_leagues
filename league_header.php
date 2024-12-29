@@ -51,7 +51,7 @@ if (!$_GET['id']) {
 
 echo"
 
-<div id='season_title'> Seizoen 
+<div id='season_title' style='color: $array_bgcolor_menubar[$league_id];'> Seizoen 
 <select id='season_selection'>";
 
 for ($i = $current_season; $i >= 2021; $i--) {
