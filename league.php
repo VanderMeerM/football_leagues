@@ -29,7 +29,6 @@ $backgr_today_match = '#e4cd84';
 
 include('./translations.php');
 
-
 $json_league_season_path = './JSON/seasons/'. $league_id . '_season_'. $selected_season . ($selected_season + 1) . '.json'; 
 
 $json_fixture = './JSON/fixtures/fixture_' . $_GET['id'] . '.json';
@@ -129,6 +128,7 @@ if ($numGames > 0 ) {
   $selectedround = intval(explode(' ', $response['response'][$i]['league']['round'])[3]);
 
   $enddate_selected_round['Ronde '. $selectedround] = $response["response"][$i]["fixture"]["timestamp"];
+  
 
   if ((!$_GET['round_selection']) || is_null($_GET['round_selection'])) { 
     $_GET['round_selection'] = 1;
@@ -137,13 +137,13 @@ if ($numGames > 0 ) {
 
   if ($_GET['round_selection'] == $selectedround) {
     
-    array_push($matchesInRound, $response['response'][$i]);
+  array_push($matchesInRound, $response['response'][$i]);
 
   $date = date_create($response['response'][$i]['fixture']['date']);
 
   if (date('d-m-Y') === date_format($date, 'd-m-Y')) {
 
-    echo '<div class="main_container">';
+    echo '<div class="main_container background_today_match">';
    }
   
 else { 
@@ -151,10 +151,9 @@ else {
  echo '<div class="main_container">'; 
 }
 
-
   if (!$_GET['id']) {
    
-      echo '<a '. (date('d-m-Y') === date_format($date, 'd-m-Y') ? 'style="background-color: ' . $backgr_today_match : null) . '" href="' . $_SERVER['PHP_SELF'] . '?round_selection=' . $selectedround . '&season=' . $selected_season . '&league=' . $league_id . '&id=' . $matchId . '">';
+      echo '<a '. (date('d-m-Y') === date_format($date, 'd-m-Y') ? null .' style="background-color: ' . $backgr_today_match : null) . '" href="' . $_SERVER['PHP_SELF'] . '?round_selection=' . $selectedround . '&season=' . $selected_season . '&league=' . $league_id . '&id=' . $matchId . '">';
   }  
 
   echo '
@@ -214,7 +213,6 @@ else {
            fwrite($json_file_fixture, json_encode($response));
    
            fclose($json_file_fixture);
-
                 
            }
  
@@ -256,7 +254,7 @@ else {
    </div>';
 
    if (!$_GET['id']) {
-    echo '</a>';
+   echo '</a>';
 
 // Oudere seizoenen opslaan...
 
