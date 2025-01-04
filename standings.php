@@ -85,7 +85,6 @@ if ( (date('Y') >=  ($_GET['season'] + 1)) && (date('m') >= 6) && (!file_exists(
       
  }
 
-
 $numTeams = sizeof($response['response'][0]['league']['standings'][0]);
 
 $last_update = $response['response'][0]['league']['standings'][0][0]['update'];

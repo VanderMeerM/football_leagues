@@ -90,7 +90,28 @@ curl_close($curl);
 
 $response = json_decode($response, true);
 
-} 
+}
+
+$numGames = $response['results'];
+
+
+// Data van elke ronde in array plaatsen: 
+
+$array_dates_round = [];
+
+if ($numGames > 0 ) {
+
+for ($i = 0; $i < $numGames; $i++) {
+
+$each_round = intval(explode(' ', $response['response'][$i]['league']['round'])[3]);
+
+$array_dates_round[$each_round] .= $response["response"][$i]["fixture"]["timestamp"] . ',';
+  }
+}
+
+$startdate_selected_round = explode(',', $array_dates_round[2])[0] . '<br>';
+$lastdate_selected_round = sizeof(explode(',', $array_dates_round[2])) - 2;
+
 
 // Deze 5 regels uitcommentariëren
 
@@ -107,7 +128,6 @@ $prevent_loop = false;
 $enddate_selected_round = [];
 $games_per_round = [];
 
-$numGames = $response['results'];
 
 // Uitcommentariëren bij binnenhalen einddata afgelopen seizoenen (zie ook 289)
 include('./league_header.php');
@@ -125,11 +145,10 @@ if ($numGames > 0 ) {
   $awayTeam = $response['response'][$i]['teams']['away']['name'];
   $matchId = $response['response'][$i]['fixture']['id'];
   $matchStatus = $response['response'][$i]['fixture']['status']['short'];
-  $selectedround = intval(explode(' ', $response['response'][$i]['league']['round'])[3]);
 
+  $selectedround = intval(explode(' ', $response['response'][$i]['league']['round'])[3]);
   $enddate_selected_round['Ronde '. $selectedround] = $response["response"][$i]["fixture"]["timestamp"];
   
-
   if ((!$_GET['round_selection']) || is_null($_GET['round_selection'])) { 
     $_GET['round_selection'] = 1;
     $selectedround = 1;

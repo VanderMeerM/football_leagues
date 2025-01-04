@@ -25,14 +25,18 @@ $enddates = file_get_contents($json_enddates, true);
 
 $php_array_for_dates = json_decode($enddates, true);
 
+// IS BOVENSTAANDE ARRAY NOG NODIG?
+
+//echo sizeof($php_array_for_dates); 
+
 $IntlDateFormatter = new IntlDateFormatter(
   'nl_NL',
-  IntlDateFormatter::LONG,
+  IntlDateFormatter::SHORT,
   IntlDateFormatter::NONE
 
 );
 
-for ($i = 1; $i < sizeof($php_array_for_dates) + 1; $i++) {
+for ($i = 1; $i < sizeof($allrounds) + 1; $i++) {
     array_push($allrounds, $i);
 }
 
@@ -73,9 +77,14 @@ echo "
 
 <select " . ($_GET['id'] ? 'style=visibility: hidden' : null) . " id='round_selection' name='round_selection'>";
 
-for ($i =0; $i < sizeof($allrounds); $i++) {
+for ($i = 1; $i < sizeof($array_dates_round); $i++) {
  
-    echo '<option '. ($allrounds[$i] == $_GET['round_selection'] ? 'selected' : null) . ' value= ' . $allrounds[$i] . '> Ronde ' . $allrounds[$i] . ' (' . $IntlDateFormatter-> format($php_array_for_dates['Ronde ' . $allrounds[$i]]) .')</option>'; 
+    echo '
+    <option '. ($i == $_GET['round_selection'] ? 'selected' : null) . ' value= ' . explode(',', $array_dates_round[$i])[$lastdate_selected_round] . '>
+     Ronde ' . $i . ' 
+     (' . $IntlDateFormatter-> format(explode(',', $array_dates_round[$i])[0]) . ' - ' 
+      . $IntlDateFormatter-> format(explode(',', $array_dates_round[$i])[$lastdate_selected_round]) .')
+     </option>'; 
   }; 
   
 echo "
