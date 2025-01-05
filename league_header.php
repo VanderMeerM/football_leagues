@@ -77,13 +77,13 @@ echo "
 
 <select " . ($_GET['id'] ? 'style=visibility: hidden' : null) . " id='round_selection' name='round_selection'>";
 
-for ($i = 1; $i < sizeof($array_dates_round); $i++) {
+for ($i = 1; $i <= sizeof($array_dates_round); $i++) {
  
     echo '
-    <option '. ($i == $_GET['round_selection'] ? 'selected' : null) . ' value= ' . explode(',', $array_dates_round[$i])[$lastdate_selected_round] . '>
+    <option '. ($i == $_GET['round_selection'] ? 'selected' : null) . ' value= ' . $i . '>
      Ronde ' . $i . ' 
-     (' . $IntlDateFormatter-> format(explode(',', $array_dates_round[$i])[0]) . ' - ' 
-      . $IntlDateFormatter-> format(explode(',', $array_dates_round[$i])[$lastdate_selected_round]) .')
+     (' . substr($IntlDateFormatter-> format(explode(',', $array_dates_round[$i])[0]), 0, -3) . ' - ' 
+      . substr($IntlDateFormatter-> format(explode(',', $array_dates_round[$i])[$lastdate_selected_round]), 0, -3) .')
      </option>'; 
   }; 
   

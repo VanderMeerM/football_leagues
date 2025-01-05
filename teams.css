@@ -317,10 +317,10 @@ img {
 }
 
 #play_min {
-    text-align: center;
     color: red;
     font-style: italic;
     font-weight: bold;
+    margin: 0 auto;
 }
 
 #ref {
@@ -459,13 +459,13 @@ color: rgb(75, 230, 75);
 
 @media (max-width: 700px) {
 
-    .main_container, 
+  /*  .main_container, 
     .main_container_event, 
     .btn_lineup, 
     #show_hide {
         width: 90%;
     }
-
+*/
     #show_hide_lineup {
         margin: 3% 0 0 5%;
     }
@@ -477,12 +477,14 @@ color: rgb(75, 230, 75);
 
 @media (max-width: 600px) {
 
+    /*
 .container_league_logos, 
 .title_container, 
 #standing_update, 
 table {
     width: 400px;
 }
+*/
 
 #hidden_cell {
     display: none;

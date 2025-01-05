@@ -110,7 +110,7 @@ $array_dates_round[$each_round] .= $response["response"][$i]["fixture"]["timesta
 }
 
 $startdate_selected_round = explode(',', $array_dates_round[2])[0] . '<br>';
-$lastdate_selected_round = sizeof(explode(',', $array_dates_round[2])) - 2;
+$lastdate_selected_round = intval(sizeof(explode(',', $array_dates_round[2])) - 2);
 
 
 // Deze 5 regels uitcommentariëren

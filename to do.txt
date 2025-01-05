@@ -1,19 +1,21 @@
 
 - styling voor league_header optimaliseren voor kleinere schermen 
 
-- array voor enddates ahv season/response aanmaken 
-
-- begin- en einddatum onder options bij rondes 
-
-- virtuele stand inbouwen 
+- array voor enddates ahv season/response aanmaken v
+Werking php_array_for_dates kan worden vervangen (geen enndates-map en -json files meer nodig)
 
 - markering voor kampioen, degradatie etc. 
+
+
+- virtuele stand inbouwen 
 
 - GET-waarden niet tonen in url (.htaccess)
 
 ----
 
 - wedstrijden in chronologische volgorde v (via API)
+
+- begin- en einddatum onder options bij rondes v
 
 - in menu Stand laatste update-info v
 
