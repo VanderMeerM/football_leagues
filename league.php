@@ -18,8 +18,8 @@
 <body>
 
 <?php 
-
-$current_season = 2024;
+ 
+(date('m') < 7 ? $current_season = (date('Y') - 1) : $current_season = date('Y')); 
 
 $_GET['league'] ? $league_id = $_GET['league'] : $league_id = 88; 
 
@@ -94,24 +94,7 @@ $response = json_decode($response, true);
 
 $numGames = $response['results'];
 
-
-// Data van elke ronde in array plaatsen: 
-
-$array_dates_round = [];
-
-if ($numGames > 0 ) {
-
-for ($i = 0; $i < $numGames; $i++) {
-
-$each_round = intval(explode(' ', $response['response'][$i]['league']['round'])[3]);
-
-$array_dates_round[$each_round] .= $response["response"][$i]["fixture"]["timestamp"] . ',';
-  }
-}
-
-$startdate_selected_round = explode(',', $array_dates_round[2])[0] . '<br>';
-$lastdate_selected_round = intval(sizeof(explode(',', $array_dates_round[2])) - 2);
-
+include('./get_current_round.php');
 
 // Deze 5 regels uitcommentariëren
 
@@ -125,7 +108,12 @@ $response= json_decode($response_json, true);
 
 $prevent_loop = false;
 
-$enddate_selected_round = [];
+if ($_GET['id']) {
+  $round_to_match = intval(explode(' ', $response['response']['league']['round'])[3]);
+  $season_to_fixture = intval(explode(' ', $response['response']['league']['season']));
+}
+
+// $enddate_selected_round = [];
 $games_per_round = [];
 
 
@@ -147,16 +135,16 @@ if ($numGames > 0 ) {
   $matchStatus = $response['response'][$i]['fixture']['status']['short'];
 
   $selectedround = intval(explode(' ', $response['response'][$i]['league']['round'])[3]);
-  $enddate_selected_round['Ronde '. $selectedround] = $response["response"][$i]["fixture"]["timestamp"];
+  //$enddate_selected_round['Ronde '. $selectedround] = $response["response"][$i]["fixture"]["timestamp"];
   
   if ((!$_GET['round_selection']) || is_null($_GET['round_selection'])) { 
-    $_GET['round_selection'] = 1;
-    $selectedround = 1;
-  }
-
-  if ($_GET['round_selection'] == $selectedround) {
+    $_GET['round_selection'] = $round_of_first_upcoming_matches;
+    $selectedround = $round_of_first_upcoming_matches;
+   }
+ 
+   if ($_GET['round_selection'] == $selectedround) {
     
-  array_push($matchesInRound, $response['response'][$i]);
+ array_push($matchesInRound, $response['response'][$i]);
 
   $date = date_create($response['response'][$i]['fixture']['date']);
 
@@ -172,7 +160,7 @@ else {
 
   if (!$_GET['id']) {
    
-      echo '<a '. (date('d-m-Y') === date_format($date, 'd-m-Y') ? null .' style="background-color: ' . $backgr_today_match : null) . '" href="' . $_SERVER['PHP_SELF'] . '?round_selection=' . $selectedround . '&season=' . $selected_season . '&league=' . $league_id . '&id=' . $matchId . '">';
+      echo '<a '. (date('d-m-Y') === date_format($date, 'd-m-Y') ? null .' style="background-color: ' . $backgr_today_match : null) . '" href="' . $_SERVER['PHP_SELF'] . '?id=' . $matchId . '">';
   }  
 
   echo '

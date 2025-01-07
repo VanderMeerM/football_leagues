@@ -19,7 +19,7 @@
 
 <?php 
 
-$current_season = 2024;
+(date('m') < 7 ? $current_season = (date('Y') - 1) : $current_season = date('Y')); 
 
 include('./translations.php');
 

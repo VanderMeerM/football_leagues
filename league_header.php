@@ -13,19 +13,20 @@ $array_bgcolor_leagues = ['#002e61', '#c9152a', '#cf0513', '#cf0513', '#0c90fd',
 
 $array_bgcolor_menubar = array_combine($array_leagues, $array_bgcolor_leagues); 
 
-$round_from_match_to_overview = setcookie('round_from_match_to_overview', $_GET['round_selection'], 3600, '/');
+//$round_from_match_to_overview = setcookie('round_from_match_to_overview', $_GET['round_selection'], 3600, '/');
 
 $_GET['league'] ? $league_id = $_GET['league'] : $league_id = 88; 
 
 $_GET['season'] ? $selected_season = $_GET['season'] : $selected_season = $current_season; 
 
+
+/* IS ONDERSTAANDE ARRAY (3 regels) NOG NODIG?
 $json_enddates = './JSON/enddates/enddates_'. $league_id . '_' . $selected_season . ($selected_season + 1) . '.json'; 
 
 $enddates = file_get_contents($json_enddates, true);
 
 $php_array_for_dates = json_decode($enddates, true);
-
-// IS BOVENSTAANDE ARRAY NOG NODIG?
+*/
 
 //echo sizeof($php_array_for_dates); 
 
@@ -59,8 +60,7 @@ echo"
 <select id='season_selection'>";
 
 for ($i = $current_season; $i >= 2021; $i--) {
-  $end_season = $i + 1; 
-  echo '<option ' . ($i == $_GET['season'] ? 'selected ' : null) . 'value= ' . $i . '>' . $i . '-' . $end_season . '</option>';
+  echo '<option ' . ($i == $_GET['season'] ? 'selected ' : null) . 'value= ' . $i . '>' . $i . '-' . ($i + 1) . '</option>';
 }
 
 echo "
@@ -76,6 +76,13 @@ echo "
 <form action='./league.php?season=$selected_season&round_selection=$selectedround' method='get'>
 
 <select " . ($_GET['id'] ? 'style=visibility: hidden' : null) . " id='round_selection' name='round_selection'>";
+
+/* !! als op laatste dag een wedstrijd is, staat deze ook als begindatum; wordt niet opgelost met sortering zoals onder..
+for ($u = 0; $u < $lastdate_selected_round; $u++) {
+  asort(explode(',', $array_dates_round[$u]));
+ }
+ implode($array_dates_round);
+*/
 
 for ($i = 1; $i <= sizeof($array_dates_round); $i++) {
  
@@ -100,45 +107,35 @@ echo "
 
 foreach ($array_leagues as $al) {
 
-$round_determination = [];
 
-$json_enddates = './JSON/enddates/enddates_'. $al . '_' . $selected_season . ($selected_season + 1) . '.json'; 
-
-$enddates = file_get_contents($json_enddates, true);
-
-$php_array_for_dates = json_decode($enddates, true);
-
-for ($i=1; $i < sizeof($php_array_for_dates); $i++) {
-
-  if (
+  /* Kan weg? 
   
-    (date('Y-m-d', $php_array_for_dates['Ronde ' . $i]) >= date('Y-m-d', strtotime('Tomorrow'))) 
-      
-    )
+  $json_enddates = './JSON/enddates/enddates_'. $al . '_' . $selected_season . ($selected_season + 1) . '.json'; 
   
-   { 
-    array_push($round_determination, $php_array_for_dates['Ronde ' . $i] . '+' . $i);
-  }
-  }
+  $enddates = file_get_contents($json_enddates, true);
   
-  asort($round_determination);
-  $array_of_round_of_first_upcoming_matches = $round_determination[array_key_first($round_determination)];
+  $php_array_for_dates = json_decode($enddates, true);
   
-  $round_of_first_upcoming_matches = explode('+', $array_of_round_of_first_upcoming_matches)[1];
-
-  $page_to_go; 
-
-  if ($current_page === 'league.php') {
-    $page_to_go = "./league.php?league=$al&season=$selected_season&round_selection=$round_of_first_upcoming_matches";
-  }
-  else {
-    $page_to_go = "./standings.php?league=$al&season=$selected_season";
-  }
+   print_r ($array_dates_round[1]);
+  
+  echo 'Aantal: ' . sizeof(explode(',',$array_dates_round[1]));
+  
+  echo 'Eind: ' . explode(',',$array_dates_round[1])[8];
+  
+  */
+  
+   
+    if ($current_page === 'league.php') {
+      $page_to_go = "./league.php?league=$al&season=$selected_season";
+    }
+    else {
+      $page_to_go = "./standings.php?league=$al&season=$selected_season";
+    }
 
   echo "
-  <form action=$page_to_go name='form_leagues$al' method='post'>
+  <form action='' name='form_leagues$al' method='post'>
 
-  <a onClick='document.form_leagues$al.submit();'>
+  <a href=$page_to_go> 
   <img class='league_icon' src='https://media.api-sports.io/football/leagues/$al.png'/>
   </a>
   </form>";
@@ -170,9 +167,7 @@ else {
 
 if ($_GET['id']) {
 
-  $round_to_match = $_GET['round_selection'];
-  $season_to_fixture = $_GET['season'];
-
+ 
   echo 
   "<div class='menubuttons'>
 <ul>
