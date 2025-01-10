@@ -5,6 +5,7 @@
 Werking php_array_for_dates kan worden vervangen (geen enndates-map en -json files meer nodig)
 
 - markering voor kampioen, degradatie etc. 
+(opgenomen in standings (description))
 
 
 - virtuele stand inbouwen 

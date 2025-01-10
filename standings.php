@@ -19,7 +19,7 @@
 
 <?php 
 
-(date('m') < 7 ? $current_season = (date('Y') - 1) : $current_season = date('Y')); 
+include('./variables.php');
 
 include('./translations.php');
 
@@ -75,7 +75,9 @@ $response = file_get_contents($json_standings, true);
 
 // Oudere standen opslaan (indien seizoen is afgelopen)...
 
-if ( (date('Y') >=  ($_GET['season'] + 1)) && (date('m') >= 6) && (!file_exists($json_standings_path)) ) {
+if ( (date('Y') >  ($_GET['season'] + 1)) || 
+(date('Y') ==  ($_GET['season'] + 1)) && (date('m') >= 6) 
+&& (!file_exists($json_standings_path)) ) {
 
   $json_file_standing = fopen($json_standings_path, "w");
   
@@ -87,12 +89,15 @@ if ( (date('Y') >=  ($_GET['season'] + 1)) && (date('m') >= 6) && (!file_exists(
 
 $numTeams = sizeof($response['response'][0]['league']['standings'][0]);
 
-$last_update = $response['response'][0]['league']['standings'][0][0]['update'];
+$last_update = $response['response'][0]['league']['standings'][0][0]['update']; 
+
+$show_qualifications = floor( 0.8 * (($numTeams * 2) -2));
 
 echo 
 '
 <div class="top_standings">
 <div id="standing_update"><i>Laatste update: ' . date('d-m-Y H:i', strtotime($last_update)) . '</i></div>
+
 <table>
 <tr>';
 
@@ -101,7 +106,9 @@ for ($i = 0; $i < $numTeams; $i++) {
   $won_matches = $response['response'][0]['league']['standings'][0][$i]['all']['win'];
   $draw_matches = $response['response'][0]['league']['standings'][0][$i]['all']['draw'];
   $lost_matches = $response['response'][0]['league']['standings'][0][$i]['all']['lose'];
+  $description_qualifications = $response['response'][0]['league']['standings'][0][$i]['description'];
   $played_matches = $won_matches + $draw_matches + $lost_matches;
+  $played_to_show_qualifications = intval($response['response'][0]['league']['standings'][0][0]['all']['played']);
   $points = (3 * $won_matches) + $draw_matches; 
 
   $goals_for = $response['response'][0]['league']['standings'][0][$i]['all']['goals']['for'];
@@ -128,12 +135,26 @@ echo '<td>' . $response['response'][0]['league']['standings'][0][$i]['rank'] .  
 
 '<td id="hidden_cell">' . $goals_against . '</td>' . 
 
-'<td> ('.  ($goals_diff > 0 ? '+' : null) . $goals_diff . ')' . 
+'<td> ('.  ($goals_diff > 0 ? '+' : null) . $goals_diff . ') 
 
- '</td>
- </tr>';
+</td> 
+</tr>';
 
+if ($played_to_show_qualifications >= $show_qualifications) {
+
+  if (array_key_exists($description_qualifications, $array_standings)) {
+    $description_qualifications = $array_standings[$description_qualifications];
   }
+
+echo '
+<tr>
+<td colspan="6"><div class="text-sm italic">' . $description_qualifications . '</div>
+</td>
+</tr>';
+}
+
+ 
+}
 
   echo '</table>
   </div>';

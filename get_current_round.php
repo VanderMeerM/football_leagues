@@ -41,4 +41,5 @@ for ($i=1; $i < sizeof($array_dates_round); $i++) {
     
     $round_of_first_upcoming_matches = explode('-', $array_of_round_of_first_upcoming_matches)[0];
 
-   ?>
+
+     ?>

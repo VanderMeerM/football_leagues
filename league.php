@@ -18,22 +18,10 @@
 <body>
 
 <?php 
- 
-(date('m') < 7 ? $current_season = (date('Y') - 1) : $current_season = date('Y')); 
 
-$_GET['league'] ? $league_id = $_GET['league'] : $league_id = 88; 
-
-$_GET['season'] ? $selected_season = $_GET['season'] : $selected_season = $current_season; 
-
-$backgr_today_match = '#e4cd84';
+include('./variables.php');
 
 include('./translations.php');
-
-$json_league_season_path = './JSON/seasons/'. $league_id . '_season_'. $selected_season . ($selected_season + 1) . '.json'; 
-
-$json_fixture = './JSON/fixtures/fixture_' . $_GET['id'] . '.json';
-
-$json_lineup_path = './JSON/lineups/lineup_' . $_GET['id'] . '.json'; 
 
 
 // Controleer of er al een seizoen (uit het verleden) is opgeslagen..
@@ -51,10 +39,9 @@ if (!$_GET['id'] && file_exists($json_league_season_path)) {
 else if ($_GET['id'] && file_exists($json_fixture)) {
 
   $response_json_fixture = file_get_contents($json_fixture, true);
-
   $response = json_decode($response_json_fixture, true);
 
-}
+  }
 
 else {
 
@@ -106,12 +93,13 @@ $response_json = file_get_contents($array_season, true);
 $response= json_decode($response_json, true);
 */
 
-$prevent_loop = false;
-
 if ($_GET['id']) {
-  $round_to_match = intval(explode(' ', $response['response']['league']['round'])[3]);
-  $season_to_fixture = intval(explode(' ', $response['response']['league']['season']));
-}
+  $round_to_fixture = intval(explode(' ', $response['response'][0]['league']['round'])[3]);
+  $season_to_fixture = $response['response'][0]['league']['season'];
+  $league_to_fixture = $response['response'][0]['league']['id'];
+ }
+
+$prevent_loop = false;
 
 // $enddate_selected_round = [];
 $games_per_round = [];
@@ -138,11 +126,26 @@ if ($numGames > 0 ) {
   //$enddate_selected_round['Ronde '. $selectedround] = $response["response"][$i]["fixture"]["timestamp"];
   
   if ((!$_GET['round_selection']) || is_null($_GET['round_selection'])) { 
-    $_GET['round_selection'] = $round_of_first_upcoming_matches;
-    $selectedround = $round_of_first_upcoming_matches;
+    
+       if ($_GET['season'] != $current_season) {
+        $round_to_select = 1;
+        }
+         else {
+           $round_to_select = $round_of_first_upcoming_matches;
+        } 
+        
+        if ($_GET['id']) {
+       $round_to_select = $round_to_fixture;
+      
+   }
+    //$selectedround = $round_of_first_upcoming_matches;
+   }
+  
+   elseif ($_GET['round_selection']) {
+    $round_to_select = $_GET['round_selection'];
    }
  
-   if ($_GET['round_selection'] == $selectedround) {
+   if ($round_to_select == $selectedround) {
     
  array_push($matchesInRound, $response['response'][$i]);
 
@@ -205,7 +208,8 @@ else {
             echo '<p><div class="stscore_ref">
             <img id="ref" src="../ref.png">' . '<br> ' . explode(',', $response['response'][$i]['fixture']['referee'])[0] . 
            '<br>'; 
-
+          
+          
            // Wedstrijd opslaan nadat deze een dag in het verleden ligt..
 
           if ( (!file_exists($json_fixture)) &&
@@ -263,9 +267,11 @@ else {
    if (!$_GET['id']) {
    echo '</a>';
 
-// Oudere seizoenen opslaan...
+// Oudere seizoenen opslaan (vanaf juni als seizoen voorbij is)...
 
-if ( (date('Y') >=  ($selected_season + 1)) && (date('m') >= 6) && (!file_exists($json_league_season_path)) ) {
+if ( (date('Y') >  ($selected_season + 1)) || 
+(date('Y') ==  ($selected_season + 1)) && (date('m') >= 6) 
+&& (!file_exists($json_league_season_path)) ) {
 
   $json_file_mt = fopen($json_league_season_path, "w");
   

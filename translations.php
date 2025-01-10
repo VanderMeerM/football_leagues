@@ -28,4 +28,34 @@ $array_comments = array(
   'Unsportsmanlike conduct' => 'onsportief gedrag'
 );
 
+$array_standings = array(
+  //Eredivisie 
+  'Promotion - Champions League (League phase: )' => 'Champions League',
+  'Promotion - Champions League (Qualification: )'=> 'Voorronde Champions League',
+  'Promotion - Europa League (League phase: )' => 'Europa League',
+  'Promotion - Europa League (Qualification: )' => 'Voorronde Europa League',
+  'Promotion - Eredivisie (Conference League - Play Offs: )' => 'Play offs voor Conference League',
+
+  // Jupiler League
+  'Eredivisie (Relegation - Play Offs: )' => 'Promotie/degradatie',
+  'Relegation - Eerste Divisie' => 'Gedegradeerd naar de Jupiler League', 
+  'Promotion' => 'Gepromoveerd', 
+  'Promotion Play-off' => 'Nacompetitie voor promotie',
+  'Possible Promotion Play-off' => 'Nacompetitie (voorrondes)', 
+
+  // 1. Bundesliga 
+  'Promotion - Champions League (Group Stage: )' => 'Champions League',
+  'Promotion - Europa League (Group Stage: )' => 'Europa League',
+  'Promotion - Europa Conference League (Qualification: )' => 'Voorronde Conference League',
+  'Bundesliga (Relegation)' => 'Relegation',
+  'Relegation - 2. Bundesliga' => 'Gedegradeerd naar 2. Bundesliga',
+
+  // 2. Bundesliga 
+  'Promotion - Bundesliga' => 'Gepromoveerd naar 1. Bundesliga',
+  'Promotion - Bundesliga (Relegation: )' => 'Relegation', 
+  '2. Bundesliga (Relegation)' => 'Relegation',
+  'Relegation - 3. Liga' => 'Gedegradeerd naar 3. Liga'
+
+
+);
 

@@ -1,10 +1,16 @@
 
 <?php
 
-$json_events_path = './JSON/events/events_' . $_GET['id'] . '.json'; 
+if ($_GET['id'] && file_exists($json_events_path)) {
 
-if (!file_exists($json_events_path)) { 
+  $response_json_event = file_get_contents($json_events_path, true);
 
+  $response_event = json_decode($response_json_event, true);
+
+}
+   
+  else {
+ 
     $curl_event = curl_init();
     
     curl_setopt_array($curl_event, array(
@@ -26,28 +32,11 @@ if (!file_exists($json_events_path)) {
     $response_event = curl_exec($curl_event);
 
     curl_close($curl_event);
+
+    $response_event = json_decode($response_event, true);
+
+  }
     
-      
-//if ( ($_GET['date'] < date('Y-m-d', strtotime('today')))) {
-
-if (5 < 4 ) {
-  $json_file_ev = fopen($json_events_path, "w");
-  
-  fwrite($json_file_ev, $response_event);
-  
-  fclose($json_file_ev);
-  }
-  
-  $response_event = json_decode($response_event, true);
-  
-  }
-  
-  else {
-    $response_json = file_get_contents($json_events_path, true);
-  
-    $response_event= json_decode($response_json, true);
- }
-
 $num_events = $response_event['results'];
 
 $min_playing_minute = 
@@ -165,6 +154,20 @@ $away_team_goals = array();
        </div> 
        </div>
      </div>';
+
+       // Event opslaan als de wedstrijd ook is opgeslagen (en dus minstens een dag in het verleden ligt..)
+
+       if  (file_exists($json_fixture)) 
+
+     {
+
+      $json_file_event = fopen($json_events_path, "w");
+
+      fwrite($json_file_event, json_encode($response_event));
+
+      fclose($json_file_event);
+           
+      }
 
          
 ?>

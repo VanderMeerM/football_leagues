@@ -1,25 +1,6 @@
 
 <?php 
 
-$current_page = explode('/', $_SERVER['PHP_SELF'])[4];
-
-// $played_rounds = sizeof($php_array_for_dates);
-
-$allrounds = [];
-
-$array_leagues = [88, 89, 78, 79, 135, 140, 39, 40, 179, 408]; // 357 = Ierse competitie
-
-$array_bgcolor_leagues = ['#002e61', '#c9152a', '#cf0513', '#cf0513', '#0c90fd', '#ff4b44', '#3d185c', '#9ba5d0', '#301b76', '#264439']; 
-
-$array_bgcolor_menubar = array_combine($array_leagues, $array_bgcolor_leagues); 
-
-//$round_from_match_to_overview = setcookie('round_from_match_to_overview', $_GET['round_selection'], 3600, '/');
-
-$_GET['league'] ? $league_id = $_GET['league'] : $league_id = 88; 
-
-$_GET['season'] ? $selected_season = $_GET['season'] : $selected_season = $current_season; 
-
-
 /* IS ONDERSTAANDE ARRAY (3 regels) NOG NODIG?
 $json_enddates = './JSON/enddates/enddates_'. $league_id . '_' . $selected_season . ($selected_season + 1) . '.json'; 
 
@@ -41,16 +22,19 @@ for ($i = 1; $i < sizeof($allrounds) + 1; $i++) {
     array_push($allrounds, $i);
 }
 
+($_GET['id'] ? $big_image_leage = $league_to_fixture : $big_image_leage = $league_id); 
+
 echo "
 <div class='title_container'> 
 
 <div>
 <a>
-  <img id='logo' src='https://media.api-sports.io/football/leagues/" . $league_id . ".png'/>
+  <img id='logo' src='https://media.api-sports.io/football/leagues/" . $big_image_leage . ".png'/>
   </a>
 </div>
 
 <div class='btn_container'>"; 
+
 
 if (!$_GET['id']) {
 
@@ -59,7 +43,7 @@ echo"
 <div id='season_title' style='color: $array_bgcolor_menubar[$league_id];'> Seizoen 
 <select id='season_selection'>";
 
-for ($i = $current_season; $i >= 2021; $i--) {
+for ($i = $current_season; $i >= 2016; $i--) {
   echo '<option ' . ($i == $_GET['season'] ? 'selected ' : null) . 'value= ' . $i . '>' . $i . '-' . ($i + 1) . '</option>';
 }
 
@@ -67,13 +51,13 @@ echo "
 </select>
 </div>
 <p>";
-};
+
 
 if ($current_page !== 'standings.php') {
 
 echo "
 
-<form action='./league.php?season=$selected_season&round_selection=$selectedround' method='get'>
+<form action='./league.php?season=$selected_season&round_selection=$round_of_first_upcoming_matches' method='get'>
 
 <select " . ($_GET['id'] ? 'style=visibility: hidden' : null) . " id='round_selection' name='round_selection'>";
 
@@ -84,10 +68,13 @@ for ($u = 0; $u < $lastdate_selected_round; $u++) {
  implode($array_dates_round);
 */
 
+($_GET['round_selection'] ? $round_to_select = $_GET['round_selection'] : $round_to_select = $round_of_first_upcoming_matches); 
+
 for ($i = 1; $i <= sizeof($array_dates_round); $i++) {
- 
+
+   
     echo '
-    <option '. ($i == $_GET['round_selection'] ? 'selected' : null) . ' value= ' . $i . '>
+    <option '. ($i == intval($round_to_select) ? 'selected' : null) . ' value= ' . $i . '>
      Ronde ' . $i . ' 
      (' . substr($IntlDateFormatter-> format(explode(',', $array_dates_round[$i])[0]), 0, -3) . ' - ' 
       . substr($IntlDateFormatter-> format(explode(',', $array_dates_round[$i])[$lastdate_selected_round]), 0, -3) .')
@@ -100,10 +87,11 @@ echo "
 
 }
 
-echo "
-</div>
+echo "</div>";
 
-<div class='container_league_logos'>";
+};
+
+echo "<div class='container_league_logos'>";
 
 foreach ($array_leagues as $al) {
 
@@ -157,11 +145,17 @@ echo "
 
  
 if ($current_page === "league.php") {
+
+  if ($_GET['id']) {
+    echo '<li><a href="./standings.php?league=' . $league_to_fixture . '&season=' . $season_to_fixture . '">Toon stand</a></li>';
+  }
+  else {
 echo '<li><a href="./standings.php?league=' . $league_id . '&season=' . $selected_season . '">Toon stand</a></li>';
+}
 }
 else {
 
-  echo '<li><a href="./league.php?league=' . $league_id . '&season=' . $selected_season . '&round_selection=' . $round_of_first_upcoming_matches . '">Toon programma</a></li>';
+  echo '<li><a href="./league.php?league=' . $league_id . '&season=' . $selected_season . '">Toon programma</a></li>';
 
 }
 
@@ -171,7 +165,7 @@ if ($_GET['id']) {
   echo 
   "<div class='menubuttons'>
 <ul>
- <li><a href='./league.php?league=$league_id&season=$season_to_fixture&round_selection=$round_to_match'>Terug naar overzicht</a></li>
+ <li><a href='./league.php?league=$league_to_fixture&season=$season_to_fixture&round_selection=$round_to_fixture'>Terug naar overzicht</a></li>
  </ul>
  </div>'";
 }
@@ -200,10 +194,10 @@ roundSelection = ev.target.value;
 seasonSelection = window.location.href.split('season=')[1].slice(0,4);
 
 window.location.href='./league.php?league='+leagueId+'&season='+seasonSelection+'&round_selection='+roundSelection;
-});
-
 }
-
+);
+};
+  
 document.getElementById('season_selection').addEventListener('change', (ev) => {
 seasonSelection = ev.target.value;
 
@@ -212,14 +206,14 @@ roundSelection = window.location.href.split('round_selection=')[1];
 
 if (currentPage !="standings.php") {
 
-window.location.href='./league.php?league='+leagueId+'&season='+seasonSelection+'&round_selection='+roundSelection;
+window.location.href='./league.php?league='+leagueId+'&season='+seasonSelection;
 }
 else 
 {
   window.location.href='./standings.php?league='+leagueId+'&season='+seasonSelection;
 
 }}
-);
+)
 
 
 /* 
