@@ -111,6 +111,11 @@ for ($i = 0; $i < $numTeams; $i++) {
   $played_to_show_qualifications = intval($response['response'][0]['league']['standings'][0][0]['all']['played']);
   $points = (3 * $won_matches) + $draw_matches; 
 
+  if ($points != $response['response'][0]['league']['standings'][0][$i]['points']) {
+    $points = $response['response'][0]['league']['standings'][0][$i]['points'];
+  }
+
+ 
   $goals_for = $response['response'][0]['league']['standings'][0][$i]['all']['goals']['for'];
   $goals_against = $response['response'][0]['league']['standings'][0][$i]['all']['goals']['against'];
   $goals_diff = $goals_for - $goals_against;  
