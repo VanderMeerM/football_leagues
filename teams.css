@@ -510,13 +510,15 @@ table {
 
 @media (max-width: 450px) {
 
+  /*
     .flag_container img {
         width: 75px;
     }
+    */
 
     a {
     margin: 0 5px;
-    font-size: x-small;
+    /* font-size: x-small; */
     }
 
     .stscore_container {

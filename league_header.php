@@ -62,6 +62,10 @@ echo "
 <select " . ($_GET['id'] ? 'style=visibility: hidden' : null) . " id='round_selection' name='round_selection'>";
 
 /* !! als op laatste dag een wedstrijd is, staat deze ook als begindatum; wordt niet opgelost met sortering zoals onder..
+
+$array_values= explode(',', $array_dates_round[27]);
+print_r($array_values[9]); 
+
 for ($u = 0; $u < $lastdate_selected_round; $u++) {
   asort(explode(',', $array_dates_round[$u]));
  }
