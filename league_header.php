@@ -52,6 +52,9 @@ echo "
 </div>
 <p>";
 
+//$array_values= explode(',', $array_dates_round[27]);
+//print_r($array_dates_round[27]); 
+
 
 if ($current_page !== 'standings.php') {
 
@@ -61,16 +64,13 @@ echo "
 
 <select " . ($_GET['id'] ? 'style=visibility: hidden' : null) . " id='round_selection' name='round_selection'>";
 
-/* !! als op laatste dag een wedstrijd is, staat deze ook als begindatum; wordt niet opgelost met sortering zoals onder..
+// !! als op laatste dag een wedstrijd is, staat deze ook als begindatum; wordt niet opgelost met sortering zoals onder..
 
-$array_values= explode(',', $array_dates_round[27]);
-print_r($array_values[9]); 
 
 for ($u = 0; $u < $lastdate_selected_round; $u++) {
   asort(explode(',', $array_dates_round[$u]));
  }
- implode($array_dates_round);
-*/
+// implode($array_dates_round);
 
 ($_GET['round_selection'] ? $round_to_select = $_GET['round_selection'] : $round_to_select = $round_of_first_upcoming_matches); 
 
