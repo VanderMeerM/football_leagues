@@ -29,10 +29,8 @@
 
 .menubar {
 position: fixed;
-top: 20px;
 width: 100%;
-height: 20px;
-/*background-color: rgb(110, 110, 230); */
+height: 2px;
 }
 
 .center_buttons {
