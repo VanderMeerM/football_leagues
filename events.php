@@ -1,6 +1,8 @@
 
 <?php
 
+require('./api.php');
+
 if ($_GET['id'] && file_exists($json_events_path)) {
 
   $response_json_event = file_get_contents($json_events_path, true);
@@ -23,7 +25,7 @@ if ($_GET['id'] && file_exists($json_events_path)) {
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'GET',
       CURLOPT_HTTPHEADER => array(
-        'x-rapidapi-key: f7e1aa54fd70dd93a3c920f503282930',
+        'x-rapidapi-key: ' . $api_key . '',
         'x-rapidapi-host: v3.football.api-sports.io',
         
       ),

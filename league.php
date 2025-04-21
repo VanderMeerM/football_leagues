@@ -19,6 +19,8 @@
 
 <?php 
 
+require('./api.php');
+
 include('./variables.php');
 
 include('./translations.php');
@@ -65,7 +67,7 @@ curl_setopt_array($curl, array(
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => 'GET',
   CURLOPT_HTTPHEADER => array(
-    'x-rapidapi-key: f7e1aa54fd70dd93a3c920f503282930',
+    'x-rapidapi-key: ' . $api_key . '',
     'x-rapidapi-host: v3.football.api-sports.io',
     
   ),

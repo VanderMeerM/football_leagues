@@ -28,7 +28,7 @@ echo "
 <div class='title_container'> 
 
 <div>
-<a>
+<a href='./league.php?league=" . $league_id . "&season=" . $selected_season . "'>
   <img id='logo' src='https://media.api-sports.io/football/leagues/" . $big_image_leage . ".png'/>
   </a>
 </div>
@@ -52,9 +52,25 @@ echo "
 </div>
 <p>";
 
-//$array_values= explode(',', $array_dates_round[27]);
-//print_r($array_dates_round[27]); 
+/*
+$array_values= explode(',', $array_dates_round[29]);
+print_r($array_values);
+echo '<br>'; 
+*/
 
+// !! als op laatste dag een wedstrijd is, staat deze ook als begindatum; wordt niet opgelost met sortering zoals onder..
+// alleen array met geselcteerde ronde op volgorde zetten; de rest staat al goed. 
+
+if ($current_page !== 'standings.php') {
+
+for ($u = 0; $u < sizeof($array_dates_round); $u++) {
+  explode(',', $array_dates_round[$u]);
+  //asort($array_dates_round[$u]);
+ }
+}
+
+//print_r(explode(',', $array_dates_round[$_GET['round_selection']]));
+ //print_r($array_dates_round[$_GET['round_selection']]); //print_r($array_dates_round[28]);
 
 if ($current_page !== 'standings.php') {
 
@@ -64,20 +80,11 @@ echo "
 
 <select " . ($_GET['id'] ? 'style=visibility: hidden' : null) . " id='round_selection' name='round_selection'>";
 
-// !! als op laatste dag een wedstrijd is, staat deze ook als begindatum; wordt niet opgelost met sortering zoals onder..
-
-
-for ($u = 0; $u < $lastdate_selected_round; $u++) {
-  asort(explode(',', $array_dates_round[$u]));
- }
-// implode($array_dates_round);
-
 ($_GET['round_selection'] ? $round_to_select = $_GET['round_selection'] : $round_to_select = $round_of_first_upcoming_matches); 
 
 for ($i = 1; $i <= sizeof($array_dates_round); $i++) {
 
-   
-    echo '
+   echo '
     <option '. ($i == intval($round_to_select) ? 'selected' : null) . ' value= ' . $i . '>
      Ronde ' . $i . ' 
      (' . substr($IntlDateFormatter-> format(explode(',', $array_dates_round[$i])[0]), 0, -3) . ' - ' 
