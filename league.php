@@ -95,6 +95,10 @@ $response_json = file_get_contents($array_season, true);
 $response= json_decode($response_json, true);
 */
 
+if (!$_GET['season']) {
+  header("Location: ./league.php?league=" . $league_id . "&season=" . $selected_season);
+}
+
 if ($_GET['id']) {
   $round_to_fixture = intval(explode(' ', $response['response'][0]['league']['round'])[3]);
   $season_to_fixture = $response['response'][0]['league']['season'];
@@ -109,7 +113,6 @@ $games_per_round = [];
 
 // Uitcommentariëren bij binnenhalen einddata afgelopen seizoenen (zie ook 289)
 include('./league_header.php');
-
 
 $matchesInRound = [];
 
@@ -128,7 +131,9 @@ if ($numGames > 0 ) {
   //$enddate_selected_round['Ronde '. $selectedround] = $response["response"][$i]["fixture"]["timestamp"];
   
   if ((!$_GET['round_selection']) || is_null($_GET['round_selection'])) { 
-    
+
+   // header("/league.php?league=' . $league_id . '&season=' . $selected_season . ");
+
        if ($_GET['season'] != $current_season) {
         $round_to_select = 1;
         }

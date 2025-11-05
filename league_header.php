@@ -82,7 +82,7 @@ echo "
 
 ($_GET['round_selection'] ? $round_to_select = $_GET['round_selection'] : $round_to_select = $round_of_first_upcoming_matches); 
 
-for ($i = 1; $i <= sizeof($array_dates_round); $i++) {
+for ($i = 1; $i < sizeof($array_dates_round); $i++) {
 
    echo '
     <option '. ($i == intval($round_to_select) ? 'selected' : null) . ' value= ' . $i . '>
@@ -136,6 +136,7 @@ foreach ($array_leagues as $al) {
 
   <a href=$page_to_go> 
   <img class='league_icon' src='https://media.api-sports.io/football/leagues/$al.png'/>
+  <input type='hidden' value=$al >
   </a>
   </form>";
  
@@ -154,6 +155,7 @@ echo "
 
 <ul>";
 
+$view = 'hidden';
  
 if ($current_page === "league.php") {
 
@@ -165,16 +167,16 @@ echo '<li><a href="./standings.php?league=' . $league_id . '&season=' . $selecte
 }
 }
 else {
-
   echo '<li><a href="./league.php?league=' . $league_id . '&season=' . $selected_season . '">Toon programma</a></li>';
-
 }
+
 
 if ($_GET['id']) {
 
- 
+ $view = 'visible';
+
   echo 
-  "<div class='menubuttons'>
+  "<div style='visibility: $view' class='menubuttons'>
 <ul>
  <li><a href='./league.php?league=$league_to_fixture&season=$season_to_fixture&round_selection=$round_to_fixture'>Terug naar overzicht</a></li>
  </ul>
@@ -195,6 +197,7 @@ echo '
   if (Object.is(leagueId, null)) { leagueId == 88 };
 
   currentPage = <?php echo json_encode($current_page) ?>;
+  currentSeason = <?php echo json_encode($current_season) ?>;
 
 if (currentPage !="standings.php") {
 
@@ -204,7 +207,8 @@ roundSelection = ev.target.value;
 (window.location.href.split('season=')[1] == undefined) ? seasonSelection = 1 :
 seasonSelection = window.location.href.split('season=')[1].slice(0,4);
 
-window.location.href='./league.php?league='+leagueId+'&season='+seasonSelection+'&round_selection='+roundSelection;
+window.location.href='./league.php?league='+leagueId+'&season='+currentSeason+'&round_selection='+roundSelection;
+
 }
 );
 };

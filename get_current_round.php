@@ -16,6 +16,19 @@ $each_round = intval(explode(' ', $response['response'][$i]['league']['round'])[
 
 $array_dates_round[$each_round] .= $response["response"][$i]["fixture"]["timestamp"] . ',';
   }
+
+  for ($i=1; $i < sizeof($array_dates_round); $i++) {
+    substr($array_dates_round[$i], 0, -1);
+  }
+  
+  
+ // echo rtrim(end($array_dates_round[1]));
+
+/*
+$array_dates_round = rtrim(implode($array_dates_round), ",");
+$array_dates_round = explode(',', $array_dates_round);
+*/
+
 }
 
 $startdate_selected_round = explode(',', $array_dates_round[2])[0] . '<br>';
