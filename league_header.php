@@ -19,9 +19,13 @@ if ($current_page === "league.php") {
 
   if ($_GET['id']) {
     echo '<li><a href="./standings.php?league=' . $league_to_fixture . '&season=' . $season_to_fixture . '">Toon stand</a></li>';
+    echo '<li><a target=_blank href="../EK">EK</a></li>';
+
   }
   else {
 echo '<li><a href="./standings.php?league=' . $league_id . '&season=' . $selected_season . '">Toon stand</a></li>';
+echo '<li><a target=_blank href="../EK">EK</a></li>';
+
 }
 }
 else {
