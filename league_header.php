@@ -1,6 +1,53 @@
 
 <?php 
 
+echo "
+<div class='fixed fixed_menubar' style='background-color:  $array_bgcolor_menubar[$league_id]; '>
+<div class='center_buttons'>
+
+<div class='menubar'>
+<div class='menubuttons'>
+</div>
+</div>
+
+
+<ul>";
+
+$view = 'hidden';
+ 
+if ($current_page === "league.php") {
+
+  if ($_GET['id']) {
+    echo '<li><a href="./standings.php?league=' . $league_to_fixture . '&season=' . $season_to_fixture . '">Toon stand</a></li>';
+  }
+  else {
+echo '<li><a href="./standings.php?league=' . $league_id . '&season=' . $selected_season . '">Toon stand</a></li>';
+}
+}
+else {
+  echo '<li><a href="./league.php?league=' . $league_id . '&season=' . $selected_season . '">Toon programma</a></li>';
+}
+
+
+if ($_GET['id']) {
+
+ $view = 'visible';
+
+  echo 
+  "<div style='visibility: $view' class='menubuttons'>
+<ul>
+ <li><a href='./league.php?league=$league_to_fixture&season=$season_to_fixture&round_selection=$round_to_fixture'>Terug naar overzicht</a></li>
+ </ul>
+ </div>'";
+}
+
+echo '
+</ul>
+</div>
+</div>';
+
+
+
 /* IS ONDERSTAANDE ARRAY (3 regels) NOG NODIG?
 $json_enddates = './JSON/enddates/enddates_'. $league_id . '_' . $selected_season . ($selected_season + 1) . '.json'; 
 
@@ -142,51 +189,8 @@ foreach ($array_leagues as $al) {
  
 }
 
-echo "
-</div>
-
-<div class='fixed fixed_menubar' style='background-color:  $array_bgcolor_menubar[$league_id]; '>
-<div class='center_buttons'>
-
-<div class='menubar'>
-<div class='menubuttons'>
-</div>
-</div>
-
-<ul>";
-
-$view = 'hidden';
- 
-if ($current_page === "league.php") {
-
-  if ($_GET['id']) {
-    echo '<li><a href="./standings.php?league=' . $league_to_fixture . '&season=' . $season_to_fixture . '">Toon stand</a></li>';
-  }
-  else {
-echo '<li><a href="./standings.php?league=' . $league_id . '&season=' . $selected_season . '">Toon stand</a></li>';
-}
-}
-else {
-  echo '<li><a href="./league.php?league=' . $league_id . '&season=' . $selected_season . '">Toon programma</a></li>';
-}
-
-
-if ($_GET['id']) {
-
- $view = 'visible';
-
-  echo 
-  "<div style='visibility: $view' class='menubuttons'>
-<ul>
- <li><a href='./league.php?league=$league_to_fixture&season=$season_to_fixture&round_selection=$round_to_fixture'>Terug naar overzicht</a></li>
- </ul>
- </div>'";
-}
-
-echo '
-</ul>
-</div>
-</div>';
+echo 
+"</div>";
 
 ?>
 

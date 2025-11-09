@@ -19,12 +19,12 @@
 }
 
 .fixed_menubar {
-    width: 300px; 
+    width: 100%;
     top: 13%; 
-    left: 50%;
+   /* left: 50%; */
     height: 44px; 
     margin-top: -100px; 
-    margin-left: -250px
+   /* margin-left: -250px */
 }
 
 .menubar {
@@ -475,23 +475,27 @@ color: rgb(75, 230, 75);
 
 @media (max-width: 600px) {
 
-    /*
+  
 .container_league_logos, 
 .title_container, 
 #standing_update, 
+.main_container,
 table {
-    width: 400px;
+    width: 450px;
+   margin: 10px auto;
 }
-*/
+
 
 #hidden_cell {
     display: none;
 }
 
+/*
 .fixed_menubar {
   width: 400px;
   left: 59%;
 }
+  */
 }
 
 @media (max-width: 550px) {
