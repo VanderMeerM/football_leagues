@@ -469,7 +469,7 @@ color: rgb(75, 230, 75);
     }
 
     .flag_container img {
-        width: 100px;
+        width: 70px;
     }
 }
 
@@ -481,7 +481,7 @@ color: rgb(75, 230, 75);
 #standing_update, 
 .main_container,
 table {
-    width: 450px;
+    width: 400px;
    margin: 10px auto;
 }
 
