@@ -82,7 +82,8 @@ text-align: center;
     margin: 10px auto;
     max-height: fit-content;
     width: 600px;
-    background-color: var(--grassgreen);
+    /*background-color: var(--grassgreen);*/
+    background-image: url('./img/pitch.png');
 }
 
 table {
