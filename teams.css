@@ -177,6 +177,16 @@ form {
     border: 0px;
 }
 
+.menu_sel_item {
+ font-weight: bold;
+ color: white;
+ margin: 0 5px;
+}
+
+.menu_option {
+    color:black;
+}
+
 #season_selection {
     width: fit-content;
 }

@@ -19,48 +19,29 @@ if ($current_page === "league.php") {
 
   if ($_GET['id']) {
     echo '<li><a href="./standings.php?league=' . $league_to_fixture . '&season=' . $season_to_fixture . '">Toon stand</a></li>';
-   
-     echo 
-'<select name="Int_leag" onchange="window.open(this.value);">
-  <option selected disabled value="">CL/EL/ConfL</option>
-  <option value="?league=2">Champions League</option>
-  <option value="?league=3">Europa League</option>
-  <option value="?league=848">Conference League</option>
-  </select>';
-
-   echo 
-'<select name="EKWK" onchange="window.open(this.value);">
-  <option selected disabled value="">EK/WK</option>
-  <option value="../EK">EK</option>
-  <option value="../WK">WK</option>
-  </select>';
-   // echo '<li><a target=_blank href="../EK">EK</a></li>';
-  //  echo '<li><a target=_blank href="../WK">WK</a></li>';
-
   }
   else {
-echo '<li><a href="./standings.php?league=' . $league_id . '&season=' . $selected_season . '">Toon stand</a></li>';
-
- echo 
-'<select name="Int_leag" onchange="window.open(this.value);">
-  <option selected disabled value="">CL/EL/ConfL</option>
-  <option value="?league=2">Champions League</option>
-  <option value="?league=3">Europa League</option>
-  <option value="?league=848">Conference League</option>
-  </select>';
-
-echo 
-'<select name="EKWK" onchange="window.open(this.value);">
-  <option selected disabled value="">EK/WK</option>
-  <option value="../EK">EK</option>
-  <option value="../WK">WK</option>
-  </select>';
-
+  echo '<li><a href="./standings.php?league=' . $league_id . '&season=' . $selected_season . '">Toon stand</a></li>';
 }
 }
 else {
   echo '<li><a href="./league.php?league=' . $league_id . '&season=' . $selected_season . '">Toon programma</a></li>';
 }
+
+ echo 
+'<select class="menu_sel_item" style=background-color:' .  $array_bgcolor_menubar[$league_id] . ' name="Int_leag" onchange="window.open(this.value);">
+  <option selected disabled value="">CL/EL/ConfL</option>
+  <option class="menu_option" value="?league=2">Champions League</option>
+  <option class="menu_option" value="?league=3">Europa League</option>
+  <option class="menu_option" value="?league=848">Conference League</option>
+  </select>';
+
+   echo 
+'<select class="menu_sel_item" style=background-color:' .  $array_bgcolor_menubar[$league_id] . ' name="EKWK" onchange="window.open(this.value);">
+  <option class="menu_option" selected disabled value="">EK/WK</option>
+  <option class="menu_option" value="../EK">EK</option>
+  <option class="menu_option" value="../WK">WK</option>
+  </select>';
 
 
 if ($_GET['id']) {
