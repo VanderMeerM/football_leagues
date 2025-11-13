@@ -58,6 +58,8 @@ padding: 10px;
 color:white;
 margin: 0 5px;
 cursor :pointer;
+width: 150px;
+text-align: center;
 }
 
 
@@ -181,6 +183,7 @@ form {
  font-weight: bold;
  color: white;
  margin: 0 5px;
+ width: 100px;
 }
 
 .menu_option {
