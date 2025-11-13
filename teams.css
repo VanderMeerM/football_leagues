@@ -518,6 +518,12 @@ table {
     }
     */
 
+    .league_icon {
+    width: 50px;
+    margin: 5px;
+   
+}
+
     a {
     margin: 0 5px;
     /* font-size: x-small; */

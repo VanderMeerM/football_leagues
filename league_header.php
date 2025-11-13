@@ -19,12 +19,42 @@ if ($current_page === "league.php") {
 
   if ($_GET['id']) {
     echo '<li><a href="./standings.php?league=' . $league_to_fixture . '&season=' . $season_to_fixture . '">Toon stand</a></li>';
-    echo '<li><a target=_blank href="../EK">EK</a></li>';
+   
+     echo 
+'<select name="Int_leag" onchange="window.open(this.value);">
+  <option selected disabled value="">CL/EL/ConfL</option>
+  <option value="?league=2">Champions League</option>
+  <option value="?league=3">Europa League</option>
+  <option value="?league=848">Conference League</option>
+  </select>';
+
+   echo 
+'<select name="EKWK" onchange="window.open(this.value);">
+  <option selected disabled value="">EK/WK</option>
+  <option value="../EK">EK</option>
+  <option value="../WK">WK</option>
+  </select>';
+   // echo '<li><a target=_blank href="../EK">EK</a></li>';
+  //  echo '<li><a target=_blank href="../WK">WK</a></li>';
 
   }
   else {
 echo '<li><a href="./standings.php?league=' . $league_id . '&season=' . $selected_season . '">Toon stand</a></li>';
-echo '<li><a target=_blank href="../EK">EK</a></li>';
+
+ echo 
+'<select name="Int_leag" onchange="window.open(this.value);">
+  <option selected disabled value="">CL/EL/ConfL</option>
+  <option value="?league=2">Champions League</option>
+  <option value="?league=3">Europa League</option>
+  <option value="?league=848">Conference League</option>
+  </select>';
+
+echo 
+'<select name="EKWK" onchange="window.open(this.value);">
+  <option selected disabled value="">EK/WK</option>
+  <option value="../EK">EK</option>
+  <option value="../WK">WK</option>
+  </select>';
 
 }
 }
@@ -155,7 +185,9 @@ echo "</div>";
 
 echo "<div class='container_league_logos'>";
 
-foreach ($array_leagues as $al) {
+$array_leagues_pitch = array_slice($array_leagues, 0, -3);
+
+foreach ($array_leagues_pitch as $al) {
 
 
   /* Kan weg? 
