@@ -125,6 +125,8 @@ $games_per_round = [];
 // Uitcommentariëren bij binnenhalen einddata afgelopen seizoenen (zie ook 289)
 include('./league_header.php');
 
+echo '</div>';
+
 $matchesInRound = [];
 
 if ($numGames > 0 ) {

@@ -29,14 +29,6 @@ else {
 }
 
  echo 
-'<select class="menu_sel_item" style=background-color:' .  $array_bgcolor_menubar[$league_id] . ' name="Int_leag" onchange="window.open(this.value);">
-  <option selected disabled value="">CL/EL/ConfL</option>
-  <option class="menu_option" value="?league=2">Champions League</option>
-  <option class="menu_option" value="?league=3">Europa League</option>
-  <option class="menu_option" value="?league=848">Conference League</option>
-  </select>';
-
-   echo 
 '<select class="menu_sel_item" style=background-color:' .  $array_bgcolor_menubar[$league_id] . ' name="EKWK" onchange="window.open(this.value);">
   <option class="menu_option" selected disabled value="">EK/WK</option>
   <option class="menu_option" value="../EK">EK</option>
@@ -87,16 +79,18 @@ for ($i = 1; $i < sizeof($allrounds) + 1; $i++) {
 ($_GET['id'] ? $big_image_leage = $league_to_fixture : $big_image_leage = $league_id); 
 
 echo "
-<div class='title_container'> 
+<div class='title_container'>  </div>
 
-<div>
+<div class='main_container_league_season_rounds'> 
+
+<div class='container_big_logo_league'>
+
 <a href='./league.php?league=" . $league_id . "&season=" . $selected_season . "'>
   <img id='logo' src='https://media.api-sports.io/football/leagues/" . $big_image_leage . ".png'/>
   </a>
 </div>
 
 <div class='btn_container'>"; 
-
 
 if (!$_GET['id']) {
 
@@ -110,15 +104,7 @@ for ($i = $current_season; $i >= 2016; $i--) {
 }
 
 echo "
-</select>
-</div>
-<p>";
-
-/*
-$array_values= explode(',', $array_dates_round[29]);
-print_r($array_values);
-echo '<br>'; 
-*/
+</select>";
 
 // !! als op laatste dag een wedstrijd is, staat deze ook als begindatum; wordt niet opgelost met sortering zoals onder..
 // alleen array met geselcteerde ronde op volgorde zetten; de rest staat al goed. 
@@ -137,6 +123,7 @@ for ($u = 0; $u < sizeof($array_dates_round); $u++) {
 if ($current_page !== 'standings.php') {
 
 echo "
+<div class='container_select_rounds'>
 
 <form action='./league.php?season=$selected_season&round_selection=$round_of_first_upcoming_matches' method='get'>
 
@@ -147,8 +134,7 @@ echo "
 for ($i = 1; $i < sizeof($array_dates_round); $i++) {
 
    echo '
-    <option '. ($i == intval($round_to_select) ? 'selected' : null) . ' value= ' . $i . '>
-     Ronde ' . $i . ' 
+    <option '. ($i == intval($round_to_select) ? 'selected' : null) . ' value= ' . $i . '>Ronde ' . $i . ' 
      (' . substr($IntlDateFormatter-> format(explode(',', $array_dates_round[$i])[0]), 0, -3) . ' - ' 
       . substr($IntlDateFormatter-> format(explode(',', $array_dates_round[$i])[$lastdate_selected_round]), 0, -3) .')
      </option>'; 
@@ -156,19 +142,32 @@ for ($i = 1; $i < sizeof($array_dates_round); $i++) {
   
 echo "
 </select>
-</form>";
+</form>
+</div>
+</div>";
+}};
 
-}
 
-echo "</div>";
 
-};
 
+echo "
+</div>
+</div>";
+
+/*
+$array_values= explode(',', $array_dates_round[29]);
+print_r($array_values);
+echo '<br>'; 
+*/
+
+
+
+echo "<div style=display:flex; text-align: center>";
 echo "<div class='container_league_logos'>";
 
-$array_leagues_pitch = array_slice($array_leagues, 0, -3);
+//$array_leagues_pitch = array_slice($array_leagues, 0, -3);
 
-foreach ($array_leagues_pitch as $al) {
+foreach ($array_leagues as $al) {
 
 
   /* Kan weg? 
@@ -203,7 +202,6 @@ foreach ($array_leagues_pitch as $al) {
   <input type='hidden' value=$al >
   </a>
   </form>";
- 
 }
 
 echo 
