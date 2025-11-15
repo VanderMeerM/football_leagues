@@ -28,25 +28,34 @@ else {
   echo '<li><a href="./league.php?league=' . $league_id . '&season=' . $selected_season . '">Toon programma</a></li>';
 }
 
+// Menu Overzicht
+if ($_GET['id']) {
+
+ $ref = "./league.php?league=$league_to_fixture&season=$season_to_fixture&round_selection=$round_to_fixture";
+ $font_color = "yellow";
+ $cursor = "pointer";
+} 
+else {
+  $ref = "#";
+  $font_color = 'lightgray';
+  $cursor = "none";
+}
+
+  echo 
+  "<div class='menubuttons'>
+<ul>
+ <li><a href=$ref style='color: $font_color; cursor: $cursor '>Overzicht</a></li>
+ </ul>
+ </div>'";
+
+ // Menu EK/WK 
+
  echo 
 '<select class="menu_sel_item" style=background-color:' .  $array_bgcolor_menubar[$league_id] . ' name="EKWK" onchange="window.open(this.value);">
   <option class="menu_option" selected disabled value="">EK/WK</option>
   <option class="menu_option" value="../EK">EK</option>
   <option class="menu_option" value="../WK">WK</option>
   </select>';
-
-
-if ($_GET['id']) {
-
- $view = 'visible';
-
-  echo 
-  "<div style='visibility: $view' class='menubuttons'>
-<ul>
- <li><a href='./league.php?league=$league_to_fixture&season=$season_to_fixture&round_selection=$round_to_fixture'>Terug naar overzicht</a></li>
- </ul>
- </div>'";
-}
 
 echo '
 </ul>
