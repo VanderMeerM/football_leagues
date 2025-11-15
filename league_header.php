@@ -32,7 +32,7 @@ else {
 if ($_GET['id']) {
 
  $ref = "./league.php?league=$league_to_fixture&season=$season_to_fixture&round_selection=$round_to_fixture";
- $font_color = "yellow";
+ $font_color = "white";
  $cursor = "pointer";
 } 
 else {
@@ -41,10 +41,14 @@ else {
   $cursor = "none";
 }
 
+$today= date('Y-m-d');
+
   echo 
   "<div class='menubuttons'>
 <ul>
  <li><a href=$ref style='color: $font_color; cursor: $cursor '>Overzicht</a></li>
+ <li><a href='././league.php?date=$today' >Vandaag</a></li>
+
  </ul>
  </div>'";
 
@@ -56,6 +60,15 @@ else {
   <option class="menu_option" value="../EK">EK</option>
   <option class="menu_option" value="../WK">WK</option>
   </select>';
+
+  /* Menu Vandaag 
+ echo 
+"<div class='menubuttons'>
+ <ul>
+ <li><a href='././league.php?date=". date('Y-m-d') .'>Vandaag</a></li>
+ </ul>
+ </div>';
+*/
 
 echo '
 </ul>
