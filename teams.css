@@ -1,6 +1,6 @@
 
 :root {
-    --lightgray:  rgb(246, 246, 246);
+    --lightgray:  rgba(231, 229, 229, 0.888);
     --blue: blue;
     --black: rgb(31, 28, 28);
     --grassgreen: #7ee26e;
@@ -84,13 +84,13 @@ text-align: center;
 
 
 .container_league_logos {
-    margin: 0 auto;
-    max-height: fit-content;
+   text-align: center;
+   max-height: fit-content;
    overflow: auto;
    white-space: nowrap;
-   /* width: 600px;
-    background-color: var(--grassgreen);
-    background-image: url('./img/pitch.png');*/
+   background-color: var(--lightgray);
+    width: 100%;
+   /* background-image: url('./img/pitch.png');*/
 }
 
 .container_league_logos a {
@@ -126,7 +126,7 @@ td {
 #round_selection>option {
  width: fit-content;
  color: rgb(136, 27, 27);
- margin-top: 50px;
+ margin-top: 30px;
 }
 
 
@@ -164,7 +164,7 @@ label {
 .btn_container {
    padding: 10px;
    width: 75%;
-   margin-left: 20%;
+   margin: 3% 0 0 20%;
 }
 
 label {
@@ -315,7 +315,7 @@ img {
 }
 
 .league_icon {
-    width: 75px;
+    width: 60px;
     height: auto; 
     margin: 10px;
 }
