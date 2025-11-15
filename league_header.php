@@ -47,8 +47,11 @@ $today= date('Y-m-d');
   "<div class='menubuttons'>
 <ul>
  <li><a href=$ref style='color: $font_color; cursor: $cursor '>Overzicht</a></li>
- <li><a href='././league.php?date=$today' >Vandaag</a></li>
 
+ <form action='././today' method='post'>
+ <input type='hidden' value= '$today'> 
+ <input type='submit' style='color: white; cursor:pointer' value='Vandaag'>
+</form>
  </ul>
  </div>'";
 
