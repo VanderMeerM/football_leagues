@@ -481,7 +481,7 @@ color: rgb(75, 230, 75);
         margin: 3% 0 0 5%;
     }
 
-    .flag_container img {
+   /* .flag_container img {
         width: 70px;
     }
         */
@@ -489,7 +489,6 @@ color: rgb(75, 230, 75);
 
 @media (max-width: 600px) {
 
-  
 .container_league_logos, 
 .title_container, 
 #standing_update, 
@@ -499,6 +498,9 @@ table {
    margin: 10px auto;
 }
 
+.country_container {
+    width: 150px;
+}
 
 #hidden_cell {
     display: none;
@@ -530,6 +532,16 @@ margin-top: 20px;
 
   .align-right {
     margin-left: 30%;
+}
+#logo {
+    width: 100px;
+}
+
+.btn_container {
+    padding: 0px;
+}
+.country_container {
+    width: 150px;
 }
 }
 
