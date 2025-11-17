@@ -241,10 +241,12 @@ if (currentPage !="standings.php") {
 document.getElementById('round_selection').addEventListener('change', (ev) => {
 roundSelection = ev.target.value;
 
+currentSeason = <?php echo json_encode($current_season) ?>;
+
 (window.location.href.split('season=')[1] == undefined) ? seasonSelection = 1 :
 seasonSelection = window.location.href.split('season=')[1].slice(0,4);
 
-window.location.href='./league.php?league='+leagueId+'&season='+currentSeason+'&round_selection='+roundSelection;
+window.location.href='./league.php?league='+leagueId+'&season='+seasonSelection+'&round_selection='+roundSelection;
 
 }
 );
