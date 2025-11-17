@@ -41,6 +41,8 @@ else {
   $cursor = "none";
 }
 
+// Menu Vandaag 
+
 $today= date('Y-m-d');
 
   echo 
@@ -50,7 +52,7 @@ $today= date('Y-m-d');
 
  <form action='././today' method='post'>
  <input type='hidden' value= '$today'> 
- <input type='submit' style='color: white; cursor:pointer' value='Vandaag'>
+ <input type='image' id='agenda' style='cursor:pointer' src='./img/agenda.png'>
 </form>
  </ul>
  </div>'";
@@ -64,16 +66,7 @@ $today= date('Y-m-d');
   <option class="menu_option" value="../WK">WK</option>
   </select>';
 
-  /* Menu Vandaag 
- echo 
-"<div class='menubuttons'>
- <ul>
- <li><a href='././league.php?date=". date('Y-m-d') .'>Vandaag</a></li>
- </ul>
- </div>';
-*/
-
-echo '
+ echo '
 </ul>
 </div>
 </div>';
