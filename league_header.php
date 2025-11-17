@@ -18,14 +18,14 @@ $view = 'hidden';
 if ($current_page === "league.php") {
 
   if ($_GET['id']) {
-    echo '<li><a href="./standings.php?league=' . $league_to_fixture . '&season=' . $season_to_fixture . '">Toon stand</a></li>';
+    echo '<li><a id="table_txt" href="./standings.php?league=' . $league_to_fixture . '&season=' . $season_to_fixture . '"></a></li>';
   }
   else {
-  echo '<li><a href="./standings.php?league=' . $league_id . '&season=' . $selected_season . '">Toon stand</a></li>';
+  echo '<li><a id="table_txt" href="./standings.php?league=' . $league_id . '&season=' . $selected_season . '"></a></li>';
 }
 }
 else {
-  echo '<li><a href="./league.php?league=' . $league_id . '&season=' . $selected_season . '">Toon programma</a></li>';
+  echo '<li><a id="prog_txt" href="./league.php?league=' . $league_id . '&season=' . $selected_season . '"></a></li>';
 }
 
 // Menu Overzicht
@@ -99,7 +99,7 @@ for ($i = 1; $i < sizeof($allrounds) + 1; $i++) {
 echo "
 <div class='title_container'>  </div>
 
-<div class='main_container_league_season_rounds'> 
+<div class='main_container_league_season_rounds' style='display:". ($current_page == 'standings.php' ? 'block' : 'flex') . "'>' 
 
 <div class='container_big_logo_league'>
 
@@ -180,7 +180,7 @@ echo '<br>';
 
 
 
-echo "<div style=display:flex; text-align: center>";
+echo "<div style=display:" . ($current_page == 'standings.php' ? 'block;' : "flex;") . "text-align: center>";
 echo "<div class='container_league_logos'>";
 
 //$array_leagues_pitch = array_slice($array_leagues, 0, -3);
