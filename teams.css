@@ -161,7 +161,6 @@ button {
 .event_container,
 .lineup_container, 
 #start_sub_team, 
-#standing_update,
 #play_min, 
 label, td {
     font-family: Arial, Helvetica, sans-serif;
@@ -275,11 +274,6 @@ a {
 #show_hide {
     width: 600px;
     margin: 0 auto;
-}
-
-#standing_update {
-    text-align: right;
-    width: 600px;
 }
 
 .main_container_event,
@@ -509,7 +503,6 @@ color: rgb(75, 230, 75);
 
 .container_league_logos, 
 .title_container, 
-#standing_update, 
 .main_container,
 .main_container_event,
 .main_container_lineup,

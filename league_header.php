@@ -99,15 +99,14 @@ for ($i = 1; $i < sizeof($allrounds) + 1; $i++) {
 echo "
 <div class='title_container'>  </div>
 
-<div class='main_container_league_season_rounds' 
-class= " . ($current_page == 'standings.php' ? 'block_class' : null)  . ">'  
+<div class='main_container_league_season_rounds " 
+ . ($current_page === 'standings.php' ? 'block_class' : null)  . ">'  
 
 <div class='container_big_logo_league'>
 
 <a href='./league.php?league=" . $league_id . "&season=" . $selected_season . "'>
   <img id='logo' src='https://media.api-sports.io/football/leagues/" . $big_image_leage . ".png'/>
   </a>
-</div>
 
 <div class='btn_container'>"; 
 
@@ -123,7 +122,8 @@ for ($i = $current_season; $i >= 2016; $i--) {
 }
 
 echo "
-</select>";
+</select>
+</div>";
 
 // !! als op laatste dag een wedstrijd is, staat deze ook als begindatum; wordt niet opgelost met sortering zoals onder..
 // alleen array met geselcteerde ronde op volgorde zetten; de rest staat al goed. 
