@@ -99,7 +99,8 @@ for ($i = 1; $i < sizeof($allrounds) + 1; $i++) {
 echo "
 <div class='title_container'>  </div>
 
-<div class='main_container_league_season_rounds' style='display:". ($current_page == 'standings.php' ? 'block' : 'flex') . "'>' 
+<div class='main_container_league_season_rounds' 
+class= " . ($current_page == 'standings.php' ? 'block_class' : null)  . ">'  
 
 <div class='container_big_logo_league'>
 

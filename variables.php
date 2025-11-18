@@ -12,13 +12,16 @@ $backgr_today_match = '#e4cd84';
 
 $allrounds = [];
 
-$array_leagues = [88, 89, 78, 79, 135, 140, 39, 40, 179, 408, 61, 144, 2, 3, 848]; 
+$array_leagues = [88, 89, 78, 79, 135, 140, 39, 40, 179, 408, 61, 144, 2, 3, 848, 32]; 
 // 2, 3, 848 (CL, EL & Conf. League)
+//32 WK-Kwalificatie Europa
+// 960 EK-kwalificatie
+//5 Nations League  
 // 357 = Ierse competitie
 
 $array_bgcolor_leagues = 
 ['#002e61', '#c9152a', '#cf0513', '#cf0513', '#0c90fd', '#ff4b44', 
-'#3d185c', '#9ba5d0', '#301b76', '#264439', '#091c3e', '#d6142c','#000', '#ff6b04', '#00be14']; 
+'#3d185c', '#9ba5d0', '#301b76', '#264439', '#091c3e', '#d6142c','#000', '#ff6b04', '#00be14', '#000']; 
 
 
 $array_bgcolor_menubar = array_combine($array_leagues, $array_bgcolor_leagues); 

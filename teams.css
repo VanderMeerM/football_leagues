@@ -80,7 +80,6 @@ text-align: center;
 }
 
 
-
 .main_container, 
 .main_container_event
  {
@@ -95,6 +94,10 @@ text-align: center;
     display: flex;
 } 
 
+
+.main_container_league_season_rounds {
+    display: flex;
+}
 
 .container_league_logos {
    text-align: center;
@@ -171,7 +174,12 @@ label {
 }
 
 .btn_container {
-     text-align: center;
+     width: 80%;
+     margin: 2% 0 0 25%;
+}
+
+.block_class {
+    display:  block;
 }
 
 label {
@@ -510,6 +518,10 @@ table {
    margin: 10px auto;
 }
 
+.container_big_logo_league a {
+    padding: 0px;
+}
+
 .country_container {
     width: 150px;
 }
@@ -593,12 +605,12 @@ margin-top: 20px;
     .league_icon {
     width: 50px;
     margin: 5px;
-   
-}
+   }
 
 .btn_container {
    padding: 0;
    width: 50%;
+   margin: auto;
 }
 
 #season_title {
