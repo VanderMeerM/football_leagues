@@ -24,6 +24,8 @@ $array_bgcolor_leagues =
 '#3d185c', '#9ba5d0', '#301b76', '#264439', '#091c3e', '#d6142c','#000', '#ff6b04', '#00be14', '#000']; 
 
 
+$array_international_leagues_ids = [2, 3, 848];
+
 $array_bgcolor_menubar = array_combine($array_leagues, $array_bgcolor_leagues); 
 
 //$round_from_match_to_overview = setcookie('round_from_match_to_overview', $_GET['round_selection'], 3600, '/');

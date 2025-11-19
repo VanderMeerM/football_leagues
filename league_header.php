@@ -141,8 +141,37 @@ for ($u = 0; $u < sizeof($array_dates_round); $u++) {
 
 if ($current_page !== 'standings.php') {
 
+//print_r($array_rounds_International_leagues);
+echo $array_rounds_International_leagues[$lastdate_selected_round_int_leagues];
+
 echo "
-<div class='container_select_rounds'>
+<div class='container_select_rounds'>";
+
+if (in_array($league_id, $array_international_leagues_ids)) {
+
+echo "
+
+<form action='./league.php?season=$selected_season&round_selection=$round_of_first_upcoming_matches' method='get'>
+
+<select " . ($_GET['id'] ? 'style=visibility: hidden' : null) . " id='round_selection' name='round_selection'>";
+
+($_GET['round_selection'] ? $round_to_select = $_GET['round_selection'] : $round_to_select = $round_of_first_upcoming_matches); 
+
+for ($i = 0; $i < sizeof($array_rounds_International_leagues); $i++) {
+
+   echo '
+    <option '. ($i == intval($round_to_select) ? 'selected' : null) . ' value= ' . array_keys($array_rounds_International_leagues)[$i] . '>'
+     . array_keys($array_rounds_International_leagues)[$i] . ' 
+     (' . substr($IntlDateFormatter-> format(explode(',', array_values($array_rounds_International_leagues)[$i])[0]), 0, -3) . ' - ' 
+      . substr($IntlDateFormatter-> format(explode(',', array_values($array_rounds_International_leagues[$i])[$i])[$lastdate_selected_round_int_leagues]), 0, -3) .')
+     </option>'; 
+
+    }'';
+}
+
+else {
+
+  echo "
 
 <form action='./league.php?season=$selected_season&round_selection=$round_of_first_upcoming_matches' method='get'>
 
@@ -157,6 +186,8 @@ for ($i = 1; $i < sizeof($array_dates_round); $i++) {
      (' . substr($IntlDateFormatter-> format(explode(',', $array_dates_round[$i])[0]), 0, -3) . ' - ' 
       . substr($IntlDateFormatter-> format(explode(',', $array_dates_round[$i])[$lastdate_selected_round]), 0, -3) .')
      </option>'; 
+
+    }
   }; 
   
 echo "
@@ -165,8 +196,6 @@ echo "
 </div>
 </div>";
 }};
-
-
 
 
 echo "

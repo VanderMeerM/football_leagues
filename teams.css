@@ -37,6 +37,10 @@ width: 100%;
 height: 2px;
 }
 
+#logo {
+    margin-left: 50%;
+}
+
 #table_txt::after {
     content: "Toon stand";
 } 
@@ -174,7 +178,9 @@ label {
 
 .btn_container {
      width: 80%;
-     margin: 2% 0 0 25%;
+    margin: 0 auto;
+    text-align: center;
+    /* margin: 2% 0 0 25%;*/
 }
 
 .block_class {
@@ -511,6 +517,7 @@ table {
    margin: 10px auto;
 }
 
+
 .container_big_logo_league a {
     padding: 0px;
 }
@@ -550,9 +557,6 @@ margin-top: 20px;
   .align-right {
     margin-left: 30%;
 }
-#logo {
-    width: 100px;
-}
 
 .main_container_league_season_rounds img {
     padding-top: 20px;
@@ -578,6 +582,10 @@ margin-top: 20px;
 #prog_txt::after {
     content: "Programma";
 } 
+
+table {
+    width: 450px;
+}
 }
 
 @media (max-width: 450px) {
@@ -608,6 +616,10 @@ margin-top: 20px;
 
 #season_title {
     font-size: 15px;
+}
+
+table {
+    width: 400px;
 }
 
 a  {
