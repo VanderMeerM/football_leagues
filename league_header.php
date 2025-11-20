@@ -141,7 +141,7 @@ for ($u = 0; $u < sizeof($array_dates_round); $u++) {
 
 if ($current_page !== 'standings.php') {
 
-echo sizeof($array_rounds_International_leagues);
+//echo sizeof($array_rounds_International_leagues);
 //echo $array_rounds_International_leagues[$lastdate_selected_round_int_leagues];
 
 echo "
