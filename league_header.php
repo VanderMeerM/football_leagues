@@ -141,7 +141,7 @@ for ($u = 0; $u < sizeof($array_dates_round); $u++) {
 
 if ($current_page !== 'standings.php') {
 
-print_r($array_rounds_International_leagues);
+echo sizeof($array_rounds_International_leagues);
 //echo $array_rounds_International_leagues[$lastdate_selected_round_int_leagues];
 
 echo "
@@ -163,7 +163,7 @@ for ($i = 0; $i < sizeof($array_rounds_International_leagues); $i++) {
     <option '. ($i == intval($round_to_select) ? 'selected' : null) . ' value= ' . array_keys($array_rounds_International_leagues)[$i] . '>'
      . array_keys($array_rounds_International_leagues)[$i] . ' 
      (' . substr($IntlDateFormatter-> format(explode(',', array_values($array_rounds_International_leagues)[$i])[0]), 0, -3) . ' - ' 
-      . substr($IntlDateFormatter-> format(explode(',', array_values($array_rounds_International_leagues[$i])[$i])[$lastdate_selected_round_int_leagues]), 0, -3) .')
+      . substr($IntlDateFormatter-> format(explode(',', array_values($array_rounds_International_leagues)[$i])[$lastdate_selected_round_int_leagues]), 0, -3) .')
      </option>'; 
 
     }'';
