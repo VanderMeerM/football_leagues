@@ -522,6 +522,10 @@ table {
     padding: 0px;
 }
 
+#logo {
+    margin: auto;
+}
+
 .country_container {
     width: 150px;
 }
@@ -633,5 +637,17 @@ a  {
 
      .align-right {
         margin-left: 25%;
-    }
+ 
+     }
+
+ .score_home, 
+.score_away {
+    background-color: #e4cd84;
+    margin: 0;
+}
+
+.pd_score {
+ padding: 0 10%;
+}
+
 }

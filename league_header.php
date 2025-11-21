@@ -50,9 +50,10 @@ $today= date('Y-m-d');
 <ul>
  <li><a href=$ref style='color: $font_color; cursor: $cursor '>Overzicht</a></li>
 
- <form action='././today' method='post'>
- <input type='hidden' value= '$today'> 
+ <form action='./vandaag.php' method='post'>
+ <input type='hidden' name ='today' value= $today> 
  <input type='image' id='agenda' style='cursor:pointer' src='./img/agenda.png'>
+ <input type='submit' style='display: none'>
 </form>
  </ul>
  </div>'";
