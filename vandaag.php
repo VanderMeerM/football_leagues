@@ -88,6 +88,8 @@ curl_setopt_array($curl, array(
   
 $response = curl_exec($curl);
 curl_close($curl);
+
+$response = json_decode($response, true);
  
 }
 
@@ -119,16 +121,18 @@ curl_setopt_array($curl, array(
   
 $response_1 = curl_exec($curl);
 
-//array_push($matches_today, $response);
+array_push($matches_today, $response_1);
 
 curl_close($curl);
 
 $matches_today = json_decode($response_1, true);
 
-
+}
 }
 
-}
+print_r(date('Y-m-d', date_create($matches_today['response'][1]['fixture']['date'])));
+
+
 
 //print_r($matches_today);
 //echo($matches_today['response'][3]['fixture']['date']); // = json_decode($matches_today, true);
@@ -139,17 +143,20 @@ $array_matches_today_filtered = [];
 
 for ($i=0; $i < sizeof($matches_today); $i++) {
    
- echo    $date = date_create($matches_today['response'][$i]['fixture']['date']);
+ $date = date_create($matches_today['response'][$i]['fixture']['date']);
+ $date = date_format($date, 'Y-m-d');
 
-  if ($_POST['today'] === date_format($date, 'd-m-Y')) {
+ if ($_POST['today'] = $date) {
 
 array_push($array_matches_today_filtered, $matches_today[$i]); 
 }
-  }
+}
 
-print_r($response = $array_matches_today_filtered);
+//print_r($array_matches_today_filtered); 
 
-echo $numGames = $response['results'];
+$response = $array_matches_today_filtered;
+
+$numGames = $response['results'];
 
 include('./get_current_round.php');
 

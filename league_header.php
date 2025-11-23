@@ -269,6 +269,7 @@ echo
 
 if (currentPage !="standings.php") {
 
+  if (!$_GET['id']) { 
 document.getElementById('round_selection').addEventListener('change', (ev) => {
 roundSelection = ev.target.value;
 
@@ -281,6 +282,7 @@ window.location.href='./league.php?league='+leagueId+'&season='+seasonSelection+
 
 }
 );
+}
 };
   
 document.getElementById('season_selection').addEventListener('change', (ev) => {

@@ -89,15 +89,16 @@ $away_team_goals = array();
     return $a['elapsed'] <=> $b['elapsed'];
   });
 
-    $prevent_loop = true;
+    $prevent_loop = true; 
+    
+    echo '<div class="main_container_event">';
 
     if (in_array($matchStatus, $statusInPlay) && ($num_events > 0))   
     { 
      echo '<div id="play_min"> min. '. $min_playing_minute . "'</div>"; 
     }
               
-        echo '<div class="main_container_event">';
-              
+                    
         for($i=0; $i < sizeof($all_team_events); $i++) {
 
           if ($all_team_events[$i]['team'] === $homeTeam) {
