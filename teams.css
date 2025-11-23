@@ -355,7 +355,7 @@ img {
     color: red;
     font-style: italic;
     font-weight: bold;
-    margin: 0 auto;
+    text-align: center;
 }
 
 #ref {
