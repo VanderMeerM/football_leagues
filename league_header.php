@@ -43,7 +43,9 @@ else {
 
 // Menu Vandaag 
 
-$today= date('Y-m-d');
+$yesterday= strtotime('yesterday');
+$today = strtotime('today');
+$tomorrow = strtotime('tomorrow');
 
   echo 
   "<div class='menubuttons'>
@@ -51,7 +53,9 @@ $today= date('Y-m-d');
  <li><a href=$ref style='color: $font_color; cursor: $cursor '>Overzicht</a></li>
 
  <form action='./vandaag.php' method='post'>
+ <input type='hidden' name ='yesterday' value= $yesterday> 
  <input type='hidden' name ='today' value= $today> 
+ <input type='hidden' name ='tomorrow' value= $tomorrow> 
  <input type='image' id='agenda' style='cursor:pointer' src='./img/agenda.png'>
  <input type='submit' style='display: none'>
 </form>
@@ -236,10 +240,10 @@ foreach ($array_leagues as $al) {
   */
   
    
-    if ($current_page === 'league.php') {
+ if ($current_page === 'league.php') {
       $page_to_go = "./league.php?league=$al&season=$selected_season";
     }
-    else {
+ else {
       $page_to_go = "./standings.php?league=$al&season=$selected_season";
     }
 
@@ -269,7 +273,8 @@ echo
 
 if (currentPage !="standings.php") {
 
-  if (!$_GET['id']) { 
+if (document.getElementById('round_selection') != undefined) {
+
 document.getElementById('round_selection').addEventListener('change', (ev) => {
 roundSelection = ev.target.value;
 
@@ -282,8 +287,7 @@ window.location.href='./league.php?league='+leagueId+'&season='+seasonSelection+
 
 }
 );
-}
-};
+}};
   
 document.getElementById('season_selection').addEventListener('change', (ev) => {
 seasonSelection = ev.target.value;
