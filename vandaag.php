@@ -58,7 +58,7 @@ if ($_GET['id']) {
 
     $array_all_leagues = array_merge($array_leagues, $array_extra_leagues);
 
-    for ($i=0; $i < 2; $i++) { //sizeof($array_all_leagues); $i++) { 
+    for ($i=0; $i < 18; $i++) { //sizeof($array_all_leagues); $i++) { 
     $cur_url = 'https://v3.football.api-sports.io/fixtures?&league='. $array_all_leagues[$i] . '&season='. $selected_season;
   
 
@@ -89,6 +89,9 @@ array_push($all_matches_leagues, $response);
 }}
 
 $array_values_all_leagues = array_values($all_matches_leagues);
+
+//Voorbeeld met Franse competitie (timestamp van eerste wedstrijd)
+print_r( $array_values_all_leagues[10]['response'][0]['fixture']['timestamp']);
 
 for ($i=0; $i < sizeof($array_values_all_leagues[0]['response']); $i++) {
 

@@ -133,18 +133,17 @@ echo "
 // !! als op laatste dag een wedstrijd is, staat deze ook als begindatum; wordt niet opgelost met sortering zoals onder..
 // alleen array met geselcteerde ronde op volgorde zetten; de rest staat al goed. 
 
-if ($current_page !== 'standings.php') {
-
-for ($u = 0; $u < sizeof($array_dates_round); $u++) {
-  explode(',', $array_dates_round[$u]);
-  //asort($array_dates_round[$u]);
- }
-}
-
 //print_r(explode(',', $array_dates_round[$_GET['round_selection']]));
  //print_r($array_dates_round[$_GET['round_selection']]); //print_r($array_dates_round[28]);
 
 if ($current_page !== 'standings.php') {
+
+  /* 
+  for ($u = 0; $u < sizeof($array_dates_round); $u++) {
+  explode(',', $array_dates_round[$u]);
+  //asort($array_dates_round[$u]);
+ }
+  */
 
 //echo sizeof($array_rounds_International_leagues);
 //echo $array_rounds_International_leagues[$lastdate_selected_round_int_leagues];

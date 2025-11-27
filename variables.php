@@ -13,7 +13,7 @@ $backgr_today_match = '#e4cd84';
 $allrounds = [];
 
 $array_leagues = [88, 89, 78, 79, 135, 140, 39, 40, 179, 408, 61, 144, 2, 3, 848]; 
-$array_extra_leagues = [32,960, 5];
+$array_extra_leagues = [32, 960, 5];
 
 // 2, 3, 848 (CL, EL & Conf. League)
 //32 WK-Kwalificatie Europa
