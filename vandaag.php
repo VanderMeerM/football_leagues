@@ -114,7 +114,7 @@ $ind++;
 
 };
 
-//print_r($matches_on_selected_day[0]); //['teams']['home']['name']);
+print_r($matches_on_selected_day[0]); //['teams']['home']['name']);
 
 $numGames = sizeof($matches_on_selected_day);
 
@@ -317,7 +317,7 @@ if ($numGames > 0 ) {
    echo '</div>
    </div>';
       };
-      
+
    if (!$_GET['id']) {
    echo '</a>';
 
