@@ -90,21 +90,33 @@ array_push($all_matches_leagues, $response);
 
 $array_values_all_leagues = array_values($all_matches_leagues);
 
+//echo sizeof($array_values_all_leagues) . '<br>';
+//echo sizeof($array_values_all_leagues[10]['response']);
+
 //Voorbeeld met Franse competitie (timestamp van eerste wedstrijd)
-print_r( $array_values_all_leagues[10]['response'][0]['fixture']['timestamp']);
+//print_r( $array_values_all_leagues[10]['response'][0]['fixture']['timestamp']);
 
-for ($i=0; $i < sizeof($array_values_all_leagues[0]['response']); $i++) {
+$ind = 0; 
 
-    $date = date('Y-m-d', $array_values_all_leagues[0]['response'][$i]['fixture']['timestamp']);
+while ($ind < sizeof($array_values_all_leagues)) {
+
+    for ($l=0; $l < sizeof($array_values_all_leagues[$ind]['response']); $l++) {
+
+    $date = date('Y-m-d', $array_values_all_leagues[$ind]['response'][$l]['fixture']['timestamp']);
       
     if ($date === date('Y-m-d', $_POST['today'])) {
-      array_push($matches_on_selected_day, $array_values_all_leagues[0]['response'][$i]);
+      array_push($matches_on_selected_day, $array_values_all_leagues[$ind]['response'][$l]);
     } 
        
-} 
-print_r($matches_on_selected_day);
+}
 
-$numGames = $response['results'];
+$ind++;
+
+};
+
+//print_r($matches_on_selected_day[0]); //['teams']['home']['name']);
+
+$numGames = sizeof($matches_on_selected_day);
 
 //include('./get_current_round.php');
 
@@ -119,9 +131,9 @@ $response= json_decode($response_json, true);
 */
 
 if ($_GET['id']) {
-  $round_to_fixture = intval(explode(' ', $response['response'][0]['league']['round'])[3]);
-  $season_to_fixture = $response['response'][0]['league']['season'];
-  $league_to_fixture = $response['response'][0]['league']['id'];
+  $round_to_fixture = intval(explode(' ', $response[0]['league']['round'])[3]);
+  $season_to_fixture = $response[0]['league']['season'];
+  $league_to_fixture = $response[0]['league']['id'];
  }
 
 $prevent_loop = false;
@@ -143,15 +155,17 @@ if ($numGames > 0 ) {
 
   if (!$prevent_loop) {
 
-  $homeTeam = $response['response'][$i]['teams']['home']['name'];
-  $awayTeam = $response['response'][$i]['teams']['away']['name'];
-  $matchId = $response['response'][$i]['fixture']['id'];
-  $matchStatus = $response['response'][$i]['fixture']['status']['short'];
+ $homeTeam = $matches_on_selected_day[$i]['teams']['home']['name'];
+ $awayTeam = $matches_on_selected_day[$i]['teams']['away']['name'];
+ $matchId = $matches_on_selected_day[$i]['fixture']['id'];
+ $matchStatus = $matches_on_selected_day[$i]['fixture']['status']['short'];
 
-  $selectedround_int_leagues =  $response['response'][$i]['league']['round']; 
-  $selectedround = intval(explode(' ', $response['response'][$i]['league']['round'])[3]);
+  $selectedround_int_leagues =  $matches_on_selected_day [$i]['league']['round']; 
+  $selectedround = intval(explode(' ', $matches_on_selected_day [$i]['league']['round'])[3]);
   //$enddate_selected_round['Ronde '. $selectedround] = $response["response"][$i]["fixture"]["timestamp"];
   
+  /*
+
   if ((!$_GET['round_selection']) || is_null($_GET['round_selection'])) { 
 
    // header("/league.php?league=' . $league_id . '&season=' . $selected_season . ");
@@ -176,16 +190,16 @@ if ($numGames > 0 ) {
  
    if ($round_to_select == $selectedround) {
     
- array_push($matchesInRound, $response['response'][$i]);
+ array_push($matchesInRound, $matches_on_selected_day[$i]);
 
-  $date = date_create($response['response'][$i]['fixture']['date']);
+ $date = date_create($matches_on_selected_day[$i]['fixture']['date']);
 
   if (date('d-m-Y') === date_format($date, 'd-m-Y')) {
 
     echo '<div class="main_container background_today_match">';
    }
-  
-else { 
+*/  
+
 
  echo '<div class="main_container">'; 
 }
@@ -201,9 +215,9 @@ else {
 
   echo '
   <div class="flag_container' . (date('d-m-Y') === date_format($date, 'd-m-Y') ? ' black_color' : ' white_color') .'">
-  <img src="'.$response['response'][$i]['teams']['home']['logo'] . '"/>
+  <img src="'.$matches_on_selected_day[$i]['teams']['home']['logo'] . '"/>
   <p>
-  ' . $response['response'][$i]['teams']['home']['name'] . '</div>'; 
+  ' . $matches_on_selected_day[$i]['teams']['home']['name'] . '</div>'; 
 
   
   echo '</div>
@@ -211,12 +225,12 @@ else {
   <div class="stscore_container'. (date('d-m-Y') === date_format($date, 'd-m-Y') ? ' black_color' : ' white_color') . '">'; 
 
                   
-         if ($_GET['id']) { echo $response['response'][$i]['fixture']['venue']['name'] . '<br>'; }
+         if ($_GET['id']) { echo $matches_on_selected_day[$i]['fixture']['venue']['name'] . '<br>'; }
 
-         if (!$_GET['id'])  { echo $response['response'][$i]['fixture']['venue']['city'] . '<br>'; }
+         if (!$_GET['id'])  { echo $matches_on_selected_day[$i]['fixture']['venue']['city'] . '<br>'; }
 
-         echo date_format($date, 'd-m-Y') . ' ';
-         echo date('H:i', $response['response'][$i]['fixture']['timestamp'])  . '<br>';
+         echo date('d-m-Y', $date);
+        // echo date('H:i', $matches_on_selected_day[$i]['fixture']['timestamp'])  . '<br>';
 
          if (array_key_exists($matchStatus, $status)) {
           ?>
@@ -233,10 +247,10 @@ else {
          . $status[$matchStatus] : 'class="black_color"') . 
          '<br>
          <div class="score">' .
-        '<div class="score_home ' . (!is_null($response['response'][$i]['goals']['home']) ? 'w-12 pd_score' : null) . '">' . $response['response'][$i]['goals']['home'] . '</div>' . 
+        '<div class="score_home ' . (!is_null($matches_on_selected_day[$i]['goals']['home']) ? 'w-12 pd_score' : null) . '">' . $matches_on_selected_day[$i]['goals']['home'] . '</div>' . 
         
-        '<div class="vs '. (date('d-m-Y') === date_format($date, 'd-m-Y') ? 'black_color' : 'white_color') . '"> - ' . '</div>' .   
-         '<div class="score_away '. (!is_null($response['response'][$i]['goals']['away']) ? 'w-12 pd_score' : null) . '">'. $response['response'][$i]['goals']['away'] . '</div>
+        '<div class="vs '. (date('d-m-Y') === date('d-m-Y', $date) ? 'black_color' : 'white_color') . '"> - ' . '</div>' .   
+         '<div class="score_away '. (!is_null($matches_on_selected_day[$i]['goals']['away']) ? 'w-12 pd_score' : null) . '">'. $matches_on_selected_day[$i]['goals']['away'] . '</div>
           
         </div>
         </div>';
@@ -245,16 +259,16 @@ else {
         if ($_GET['id']) { 
 
             echo '<p><div class="stscore_ref">
-            <img id="ref" src="../ref.png">' . '<br> ' . explode(',', $response['response'][$i]['fixture']['referee'])[0] . 
+            <img id="ref" src="../ref.png">' . '<br> ' . explode(',', $matches_on_selected_day[$i]['fixture']['referee'])[0] . 
            '<br>'; 
           
           
            // Wedstrijd opslaan nadat deze een dag in het verleden ligt..
 
           if ( (!file_exists($json_fixture)) &&
-            (date('Y-m-d', $response['response'][$i]['fixture']['timestamp'])) < 
+            (date('Y-m-d', $matches_on_selected_day[$i]['fixture']['timestamp'])) < 
               date('Y-m-d', strtotime('Today')) &&
-                ($response['response'][$i]['fixture']['status']['short'] === 'FT')  )
+                ($matches_on_selected_day[$i]['fixture']['status']['short'] === 'FT')  )
 
           {
     
@@ -294,15 +308,16 @@ else {
          
    echo '<div class="country_container">
    <div class="flag_container'. (date('d-m-Y') === date_format($date, 'd-m-Y') ? ' black_color' : ' white_color') .'">
-   <img src="'.$response['response'][$i]['teams']['away']['logo'] . '"/>
+   <img src="'. $matches_on_selected_day[$i]['teams']['away']['logo'] . '"/>
    <p>' . 
-   $response['response'][$i]['teams']['away']['name'] . '
+   $matches_on_selected_day[$i]['teams']['away']['name'] . '
    </div>'; 
 
  
    echo '</div>
    </div>';
-
+      };
+      
    if (!$_GET['id']) {
    echo '</a>';
 
@@ -326,8 +341,8 @@ if ( (date('Y') >  ($selected_season + 1)) ||
    include ('./lineup.php');
    }
 
-  }}
-  }}
+  }
+  
 
   $miR_sorted = array_map(function ($mt) {
     return $mt['timestamp'];
