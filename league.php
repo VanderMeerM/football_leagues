@@ -225,10 +225,17 @@ else {
          . $status[$matchStatus] : 'class="black_color"') . 
          '<br>
          <div class="score">' .
-        '<div class="score_home ' . (!is_null($response['response'][$i]['goals']['home']) ? 'w-12 pd_score' : null) . '">' . $response['response'][$i]['goals']['home'] . '</div>' . 
+        '<div class="score_home ' 
+        . (!is_null($response['response'][$i]['goals']['home']) ? 'w-12 pd_score' : null) . 
+        (!array_key_exists($matchStatus, $status) ? ' background_score_small_screens' : null) .  
+        '">' . $response['response'][$i]['goals']['home'] . '</div>' . 
         
         '<div class="vs '. (date('d-m-Y') === date_format($date, 'd-m-Y') ? 'black_color' : 'white_color') . '"> - ' . '</div>' .   
-         '<div class="score_away '. (!is_null($response['response'][$i]['goals']['away']) ? 'w-12 pd_score' : null) . '">'. $response['response'][$i]['goals']['away'] . '</div>
+        
+        '<div class="score_away '
+        . (!is_null($response['response'][$i]['goals']['away']) ? 'w-12 pd_score' : null) .
+          (!array_key_exists($matchStatus, $status) ? ' background_score_small_screens' : null) .  
+        '">'. $response['response'][$i]['goals']['away'] . '</div>
           
         </div>
         </div>';

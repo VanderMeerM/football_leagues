@@ -393,6 +393,11 @@ img {
     margin: 10%;
 }
 
+.background_score_small_screens {
+    padding: 5% 10%;
+}
+
+
 .pd_score {
  padding: 5% 10%;
 }
@@ -642,8 +647,13 @@ a  {
 
  .score_home, 
 .score_away {
-    background-color: #e4cd84;
+    /* background-color: #e4cd84; */
     margin: 0;
+}
+
+.background_score_small_screens {
+    background-color: whitesmoke;
+    padding: 5% 10%;
 }
 
 .pd_score {
