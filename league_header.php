@@ -65,13 +65,12 @@ echo "
  <input type='hidden' name ='yesterday' value= $yesterday> 
  <input type='hidden' name ='today' value= $today> 
  <input type='hidden' name ='tomorrow' value= $tomorrow>
- <input type='submit' style='display: none'>";
- // <input type='image' id='agenda' style='cursor:pointer' src='./img/agenda.png'>
- 
-echo "
-</select>
-</form>
+ <input type='submit' style='display: none'>
+ </select>
+ </form>
  </div>'";
+ // <input type='image' id='agenda' style='cursor:pointer' src='./img/agenda.png'>
+
 
  // Menu EK/WK 
 
