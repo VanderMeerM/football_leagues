@@ -48,18 +48,29 @@ $today = strtotime('today');
 $tomorrow = strtotime('tomorrow');
 
   echo 
-  "<div class='menubuttons'>
-<ul>
- <li><a href=$ref style='color: $font_color; cursor: $cursor '>Overzicht</a></li>
+  "<div class='menubuttons'>";
+//<ul>
+//<li><a href=$ref style='color: $font_color; cursor: $cursor '>Overzicht</a></li>
 
- <form action='./vandaag.php' method='post'>
+echo "
+
+<form method='post' action=$_POST[day]>
+
+<select name='day' id='day' class='menu_sel_item' onchange='this.form.submit()'>
+<option class='menu_option' value='' disabled selected>Dag </option>
+<option class='menu_option' value='./gisteren.php'> Gisteren </option>
+<option class='menu_option' value='./vandaag.php'> Vandaag </option>
+<option class='menu_option' value='./morgen.php'> Morgen </option>
+
  <input type='hidden' name ='yesterday' value= $yesterday> 
  <input type='hidden' name ='today' value= $today> 
- <input type='hidden' name ='tomorrow' value= $tomorrow> 
- <input type='image' id='agenda' style='cursor:pointer' src='./img/agenda.png'>
- <input type='submit' style='display: none'>
+ <input type='hidden' name ='tomorrow' value= $tomorrow>
+ <input type='submit' style='display: none'>";
+ // <input type='image' id='agenda' style='cursor:pointer' src='./img/agenda.png'>
+ 
+echo "
+</select>
 </form>
- </ul>
  </div>'";
 
  // Menu EK/WK 
@@ -105,10 +116,15 @@ echo "
 <div class='title_container'>  </div>
 
 <div class='main_container_league_season_rounds " 
- . ($current_page === 'standings.php' ? 'block_class' : null)  . ">'  
+ . ($current_page === 'standings.php' ? 'block_class' : null)  . ">";
 
-<div class='container_big_logo_league'>
 
+echo "
+<div class='container_big_logo_league'>";
+
+if ($current_page !== 'vandaag.php' || $current_page !== 'gisteren.php' || $current_page !== 'morgen.php') {
+
+echo "
 <a href='./league.php?league=" . $league_id . "&season=" . $selected_season . "'>
   <img id='logo' src='https://media.api-sports.io/football/leagues/" . $big_image_leage . ".png'/>
   </a>
@@ -129,6 +145,7 @@ for ($i = $current_season; $i >= 2016; $i--) {
 echo "
 </select>
 </div>";
+}
 
 // !! als op laatste dag een wedstrijd is, staat deze ook als begindatum; wordt niet opgelost met sortering zoals onder..
 // alleen array met geselcteerde ronde op volgorde zetten; de rest staat al goed. 
