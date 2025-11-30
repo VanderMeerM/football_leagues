@@ -52,13 +52,18 @@ height: 2px;
 #agenda {
     width: 30px;
     height: 30px;
-    margin-top: 25%;
 }
 
-#day {
+#day, #day_menus {
     background-color: #002e61;
     color: white;
 }
+
+#day_menus {
+    text-align: center;
+    width: 80px;
+}
+
 
 .center_buttons {
     justify-content: center;
@@ -67,10 +72,11 @@ height: 2px;
 
 
 .menubuttons {
-    display: flex;
+    margin: 2% 0;
     justify-content: center;
     align-items: center;
 }
+
 
 ul {
 display: flex;

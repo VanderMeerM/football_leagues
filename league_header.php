@@ -24,7 +24,8 @@ if ($current_page === "league.php") {
   echo '<li><a id="table_txt" href="./standings.php?league=' . $league_id . '&season=' . $selected_season . '"></a></li>';
 }
 }
-else {
+
+if ($current_page !== "day.php") {
   echo '<li><a id="prog_txt" href="./league.php?league=' . $league_id . '&season=' . $selected_season . '"></a></li>';
 }
 
@@ -52,30 +53,49 @@ $tomorrow = strtotime('tomorrow');
 //<ul>
 //<li><a href=$ref style='color: $font_color; cursor: $cursor '>Overzicht</a></li>
 
+if ($current_page !== 'day.php') {
+
+  echo "
+<form method='post' action='./day.php'>
+<input type='image' id='agenda' style='cursor:pointer' src='./img/agenda.png'>
+<input type='hidden' name='sel_day' value=$today>
+<input type='submit' style='display: none'>
+</form>";
+}
+
+else {
 echo "
+<ul>
+<form action='./day.php' method='post'>
+<input id='day_menus' type='text' value='Gisteren'> 
+<input type='hidden' name='sel_day' value=$yesterday>
+<input type='submit' style='display: none'> 
+</form>
 
-<form method='post' action=$_POST[day]>
+<form action='./day.php' method='post'> 
+<input id='day_menus' type='text'value='Vandaag'>
+<input type='hidden' name='sel_day' value=$today>
+<input type='submit' style='display: none'> 
+</form>
 
-<select name='day' id='day' class='menu_sel_item' onchange='this.form.submit()'>
-<option class='menu_option' value='' disabled selected>Dag </option>
-<option class='menu_option' value='./gisteren.php'> Gisteren </option>
-<option class='menu_option' value='./vandaag.php'> Vandaag </option>
-<option class='menu_option' value='./morgen.php'> Morgen </option>
+<form action='./day.php' method='post'> 
+<input id='day_menus' type='text' value='Morgen'>
+<input type='hidden' name='sel_day' value=$tomorrow>
+<input type='submit' style='display: none'> 
+</form>
+</ul>";
 
- <input type='hidden' name ='yesterday' value= $yesterday> 
- <input type='hidden' name ='today' value= $today> 
- <input type='hidden' name ='tomorrow' value= $tomorrow>
- <input type='submit' style='display: none'>
- </select>
- </form>
- </div>'";
- // <input type='image' id='agenda' style='cursor:pointer' src='./img/agenda.png'>
+}
+
+echo "
+</div>";
 
 
  // Menu EK/WK 
 
  echo 
-'<select class="menu_sel_item" style=background-color:' .  $array_bgcolor_menubar[$league_id] . ' name="EKWK" onchange="window.open(this.value);">
+'<div class="menubuttons"> 
+<select class="menu_sel_item" style=background-color:' .  $array_bgcolor_menubar[$league_id] . ' name="EKWK" onchange="window.open(this.value);">
   <option class="menu_option" selected disabled value="">EK/WK</option>
   <option class="menu_option" value="../EK">EK</option>
   <option class="menu_option" value="../WK">WK</option>
@@ -83,6 +103,7 @@ echo "
 
  echo '
 </ul>
+</div>
 </div>
 </div>';
 
@@ -121,7 +142,7 @@ echo "
 echo "
 <div class='container_big_logo_league'>";
 
-if ($current_page !== 'vandaag.php' || $current_page !== 'gisteren.php' || $current_page !== 'morgen.php') {
+if ($current_page !== 'day.php') {
 
 echo "
 <a href='./league.php?league=" . $league_id . "&season=" . $selected_season . "'>
@@ -255,7 +276,7 @@ foreach ($array_leagues as $al) {
   */
   
    
- if ($current_page === 'league.php') {
+ if ($current_page === 'league.php' || $current_page === 'day.php') {
       $page_to_go = "./league.php?league=$al&season=$selected_season";
     }
  else {

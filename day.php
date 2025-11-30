@@ -104,7 +104,7 @@ while ($ind < sizeof($array_values_all_leagues)) {
 
     $date = date('Y-m-d', $array_values_all_leagues[$ind]['response'][$l]['fixture']['timestamp']);
       
-    if ($date === date('Y-m-d', $_POST['today'])) {
+    if ($date === date('Y-m-d', $_POST['sel_day'])) {
       array_push($matches_on_selected_day, $array_values_all_leagues[$ind]['response'][$l]);
     } 
        
@@ -114,7 +114,7 @@ $ind++;
 
 };
 
-//print_r($matches_on_selected_day[0]); //['teams']['home']['name']);
+//print_r($matches_on_selected_day); //['teams']['home']['name']);
 
 $numGames = sizeof($matches_on_selected_day);
 
@@ -206,7 +206,7 @@ if ($numGames > 0 ) {
 
   if (!$_GET['id']) {
    
-      echo '<a '. (date('d-m-Y') === date('Y-m-d', $_POST['today']) ? ' style="background-color: ' . $backgr_today_match : null) . '" href="' . $_SERVER['PHP_SELF'] . '?id=' . $matchId . '">';
+      echo '<a '. (date('d-m-Y') === date('Y-m-d', $_POST['sel_day']) ? ' style="background-color: ' . $backgr_today_match : null) . '" href="' . $_SERVER['PHP_SELF'] . '?id=' . $matchId . '">';
   }  
 
   echo '
@@ -214,7 +214,7 @@ if ($numGames > 0 ) {
 
 
   echo '
-  <div class="flag_container' . (date('d-m-Y') === date('d-m-Y', $_POST['today']) ? ' black_color' : ' white_color') .'">
+  <div class="flag_container' . (date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? ' black_color' : ' white_color') .'">
   <img src="'.$matches_on_selected_day[$i]['teams']['home']['logo'] . '"/>
   <p>
   ' . $matches_on_selected_day[$i]['teams']['home']['name'] . '</div>'; 

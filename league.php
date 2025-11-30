@@ -183,8 +183,8 @@ else {
 }
 
   if (!$_GET['id']) {
-   
-      echo '<a '. (date('d-m-Y') === date_format($date, 'd-m-Y') ? ' style="background-color: ' . $backgr_today_match : null) . '" href="' . $_SERVER['PHP_SELF'] . '?id=' . $matchId . '">';
+
+        echo '<a '. (date('d-m-Y') === date_format($date, 'd-m-Y') ? ' style="background-color: ' . $backgr_today_match : null) . '" href="' . $_SERVER['PHP_SELF'] . '?id=' . $matchId . '">';
   }  
 
   echo '
@@ -201,7 +201,6 @@ else {
   echo '</div>
 
   <div class="stscore_container'. (date('d-m-Y') === date_format($date, 'd-m-Y') ? ' black_color' : ' white_color') . '">'; 
-
                   
          if ($_GET['id']) { echo $response['response'][$i]['fixture']['venue']['name'] . '<br>'; }
 
