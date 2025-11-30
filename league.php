@@ -172,7 +172,7 @@ if ($numGames > 0 ) {
 
   $date = date_create($response['response'][$i]['fixture']['date']);
 
-  if (date('d-m-Y') === date_format($date, 'd-m-Y')) {
+  if (date('d-m-Y') === date('d-m-Y', $date)) {
 
     echo '<div class="main_container background_today_match">';
    }
@@ -184,7 +184,7 @@ else {
 
   if (!$_GET['id']) {
 
-        echo '<a '. (date('d-m-Y') === date_format($date, 'd-m-Y') ? ' style="background-color: ' . $backgr_today_match : null) . '" href="' . $_SERVER['PHP_SELF'] . '?id=' . $matchId . '">';
+        echo '<a '. (date('d-m-Y') === date('d-m-Y', $date) ? ' style="background-color: ' . $backgr_today_match : null) . '" href="' . $_SERVER['PHP_SELF'] . '?id=' . $matchId . '">';
   }  
 
   echo '
@@ -192,7 +192,7 @@ else {
 
 
   echo '
-  <div class="flag_container' . (date('d-m-Y') === date_format($date, 'd-m-Y') ? ' black_color' : ' white_color') .'">
+  <div class="flag_container' . (date('d-m-Y') === date('d-m-Y', $date) ? ' black_color' : ' white_color') .'">
   <img src="'.$response['response'][$i]['teams']['home']['logo'] . '"/>
   <p>
   ' . $response['response'][$i]['teams']['home']['name'] . '</div>'; 
@@ -200,13 +200,13 @@ else {
   
   echo '</div>
 
-  <div class="stscore_container'. (date('d-m-Y') === date_format($date, 'd-m-Y') ? ' black_color' : ' white_color') . '">'; 
+  <div class="stscore_container'. (date('d-m-Y') === date('d-m-Y', $date,) ? ' black_color' : ' white_color') . '">'; 
                   
          if ($_GET['id']) { echo $response['response'][$i]['fixture']['venue']['name'] . '<br>'; }
 
          if (!$_GET['id'])  { echo $response['response'][$i]['fixture']['venue']['city'] . '<br>'; }
 
-         echo date_format($date, 'd-m-Y') . ' ';
+         echo date( 'd-m-Y', $date) . ' ';
          echo date('H:i', $response['response'][$i]['fixture']['timestamp'])  . '<br>';
 
          if (array_key_exists($matchStatus, $status)) {
@@ -229,7 +229,7 @@ else {
         (!array_key_exists($matchStatus, $status) ? ' background_score_small_screens padding_background_score_small_screens' : null) .  
         '">' . $response['response'][$i]['goals']['home'] . '</div>' . 
         
-        '<div class="vs '. (date('d-m-Y') === date_format($date, 'd-m-Y') ? 'black_color' : 'white_color') . '"> - ' . '</div>' .   
+        '<div class="vs '. (date('d-m-Y') === date('d-m-Y', $date,) ? 'black_color' : 'white_color') . '"> - ' . '</div>' .   
         
         '<div class="score_away '
         . (!is_null($response['response'][$i]['goals']['away']) ? 'w-12 pd_score' : null) .
@@ -291,7 +291,7 @@ else {
         }
          
    echo '<div class="country_container">
-   <div class="flag_container'. (date('d-m-Y') === date_format($date, 'd-m-Y') ? ' black_color' : ' white_color') .'">
+   <div class="flag_container'. (date('d-m-Y') === date('d-m-Y', $date) ? ' black_color' : ' white_color') .'">
    <img src="'.$response['response'][$i]['teams']['away']['logo'] . '"/>
    <p>' . 
    $response['response'][$i]['teams']['away']['name'] . '

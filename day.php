@@ -105,7 +105,7 @@ $ind++;
 
 };
 
-print_r($matches_on_selected_day); //['teams']['home']['name']);
+//print_r($matches_on_selected_day); //['teams']['home']['name']);
 
 $numGames = sizeof($matches_on_selected_day);
 
