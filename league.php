@@ -192,9 +192,10 @@ else {
   echo '
   <div class="country_container">'; 
 
+//  <div class="flag_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'">
 
   echo '
-  <div class="flag_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'">
+  <div class="flag_container black_color">
   <img src="'.$response['response'][$i]['teams']['home']['logo'] . '"/>
   <p>
   ' . $response['response'][$i]['teams']['home']['name'] . '</div>'; 
@@ -202,7 +203,7 @@ else {
   
   echo '</div>
 
-  <div class="stscore_container'. (date('d-m-Y') === $date ? ' black_color' : ' white_color') . '">'; 
+  <div class="stscore_container black_color">'; 
                   
          if ($_GET['id']) { echo $response['response'][$i]['fixture']['venue']['name'] . '<br>'; }
 
@@ -232,7 +233,7 @@ else {
         (!array_key_exists($matchStatus, $status) ? ' background_score_small_screens padding_background_score_small_screens' : null) .  
         '">' . $response['response'][$i]['goals']['home'] . '</div>' . 
         
-        '<div class="vs '. (date('d-m-Y') === date('d-m-Y', $date,) ? 'black_color' : 'white_color') . '"> - ' . '</div>' .   
+        '<div class="vs black_color"> - ' . '</div>' .   
         
         '<div class="score_away '
         . (!is_null($response['response'][$i]['goals']['away']) ? 'w-12 pd_score' : null) .
@@ -294,7 +295,7 @@ else {
         }
          
    echo '<div class="country_container">
-   <div class="flag_container'. (date('d-m-Y') === date('d-m-Y', $date) ? ' black_color' : ' white_color') .'">
+   <div class="flag_container black_color">
    <img src="'.$response['response'][$i]['teams']['away']['logo'] . '"/>
    <p>' . 
    $response['response'][$i]['teams']['away']['name'] . '
