@@ -170,7 +170,7 @@ if ($numGames > 0 ) {
     
  array_push($matchesInRound, $response['response'][$i]);
 
-  $date = date_create($response['response'][$i]['fixture']['date']);
+  $date = date('d-m-Y', $response['response'][$i]['fixture']['timestamp']);
 
   if (date('d-m-Y') === date('d-m-Y', $date)) {
 
@@ -184,7 +184,7 @@ else {
 
   if (!$_GET['id']) {
 
-        echo '<a '. (date('d-m-Y') === date('d-m-Y', $date) ? ' style="background-color: ' . $backgr_today_match : null) . '" href="' . $_SERVER['PHP_SELF'] . '?id=' . $matchId . '">';
+        echo '<a '. (date('d-m-Y') === $date ? ' style="background-color: ' . $backgr_today_match : null) . '" href="' . $_SERVER['PHP_SELF'] . '?id=' . $matchId . '">';
   }  
 
   echo '
@@ -192,7 +192,7 @@ else {
 
 
   echo '
-  <div class="flag_container' . (date('d-m-Y') === date('d-m-Y', $date) ? ' black_color' : ' white_color') .'">
+  <div class="flag_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'">
   <img src="'.$response['response'][$i]['teams']['home']['logo'] . '"/>
   <p>
   ' . $response['response'][$i]['teams']['home']['name'] . '</div>'; 
@@ -200,13 +200,13 @@ else {
   
   echo '</div>
 
-  <div class="stscore_container'. (date('d-m-Y') === date('d-m-Y', $date,) ? ' black_color' : ' white_color') . '">'; 
+  <div class="stscore_container'. (date('d-m-Y') === $date ? ' black_color' : ' white_color') . '">'; 
                   
          if ($_GET['id']) { echo $response['response'][$i]['fixture']['venue']['name'] . '<br>'; }
 
          if (!$_GET['id'])  { echo $response['response'][$i]['fixture']['venue']['city'] . '<br>'; }
 
-         echo date( 'd-m-Y', $date) . ' ';
+         echo $date . ' ';
          echo date('H:i', $response['response'][$i]['fixture']['timestamp'])  . '<br>';
 
          if (array_key_exists($matchStatus, $status)) {
