@@ -213,7 +213,6 @@ if ($numGames > 0 ) {
   </div>
 
   <div class="stscore_container white_color">'; 
-
                   
          if ($_GET['id']) { echo $matches_on_selected_day[$i]['fixture']['venue']['name'] . '<br>'; }
 
@@ -232,7 +231,7 @@ if ($numGames > 0 ) {
          }
           */
 
-         echo 
+          echo
          '<div style="font-size:15pt; font-weight:600" '. (array_key_exists($matchStatus, $status)? 'class="red">' 
          . $status[$matchStatus] : 'class="black_color"') . 
          '<br>
@@ -297,7 +296,7 @@ if ($numGames > 0 ) {
         }
          
    echo '<div class="country_container">
-   <div class="flag_container'. (date('d-m-Y') === date('d-m-Y', $date) ? ' black_color' : ' white_color') .'">
+   <div class="flag_container black_color">
    <img src="'. $matches_on_selected_day[$i]['teams']['away']['logo'] . '"/>
    <p>' . 
    $matches_on_selected_day[$i]['teams']['away']['name'] . '
