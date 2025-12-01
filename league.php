@@ -17,6 +17,7 @@
 </head>
 <body>
 
+<!--
 <script>
 
 // Direct pagina laden bij aanklikken tabblad in browser.. 
@@ -27,6 +28,7 @@ document.addEventListener("visibilitychange", function() {
     }
 });
 </script>
+-->
 
 <?php 
 
@@ -209,6 +211,7 @@ else {
          echo $date . ' ';
          echo date('H:i', $response['response'][$i]['fixture']['timestamp'])  . '<br>';
 
+      /*
          if (array_key_exists($matchStatus, $status)) {
           ?>
           <script>
@@ -218,7 +221,7 @@ else {
           </script>
             <?php
          }
-
+*/
          echo 
          '<div style="font-size:15pt; font-weight:600" '. (array_key_exists($matchStatus, $status)? 'class="red">' 
          . $status[$matchStatus] : 'class="black_color"') . 

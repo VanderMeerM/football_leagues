@@ -220,9 +220,8 @@ if ($numGames > 0 ) {
          if (!$_GET['id'])  { echo $matches_on_selected_day[$i]['fixture']['venue']['city'] . '<br>'; }
 
          echo date('d-m-Y H:i', $matches_on_selected_day[$i]['fixture']['timestamp']);
-        // echo date('H:i', $matches_on_selected_day[$i]['fixture'][)  . '<br>';
 
-         if (array_key_exists($matchStatus, $status)) {
+        /* if (array_key_exists($matchStatus, $status)) {
           ?>
           <script>
       setTimeout(() => {
@@ -231,6 +230,7 @@ if ($numGames > 0 ) {
           </script>
             <?php
          }
+          */
 
          echo 
          '<div style="font-size:15pt; font-weight:600" '. (array_key_exists($matchStatus, $status)? 'class="red">' 
