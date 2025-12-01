@@ -298,7 +298,7 @@ echo
 
 ?>
 
-<!--
+
 <script>
 
   let leagueId = <?php echo json_encode($league_id); ?>;
@@ -366,4 +366,4 @@ function clickBtnLeague(idBtn) {
 
  </script>
  
--->
+ 
