@@ -180,7 +180,7 @@ if ($numGames > 0 ) {
 
   $date = date('d-m-Y', $response['response'][$i]['fixture']['timestamp']);
 
-  if (date('d-m-Y') === date('d-m-Y', $date)) {
+  if (date('d-m-Y') === $date) {
 
     echo '<div class="main_container background_today_match">';
    }
