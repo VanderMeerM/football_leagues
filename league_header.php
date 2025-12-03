@@ -15,8 +15,8 @@ echo "
 
 $view = 'hidden';
  
-if ($current_page === "league.php") {
-
+if (str_contains($current_page, 'league')) {
+  
   if ($_GET['id']) {
     echo '<li><a id="table_txt" href="./standings.php?league=' . $league_to_fixture . '&season=' . $season_to_fixture . '"></a></li>';
   }
@@ -25,7 +25,7 @@ if ($current_page === "league.php") {
 }
 }
 
-if ($current_page !== "day.php") {
+if (!str_contains($current_page, 'day')) {
   echo '<li><a id="prog_txt" href="./league.php?league=' . $league_id . '&season=' . $selected_season . '"></a></li>';
 }
 
@@ -53,7 +53,7 @@ $tomorrow = strtotime('tomorrow');
 //<ul>
 //<li><a href=$ref style='color: $font_color; cursor: $cursor '>Overzicht</a></li>
 
-if ($current_page !== 'day.php') {
+if ( !str_contains($current_page, 'day')) {
 
   echo "
 <form method='post' action='./day.php'>
@@ -136,13 +136,13 @@ echo "
 <div class='title_container'>  </div>
 
 <div class='main_container_league_season_rounds " 
- . ($current_page === 'standings.php' ? 'block_class' : null)  . ">";
+ . (str_contains($current_page, 'standings') ? 'block_class' : null)  . ">";
 
 
 echo "
 <div class='container_big_logo_league'>";
 
-if ($current_page !== 'day.php') {
+if (!str_contains($current_page, 'day')) {
 
 echo "
 <a href='./league.php?league=" . $league_id . "&season=" . $selected_season . "'>
@@ -173,7 +173,7 @@ echo "
 //print_r(explode(',', $array_dates_round[$_GET['round_selection']]));
  //print_r($array_dates_round[$_GET['round_selection']]); //print_r($array_dates_round[28]);
 
-if ($current_page !== 'standings.php') {
+if (!str_contains($current_page, 'standings')) {
 
   /* 
   for ($u = 0; $u < sizeof($array_dates_round); $u++) {
@@ -251,7 +251,7 @@ echo '<br>';
 
 
 
-echo "<div style=display:" . ($current_page == 'standings.php' ? 'block;' : "flex;") . "text-align: center>";
+echo "<div style=display:" . (str_contains($current_page,'standings') ? 'block;' : "flex;") . "text-align: center>";
 echo "<div class='container_league_logos'>";
 
 //$array_leagues_pitch = array_slice($array_leagues, 0, -3);
@@ -276,7 +276,7 @@ foreach ($array_leagues as $al) {
   */
   
    
- if ($current_page === 'league.php' || $current_page === 'day.php') {
+ if (!str_contains($current_page, 'standings')) {
       $page_to_go = "./league.php?league=$al&season=$selected_season";
     }
  else {
@@ -296,6 +296,30 @@ foreach ($array_leagues as $al) {
 echo 
 "</div>";
 
+
+
+$array_of_dates = [];
+
+for ($i=-7; $i <= 7; $i++) {
+  array_push($array_of_dates, $today + $i * 86400);
+  }
+
+echo 
+"</div>
+
+<div style='display:flex; justify-content: center; margin-top: 10px;' class='container_league_logos'>";
+
+foreach ($array_of_dates as $aod) {
+  echo 
+
+    '<div style="width: fit-content; margin: 0 15px;">
+    <a href="./day.php?date='. date(' d-m-Y', $aod) . '">
+    <strong>' . 
+    date('d', $aod) . '</strong><br> '
+    . date('m', $aod) . '</a></div>';
+}
+    
+echo "</div>";
 ?>
 
 

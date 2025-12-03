@@ -89,13 +89,17 @@ $array_values_all_leagues = array_values($all_matches_leagues);
 
 $ind = 0; 
 
+if ($_GET['date']) {
+  $_POST['sel_day'] = strtotime($_GET['date']);
+}
+
 while ($ind < sizeof($array_values_all_leagues)) {
 
     for ($l=0; $l < sizeof($array_values_all_leagues[$ind]['response']); $l++) {
 
-    $date = date('Y-m-d', $array_values_all_leagues[$ind]['response'][$l]['fixture']['timestamp']);
+    $date = date('d-m-Y', $array_values_all_leagues[$ind]['response'][$l]['fixture']['timestamp']);
       
-    if ($date === date('Y-m-d', $_POST['sel_day'])) {
+    if ($date === date('d-m-Y', $_POST['sel_day'])) {
       array_push($matches_on_selected_day, $array_values_all_leagues[$ind]['response'][$l]);
     } 
        
@@ -197,7 +201,7 @@ if ($numGames > 0 ) {
 
   if (!$_GET['id']) {
    
-      echo '<a '. (date('d-m-Y') === date('Y-m-d', $_POST['sel_day']) ? ' style="background-color: ' . $backgr_today_match : null) . '" href="' . $_SERVER['PHP_SELF'] . '?id=' . $matchId . '">';
+      echo '<a '. (date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? ' style="background-color: ' . $backgr_today_match : null) . '" href="' . $_SERVER['PHP_SELF'] . '?id=' . $matchId . '">';
   }  
 
   echo '
@@ -255,8 +259,8 @@ if ($numGames > 0 ) {
            // Wedstrijd opslaan nadat deze een dag in het verleden ligt..
 
           if ( (!file_exists($json_fixture)) &&
-            (date('Y-m-d', $matches_on_selected_day[$i]['fixture']['timestamp'])) < 
-              date('Y-m-d', strtotime('Today')) &&
+            (date('d-m-Y', $matches_on_selected_day[$i]['fixture']['timestamp'])) < 
+              date('d-m-Y', strtotime('Today')) &&
                 ($matches_on_selected_day[$i]['fixture']['status']['short'] === 'FT')  )
 
           {

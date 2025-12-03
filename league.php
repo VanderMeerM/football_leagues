@@ -26,7 +26,6 @@ error_reporting(E_ALL);
 */
 ?>
 
-<!--
 <script>
 
 // Direct pagina laden bij aanklikken tabblad in browser.. 
@@ -37,7 +36,6 @@ document.addEventListener("visibilitychange", function() {
     }
 });
 </script>
--->
 
 <?php 
 
@@ -204,15 +202,14 @@ else {
 //  <div class="flag_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'">
 
   echo '
-  <div class="flag_container black_color">
+ <div class="flag_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'">
   <img src="'.$response['response'][$i]['teams']['home']['logo'] . '"/>
   <p>
   ' . $response['response'][$i]['teams']['home']['name'] . '</div>'; 
 
   
   echo '</div>
-
-  <div class="stscore_container black_color">'; 
+    <div class="stscore_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'">'; 
                   
          if ($_GET['id']) { echo $response['response'][$i]['fixture']['venue']['name'] . '<br>'; }
 
@@ -221,7 +218,7 @@ else {
          echo $date . ' ';
          echo date('H:i', $response['response'][$i]['fixture']['timestamp'])  . '<br>';
 
-      /*
+      
          if (array_key_exists($matchStatus, $status)) {
           ?>
           <script>
@@ -231,7 +228,7 @@ else {
           </script>
             <?php
          }
-*/
+
          echo 
          '<div style="font-size:15pt; font-weight:600" '. (array_key_exists($matchStatus, $status)? 'class="red">' 
          . $status[$matchStatus] : 'class="black_color"') . 
@@ -242,9 +239,9 @@ else {
         (!array_key_exists($matchStatus, $status) ? ' background_score_small_screens padding_background_score_small_screens' : null) .  
         '">' . $response['response'][$i]['goals']['home'] . '</div>' . 
         
-        '<div class="vs black_color"> - ' . '</div>' .   
+          '<div class="vs ' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'"> - </div>
         
-        '<div class="score_away '
+        <div class="score_away '
         . (!is_null($response['response'][$i]['goals']['away']) ? 'w-12 pd_score' : null) .
           (!array_key_exists($matchStatus, $status) ? ' background_score_small_screens padding_background_score_small_screens' : null) .  
         '">'. $response['response'][$i]['goals']['away'] . '</div>
@@ -263,8 +260,8 @@ else {
            // Wedstrijd opslaan nadat deze een dag in het verleden ligt..
 
           if ( (!file_exists($json_fixture)) &&
-            (date('Y-m-d', $response['response'][$i]['fixture']['timestamp'])) < 
-              date('Y-m-d', strtotime('Today')) &&
+            (date('d-m-Y', $response['response'][$i]['fixture']['timestamp'])) < 
+              date('d-m-Y', strtotime('today')) &&
                 ($response['response'][$i]['fixture']['status']['short'] === 'FT')  )
 
           {
@@ -304,7 +301,7 @@ else {
         }
          
    echo '<div class="country_container">
-   <div class="flag_container black_color">
+   <div class="flag_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'">
    <img src="'.$response['response'][$i]['teams']['away']['logo'] . '"/>
    <p>' . 
    $response['response'][$i]['teams']['away']['name'] . '
