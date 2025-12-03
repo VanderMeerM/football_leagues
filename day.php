@@ -200,7 +200,7 @@ if ($numGames > 0 ) {
  echo '<div class="main_container">';
 
   if (!$_GET['id']) {
-      echo '<a '. (date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? ' style="background-color: ' . $backgr_today_match : null) . '" href="' . $_SERVER['PHP_SELF'] . '?id=' . $matchId . '">';
+      echo '<a '. (date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? ' style="background-color: ' . $backgr_today_match : null) . '" href="../league?id=' . $matchId . '">';
   }  
  
 // <img src = ' . $matches_on_selected_day [$i]['league']['logo'] . ' id="img_logo_day"">'
