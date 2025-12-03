@@ -197,22 +197,19 @@ if ($numGames > 0 ) {
 */  
 
 
- echo '<div class="main_container">
- <img src = ' . $matches_on_selected_day [$i]['league']['logo'] . ' style="width: 20px; heigth: auto">'
+ echo '<div class="main_container">';
+
+  if (!$_GET['id']) {
+      echo '<a '. (date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? ' style="background-color: ' . $backgr_today_match : null) . '" href="' . $_SERVER['PHP_SELF'] . '?id=' . $matchId . '">';
+  }  
+ 
+echo '<img src = ' . $matches_on_selected_day [$i]['league']['logo'] . ' style="width: 20px; heigth: auto">'
  . $league_name; 
 }
 
-  if (!$_GET['id']) {
-   
-      echo '<a '. (date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? ' style="background-color: ' . $backgr_today_match : null) . '" href="' . $_SERVER['PHP_SELF'] . '?id=' . $matchId . '">';
-  }  
-
-  echo '
-  <div class="country_container">'; 
-
-
-  echo '
-  <div class="flag_container' . (date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? ' black_color' : ' white_color') .'">
+ echo '<div class="country_container">
+  
+ <div class="flag_container' . (date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? ' black_color' : ' white_color') .'">
   <img src="'.$matches_on_selected_day[$i]['teams']['home']['logo'] . '"/>
   <p>
   ' . $matches_on_selected_day[$i]['teams']['home']['name'] . '
