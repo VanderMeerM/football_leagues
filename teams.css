@@ -64,6 +64,10 @@ height: 2px;
     width: 80px;
 }
 
+#img_logo_day {
+    width: 25px; 
+    height: auto;
+}
 
 .center_buttons {
     justify-content: center;

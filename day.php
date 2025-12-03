@@ -203,7 +203,7 @@ if ($numGames > 0 ) {
       echo '<a '. (date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? ' style="background-color: ' . $backgr_today_match : null) . '" href="' . $_SERVER['PHP_SELF'] . '?id=' . $matchId . '">';
   }  
  
-echo '<img src = ' . $matches_on_selected_day [$i]['league']['logo'] . ' style="width: 25px; height: auto">'
+echo '<img src = ' . $matches_on_selected_day [$i]['league']['logo'] . ' id="img_logo_day"">'
  . $league_name; 
 }
 
