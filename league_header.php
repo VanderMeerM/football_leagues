@@ -83,9 +83,9 @@ echo "
 <input type='hidden' name='sel_day' value=$tomorrow>
 <input type='submit' style='display: none'> 
 </form>
+</ul>"
 */
-echo "</ul>
-</div>";
+echo "</div>";
 
 
  // Menu EK/WK 
