@@ -53,16 +53,16 @@ $tomorrow = strtotime('tomorrow');
 //<ul>
 //<li><a href=$ref style='color: $font_color; cursor: $cursor '>Overzicht</a></li>
 
-if ( !str_contains($current_page, 'day')) {
+//if ( !str_contains($current_page, 'day')) {
 
-  echo "
+echo "
 <form method='post' action='./day.php'>
 <input type='image' id='agenda' style='cursor:pointer' src='./img/agenda.png'>
 <input type='hidden' name='sel_day' value=$today>
 <input type='submit' style='display: none'>
 </form>";
-}
 
+/*
 else {
 echo "
 <ul>
@@ -83,11 +83,8 @@ echo "
 <input type='hidden' name='sel_day' value=$tomorrow>
 <input type='submit' style='display: none'> 
 </form>
-</ul>";
-
-}
-
-echo "
+*/
+echo "</ul>
 </div>";
 
 
