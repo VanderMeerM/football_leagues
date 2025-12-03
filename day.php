@@ -157,6 +157,7 @@ if ($numGames > 0 ) {
 
   $selectedround_int_leagues =  $matches_on_selected_day [$i]['league']['round']; 
   $selectedround = intval(explode(' ', $matches_on_selected_day [$i]['league']['round'])[3]);
+  $league_name = $matches_on_selected_day [$i]['league']['name'];
   //$enddate_selected_round['Ronde '. $selectedround] = $response["response"][$i]["fixture"]["timestamp"];
   
   /*
@@ -196,7 +197,9 @@ if ($numGames > 0 ) {
 */  
 
 
- echo '<div class="main_container">'; 
+ echo '<div class="main_container">
+ <img src = ' . $matches_on_selected_day [$i]['league']['logo'] . ' style="width: 20px; heigth: auto">'
+ . $league_name; 
 }
 
   if (!$_GET['id']) {
