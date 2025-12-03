@@ -224,7 +224,7 @@ if ($numGames > 0 ) {
 
          echo date('d-m-Y H:i', $matches_on_selected_day[$i]['fixture']['timestamp']);
 
-        /* if (array_key_exists($matchStatus, $status)) {
+         if (array_key_exists($matchStatus, $status)) {
           ?>
           <script>
       setTimeout(() => {
@@ -233,7 +233,7 @@ if ($numGames > 0 ) {
           </script>
             <?php
          }
-          */
+          
 
           echo
          '<div style="font-size:15pt; font-weight:600" '. (array_key_exists($matchStatus, $status)? 'class="red">' 
@@ -242,7 +242,7 @@ if ($numGames > 0 ) {
          <div class="score">' .
         '<div class="score_home ' . (!is_null($matches_on_selected_day[$i]['goals']['home']) ? 'w-12 pd_score' : null) . '">' . $matches_on_selected_day[$i]['goals']['home'] . '</div>' . 
         
-        '<div class="vs '. (date('d-m-Y') === date('d-m-Y', $date) ? 'black_color' : 'white_color') . '"> - ' . '</div>' .   
+        '<div class="vs '. (date('d-m-Y') === $date ? 'black_color' : 'white_color') . '"> - ' . '</div>' .   
          '<div class="score_away '. (!is_null($matches_on_selected_day[$i]['goals']['away']) ? 'w-12 pd_score' : null) . '">'. $matches_on_selected_day[$i]['goals']['away'] . '</div>
           
         </div>
@@ -260,7 +260,7 @@ if ($numGames > 0 ) {
 
           if ( (!file_exists($json_fixture)) &&
             (date('d-m-Y', $matches_on_selected_day[$i]['fixture']['timestamp'])) < 
-              date('d-m-Y', strtotime('Today')) &&
+              date('d-m-Y', strtotime('today')) &&
                 ($matches_on_selected_day[$i]['fixture']['status']['short'] === 'FT')  )
 
           {
