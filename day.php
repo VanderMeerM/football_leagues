@@ -217,7 +217,7 @@ if ($numGames > 0 ) {
   </div> 
   </div>
 
-  <div class="stscore_container white_color">'; 
+   <div class="stscore_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'">'; 
                   
          if ($_GET['id']) { echo $matches_on_selected_day[$i]['fixture']['venue']['name'] . '<br>'; }
 
