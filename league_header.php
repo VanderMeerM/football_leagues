@@ -25,7 +25,7 @@ if (str_contains($current_page, 'league')) {
 }
 }
 
-if (!str_contains($current_page, 'day')) {
+if (str_contains($current_page, 'standings')) {
   echo '<li><a id="prog_txt" href="./league.php?league=' . $league_id . '&season=' . $selected_season . '"></a></li>';
 }
 
@@ -48,19 +48,19 @@ $yesterday= strtotime('yesterday');
 $today = strtotime('today');
 $tomorrow = strtotime('tomorrow');
 
-  echo 
-  "<div class='menubuttons'>";
-//<ul>
+ //<ul>
 //<li><a href=$ref style='color: $font_color; cursor: $cursor '>Overzicht</a></li>
 
 //if ( !str_contains($current_page, 'day')) {
-
-echo "
+ 
+echo 
+  "<div class='menubuttons'>
 <form method='post' action='./day.php'>
 <input type='image' id='agenda' style='cursor:pointer' src='./img/agenda.png'>
 <input type='hidden' name='sel_day' value=$today>
 <input type='submit' style='display: none'>
-</form>";
+</form>
+</div>";
 
 /*
 else {
@@ -85,7 +85,6 @@ echo "
 </form>
 </ul>"
 */
-echo "</div>";
 
 
  // Menu EK/WK 

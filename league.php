@@ -95,8 +95,6 @@ curl_setopt_array($curl, array(
 
 $response = curl_exec($curl);
 
-//curl_close($curl);
-
 $response = json_decode($response, true);
 
 }
@@ -131,7 +129,7 @@ $prevent_loop = false;
 $games_per_round = [];
 
 
-// Uitcommentariëren bij binnenhalen einddata afgelopen seizoenen (zie ook 289)
+// Uitcommentariëren bij binnenhalen einddata afgelopen seizoenen (zie ook 260)
 include('./league_header.php');
 
 echo '</div>';
