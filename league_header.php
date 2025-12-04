@@ -306,11 +306,11 @@ echo
 
 <div style='display:flex; justify-content: center; margin-top: 10px;' class='container_league_logos'>";
 
+//  ' . (strtotime('2025-04-12') = $aod ? " highlight_date" : null) . '
+
 foreach ($array_of_dates as $aod) {
   echo 
-
-    '<div class="container_dates" 
-    ' . ($_GET['datum'] = date('Y-m-d', $aod) ? " highlight_date" : null) . '>
+    '<div class="container_dates"> 
     <a href="./day.php?datum='. date('Y-d-m', $aod) . '">
     <strong>' . 
     date('d', $aod) . '</strong><br> '
