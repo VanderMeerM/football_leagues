@@ -311,7 +311,7 @@ echo
 foreach ($array_of_dates as $aod) {
   echo 
     '<div class="container_dates"> 
-    <a href="./day.php?datum='. date('Y-d-m', $aod) . '">
+    <a href="./day.php?datum='. date('d-m-Y', $aod) . '">
     <strong>' . 
     date('d', $aod) . '</strong><br> '
     . date('m', $aod) . '</a></div>';

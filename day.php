@@ -99,7 +99,7 @@ while ($ind < sizeof($array_values_all_leagues)) {
 
     $date = date('d-m-Y', $array_values_all_leagues[$ind]['response'][$l]['fixture']['timestamp']);
       
-    if ($date === date('Y-m-d', $_POST['sel_day'])) {
+    if ($date === date('d-m-Y', $_POST['sel_day'])) {
       array_push($matches_on_selected_day, $array_values_all_leagues[$ind]['response'][$l]);
     } 
        
