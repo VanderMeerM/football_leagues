@@ -309,7 +309,7 @@ echo
 foreach ($array_of_dates as $aod) {
   echo 
     '<div class="container_dates ' . 
-    ($_GET['datum'] === date('d-m-Y', $aod) || $_POST['today'] == date('d-m-Y', $aod) ? 'highlight_date' : null).'"> 
+    ($_GET['datum'] === date('d-m-Y', $aod) || date('d-m-Y', $today) === date('d-m-Y', $aod) ? 'highlight_date' : null).'"> 
     <a href="./day.php?datum='. date('d-m-Y', $aod) . '">
     <strong>' . 
     date('d', $aod) . '</strong><br> '
