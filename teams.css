@@ -75,7 +75,9 @@ height: 2px;
 }
 
 .highlight_date {
-    background-color: red;
+    background-color: yellow; /*rgb(224 239 22 / 89%); */
+    border-radius: 50%;
+    width: 60px;
 }
 
 .container_league_logo_name {
