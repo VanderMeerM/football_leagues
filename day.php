@@ -90,7 +90,7 @@ $array_values_all_leagues = array_values($all_matches_leagues);
 $ind = 0; 
 
 if ($_GET['datum']) {
-  $_POST['sel_day'] = strtotime($_GET['date'] + '-' + date('Y'));
+  $_POST['sel_day'] = strtotime($_GET['datum']);
 }
 
 while ($ind < sizeof($array_values_all_leagues)) {
