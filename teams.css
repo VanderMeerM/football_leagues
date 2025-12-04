@@ -208,6 +208,10 @@ label {
    
 }
 
+.extra_padding {
+    padding: 20px 0px;
+}
+
 .btn_container {
      width: 80%;
     margin: 0 auto;

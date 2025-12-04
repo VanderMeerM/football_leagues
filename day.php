@@ -205,7 +205,7 @@ echo
 '</a></div>';
 
 
- echo '<div class="main_container">';
+ echo '<div class="main_container '. ($_GET['id'] ? 'extra_padding' : null) . ')">';
 
   if (!$_GET['id']) {
       echo '<a '. (date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? ' style="background-color: ' . $backgr_today_match : null) . '" href="./league.php?id=' . $matchId . '">';
