@@ -72,7 +72,8 @@ height: 2px;
 .container_league_logo_name {
     display: flex;
      width: 600px;
-     justify-content: center; 
+     justify-content: left; 
+     margin: 0 auto;
 }
 
 .container_league_logo_name a {
@@ -80,7 +81,7 @@ height: 2px;
 }
 
 #league_logo {
-    margin-right: 15px ;
+    margin: 0 15px 0 5px;
     width: 25px;
     height: auto;
 
