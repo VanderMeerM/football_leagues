@@ -295,8 +295,9 @@ echo
 
 
 $array_of_dates = [];
+$number_dates = 14;
 
-for ($i=-7; $i <= 7; $i++) {
+for ($i= (-1 * $number_dates); $i <= $number_dates; $i++) {
   array_push($array_of_dates, $today + $i * 86400);
   }
 

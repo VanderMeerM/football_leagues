@@ -196,6 +196,13 @@ if ($numGames > 0 ) {
    }
 */  
 
+// Competitielogo met -naam 
+echo 
+'<div class="container_league_logo_name">
+<img id="league_logo" src = ' . $matches_on_selected_day [$i]['league']['logo'] . ' id="img_logo_day"">' 
+. $league_name . 
+'</div>';
+
 
  echo '<div class="main_container">';
 
@@ -203,9 +210,9 @@ if ($numGames > 0 ) {
       echo '<a '. (date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? ' style="background-color: ' . $backgr_today_match : null) . '" href="./league.php?id=' . $matchId . '">';
   }  
  
-// <img src = ' . $matches_on_selected_day [$i]['league']['logo'] . ' id="img_logo_day"">'
 
-  echo $league_name; 
+
+
 }
 
  echo '<div class="country_container">
