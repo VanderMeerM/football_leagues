@@ -75,6 +75,10 @@ height: 2px;
      justify-content: center; 
 }
 
+.container_league_logo_name a {
+    padding: 30px 0 0 0;
+}
+
 #league_logo {
     margin-right: 15px ;
     width: 25px;
@@ -116,7 +120,7 @@ text-align: center;
 .main_container_event
  {
     width: 600px;
-    margin: 3% auto 0px;
+    margin: 1% auto 0px;
     flex-wrap: wrap;
     align-content: center;
 }
