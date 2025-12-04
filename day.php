@@ -199,9 +199,10 @@ if ($numGames > 0 ) {
 // Competitielogo met -naam 
 echo 
 '<div class="container_league_logo_name">
+<a href="#">
 <img id="league_logo" src = ' . $matches_on_selected_day [$i]['league']['logo'] . ' id="img_logo_day"">' 
 . $league_name . 
-'</div>';
+'</a></div>';
 
 
  echo '<div class="main_container">';
@@ -308,14 +309,15 @@ echo
         }
          
    echo '<div class="country_container">
-   <div class="flag_container black_color">
-   <img src="'. $matches_on_selected_day[$i]['teams']['away']['logo'] . '"/>
+ <div class="flag_container' . (date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? ' black_color' : ' white_color') .'">
+  <img src="'. $matches_on_selected_day[$i]['teams']['away']['logo'] . '"/>
    <p>' . 
    $matches_on_selected_day[$i]['teams']['away']['name'] . '
    </div>'; 
 
  
-   echo '</div>
+   echo 
+   '</div>
    </div>';
       };
 
