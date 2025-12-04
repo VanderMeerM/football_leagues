@@ -309,8 +309,9 @@ echo
 foreach ($array_of_dates as $aod) {
   echo 
 
-    '<div class="container_dates" ' . (date('Y', $aod) + '-' + $_GET['datum'] = date('d-m-Y', $aod) ? ' " highlight_date" ' : null) . '>
-    <a href="./day.php?datum='. date(' d-m', $aod) . '">
+    '<div class="container_dates" 
+    ' . ($_GET['datum'] = date('Y-m-d', $aod) ? " highlight_date" : null) . '>
+    <a href="./day.php?datum='. date('Y-d-m', $aod) . '">
     <strong>' . 
     date('d', $aod) . '</strong><br> '
     . date('m', $aod) . '</a></div>';
