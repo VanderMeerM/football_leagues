@@ -309,8 +309,8 @@ echo
 foreach ($array_of_dates as $aod) {
   echo 
     '<div class="container_dates ' . 
-    (($_GET['datum'] === date('d-m-Y', $aod) && $current_page === 'day') || 
-    ((!$_GET['datum'] && date('d-m-Y', $today) === date('d-m-Y', $aod)) && $current_page==='day') ? 'highlight_date' : null).'"> 
+    (($_GET['datum'] === date('d-m-Y', $aod) && str_contains($current_page, 'day')) || 
+    ((!$_GET['datum'] && date('d-m-Y', $today) === date('d-m-Y', $aod)) && str_contains($current_page, 'day')) ? 'highlight_date' : null).'"> 
     <a href="./day.php?datum='. date('d-m-Y', $aod) . '">
     <strong>' . 
     date('d', $aod) . '</strong><br> '
