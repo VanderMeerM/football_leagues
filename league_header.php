@@ -43,7 +43,7 @@ else {
 }
 
 echo '
-<li><li><a href= '. $href . ' style= "font-color: "'. $font_color . ' ; cursor= '.$cursor.'">
+<li><li><a href= '. $href . ' style=font-color: '. $font_color . ';cursor= '.$cursor.'">
 </a>Overzicht</li>';
 
 
