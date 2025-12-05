@@ -42,9 +42,9 @@ else {
   $cursor = "none";
 }
 
-echo '
-<li><li><a href= '. $href . ' style=font-color: '. $font_color . ';cursor= '.$cursor.'">
-</a>Overzicht</li>';
+echo "
+<li><li><a href= $href style='font-color: $font_color ;cursor= $cursor'>
+</a>Overzicht</li>";
 
 
 // Menu Vandaag 
