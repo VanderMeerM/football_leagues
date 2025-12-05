@@ -15,9 +15,19 @@
    <link rel="stylesheet" type="text/css" href="./teams.css" />   
   
 </head>
+
 <body>
 
+<script>
 
+// Direct pagina laden bij aanklikken tabblad in browser.. 
+
+document.addEventListener("visibilitychange", function() {
+    if (!document.hidden){
+       window.location.reload();
+    }
+});
+</script>
 
 <?php 
 
@@ -201,19 +211,14 @@ echo
 '<div class="container_league_logo_name">
 <a href="#">
 <img id="league_logo" src = ' . $matches_on_selected_day [$i]['league']['logo'] . ' id="img_logo_day"">' 
-. $league_name . 
-'</div>';
+. $league_name . ' (Ronde ' . $selectedround .')</div>
 
-
- echo '<div class="main_container">';
+<div class="main_container">';
 
   if (!$_GET['id']) {
       echo '<a '. (date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? ' style="background-color: ' . $backgr_today_match : null) . '" href="./league.php?id=' . $matchId . '">';
   }  
  
-
-
-
 }
 
  echo '<div class="country_container">
