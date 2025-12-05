@@ -42,6 +42,10 @@ else {
   $cursor = "none";
 }
 
+echo '
+<li><li><a href= '. $href . ' style= "font-color: "'. $font_color . ' ; cursor= '.$cursor.'"></a></li>';
+
+
 // Menu Vandaag 
 
 $yesterday= strtotime('yesterday');
