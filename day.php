@@ -207,8 +207,8 @@ if ($numGames > 0 ) {
 */  
 
 // Competitielogo met -naam 
-echo 
-'<div class="container_league_logo_name">
+echo '<div>
+<div class="container_league_logo_name">
 <a id="space_cont_league_logo" href="#">
 <img id="league_logo" src = ' . $matches_on_selected_day [$i]['league']['logo'] . ' id="img_logo_day"">' 
 . $league_name . ' (Ronde ' . $selectedround .')</div>
@@ -323,6 +323,7 @@ echo
  
    echo 
    '</div>
+   </div>
    </div>';
       };
 
