@@ -207,16 +207,16 @@ if ($numGames > 0 ) {
 */  
 
 // Competitielogo met -naam 
-echo '<div>
-<div class="container_league_logo_name">
+echo 
+'<div class="container_league_logo_name">
 <a id="space_cont_league_logo" href="#">
 <img id="league_logo" src = ' . $matches_on_selected_day [$i]['league']['logo'] . ' id="img_logo_day"">' 
-. $league_name . ' (ronde ' . $selectedround .')</div>
+. $league_name . ' (Ronde ' . $selectedround .')</div>
 
 <div class="main_container">';
 
   if (!$_GET['id']) {
-      echo '<a '. (date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? ' style="background-color: ' . $backgr_today_match : null) . 'href="./league.php?id=' . $matchId . '">';
+      echo '<a '. (date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? ' style="background-color: ' . $backgr_today_match : null) . '" href="./league.php?id=' . $matchId . '">';
   }  
  
 }
@@ -323,7 +323,6 @@ echo '<div>
  
    echo 
    '</div>
-   </div>
    </div>';
       };
 
