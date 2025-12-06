@@ -669,6 +669,12 @@ table {
    margin: auto;
 }
 
+#logo {
+    width: 80px;
+    height: auto;
+    margin: auto;
+}
+
 #season_title {
     font-size: 15px;
 }
