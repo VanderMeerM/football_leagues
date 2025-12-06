@@ -234,14 +234,16 @@ else {
          <div class="score">' .
         '<div class="score_home ' 
         . (!is_null($response['response'][$i]['goals']['home']) ? 'w-12 pd_score' : null) . 
-        (!array_key_exists($matchStatus, $status) ? ' background_score_small_screens padding_background_score_small_screens' : null) .  
+        ((!array_key_exists($matchStatus, $status) && $response['response'][$i]['goals']['home'] !=0) ? 
+        ' background_score_small_screens padding_background_score_small_screens' : null) .  
         '">' . $response['response'][$i]['goals']['home'] . '</div>' . 
         
           '<div class="vs ' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'"> - </div>
         
         <div class="score_away '
         . (!is_null($response['response'][$i]['goals']['away']) ? 'w-12 pd_score' : null) .
-          (!array_key_exists($matchStatus, $status) ? ' background_score_small_screens padding_background_score_small_screens' : null) .  
+          ((!array_key_exists($matchStatus, $status) && $response['response'][$i]['goals']['away'] !=0)? 
+          ' background_score_small_screens padding_background_score_small_screens' : null) .  
         '">'. $response['response'][$i]['goals']['away'] . '</div>
           
         </div>

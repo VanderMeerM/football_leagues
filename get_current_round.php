@@ -62,6 +62,8 @@ for ($i=1; $i < sizeof($array_dates_round); $i++) {
    }
 
    asort($round_determination);
+
+   print_r($round_determination);
   
     $array_of_round_of_first_upcoming_matches = $round_determination[0];
     
