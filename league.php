@@ -189,9 +189,12 @@ else {
  echo '<div style="margin: 3% auto 0px" class="main_container '. ($_GET['id'] ? 'extra_padding' : null) . '">'; 
 }
 
-echo '<a '. (date('d-m-Y') === $date ? ' style="background-color: ' . $backgr_today_match : null) . '" href="' . $_SERVER['PHP_SELF'] . '?id=' . $matchId . '">';
+  if (!$_GET['id']) {
 
-echo '
+        echo '<a '. (date('d-m-Y') === $date ? ' style="background-color: ' . $backgr_today_match : null) . '" href="' . $_SERVER['PHP_SELF'] . '?id=' . $matchId . '">';
+  }  
+
+  echo '
   <div class="country_container">'; 
 
 //  <div class="flag_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'">
