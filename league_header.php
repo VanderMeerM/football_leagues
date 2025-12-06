@@ -43,8 +43,8 @@ else {
 }
 
 echo "
-<li><li><a href= $href style='font-color: $font_color ;cursor= $cursor'>
-</a>Overzicht</li>";
+<li><a href= $ref style= 'color: $font_color ;cursor: $cursor'>
+Overzicht</a></li>";
 
 
 // Menu Vandaag 
