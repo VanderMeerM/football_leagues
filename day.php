@@ -327,8 +327,8 @@ echo
    </div>';
       };
 
-   if (!$_GET['id']) {
-   echo '</a>';
+//   if (!$_GET['id']) {
+   echo '</a></div>';
 
 // Oudere seizoenen opslaan (vanaf juni als seizoen voorbij is)...
 
@@ -343,7 +343,7 @@ if ( (date('Y') >  ($selected_season + 1)) ||
   fclose($json_file_mt);
       
  }
- }
+
 
    if ($_GET['id']) {
    include ('./events.php');
