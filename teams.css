@@ -650,23 +650,28 @@ table {
 
 @media (max-width: 450px) {
 
-  .main_container, 
-  .main_container_event,
+.main_container, 
+.main_container_event,
 .main_container_lineup {
     width: 350px;
     height: 200px;
-  }
+ }
 
-    .country_container,
-    .stscore_container {
+.container_league_logos form a, 
+.container_dates a {
+    width: fit-content;
+ }
+
+.country_container,
+.stscore_container {
     width: 60px;
     height: 130px;
-    }
+ }
 
-    .league_icon {
+ .league_icon {
     width: 50px;
     margin: 5px;
-   }
+ }
 
 .btn_container {
    padding: 0;
