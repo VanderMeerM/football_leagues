@@ -181,7 +181,7 @@ if ($numGames > 0 ) {
 
   if (date('d-m-Y') === $date) {
 
-    echo '<div class="main_container" style="margin: 3% auto 0px" background_today_match">';
+    echo '<div class="main_container background_today_match" style="margin: 3% auto 0px">';
    }
   
 else { 

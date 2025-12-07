@@ -716,6 +716,10 @@ a  {
  
      }
 
+     .score {
+        padding-top: 0px;
+     }
+     
  .score_home, 
 .score_away {
     /* background-color: #e4cd84; */
