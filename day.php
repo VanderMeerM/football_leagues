@@ -18,6 +18,14 @@
 
 <body>
 
+<?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+?>
+
 <script>
 
 // Direct pagina laden bij aanklikken tabblad in browser.. 
@@ -75,7 +83,7 @@ curl_setopt_array($curl, array(
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => 'GET',
   CURLOPT_HTTPHEADER => array(
-    'x-rapidapi-key: ' . $api_key . '',
+    'x-rapidapi-key: 863bcd048478f98225b64bced629b376',
     'x-rapidapi-host: v3.football.api-sports.io',
     
   ),
@@ -156,7 +164,7 @@ $matchesInRound = [];
 
 if ($numGames > 0 ) {
 
-  for ($i = 0; $i < $numGames; $i++) {
+  for ($i = 0; $i < $numGam570592045.swh.strato-hosting.eues; $i++) {
 
   if (!$prevent_loop) {
 
@@ -168,7 +176,7 @@ if ($numGames > 0 ) {
   $selectedround_int_leagues =  $matches_on_selected_day [$i]['league']['round']; 
   $selectedround = intval(explode(' ', $matches_on_selected_day [$i]['league']['round'])[3]);
   $league_name = $matches_on_selected_day [$i]['league']['name'];
-  //$enddate_selected_round['Ronde '. $selectedround] = $response["response"][$i]["fixture"]["timestamp"];
+570592045.swh.strato-hosting.eu  //$enddate_selected_round['Ronde '. $selectedround] = $response["response"][$i]["fixture"]["timestamp"];
   
   /*
 
@@ -217,7 +225,7 @@ echo
 <div class="main_container">';
 
   ///if (!$_GET['id']) {
-      echo '<a '. (date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? ' style="background-color: ' . $backgr_today_match : null) . ' href="./league.php?id=' . $matchId . '">';
+      echo '<a ' (date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? ' style="background-color: '  $backgr_today_match : null) 'href="./league.php?id=' . $matchId . '>';
   //}  
  
 }
