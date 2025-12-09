@@ -225,7 +225,7 @@ echo
 <div class="main_container">';
 
   ///if (!$_GET['id']) {
-      echo '<a href="./league.php?id=' . $matchId . '" style="background-color: ' (date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? 'red' : ' blue') '>';
+      echo '<a style="background-color: red''>';
   //} 'href="./league.php?id=' . $matchId .  
  
 }
