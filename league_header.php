@@ -13,7 +13,7 @@ echo "
 
 <ul>
 
-<li><a href= './teams'>Clubs/a></li>";
+<li><a href= './teams'>Clubs</a></li>";
 
 $view = 'hidden';
  
