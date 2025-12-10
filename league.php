@@ -186,7 +186,7 @@ if ($numGames > 0 ) {
   
 else { 
 
- echo '<div style="margin: 3% auto 0px" class="main_container '. ($_GET['id'] ? 'extra_padding' : null) . '">'; 
+ echo '<div style="margin: 3% auto 0px" class="main_container">'; 
 }
 
   if (!$_GET['id']) {
