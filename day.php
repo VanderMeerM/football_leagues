@@ -20,12 +20,13 @@
 
 <?php
 
-//$_POST['sel_day'] = '2025-12-09';
+/*echo $_POST['sel_day'] = '10-12-2025';
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+*/
 ?>
 
 <script>
@@ -85,7 +86,7 @@ curl_setopt_array($curl, array(
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => 'GET',
   CURLOPT_HTTPHEADER => array(
-    'x-rapidapi-key: 863bcd048478f98225b64bced629b376',
+    'x-rapidapi-key: ' . $api_key .
     'x-rapidapi-host: v3.football.api-sports.io',
     
   ),
@@ -166,16 +167,18 @@ $matchesInRound = [];
 
 if ($numGames > 0 ) {
 
-  for ($i = 0; $i < $numGames; $i++) {
+for ($i = 0; $i < $numGames; $i++) {
 
   if (!$prevent_loop) {
 
  $homeTeam = $matches_on_selected_day[$i]['teams']['home']['name'];
  $awayTeam = $matches_on_selected_day[$i]['teams']['away']['name'];
  $matchId = $matches_on_selected_day[$i]['fixture']['id'];
- $ma///if (!$_GET['id']) {
-      echo '<a '. (date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? 'style="background-color: ' $backgr_today_match : null) . ' href="./league.php?id=' . $matchId . '">';
-  //} tchStatus = $matches_on_selected_day[$i]['fixture']['status']['short'];
+ $matchStatus = $matches_on_selected_day[$i]['fixture']['status']['short'];
+ 
+ ///if (!$_GET['id']) {
+     // echo '<a '. (date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? 'style="background-color: ' $backgr_today_match : null) . ' href="./league.php?id=' . $matchId . '">';
+  //} 
 
   $selectedround_int_leagues =  $matches_on_selected_day [$i]['league']['round']; 
   $selectedround = intval(explode(' ', $matches_on_selected_day [$i]['league']['round'])[3]);
@@ -186,19 +189,20 @@ if ($numGames > 0 ) {
 
 // Competitielogo met -naam 
 echo 
-'<div>
+'<div class="background_match">
 <div class="container_league_logo_name">
 <a id="space_cont_league_logo" href="#">
 <img id="league_logo" src = ' . $matches_on_selected_day [$i]['league']['logo'] . ' id="img_logo_day"">' 
-. $league_name . ' (Ronde ' . $selectedround .')</div>
+. $league_name . ' (ronde ' . $selectedround .')</a></div>
 
 <div class="main_container">';
 
-  ///if (!$_GET['id']) {
-  //    echo '<a '. (date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? 'style="background-color: ' $backgr_today_match : null) . ' href="./league.php?id=' . $matchId . '">';
-  //}  
- 
+  //if (!$_GET['id']) {
+   echo '<a style="background-color: ' .(date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? $backgr_today_match : null) .'" href="./league.php?id=' . $matchId . '">';
+ // }  
+
 }
+
 
  echo '<div class="country_container">
 
@@ -266,8 +270,7 @@ echo
            }            
 
       }
-        echo '
-        </div>';
+        echo '</div>';
 
         if ($_GET['id']) {
           echo '</div>';
@@ -282,13 +285,14 @@ echo
 
  
    echo 
-   '</div>
+   '</div></a>
+   </div>
    </div>';
       };
 
 //   if (!$_GET['id']) {
-   echo '</a></div>
-   <div style="margin: 10px 0"></div>';
+   echo '</div>
+   <div style="height: 10px"></div>';
 
 
    if ($_GET['id']) {

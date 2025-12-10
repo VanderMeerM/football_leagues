@@ -75,9 +75,15 @@ height: 2px;
 }
 
 .highlight_date {
-    background-color: yellow; /*rgb(224 239 22 / 89%); */
-    border-radius: 50%;
+    background-color: rgb(226, 226, 37); 
     width: 60px;
+}
+
+.background_match {
+    background-color: rgb(247, 243, 243);
+    width: 700px;
+    padding-bottom: 3%;
+    margin: auto;   
 }
 
 .container_league_logo_name {
@@ -563,6 +569,10 @@ color: rgb(75, 230, 75);
 
 @media (max-width: 600px) {
 
+ .background_match {
+    width: 550px;
+ }
+
 .container_league_logos, 
 .title_container, 
 .main_container,
@@ -618,6 +628,10 @@ margin-top: 20px;
     margin-left: 30%;
 }
 
+ .background_match {
+    width: 500px;
+ }
+
 .main_container_league_season_rounds img {
     padding-top: 20px;
 }
@@ -649,6 +663,10 @@ table {
 }
 
 @media (max-width: 450px) {
+
+ .background_match {
+   width: 375px;
+ }
 
 .main_container, 
 .main_container_event,
@@ -702,8 +720,8 @@ table {
 }
 
 a  {
-   margin: 0 5px;
-/*   width: 350px; */
+   /* margin: 0 5px; */
+   width: 350px; 
    }
 
     .stscore_container {
@@ -716,9 +734,11 @@ a  {
  
      }
 
+     /*
      .score {
         padding-top: 0px;
      }
+        */
      
  .score_home, 
 .score_away {
