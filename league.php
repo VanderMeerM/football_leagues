@@ -181,12 +181,12 @@ if ($numGames > 0 ) {
 
   if (date('d-m-Y') === $date) {
 
-    echo '<div class="main_container background_today_match" style="margin: 3% auto 0px">';
+    echo '<div class="main_container background_today_match extra_padding" style="margin: 3% auto 0px">';
    }
   
 else { 
 
- echo '<div style="margin: 3% auto 0px" class="main_container extra_padding">'; 
+ echo '<div style="margin: 3% auto 0px" class="main_container">'; 
 }
 
   if (!$_GET['id']) {
