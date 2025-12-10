@@ -16,7 +16,17 @@
 <?php 
 
 $league_id = 88;
-$current_season = 2024;
+// 2, 3, 848 (CL, EL & Conf. League)
+// 90 KNVB beker
+
+
+if (date('m') >= 1 && date('m') < 8) {
+$current_season = date('Y')-1;
+}
+else {
+$current_season = date('Y');
+
+}
 
 $allseasons = [];
 

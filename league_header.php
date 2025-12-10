@@ -11,7 +11,9 @@ echo "
 </div>
 
 
-<ul>";
+<ul>
+
+<li><a href= './teams'>Clubs/a></li>";
 
 $view = 'hidden';
  
