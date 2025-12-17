@@ -70,8 +70,9 @@ if ($_GET['id']) {
 
     $array_all_leagues = array_merge($array_leagues, $array_extra_leagues);
 
-    for ($i=0; $i < 18; $i++) { //sizeof($array_all_leagues); $i++) { 
-    $cur_url = 'https://v3.football.api-sports.io/fixtures?&league='. $array_all_leagues[$i] . '&season='. $selected_season;
+   for ($i=0; $i < 18; $i++) { //sizeof($array_all_leagues); $i++) { 
+   $cur_url = 'https://v3.football.api-sports.io/fixtures?&league='. $array_all_leagues[$i] . '&season='. $selected_season;
+   
   
 
 $curl = curl_init();
@@ -86,7 +87,7 @@ curl_setopt_array($curl, array(
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => 'GET',
   CURLOPT_HTTPHEADER => array(
-    'x-rapidapi-key: ' . $api_key .'',
+    'x-rapidapi-key: 863bcd048478f98225b64bced629b376',
     'x-rapidapi-host: v3.football.api-sports.io',
     
   ),
@@ -102,6 +103,7 @@ array_push($all_matches_leagues, $response);
 
 $array_values_all_leagues = array_values($all_matches_leagues);
 
+
 //echo sizeof($array_values_all_leagues) . '<br>';
 //echo sizeof($array_values_all_leagues[10]['response']);
 
@@ -111,6 +113,7 @@ $array_values_all_leagues = array_values($all_matches_leagues);
 $ind = 0; 
 
 if ($_GET['datum']) {
+
   $_POST['sel_day'] = strtotime($_GET['datum']);
 }
 
@@ -130,7 +133,31 @@ $ind++;
 
 };
 
-$matches_on_selected_day; //['teams']['home']['name']);
+
+//Westrijden sorteren op tijdstip;
+
+if ($_POST['orderByLeagueTime'] === 'ob_time' || !$_POST['orderByLeagueTime']) {
+
+$matches_ind_ts = [];
+
+for ($i=0; $i < sizeof($matches_on_selected_day); $i++) {
+
+    array_push($matches_ind_ts, $matches_on_selected_day[$i]['fixture']['timestamp']); 
+  }
+ 
+asort($matches_ind_ts);
+
+$matches_ind_ts_keys = array_keys($matches_ind_ts);
+
+for ($i=0; $i < sizeof($matches_ind_ts_keys); $i++) {
+  
+  $matches_on_selected_day_sorted[] = $matches_on_selected_day[$matches_ind_ts_keys[$i]];
+}
+
+$matches_on_selected_day = $matches_on_selected_day_sorted;
+
+};
+
 
 $numGames = sizeof($matches_on_selected_day);
 
@@ -161,7 +188,16 @@ $games_per_round = [];
 // Uitcommentariëren bij binnenhalen einddata afgelopen seizoenen (zie ook 289)
 include('./league_header.php');
 
+
 echo '</div>';
+
+echo ' 
+Sorteer op: 
+<form method="post" action="./day">
+<input name="orderByLeagueTime" onchange="this.form.submit();" value="ob_league" type="radio" ' . ($_POST['orderByLeagueTime'] === 'ob_league' ? 'checked' : null) . '> Competitie
+<input name="orderByLeagueTime" onchange="this.form.submit();" value="ob_time" type="radio" ' . ($_POST['orderByLeagueTime'] === 'ob_time' || !$_POST['orderByLeagueTime'] ? 'checked' : null) . '> Tijdstip
+<input type="submit" style="display:none">
+</form>';
 
 $matchesInRound = [];
 

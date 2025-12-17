@@ -32,7 +32,18 @@ $array_rounds_International_leagues[$each_round_int_leagues] .= $response["respo
     substr($array_rounds_International_leagues[$i], 0, -1);
   }
   
-  
+ $array_dates_round_values = array_values($array_dates_round); // Wedstrijden in ronde op volgorde zetten  
+
+
+ for ($i=0; $i < sizeof($array_dates_round_values); $i++) {
+  $array_dates_round_sorted[] = explode(',', $array_dates_round_values[$i]);
+  asort($array_dates_round_sorted);
+  array_pop($array_dates_round_sorted[$i]);
+
+}
+
+//print_r($array_dates_round_sorted);
+
  // echo rtrim(end($array_dates_round[1]));
 
 /*
@@ -42,32 +53,30 @@ $array_dates_round = explode(',', $array_dates_round);
 
 }
 
-$startdate_selected_round = explode(',', $array_dates_round[2])[0] . '<br>';
+//$startdate_selected_round = $array_dates_round_sorted[0][0]; //explode(',', $array_dates_round[2])[0] . '<br>';
 $lastdate_selected_round = intval(sizeof(explode(',', $array_dates_round[2])) - 2);
 
 $lastdate_selected_round_int_leagues = intval(sizeof(explode(',', $array_rounds_International_leagues[2])) - 2);
 
-
-for ($i=1; $i < sizeof($array_dates_round); $i++) {
+for ($i=1; $i < sizeof($array_dates_round_sorted); $i++) {
   
-  $num_dates = intval(sizeof(explode(',', $array_dates_round[$i])));
- 
+  $num_dates = intval(sizeof($array_dates_round_sorted[$i]));
+  
   if   
-     (date('Y-m-d', explode(',', $array_dates_round[$i])[$num_dates-2] + (3600 * 24)) >= date('Y-m-d', strtotime('Today'))) 
+     (date('Y-m-d', ($array_dates_round_sorted[$i][$num_dates-1] + (3600 * 24))) >= date('Y-m-d', strtotime('Today'))) 
        
      
     { 
-     array_push($round_determination, ($i . '-' . explode(',', $array_dates_round[$i])[$num_dates-2]));
+     array_push($round_determination, ($i+1 . '-' . $array_dates_round_sorted[$i][$num_dates-1]));
    }
    }
 
-   asort($round_determination);
+   print_r($round_determination);
 
-   //print_r($round_determination);
+    //echo date('d-m-Y', explode('-', $round_determination[0])[1]);
   
     $array_of_round_of_first_upcoming_matches = $round_determination[0];
     
     $round_of_first_upcoming_matches = explode('-', $array_of_round_of_first_upcoming_matches)[0];
-
 
      ?>
