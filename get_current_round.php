@@ -60,7 +60,7 @@ $lastdate_selected_round_int_leagues = intval(sizeof(explode(',', $array_rounds_
 
 for ($i=1; $i < sizeof($array_dates_round_sorted); $i++) {
   
-  $num_dates = intval(sizeof($array_dates_round_sorted[$i]));
+ $num_dates = intval(sizeof($array_dates_round_sorted[$i]));
   
   if   
      (date('Y-m-d', ($array_dates_round_sorted[$i][$num_dates-1] + (3600 * 24))) >= date('Y-m-d', strtotime('Today'))) 
@@ -71,7 +71,7 @@ for ($i=1; $i < sizeof($array_dates_round_sorted); $i++) {
    }
    }
 
-   print_r($round_determination);
+   //print_r($round_determination);
 
     //echo date('d-m-Y', explode('-', $round_determination[0])[1]);
   
