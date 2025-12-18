@@ -17,7 +17,7 @@ echo "
 
 echo "
 <div class='menubuttons'>
-<a href= './teams' id='shirt' style='cursor:pointer' src='./img/shirt.png'></a>
+<a href= './teams' id='shirt' style='cursor:pointer'> <img src='./img/shirt.png'></a>
 </div>";
 
 $view = 'hidden';
