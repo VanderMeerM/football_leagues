@@ -685,7 +685,7 @@ table {
 .main_container_event,
 .main_container_lineup {
     width: 350px;
-    height: 200px;
+    /* height: 200px; */
  }
 
 .container_league_logos form a, 
