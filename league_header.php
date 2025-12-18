@@ -11,9 +11,14 @@ echo "
 </div>
 
 
-<ul>
+<ul>";
 
-<li><a href= './teams'>Clubs</a></li>";
+//<li><a href= './teams'>Clubs</a></li>
+
+echo "
+<div class='menubuttons'>
+<a href= './teams' id='shirt' style='cursor:pointer' src='./img/shirt.png'></a>
+</div>";
 
 $view = 'hidden';
  

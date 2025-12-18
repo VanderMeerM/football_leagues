@@ -186,18 +186,28 @@ $games_per_round = [];
 
 
 // Uitcommentariëren bij binnenhalen einddata afgelopen seizoenen (zie ook 289)
-include('./league_header.php');
-
+include('./league_header.php'); 
 
 echo '</div>';
 
+// Aantal competities tellen..
+$num_leagues = []; 
+for ($i=0; $i < sizeof($matches_on_selected_day); $i++) {
+ array_push($num_leagues, $matches_on_selected_day[$i]['league']['id']);
+}
+
+if (sizeof(array_unique($num_leagues)) > 1) {
+
 echo ' 
-Sorteer op: 
+<div class= "container_sortby_league_time">
 <form method="post" action="./day">
-<input name="orderByLeagueTime" onchange="this.form.submit();" value="ob_league" type="radio" ' . ($_POST['orderByLeagueTime'] === 'ob_league' ? 'checked' : null) . '> Competitie
-<input name="orderByLeagueTime" onchange="this.form.submit();" value="ob_time" type="radio" ' . ($_POST['orderByLeagueTime'] === 'ob_time' || !$_POST['orderByLeagueTime'] ? 'checked' : null) . '> Tijdstip
-<input type="submit" style="display:none">
-</form>';
+<input name="orderByLeagueTime" id="ob_league" onchange="this.form.submit();" value="ob_league" type="radio" ' . ($_POST['orderByLeagueTime'] === 'ob_league' ? 'checked' : null) . '> 
+<label for="ob_league">Competitie</label>
+<input name="orderByLeagueTime" id="ob_time" onchange="this.form.submit();" value="ob_time" type="radio" ' . ($_POST['orderByLeagueTime'] === 'ob_time' || !$_POST['orderByLeagueTime'] ? 'checked' : null) . '> 
+<label for="ob_time">Tijdstip</label>
+</form>
+</div>';
+};
 
 $matchesInRound = [];
 
