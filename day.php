@@ -87,7 +87,7 @@ curl_setopt_array($curl, array(
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => 'GET',
   CURLOPT_HTTPHEADER => array(
-    'x-rapidapi-key:' . $api_key. '',
+    'x-rapidapi-key:863bcd048478f98225b64bced629b376',
     'x-rapidapi-host: v3.football.api-sports.io',
     
   ),
@@ -133,6 +133,13 @@ $ind++;
 
 };
 
+// Uitcommentariëren bij binnenhalen einddata afgelopen seizoenen (zie ook 289)
+include('./league_header.php'); 
+
+if (sizeof($matches_on_selected_day) == 0) {
+  echo '<div id="no_found_matches"> Geen wedstrijden op '. date('d-m-Y', $_POST['sel_day']).' gevonden.</div>';
+  return;
+};
 
 //Westrijden sorteren op tijdstip;
 
@@ -185,8 +192,7 @@ $prevent_loop = false;
 $games_per_round = [];
 
 
-// Uitcommentariëren bij binnenhalen einddata afgelopen seizoenen (zie ook 289)
-include('./league_header.php'); 
+
 
 echo '</div>';
 
@@ -200,14 +206,16 @@ if (sizeof(array_unique($num_leagues)) > 1) {
 
 echo ' 
 <div class= "container_sortby_league_time">
-<form method="post" action="./day">
-<input name="orderByLeagueTime" id="ob_league" onchange="this.form.submit();" value="ob_league" type="radio" ' . ($_POST['orderByLeagueTime'] === 'ob_league' ? 'checked' : null) . '> 
+<form method="post" action="./day'. ($_GET['datum'] ? '?datum='. $_GET['datum'] : null) . '">
+<input name="orderByLeagueTime" id="ob_league" onchange="this.form.submit();" 
+value="ob_league" type="radio" ' . ($_POST['orderByLeagueTime'] === 'ob_league' ? 'checked' : null) . '> 
 <label for="ob_league">Competitie</label>
 <input name="orderByLeagueTime" id="ob_time" onchange="this.form.submit();" value="ob_time" type="radio" ' . ($_POST['orderByLeagueTime'] === 'ob_time' || !$_POST['orderByLeagueTime'] ? 'checked' : null) . '> 
 <label for="ob_time">Tijdstip</label>
 </form>
 </div>';
 };
+
 
 $matchesInRound = [];
 

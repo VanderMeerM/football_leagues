@@ -37,6 +37,13 @@ width: 100%;
 height: 2px;
 }
 
+.menu_dates {
+    display:flex; 
+    justify-content: center; 
+    margin-top: 10px;
+}
+
+
 #logo {
     margin-left: 50%;
 }
@@ -69,6 +76,13 @@ height: 2px;
     height: auto;
 }
 
+#no_found_matches {
+    text-align: center;
+    margin-top: 2%;
+    font-style: italic;
+    font-size: larger;
+}
+
 .container_dates {
     width: fit-content; 
     margin: 0 15px;
@@ -89,7 +103,7 @@ height: 2px;
 .container_league_logo_name, 
 .container_sortby_league_time {
     display: flex;
-     width: 600px;
+   /*  width: 600px; */
      justify-content: left; 
      margin: 30px auto 0px;
 }
@@ -233,6 +247,7 @@ button {
 .lineup_container, 
 #start_sub_team, 
 #play_min, 
+#no_found_matches,
 label, td {
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -298,6 +313,7 @@ form {
     text-transform: uppercase;
 }
 
+
 a {
    /* background-color: black; */
     color: black;
@@ -306,6 +322,7 @@ a {
     text-decoration: none;
     /* margin: 0 10px; */
 }
+
 
 .main_container_line {
     width: 70%;

@@ -17,12 +17,12 @@ echo "
 
 echo "
 <div class='menubuttons'>
-<a href= './teams' id='shirt' style='cursor:pointer'> <img src='./img/shirt.png'></a>
+<a style='padding: 0px' href= './teams' > <img id='shirt' style='cursor:pointer' src='./img/shirt.png'></a>
 </div>";
 
 $view = 'hidden';
  
-if (str_contains($current_page, 'league')) {
+if (str_contains($current_page, $menu_league) && (!str_contains($current_page, $menu_day)) && (!str_contains($current_page, $menu_standings))) {
   
   if ($_GET['id']) {
     echo '<li><a id="table_txt" href="./standings?league=' . $league_to_fixture . '&season=' . $season_to_fixture . '"></a></li>';
@@ -32,7 +32,7 @@ if (str_contains($current_page, 'league')) {
 }
 }
 
-if (str_contains($current_page, 'standings')) {
+if (str_contains($current_page, $menu_standings)) {
   echo '<li><a id="prog_txt" href="./league?league=' . $league_id . '&season=' . $selected_season . '"></a></li>';
 }
 
@@ -56,15 +56,8 @@ Overzicht</a></li>";
 
 // Menu Vandaag 
 
-$yesterday= strtotime('yesterday');
 $today = strtotime('today');
-$tomorrow = strtotime('tomorrow');
 
- //<ul>
-//<li><a href=$ref style='color: $font_color; cursor: $cursor '>Overzicht</a></li>
-
-//if ( !str_contains($current_page, 'day')) {
- 
 echo 
   "<div class='menubuttons'>
 <form method='post' action='./day'>
@@ -73,31 +66,6 @@ echo
 <input type='submit' style='display: none'>
 </form>
 </div>";
-
-/*
-else {
-echo "
-<ul>
-<form action='./day.php' method='post'>
-<input id='day_menus' type='text' value='Gisteren'> 
-<input type='hidden' name='sel_day' value=$yesterday>
-<input type='submit' style='display: none'> 
-</form>
-
-<form action='./day.php' method='post'> 
-<input id='day_menus' type='text'value='Vandaag'>
-<input type='hidden' name='sel_day' value=$today>
-<input type='submit' style='display: none'> 
-</form>
-
-<form action='./day.php' method='post'> 
-<input id='day_menus' type='text' value='Morgen'>
-<input type='hidden' name='sel_day' value=$tomorrow>
-<input type='submit' style='display: none'> 
-</form>
-</ul>"
-*/
-
 
  // Menu EK/WK 
 
@@ -144,13 +112,13 @@ echo "
 <div class='title_container'>  </div>
 
 <div class='main_container_league_season_rounds " 
- . (str_contains($current_page, 'standings') ? 'block_class' : null)  . ">";
+ . (str_contains($current_page, $menu_standings) ? 'block_class' : null)  . ">";
 
 
 echo "
 <div class='container_big_logo_league'>";
 
-if (!str_contains($current_page, 'day')) {
+if (!str_contains($current_page, $menu_day)) {
 
 echo "
 <a href='./league?league=" . $league_id . "&season=" . $selected_season . "'>
@@ -175,13 +143,14 @@ echo "
 </div>";
 }
 
+
 // !! als op laatste dag een wedstrijd is, staat deze ook als begindatum; wordt niet opgelost met sortering zoals onder..
-// alleen array met geselcteerde ronde op volgorde zetten; de rest staat al goed. 
+// alleen array met geselecteerde ronde op volgorde zetten; de rest staat al goed. 
 
 //print_r(explode(',', $array_dates_round[$_GET['round_selection']]));
  //print_r($array_dates_round[$_GET['round_selection']]); //print_r($array_dates_round[28]);
 
-if (!str_contains($current_page, 'standings')) {
+if (!str_contains($current_page, $menu_standings)) {
 
   /* 
   for ($u = 0; $u < sizeof($array_dates_round); $u++) {
@@ -219,7 +188,7 @@ for ($i = 0; $i < sizeof($array_rounds_International_leagues); $i++) {
 }
 
 else {
-
+  
   echo "
 
 <form action='./league?season=$selected_season&round_selection=$round_of_first_upcoming_matches' method='get'>
@@ -228,12 +197,22 @@ else {
 
 ($_GET['round_selection'] ? $round_to_select = $_GET['round_selection'] : $round_to_select = $round_of_first_upcoming_matches); 
 
-for ($i = 1; $i < sizeof($array_dates_round); $i++) {
+for ($i =1; $i <= sizeof($array_dates_round_sorted); $i++) {
 
-   echo '
+  $ind_lastdate_selected_round = sizeof($array_dates_round_sorted[$i-1])-1;
+
+
+/*
+  echo '
     <option '. ($i == intval($round_to_select) ? 'selected' : null) . ' value= ' . $i . '>Ronde ' . $i . ' 
      (' . substr($IntlDateFormatter-> format(explode(',', $array_dates_round[$i])[0]), 0, -3) . ' - ' 
       . substr($IntlDateFormatter-> format(explode(',', $array_dates_round[$i])[$lastdate_selected_round]), 0, -3) .')
+     </option>'; 
+ */
+     echo '
+      <option '. ($i == intval($round_to_select) ? 'selected' : null) . ' value= ' . $i . '>Ronde ' . $i . ' 
+     (' . date('d-m', $array_dates_round_sorted[$i-1][0]) . ' - ' 
+      . date('d-m', $array_dates_round_sorted[$i-1][$ind_lastdate_selected_round]) .')
      </option>'; 
 
     }
@@ -251,18 +230,11 @@ echo "
 </div>
 </div>";
 
-/*
-$array_values= explode(',', $array_dates_round[29]);
-print_r($array_values);
-echo '<br>'; 
-*/
 
+// Rij met logo's van competities opbouwen..
 
-
-echo "<div style=display:" . (str_contains($current_page,'standings') ? 'block;' : "flex;") . "text-align: center>";
+echo "<div style=display:" . (str_contains($current_page, $menu_standings) ? 'block;' : "flex;") . "text-align: center>";
 echo "<div class='container_league_logos'>";
-
-//$array_leagues_pitch = array_slice($array_leagues, 0, -3);
 
 foreach ($array_leagues as $al) {
 
@@ -284,7 +256,7 @@ foreach ($array_leagues as $al) {
   */
   
    
- if (!str_contains($current_page, 'standings')) {
+ if (!str_contains($current_page, $menu_standings)) {
       $page_to_go = "./league?league=$al&season=$selected_season";
     }
  else {
@@ -305,6 +277,7 @@ echo
 "</div>";
 
 
+// Rij met data opbouwen..
 
 $array_of_dates = [];
 $number_dates = 14;
@@ -316,13 +289,13 @@ for ($i= (-1 * $number_dates); $i <= $number_dates; $i++) {
 echo 
 "</div>
 
-<div style='display:flex; justify-content: center; margin-top: 10px;' class='container_league_logos'>";
+<div class='menu_dates container_league_logos'>";
 
 foreach ($array_of_dates as $aod) {
   echo 
     '<div class="container_dates ' . 
-    (($_GET['datum'] === date('d-m-Y', $aod) && str_contains($current_page, 'day')) || 
-    ((!$_GET['datum'] && date('d-m-Y', $today) === date('d-m-Y', $aod)) && str_contains($current_page, 'day')) ? 'highlight_date' : null).'"> 
+    (($_GET['datum'] === date('d-m-Y', $aod) && str_contains($current_page, $menu_day)) || 
+    ((!$_GET['datum'] && date('d-m-Y', $today) === date('d-m-Y', $aod)) && str_contains($current_page, $menu_day)) ? 'highlight_date' : null).'"> 
     <a href="./day?datum='. date('d-m-Y', $aod) . '">
     <strong>' . 
     date('d', $aod) . '</strong><br> '

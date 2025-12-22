@@ -15,6 +15,10 @@ $allrounds = [];
 $array_leagues = [88, 89, 78, 79, 135, 140, 39, 40, 179, 408, 61, 144, 2, 3, 848]; 
 $array_extra_leagues = [81, 90, 45, 137, 32, 960, 5];
 
+$menu_league = 'league';
+$menu_standings = 'standings';
+$menu_day = 'day';
+
 // 2, 3, 848 (CL, EL & Conf. League)
 
 //Extra

@@ -44,6 +44,8 @@ $array_rounds_International_leagues[$each_round_int_leagues] .= $response["respo
 
 //print_r($array_dates_round_sorted);
 
+//echo date('d-m', $array_dates_round_sorted[0][11]);
+
  // echo rtrim(end($array_dates_round[1]));
 
 /*
@@ -54,7 +56,7 @@ $array_dates_round = explode(',', $array_dates_round);
 }
 
 //$startdate_selected_round = $array_dates_round_sorted[0][0]; //explode(',', $array_dates_round[2])[0] . '<br>';
-$lastdate_selected_round = intval(sizeof(explode(',', $array_dates_round[2])) - 2);
+//$lastdate_selected_round = intval(sizeof(explode(',', $array_dates_round[2])) - 2);
 
 $lastdate_selected_round_int_leagues = intval(sizeof(explode(',', $array_rounds_International_leagues[2])) - 2);
 
