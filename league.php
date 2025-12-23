@@ -187,7 +187,7 @@ if ($numGames > 0 ) {
   
 else { 
 
- echo '<div style="margin: 3% auto 0px" class="main_container">'; 
+ echo '<div style="margin: 3% auto 0px" class="main_container extra_padding"">'; 
 }
 
   if (!$_GET['id']) {
