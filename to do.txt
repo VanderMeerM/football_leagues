@@ -1,5 +1,16 @@
 
-- styling voor league_header optimaliseren voor kleinere schermen 
+- styling pagina clubs 
+
+-styling wedstrijden vandaag kleine schermen
+
+- selectieflow Europese competities 
+
+- GET-waarden niet tonen in url (.htaccess)
+
+
+
+
+- styling voor league_header optimaliseren voor kleinere schermen v
 
 - array voor enddates ahv season/response aanmaken v
 Werking php_array_for_dates kan worden vervangen (geen enndates-map en -json files meer nodig)
@@ -9,8 +20,6 @@ Werking php_array_for_dates kan worden vervangen (geen enndates-map en -json fil
 
 
 - virtuele stand inbouwen 
-
-- GET-waarden niet tonen in url (.htaccess)
 
 ----
 
