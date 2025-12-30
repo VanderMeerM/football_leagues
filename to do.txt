@@ -5,7 +5,7 @@
 
 - selectieflow Europese competities 
 
-- GET-waarden niet tonen in url (.htaccess)
+- GET-waarden niet tonen in url (.htaccess) 
 
 
 
