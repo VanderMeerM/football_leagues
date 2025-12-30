@@ -9,7 +9,6 @@
 
 
 
-
 - styling voor league_header optimaliseren voor kleinere schermen v
 
 - array voor enddates ahv season/response aanmaken v
