@@ -262,6 +262,7 @@ label {
 
 .extra_padding {
     padding: 20px 0px;
+    margin: 3% auto 0px;
 }
 
 .btn_container {
@@ -737,6 +738,11 @@ table {
 
 #season_title {
     font-size: 15px;
+}
+
+.stscore_ref {
+    display: none;
+    
 }
 
 #ref {
