@@ -291,10 +291,10 @@ echo
          . $status[$matchStatus] : 'class="black_color"') . 
          '<br>
          <div class="score">' .
-        '<div class="score_home ' . (!is_null($matches_on_selected_day[$i]['goals']['home']) ? 'w-12 pd_score' : null) . '">' . $matches_on_selected_day[$i]['goals']['home'] . '</div>' . 
+        '<div class="score_home ' . (!is_null($matches_on_selected_day[$i]['goals']['home']) ? 'pd_score' : null) . '">' . $matches_on_selected_day[$i]['goals']['home'] . '</div>' . 
         
         '<div class="vs '. (date('d-m-Y') === $date ? 'black_color' : 'white_color') . '"> - ' . '</div>' .   
-         '<div class="score_away '. (!is_null($matches_on_selected_day[$i]['goals']['away']) ? 'w-12 pd_score' : null) . '">'. $matches_on_selected_day[$i]['goals']['away'] . '</div>
+         '<div class="score_away '. (!is_null($matches_on_selected_day[$i]['goals']['away']) ? 'pd_score' : null) . '">'. $matches_on_selected_day[$i]['goals']['away'] . '</div>
           
         </div>
         </div>';
