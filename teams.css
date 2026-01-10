@@ -175,9 +175,11 @@ text-align: center;
     align-content: center;
 }
 
+/*
 .main_container {
     display: flex;
 } 
+*/
 
 
 .main_container_league_season_rounds {
