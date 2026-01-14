@@ -199,7 +199,10 @@ else {
 
 for ($i =1; $i <= sizeof($array_dates_round_sorted); $i++) {
 
-  $ind_lastdate_selected_round = sizeof($array_dates_round_sorted[$i-1])-1;
+  //$ind_lastdate_selected_round = sizeof($array_dates_round_sorted[$i-1])-1;
+
+ $first_key = array_key_first($array_dates_round_sorted[$i-1]);
+ $last_key = array_key_last($array_dates_round_sorted[$i-1]);
 
 
 /*
@@ -211,8 +214,8 @@ for ($i =1; $i <= sizeof($array_dates_round_sorted); $i++) {
  */
      echo '
       <option '. ($i == intval($round_to_select) ? 'selected' : null) . ' value= ' . $i . '>Ronde ' . $i . ' 
-     (' . date('d-m', $array_dates_round_sorted[$i-1][0]) . ' - ' 
-      . date('d-m', $array_dates_round_sorted[$i-1][$ind_lastdate_selected_round]) .')
+     (' . date('d-m', $array_dates_round_sorted[$i-1][$first_key]) . ' - ' 
+      . date('d-m', $array_dates_round_sorted[$i-1][$last_key]) .')
      </option>'; 
 
     }

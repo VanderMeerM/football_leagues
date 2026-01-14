@@ -39,10 +39,10 @@ $array_rounds_International_leagues[$each_round_int_leagues] .= $response["respo
   $array_dates_round_sorted[] = explode(',', $array_dates_round_values[$i]);
   asort($array_dates_round_sorted);
   array_pop($array_dates_round_sorted[$i]);
+  asort($array_dates_round_sorted[$i]); // Zet waarden in volgorde om in rondeselectie de eerste en laatste speeldag te tonen. 
 
 }
 
-//print_r($array_dates_round_sorted);
 
 //echo date('d-m', $array_dates_round_sorted[0][11]);
 
@@ -73,7 +73,7 @@ for ($i=1; $i < sizeof($array_dates_round_sorted); $i++) {
    }
    }
 
-   //print_r($round_determination);
+   // print_r($round_determination);
 
     //echo date('d-m-Y', explode('-', $round_determination[0])[1]);
   
