@@ -87,7 +87,8 @@ curl_setopt_array($curl, array(
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => 'GET',
   CURLOPT_HTTPHEADER => array(
-     'x-rapidapi-key: ' . $api_key .'',
+      'x-rapidapi-key: 863bcd048478f98225b64bced629b376',
+    //'x-rapidapi-key: ' . $api_key .'',
      'x-rapidapi-host: v3.football.api-sports.io',
     
   ),
@@ -231,7 +232,7 @@ else {
          '<div style="font-size:15pt; font-weight:600" '. (array_key_exists($matchStatus, $status)? 'class="red">' 
          . $status[$matchStatus] : 'class="black_color"') . 
          '<br>
-         <div class="score">' .
+         <div class="score" ' . (!array_key_exists($matchStatus, $status)? 'style="padding-top: 15%"' :null) . '>' .
         '<div class="score_home ' 
         . (!is_null($response['response'][$i]['goals']['home']) ? 'pd_score' : null) . 
         ((!array_key_exists($matchStatus, $status) && $response['response'][$i]['goals']['home'] !=0) ? 
