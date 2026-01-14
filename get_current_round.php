@@ -24,6 +24,8 @@ $array_rounds_International_leagues[$each_round_int_leagues] .= $response["respo
 
   }
 
+ksort($array_dates_round); // Keys (rondes) extra in juiste volgorde plaatsen vanwege andere volgorde bij live wedstrijden  
+
   for ($i=1; $i < sizeof($array_dates_round); $i++) {
     substr($array_dates_round[$i], 0, -1);
   }
@@ -64,16 +66,27 @@ for ($i=1; $i < sizeof($array_dates_round_sorted); $i++) {
   
  $num_dates = intval(sizeof($array_dates_round_sorted[$i]));
   
+ $days_between = date_diff(
+  date_create(date('Y-m-d', $array_dates_round_sorted[$i][0])),
+  date_create(date('Y-m-d', $array_dates_round_sorted[$i][$num_dates-1]))
+ )->format("%a");
+
+ if ($days_between > 2) {
+  $dif = 3; 
+ }
+ else {
+  $diff = $days_between + 1;
+ }
+
   if   
-     (date('Y-m-d', ($array_dates_round_sorted[$i][$num_dates-1] + (3600 * 24))) >= date('Y-m-d', strtotime('Today'))) 
-       
+     (date('Y-m-d', ($array_dates_round_sorted[$i][0] + ($diff * (3600 * 24)))) >= date('Y-m-d', strtotime('Today'))) 
+       //     (date('Y-m-d', ($array_dates_round_sorted[$i][$num_dates-1] + (3600 * 24))) >= date('Y-m-d', strtotime('Today'))) 
+
      
     { 
      array_push($round_determination, ($i+1 . '-' . $array_dates_round_sorted[$i][$num_dates-1]));
    }
    }
-
-   // print_r($round_determination);
 
     //echo date('d-m-Y', explode('-', $round_determination[0])[1]);
   
