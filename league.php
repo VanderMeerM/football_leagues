@@ -87,8 +87,7 @@ curl_setopt_array($curl, array(
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => 'GET',
   CURLOPT_HTTPHEADER => array(
-      'x-rapidapi-key: 863bcd048478f98225b64bced629b376',
-    //'x-rapidapi-key: ' . $api_key .'',
+     'x-rapidapi-key: ' . $api_key .'',
      'x-rapidapi-host: v3.football.api-sports.io',
     
   ),
@@ -182,12 +181,12 @@ if ($numGames > 0 ) {
 
   if (date('d-m-Y') === $date) {
 
-    echo '<div class="main_container background_today_match extra_padding" ' . ($_GET["id"] ? 'style="display:flex"' : null) . '>';
+    echo '<div class="main_container background_today_match extra_padding" ' . ($_GET['id'] ? 'style="display:flex"' : null) . '>';
    }
   
 else { 
 
- echo '<div class="main_container extra_padding">'; 
+ echo '<div class="main_container extra_padding" '. ($_GET['id'] ? 'style="display:flex"' : null) . '>'; 
 }
 
   if (!$_GET['id']) {
