@@ -1,11 +1,13 @@
 
 - styling pagina clubs 
 
--styling wedstrijden vandaag kleine schermen
-
 - selectieflow Europese competities 
 
+
+-styling wedstrijden vandaag kleine schermen
+
 - GET-waarden niet tonen in url (.htaccess) 
+
 
 
 
