@@ -2,11 +2,12 @@
 
 $status_short = array('1H', 'HT', '2H', 'ET');
 
-$status_nl = array('1e helft', 'Rust', '2e helft', 'Verlenging');
+$statusInPlay = array('1H', 'HT', '2H','ET', 'P', 'SUSP', 'INT', 'PEN', 'PST', 'ABD');
 
-$status = array_combine($status_short, $status_nl);
+$status_nl = array('1e helft', 'Rust', '2e helft', 'Verlenging', 'Penalties', 'Stilgelegd', 
+'Tijd. stilgelegd', 'Afgelopen NS', 'Uitgesteld', 'Afgelast');
 
-$statusInPlay = array('1H', 'HT', '2H','ET', 'BT', 'P', 'SUSP', 'INT');
+$status = array_combine($statusInPlay, $status_nl);
 
 
 $array_type = array('Goal' => 'football.png', 'Yellow Card' => 'yellow_card.png', 
