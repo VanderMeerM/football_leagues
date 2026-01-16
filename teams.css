@@ -695,7 +695,7 @@ table {
 }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 500px) {
 
  .background_match {
    width: 375px;
@@ -782,6 +782,7 @@ a  {
 .score_away {
     /* background-color: #e4cd84; */
     margin: 0;
+    max-height: 85px;
 }
 
 .background_score_small_screens {

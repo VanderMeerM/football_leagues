@@ -5,7 +5,7 @@
 
 $array_dates_round = []; 
 
-$array_rounds_International_leagues = [];
+$array_dates_intern_leagues = [];
 
 $round_determination = [];
 
@@ -20,31 +20,42 @@ $array_dates_round[$each_round] .= $response["response"][$i]["fixture"]["timesta
 
 $each_round_int_leagues = $response['response'][$i]['league']['round'];
 
-$array_rounds_International_leagues[$each_round_int_leagues] .= $response["response"][$i]["fixture"]["timestamp"] . ',';
+$array_dates_intern_leagues[$each_round_int_leagues] .= $response["response"][$i]["fixture"]["timestamp"] . ',';
 
-  }
+}
 
-ksort($array_dates_round); // Keys (rondes) extra in juiste volgorde plaatsen vanwege andere volgorde bij live wedstrijden  
+
+// Keys (rondes) extra in juiste volgorde plaatsen vanwege andere volgorde bij live wedstrijden  
+ksort($array_dates_round); 
+//ksort($array_dates_intern_leagues);
 
   for ($i=1; $i < sizeof($array_dates_round); $i++) {
     substr($array_dates_round[$i], 0, -1);
   }
 
-   for ($i=1; $i < sizeof($array_rounds_International_leagues); $i++) {
-    substr($array_rounds_International_leagues[$i], 0, -1);
+   for ($i=1; $i < sizeof($array_dates_intern_leagues); $i++) {
+    substr($array_dates_intern_leagues[$i], 0, -1);
   }
   
- $array_dates_round_values = array_values($array_dates_round); // Wedstrijden in ronde op volgorde zetten  
+  
+// Wedstrijden in ronde op volgorde zetten  
+$array_dates_round_values = array_values($array_dates_round); 
+$array_dates_intern_leagues_values = array_values($array_dates_intern_leagues);
 
-
- for ($i=0; $i < sizeof($array_dates_round_values); $i++) {
+for ($i=0; $i < sizeof($array_dates_round_values); $i++) {
   $array_dates_round_sorted[] = explode(',', $array_dates_round_values[$i]);
   asort($array_dates_round_sorted);
   array_pop($array_dates_round_sorted[$i]);
   asort($array_dates_round_sorted[$i]); // Zet waarden in volgorde om in rondeselectie de eerste en laatste speeldag te tonen. 
-
 }
 
+
+for ($i=0; $i < sizeof($array_dates_intern_leagues_values); $i++) {
+  $array_dates_int_round_sorted[] = explode(',', $array_dates_intern_leagues_values[$i]);
+  asort($array_dates_int_round_sorted);
+  array_pop($array_dates_int_round_sorted[$i]);
+  asort($array_dates_int_round_sorted[$i]); // Zet waarden in volgorde om in rondeselectie de eerste en laatste speeldag te tonen. 
+}
 
 //echo date('d-m', $array_dates_round_sorted[0][11]);
 

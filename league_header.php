@@ -159,44 +159,63 @@ if (!str_contains($current_page, $menu_standings)) {
  }
   */
 
-//echo sizeof($array_rounds_International_leagues);
+//echo sizeof($array_dates_intern_leagues);
 //echo $array_rounds_International_leagues[$lastdate_selected_round_int_leagues];
 
 echo "
-<div class='container_select_rounds'>";
-
-if (in_array($league_id, $array_international_leagues_ids)) {
-
-echo "
+<div class='container_select_rounds'>
 
 <form action='./league?season=$selected_season&round_selection=$round_of_first_upcoming_matches' method='get'>
 
 <select " . ($_GET['id'] ? 'style=visibility: hidden' : null) . " id='round_selection' name='round_selection'>";
 
-($_GET['round_selection'] ? $round_to_select = $_GET['round_selection'] : $round_to_select = $round_of_first_upcoming_matches); 
 
-for ($i = 0; $i < sizeof($array_rounds_International_leagues); $i++) {
+// Selectie voor internationale competities.. 
+
+if (in_array($league_id, $array_intern_leagues)) {
+
+if ($_GET['round_selection']) {
+
+$round_to_select = $_GET['round_selection'];
+ }
+
+else { // indien geen ronde, haal eerstvolgende speeldatum op. 
+
+$selected_date_int_round = []; 
+
+for ($i=0; $i < sizeof($array_dates_int_round_sorted); $i++) {
+  
+if (date('Y-m-d', $array_dates_int_round_sorted[$i][0]) >= date('Y-m-d', strtotime('Today'))) 
+  
+  { 
+    array_push($selected_date_int_round, $array_dates_int_round_sorted[$i][0]);
+  };
+
+  echo $round_to_select = $array_dates_int_round_sorted[$_GET['round_selection']];
+
+}}
+
+for ($i = 0; $i < sizeof($array_dates_intern_leagues); $i++) {
+
+ $first_key_int = array_key_first($array_dates_int_round_sorted[$i]);
+ $last_key_int = array_key_last($array_dates_int_round_sorted[$i]);
 
    echo '
-    <option '. ($i == intval($round_to_select) ? 'selected' : null) . ' value= ' . array_keys($array_rounds_International_leagues)[$i] . '>'
-     . array_keys($array_rounds_International_leagues)[$i] . ' 
-     (' . substr($IntlDateFormatter-> format(explode(',', array_values($array_rounds_International_leagues)[$i])[0]), 0, -3) . ' - ' 
-      . substr($IntlDateFormatter-> format(explode(',', array_values($array_rounds_International_leagues)[$i])[$lastdate_selected_round_int_leagues]), 0, -3) .')
+    <option '. ($selected_date_int_round[0] >=  $array_dates_int_round_sorted[$i][$first_key_int] ? 'selected' : null) . ' value= "' . array_keys($array_dates_intern_leagues)[$i] . '">'
+     . array_keys($array_dates_intern_leagues)[$i] . ' 
+     (' .  date('d-m', $array_dates_int_round_sorted[$i][$first_key_int]) . ' - ' 
+      . date('d-m', $array_dates_int_round_sorted[$i][$last_key_int]) .')
      </option>'; 
 
     }'';
 }
 
+// Selectie voor reguliere competities.. 
+
 else {
-  
-  echo "
-
-<form action='./league?season=$selected_season&round_selection=$round_of_first_upcoming_matches' method='get'>
-
-<select " . ($_GET['id'] ? 'style=visibility: hidden' : null) . " id='round_selection' name='round_selection'>";
 
 ($_GET['round_selection'] ? $round_to_select = $_GET['round_selection'] : $round_to_select = $round_of_first_upcoming_matches); 
-
+  
 for ($i =1; $i <= sizeof($array_dates_round_sorted); $i++) {
 
   //$ind_lastdate_selected_round = sizeof($array_dates_round_sorted[$i-1])-1;

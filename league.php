@@ -87,7 +87,8 @@ curl_setopt_array($curl, array(
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => 'GET',
   CURLOPT_HTTPHEADER => array(
-     'x-rapidapi-key: ' . $api_key .'',
+      //'x-rapidapi-key: ' . $api_key .'',
+     'x-rapidapi-key: 863bcd048478f98225b64bced629b376',
      'x-rapidapi-host: v3.football.api-sports.io',
     
   ),
@@ -147,7 +148,7 @@ if ($numGames > 0 ) {
   $matchId = $response['response'][$i]['fixture']['id'];
   $matchStatus = $response['response'][$i]['fixture']['status']['short'];
 
-  $selectedround_int_leagues =  $response['response'][$i]['league']['round']; 
+  $selectedround_int_leagues = $response['response'][$i]['league']['round']; 
   $selectedround = intval(explode(' ', $response['response'][$i]['league']['round'])[3]);
   //$enddate_selected_round['Ronde '. $selectedround] = $response["response"][$i]["fixture"]["timestamp"];
   
@@ -173,7 +174,7 @@ if ($numGames > 0 ) {
     $round_to_select = $_GET['round_selection'];
    }
  
-   if ($round_to_select == $selectedround) {
+   if (($round_to_select == $selectedround) || ($round_to_select === $selectedround_int_leagues)) {
     
  array_push($matchesInRound, $response['response'][$i]);
 
