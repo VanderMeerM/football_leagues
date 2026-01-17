@@ -10,12 +10,12 @@
 .menubar
 .main_container,
 .main_container_lineup_coach,
-.title_container, a  {
+ a  {
     display: flex;
 } 
 
 .title_container {
-    height: 50px;
+    height:fit-content;
 }
 
 .top_standings {
@@ -45,7 +45,16 @@ height: 2px;
 
 
 #logo {
-    margin-left: 50%;
+    margin: 30% 0 0 50%;
+    
+}
+
+#logo_club {
+  text-align: center;
+}
+
+#logo_club img {
+  margin-top: 3%;
 }
 
 #table_txt::after {
@@ -152,6 +161,7 @@ height: 2px;
 ul {
 display: flex;
 list-style-type: none;
+margin: 0;
 
 }
 
@@ -624,7 +634,7 @@ table {
 }
 
 #logo {
-    margin: auto;
+    margin: 10% auto 0;
 }
 
 .country_container {
@@ -735,7 +745,6 @@ table {
 #logo {
     width: 80px;
     height: auto;
-    margin: auto;
 }
 
 #season_title {

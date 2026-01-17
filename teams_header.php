@@ -1,6 +1,93 @@
 
 <?php 
 
+/*
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+*/
+
+echo "
+<div class='fixed fixed_menubar' style='background-color: #002e61;'>
+<div class='center_buttons'>
+
+<div class='menubar'>
+<div class='menubuttons'>
+</div>
+</div>
+
+<ul>";
+
+echo "
+<div class='menubuttons'>
+<a style='padding: 0px' href= './teams' > <img id='shirt' style='cursor:pointer' src='./img/shirt.png'></a>
+</div>";
+
+$view = 'hidden';
+ 
+if (str_contains($current_page, $menu_league) && (!str_contains($current_page, $menu_day)) && (!str_contains($current_page, $menu_standings))) {
+  
+  if ($_GET['id']) {
+    echo '<li><a id="table_txt" href="./standings?league=' . $league_to_fixture . '&season=' . $season_to_fixture . '"></a></li>';
+  }
+  else {
+  echo '<li><a id="table_txt" href="./standings?league=' . $league_id . '&season=' . $selected_season . '"></a></li>';
+}
+}
+
+if (str_contains($current_page, $menu_standings)) {
+  echo '<li><a id="prog_txt" href="./league?league=' . $league_id . '&season=' . $selected_season . '"></a></li>';
+}
+
+// Menu Overzicht
+if ($_GET['id']) {
+
+ $ref = "./league?league=$league_to_fixture&season=$season_to_fixture&round_selection=$round_to_fixture";
+ $font_color = "white";
+ $cursor = "pointer";
+} 
+else {
+  $ref = "#";
+  $font_color = 'lightgray';
+  $cursor = "none";
+}
+
+echo "
+<li><a href= $ref style= 'color: $font_color ;cursor: $cursor'>
+Overzicht</a></li>";
+
+
+// Menu Vandaag 
+
+$today = strtotime('today');
+
+echo 
+  "<div class='menubuttons'>
+<form method='post' action='./day'>
+<input type='image' id='agenda' style='cursor:pointer' src='./img/agenda.png'>
+<input type='hidden' name='sel_day' value=$today>
+<input type='submit' style='display: none'>
+</form>
+</div>";
+
+ // Menu EK/WK 
+
+ echo 
+'<div class="menubuttons"> 
+<select class="menu_sel_item" style=background-color:' .  $array_bgcolor_menubar[$league_id] . ' name="EKWK" onchange="window.open(this.value);">
+  <option class="menu_option" selected disabled value="">EK/WK</option>
+  <option class="menu_option" value="../EK">EK</option>
+  <option class="menu_option" value="../WK">WK</option>
+  </select>';
+
+ echo '
+</ul>
+</div>
+</div>
+</div>';
+
+
 for ($i=2010; $i <= $current_season; $i++) {
   array_push($allseasons, $i);
 }
@@ -20,7 +107,7 @@ for ($i=0 ; $i < sizeof($teams); $i++) {
 
 echo "
 <div class='title_container' style='background-image: linear-gradient(to right, $bc)'>
-<div id='logo'>
+<div id='logo_club'>
   <img src= 'https://media.api-sports.io/football/teams/$team_id.png'/> 
  
  
@@ -73,7 +160,6 @@ for ($i =0; $i < sizeof($allseasons); $i++) {
    
   }
 } 
-
 
 echo "
 </select>

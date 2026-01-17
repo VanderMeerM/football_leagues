@@ -10,7 +10,6 @@ echo "
 </div>
 </div>
 
-
 <ul>";
 
 //<li><a href= './teams'>Clubs</a></li>
@@ -109,7 +108,6 @@ for ($i = 1; $i < sizeof($allrounds) + 1; $i++) {
 ($_GET['id'] ? $big_image_leage = $league_to_fixture : $big_image_leage = $league_id); 
 
 echo "
-<div class='title_container'>  </div>
 
 <div class='main_container_league_season_rounds " 
  . (str_contains($current_page, $menu_standings) ? 'block_class' : null)  . ">";

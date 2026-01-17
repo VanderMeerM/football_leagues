@@ -52,12 +52,14 @@ if ($_POST['season_selection']) {
 
 require('./api.php');
 
+include('./variables.php');
+
 include('./translations.php');
 
 include('./teams_header.php');
 
 
-$json_matches_path = '/json/matches/matches_date_' . $day . '_.json'; 
+//$json_matches_path = '/json/matches/matches_date_' . $day . '_.json'; 
 
 //if (!file_exists($json_matches_path)) { 
 
@@ -77,7 +79,8 @@ curl_setopt_array($curl, array(
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => 'GET',
   CURLOPT_HTTPHEADER => array(
-    'x-rapidapi-key: ' . $api_key . '',
+     //'x-rapidapi-key: ' . $api_key .'',
+     'x-rapidapi-key: 863bcd048478f98225b64bced629b376',
     'x-rapidapi-host: v3.football.api-sports.io',
     
   ),
@@ -161,18 +164,18 @@ $numGames = $response['results'];
 
          $date = date_create($response['response'][$i]['fixture']['date']);
          echo date_format($date, 'd-m-Y') . ' ';
-         echo date('H:i', $response['response'][$i]['fixture']['timestamp'])  . '<br>';
+         echo date('H:i', $response['response'][$i]['fixture']['timestamp'])  . '<br>
+         
+         <div style="font-size:15pt">'. (array_key_exists($matchStatus, $status)? 
+         $status[$matchStatus] : null) . 
+          '</div>'; 
 
          echo 
          '<div class=' . (in_array($matchStatus, $statusInPlay)? '"score red"' : "score") . '>' . 
          $response['response'][$i]['goals']['home'] . '-' . 
-         $response['response'][$i]['goals']['away'];
+         $response['response'][$i]['goals']['away'] . '</div>';
           
-         echo '<div style="font-size:15pt">'. (array_key_exists($matchStatus, $status)? 
-         $status[$matchStatus] : null) . 
-          '</div>
-          </div>'; 
-
+        
         if ($_GET['id']) { 
 
             echo '<p><div class="stscore_ref">
