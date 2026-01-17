@@ -757,11 +757,6 @@ table {
     width: 400px;
 }
 
-a  {
-   /* margin: 0 5px;
-   width: 350px;  */
-   }
-
     .stscore_container {
         margin: 3%;
         width: 170px;
@@ -772,7 +767,7 @@ a  {
  
      }
 
-     
+    
      .score {
         padding-top: 0px;
      }
@@ -780,9 +775,8 @@ a  {
      
  .score_home, 
 .score_away {
-    /* background-color: #e4cd84; */
     margin: 0;
-    max-height: 85px;
+    max-height: 80px;
 }
 
 .background_score_small_screens {
