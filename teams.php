@@ -13,6 +13,17 @@
 </head>
 <body>
 
+<script>
+
+// Direct pagina laden bij aanklikken tabblad in browser.. 
+
+document.addEventListener("visibilitychange", function() {
+    if (!document.hidden){
+       window.location.reload();
+    }
+});
+</script>
+
 <?php 
 
 $league_id = 88;
