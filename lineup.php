@@ -170,14 +170,14 @@ for ($i = 0; $i < $num_lineups; $i++) {
 
      for ($i=0; $i < sizeof($home_startXI); $i++ ) {
 
-      for ($a=0; $a < sizeof($away_startXI); $a++ ) {
+     // for ($a=0; $a < sizeof($away_startXI); $a++ ) {
 
         echo  '
         <tr>
-        <td> ' . $home_startXI[$i]['number'] . '. ' . $home_startXI[$i]['name'] . '</td> 
-        <td>' .  $away_startXI[$a]['number'] . '. ' . $away_startXI[$a]['name'] . '</div>
-        </tr>'; 
-     }}
+        <td> ' . $home_startXI[$i]['number'] . '. ' . $home_startXI[$i]['name'] . '</td>'; 
+      // <td>' .  $away_startXI[$a]['number'] . '. ' . $away_startXI[$a]['name'] . '</div>
+        echo '</tr>'; 
+     }
 
      echo '</table>';
 
