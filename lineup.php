@@ -169,11 +169,25 @@ for ($i = 0; $i < $num_lineups; $i++) {
 
      for ($i=0; $i < sizeof($home_startXI); $i++ ) {
 
+       for ($a=0; $a < sizeof($away_startXI); $a++ ) {
+
+     echo 
+     '<table>
+       <tr>
+    <td> ' . $home_startXI[$i]['number'] . '. ' .  $home_startXI[$i]['number'] . '</td>
+    <td>'.  $away_startXI[$a]['number'] . '. ' . $away_startXI[$a]['name'] . '</td>
+</tr>';
+       }
+
+       echo '</table>';
+       
+     /*
         echo  '    
         <div class="lineup_container"><span class="align-left">' .
         $home_startXI[$i]['number'] . '. ' . $home_startXI[$i]['name'] . 
         '</span></div>';
      }
+   
 
      echo '</div>
     <div class="main_container_lineup_away">';
@@ -189,6 +203,7 @@ for ($i = 0; $i < $num_lineups; $i++) {
 
      echo '</div>
      </div>';
+      */
 
      echo '<div id="start_sub_team">Wisselspelers</div>';
 
