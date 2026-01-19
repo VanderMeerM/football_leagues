@@ -132,6 +132,7 @@ $prevent_loop = false;
 
 $numGames = $response['results'];
 
+
 //if ($numGames > 0 ) {
 
   for ($i = 0; $i < $numGames; $i++) {
@@ -142,29 +143,29 @@ $numGames = $response['results'];
   $awayTeam = $response['response'][$i]['teams']['away']['name'];
   $matchId = $response['response'][$i]['fixture']['id'];
   $matchStatus = $response['response'][$i]['fixture']['status']['short'];
+  $date = date('d-m-Y', $response['response'][$i]['fixture']['timestamp']);
+
   
   if ((!$_GET['id']) || ($_GET['id'] && $_GET['id'] == $matchId)) {
 
   echo '
-  <div class="main_container">'; 
+  <div class="main_container extra_padding">'; 
   
   if (!$_GET['id']) {
 
-    if (!$_GET['date']) {
-      $_GET['date'] = date('Y-m-d', strtotime('today'));
-    }
-
+         $_GET['date'] = date('Y-m-d', strtotime('today'));
+   
     echo '<a href="' . $_SERVER['PHP_SELF'] . '?date='. $_GET['date'] . '&id=' . $matchId . '">';
   }
 
-  echo '
-  <div class="country_container">
-  <div class="flag_container">
-  <img src="'.$response['response'][$i]['teams']['home']['logo'] . '"/></div>'; 
+echo'
+  <div class="country_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') . '">
 
-  //if (array_search($homeTeam, $countries)) { echo array_search($homeTeam, $countries); } 
- // else { echo $homeTeam; }  
-  
+ <div class="flag_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'">
+  <img src="'.$response['response'][$i]['teams']['home']['logo'] . '"/></div>
+   <p>
+  ' . $response['response'][$i]['teams']['home']['name'] . ''; 
+
    
   echo '</div>
           <div class="stscore_container white_color">';
@@ -177,16 +178,33 @@ $numGames = $response['results'];
          echo date_format($date, 'd-m-Y') . ' ';
          echo date('H:i', $response['response'][$i]['fixture']['timestamp'])  . '<br>
          
-         <div style="font-size:15pt">'. (array_key_exists($matchStatus, $status)? 
+         <div style="font-size:15pt; font-weight: 600">'. (array_key_exists($matchStatus, $status)? 
          $status[$matchStatus] : null) . 
           '</div>'; 
 
-         echo 
-         '<div class=' . (in_array($matchStatus, $statusInPlay)? '"score red"' : "score") . '>' . 
-         $response['response'][$i]['goals']['home'] . '-' . 
-         $response['response'][$i]['goals']['away'] . '</div>';
-          
+        echo 
+         '<div style="font-size:15pt; font-weight:600" '. (array_key_exists($matchStatus, $status)? 'class="red">' 
+         . $status[$matchStatus] : 'class="black_color"') . 
+         '<br>
+         <div class="score" ' . (!array_key_exists($matchStatus, $status)? 'style="padding-top: 10%"' :null) . '>' .
+        '<div class="score_home ' 
+        . (!is_null($response['response'][$i]['goals']['home']) ? 'pd_score' : null) . 
+        ((!array_key_exists($matchStatus, $status) && $response['response'][$i]['goals']['home'] !=0) ? 
+        ' background_score_small_screens padding_background_score_small_screens' : null) .  
+        '">' . $response['response'][$i]['goals']['home'] . '</div>' . 
         
+          '<div class="vs ' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'"> - </div>
+        
+        <div class="score_away '
+        . (!is_null($response['response'][$i]['goals']['away']) ? 'pd_score' : null) .
+          ((!array_key_exists($matchStatus, $status) && $response['response'][$i]['goals']['away'] !=0)? 
+          ' background_score_small_screens padding_background_score_small_screens' : null) .  
+        '">'. $response['response'][$i]['goals']['away'] . '</div>
+          
+        </div>
+        </div>';
+
+
         if ($_GET['id']) { 
 
             echo '<p><div class="stscore_ref">
@@ -212,9 +230,14 @@ $numGames = $response['results'];
 
         echo '</div>';
          
-   echo '<div class="country_container">
-   <div class="flag_container">
-   <img src="'.$response['response'][$i]['teams']['away']['logo'] . '"/></div>'; 
+   echo '
+  <div class="country_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') . '">
+ <div class="flag_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'">
+   <img src="'.$response['response'][$i]['teams']['away']['logo'] . '"/></div>
+   
+    <p>
+  ' . $response['response'][$i]['teams']['away']['name'] . ''; 
+
 
  // if (array_search($awayTeam, $countries)) { echo array_search($awayTeam, $countries); } 
 //  else { echo $awayTeam; }  

@@ -168,16 +168,27 @@ echo "
 <select " . ($_GET['id'] ? 'style=visibility: hidden' : null) . " id='round_selection' name='round_selection'>";
 
 
-// Selectie voor internationale competities.. 
+// Voor internationale competities.. 
 
 if (in_array($league_id, $array_intern_leagues)) {
 
 if ($_GET['round_selection']) {
 
-$round_to_select = $_GET['round_selection'];
- }
+echo $round_to_select = $_GET['round_selection']; 
 
-else { // indien geen ronde, haal eerstvolgende speeldatum op. 
+for ($i = 0; $i < sizeof($array_dates_intern_leagues); $i++) {
+ echo '
+    <option '. (array_keys($array_dates_intern_leagues)[$i] === $round_to_select ? 'selected' : null) . ' value= "' . array_keys($array_dates_intern_leagues)[$i] . '">'
+     . array_keys($array_dates_intern_leagues)[$i] . ' 
+     (' .  date('d-m', $array_dates_int_round_sorted[$i][$first_key_int]) . ' - ' 
+      . date('d-m', $array_dates_int_round_sorted[$i][$last_key_int]) .')
+     </option>'; 
+ }
+}
+
+ // indien geen rondeselectie in url, haal eerstvolgende speeldatum op. 
+
+else { 
 
 $selected_date_int_round = []; 
 
@@ -191,7 +202,7 @@ if (date('Y-m-d', $array_dates_int_round_sorted[$i][0]) >= date('Y-m-d', strtoti
 
   echo $round_to_select = $array_dates_int_round_sorted[$_GET['round_selection']];
 
-}}
+}
 
 for ($i = 0; $i < sizeof($array_dates_intern_leagues); $i++) {
 
@@ -206,9 +217,9 @@ for ($i = 0; $i < sizeof($array_dates_intern_leagues); $i++) {
      </option>'; 
 
     }'';
-}
+}}
 
-// Selectie voor reguliere competities.. 
+// Voor reguliere competities.. 
 
 else {
 
@@ -216,19 +227,9 @@ else {
   
 for ($i =1; $i <= sizeof($array_dates_round_sorted); $i++) {
 
-  //$ind_lastdate_selected_round = sizeof($array_dates_round_sorted[$i-1])-1;
-
  $first_key = array_key_first($array_dates_round_sorted[$i-1]);
  $last_key = array_key_last($array_dates_round_sorted[$i-1]);
 
-
-/*
-  echo '
-    <option '. ($i == intval($round_to_select) ? 'selected' : null) . ' value= ' . $i . '>Ronde ' . $i . ' 
-     (' . substr($IntlDateFormatter-> format(explode(',', $array_dates_round[$i])[0]), 0, -3) . ' - ' 
-      . substr($IntlDateFormatter-> format(explode(',', $array_dates_round[$i])[$lastdate_selected_round]), 0, -3) .')
-     </option>'; 
- */
      echo '
       <option '. ($i == intval($round_to_select) ? 'selected' : null) . ' value= ' . $i . '>Ronde ' . $i . ' 
      (' . date('d-m', $array_dates_round_sorted[$i-1][$first_key]) . ' - ' 
