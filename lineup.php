@@ -1,12 +1,6 @@
 
 <?php
 
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-
 require('./api.php');
 
 if ($_GET['id'] && file_exists($json_lineup_path)) {
@@ -107,7 +101,7 @@ for ($i=0; $i < sizeof($response_lineup['response'][1]['substitutes']); $i++) {
     'number' => $response_lineup['response'][1]['substitutes'][$i]['player']['number'],
     'position' => $response_lineup['response'][1]['substitutes'][$i]['player']['pos']
     ]);
-}}
+}
 
 
 for ($i = 0; $i < $num_lineups; $i++) {
@@ -135,6 +129,7 @@ for ($i = 0; $i < $num_lineups; $i++) {
 
 
   echo '
+
   <div class="btn_lineup">
   <button id="show_hide_lineup"> </button>
   </div>
@@ -170,29 +165,15 @@ for ($i = 0; $i < $num_lineups; $i++) {
 
      echo '<div class="main_container_lineup">
 
-     <div class="main_container_lineup_home">
-     <table>';
+     <div class="main_container_lineup_home">';
 
      for ($i=0; $i < sizeof($home_startXI); $i++ ) {
 
-       for ($a=0; $a < sizeof($away_startXI); $a++ ) {
-
-     echo '
-     <tr>
-    <td> ' . $home_startXI[$i]['number'] . '. ' .  $home_startXI[$i]['number'] . '</td>
-    <td>'.  $away_startXI[$a]['number'] . '. ' . $away_startXI[$a]['name'] . '</td>
-    </tr>';
-       }
-
-       echo '</table>';
-
-     /*
         echo  '    
         <div class="lineup_container"><span class="align-left">' .
         $home_startXI[$i]['number'] . '. ' . $home_startXI[$i]['name'] . 
         '</span></div>';
      }
-   
 
      echo '</div>
     <div class="main_container_lineup_away">';
@@ -208,7 +189,6 @@ for ($i = 0; $i < $num_lineups; $i++) {
 
      echo '</div>
      </div>';
-      */
 
      echo '<div id="start_sub_team">Wisselspelers</div>';
 
