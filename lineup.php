@@ -129,7 +129,6 @@ for ($i = 0; $i < $num_lineups; $i++) {
 
 
   echo '
-
   <div class="btn_lineup">
   <button id="show_hide_lineup"> </button>
   </div>
@@ -165,18 +164,18 @@ for ($i = 0; $i < $num_lineups; $i++) {
 
      echo '<div class="main_container_lineup">
 
-     <div class="main_container_lineup_home">';
+     <div class="main_container_lineup_home">
+     <table>';
 
      for ($i=0; $i < sizeof($home_startXI); $i++ ) {
 
        for ($a=0; $a < sizeof($away_startXI); $a++ ) {
 
-     echo 
-     '<table>
-       <tr>
+     echo '
+     <tr>
     <td> ' . $home_startXI[$i]['number'] . '. ' .  $home_startXI[$i]['number'] . '</td>
     <td>'.  $away_startXI[$a]['number'] . '. ' . $away_startXI[$a]['name'] . '</td>
-</tr>';
+    </tr>';
        }
 
        echo '</table>';
