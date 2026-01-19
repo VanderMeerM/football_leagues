@@ -164,21 +164,26 @@ for ($i = 0; $i < $num_lineups; $i++) {
      $prevent_loop = true;
 
      echo '<div class="main_container_lineup">
+     <table>';
 
-     <div class="main_container_lineup_home">';
+     //<div class="main_container_lineup_home">';
 
      for ($i=0; $i < sizeof($home_startXI); $i++ ) {
 
-        echo  '    
-        <div class="lineup_container"><span class="align-left">' .
-        $home_startXI[$i]['number'] . '. ' . $home_startXI[$i]['name'] . 
-        '</span></div>';
-     }
+      for ($a=0; $a < sizeof($away_startXI); $a++ ) {
 
-     echo '</div>
-    <div class="main_container_lineup_away">';
+        echo  '
+        <tr>
+        <td> ' . $home_startXI[$i]['number'] . '. ' . $home_startXI[$i]['name'] . '</td> 
+        <td>' .  $away_startXI[$a]['number'] . '. ' . $away_startXI[$a]['name'] . '</div>
+        </tr>'; 
+     }}
 
+     echo '</table>';
 
+    //<div class="main_container_lineup_away">';
+
+/*
      for ($i=0; $i < sizeof($away_startXI); $i++ ) {
 
         echo '
@@ -189,7 +194,7 @@ for ($i = 0; $i < $num_lineups; $i++) {
 
      echo '</div>
      </div>';
-
+*/
      echo '<div id="start_sub_team">Wisselspelers</div>';
 
      echo '<div class="main_container_lineup">
