@@ -101,7 +101,7 @@ for ($i=0; $i < sizeof($response_lineup['response'][1]['substitutes']); $i++) {
     'number' => $response_lineup['response'][1]['substitutes'][$i]['player']['number'],
     'position' => $response_lineup['response'][1]['substitutes'][$i]['player']['pos']
     ]);
-}
+}}
 
 
 for ($i = 0; $i < $num_lineups; $i++) {
@@ -180,7 +180,7 @@ for ($i = 0; $i < $num_lineups; $i++) {
        }
 
        echo '</table>';
-       
+
      /*
         echo  '    
         <div class="lineup_container"><span class="align-left">' .
