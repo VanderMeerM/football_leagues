@@ -174,8 +174,8 @@ for ($i = 0; $i < $num_lineups; $i++) {
 
         echo  '
         <tr>
-        <td> ' . $home_startXI[$i]['number'] . '. ' . $home_startXI[$i]['name'] . '</td>'; 
-      // <td>' .  $away_startXI[$a]['number'] . '. ' . $away_startXI[$a]['name'] . '</div>
+        <td> ' . $home_startXI[$i]['number'] . '. ' . $home_startXI[$i]['name'] . '</td> 
+        <td>' .  $away_startXI[$i]['number'] . '. ' . $away_startXI[$i]['name'] . '</div>';
         echo '</tr>'; 
      }
 
