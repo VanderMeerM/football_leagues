@@ -359,6 +359,11 @@ a {
     */
 }
 
+.main_container_lineup_coach {
+width: 600px;
+margin: 0 auto;
+}
+
 #start_sub_team {
     text-align: center;
     font-weight: bold;
