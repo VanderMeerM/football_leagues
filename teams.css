@@ -353,9 +353,10 @@ a {
 .main_container_lineup_coach,
 #startteam,
  a {
-   justify-content: center;
-    width: 600px;
-    margin: 0 auto;
+    justify-content: center;
+   /* margin: 25px auto;
+    padding-bottom: 10px;
+    */
 }
 
 #start_sub_team {
