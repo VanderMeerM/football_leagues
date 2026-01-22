@@ -370,7 +370,7 @@ margin: 0 auto;
     margin: 5px;
 }
 
-.main_container_event,
+/*.main_container_event,*/
 .main_container,
 .main_container a {
     background-color: var(--black);
