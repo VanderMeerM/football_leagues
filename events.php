@@ -98,16 +98,21 @@ $away_team_goals = array();
      echo '<div id="play_min"> min. '. $min_playing_minute . "'</div>"; 
     }
               
+    echo '<table>';
                     
         for($i=0; $i < sizeof($all_team_events); $i++) {
 
-          if ($all_team_events[$i]['team'] === $homeTeam) {
+        echo '<tr>';
 
-             echo '<div class= "event_container"><span class="align-left">'; 
+          if ($all_team_events[$i]['team'] === $homeTeam) {
+            
+          echo '<td>'; 
+          //   echo '<div class= "event_container"><span class="align-left">'; 
           }
 
             else if ($all_team_events[$i]['team'] === $awayTeam) {
-              echo '<div class= "event_container"><span class="align-right">'; 
+              echo '<td><td>';
+             // echo '<div class= "event_container"><span class="align-right">'; 
             }
          
             if (array_key_exists($all_team_events[$i]['type'], $array_type)
@@ -149,12 +154,15 @@ $away_team_goals = array();
             ($all_team_events[$i]['comments'] != 'Penalty Shootout'))
                  { echo ' (' . $array_goal[$all_team_events[$i]['detail']] . ')'; 
                }
-               echo '</div>';
+
+          if ($all_team_events[$i]['team'] === $homeTeam) {
+          echo '<td>'; 
+          }
+          echo '</tr>';
          }
         
        echo '
-       </span>
-       </div> 
+      </div> 
        </div>
      </div>';
 
