@@ -173,7 +173,7 @@ if ($numGames > 0 ) {
    elseif ($_GET['round_selection']) {
     $round_to_select = $_GET['round_selection'];
    }
- 
+
    if (($round_to_select == $selectedround) || ($round_to_select === $selectedround_int_leagues)) {
     
  array_push($matchesInRound, $response['response'][$i]);

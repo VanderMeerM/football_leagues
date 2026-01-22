@@ -118,14 +118,14 @@ for ($i=1; $i < sizeof($array_dates_round_sorted); $i++) {
     array_push($round_determination_int, ($array_keys_int_leagues[$i] . ':' . explode(',', $array_dates_intern_leagues[$array_keys_int_leagues[$i]])[0]));
    }
   }
-  $round_of_first_upcoming_matches_int = explode(':', $round_determination_int[0])[0];
+ $round_of_first_upcoming_matches_int = explode(':', $round_determination_int[0])[0];
 
   }
-   
-    $array_of_round_of_first_upcoming_matches = $round_determination[0]; 
+
+  $array_of_round_of_first_upcoming_matches = $round_determination[0]; 
 
     // Afhankelijk van soort competitie key waarde nemen als eerstvolgende ronde  
-      in_array($league_id, $array_intern_leagues) ? $round_of_first_upcoming_matches = $round_of_first_upcoming_matches_int: 
+      in_array($league_id, $array_intern_leagues) ? $round_of_first_upcoming_matches = $round_of_first_upcoming_matches_int : 
        $round_of_first_upcoming_matches = explode('-', $array_of_round_of_first_upcoming_matches)[0];
       
 

@@ -141,6 +141,18 @@ echo "
 </div>";
 }
 
+// Zet rondes internationale leagues in volgorde bij live wedstrijden (nog niet af)...
+
+$array_dates_intern_leagues_live_round = [];
+
+if (explode(',' , array_values($array_dates_intern_leagues)[0])[0] >
+  explode(',', array_values($array_dates_intern_leagues)[1])[0]) {
+    
+  //array_push($array_dates_intern_leagues_live_round,
+  //array_key_first($array_dates_intern_leagues) => array_first($array_dates_intern_leagues_live_round)); 
+  };
+
+//print_r($array_dates_intern_leagues_live_round);
 
 // !! als op laatste dag een wedstrijd is, staat deze ook als begindatum; wordt niet opgelost met sortering zoals onder..
 // alleen array met geselecteerde ronde op volgorde zetten; de rest staat al goed. 
@@ -157,7 +169,6 @@ if (!str_contains($current_page, $menu_standings)) {
  }
   */
 
-//echo sizeof($array_dates_intern_leagues);
 //echo $array_rounds_International_leagues[$lastdate_selected_round_int_leagues];
 
 echo "
@@ -180,8 +191,8 @@ for ($i = 0; $i < sizeof($array_dates_intern_leagues); $i++) {
  echo '
     <option '. (array_keys($array_dates_intern_leagues)[$i] === $round_to_select ? 'selected' : null) . ' value= "' . array_keys($array_dates_intern_leagues)[$i] . '">'
      . array_keys($array_dates_intern_leagues)[$i] . ' 
-     (' .  date('d-m', $array_dates_int_round_sorted[$i][$first_key_int]) . ' - ' 
-      . date('d-m', $array_dates_int_round_sorted[$i][$last_key_int]) .')
+     (' .  date('d-m', explode(',', $array_dates_intern_leagues[array_keys($array_dates_intern_leagues)[$i]])[0]) . ' - ' 
+      . date('d-m', explode(',', $array_dates_intern_leagues[array_keys($array_dates_intern_leagues)[$i]])[sizeof($array_dates_intern_leagues)-1]) .')
      </option>'; 
  }
 }
@@ -200,7 +211,7 @@ if (date('Y-m-d', $array_dates_int_round_sorted[$i][0]) >= date('Y-m-d', strtoti
     array_push($selected_date_int_round, $array_dates_int_round_sorted[$i][0]);
   };
 
-  echo $round_to_select = $array_dates_int_round_sorted[$_GET['round_selection']];
+  $round_to_select = $array_dates_int_round_sorted[$_GET['round_selection']];
 
 }
 

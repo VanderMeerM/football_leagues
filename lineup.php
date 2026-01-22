@@ -198,16 +198,33 @@ for ($i = 0; $i < $num_lineups; $i++) {
      echo '<div id="start_sub_team">Wisselspelers</div>';
 
      echo '<div class="main_container_lineup">
+     <table>';
 
-     <div class="main_container_lineup_home">';
+     //<div class="main_container_lineup_home">';
 
-     for ($i=0; $i < sizeof($home_sub); $i++ ) {
+     if (sizeof($home_sub) > sizeof($away_sub)) {
+        $num_sub = $home_sub;
+     } else {
+        $num_sub = $away_sub;
+     }
 
+     for ($i=0; $i < sizeof($num_sub); $i++ ) {
+
+       echo  '
+        <tr>
+        <td> ' . $home_sub[$i]['number'] . '. ' . $home_sub[$i]['name'] . '</td> 
+        <td>' .  $away_sub[$i]['number'] . '. ' . $away_sub[$i]['name'] . '</div>';
+        echo '</tr>'; 
+     }
+
+     echo '</table>';
+
+     /*
         echo  '    
         <div class="lineup_container"><span class="align-left">' .
         $home_sub[$i]['number'] . '. ' . $home_sub[$i]['name'] . 
         '</span></div>';
-     }
+     
 
      echo '</div>
     <div class="main_container_lineup_away">';
@@ -224,7 +241,7 @@ for ($i = 0; $i < $num_lineups; $i++) {
      echo '</div>
      </div>
      </div>';
-
+*/
     }
     else {
         echo '<div class="nomatches"> Geen details beschikbaar </div>';
