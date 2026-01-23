@@ -581,6 +581,15 @@ color: rgb(75, 230, 75);
     height: auto;
 }
 
+#arrow_up {
+   color: red;
+    position: fixed;
+    cursor: pointer;
+    bottom: 0%;
+    width: 100%;
+    font-size: xx-large;
+    }
+
 @media (max-width: 1500px) {
 .align-left {
     margin-left: 20%;

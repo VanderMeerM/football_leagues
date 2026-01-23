@@ -133,7 +133,9 @@ $games_per_round = [];
 // Uitcommentariëren bij binnenhalen einddata afgelopen seizoenen (zie ook 260)
 include('./league_header.php');
 
-echo '</div>';
+echo '</div>
+<div id="top"></div>';
+
 
 $matchesInRound = [];
 
@@ -366,9 +368,21 @@ fclose($json_file_enddate);
 }
 */
 
+if (sizeof($matchesInRound) > 3) {
+  echo '
+  <div id="arrow_up">↑</div>';
+};
+
 ?>
 
-<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js">
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+
+<script defer>
+ document.getElementById('arrow_up').addEventListener('click', () => {
+
+  document.getElementById('top').scrollIntoView({behavior: 'smooth'});
+  
+}) 
 </script>
 
 </body>

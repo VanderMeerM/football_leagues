@@ -137,6 +137,8 @@ $ind++;
 // Uitcommentariëren bij binnenhalen einddata afgelopen seizoenen (zie ook 289)
 include('./league_header.php'); 
 
+echo '<div id="top"></div>';
+
 if (sizeof($matches_on_selected_day) == 0) {
   echo '<div id="no_found_matches"> Geen wedstrijden op '. date('d-m-Y', $_POST['sel_day']).' gevonden.</div>';
   return;
@@ -364,9 +366,22 @@ echo
 
 array_multisort($miR_sorted, SORT_ASC, $matchesInRound);
 
+if (sizeof($matches_on_selected_day) > 3) {
+  echo '
+  <div id="arrow_up">↑</div>';
+};
+
 ?>
 
 <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js">
+</script>
+
+<script defer>
+ document.getElementById('arrow_up').addEventListener('click', () => {
+
+  document.getElementById('top').scrollIntoView({behavior: 'smooth'});
+  
+}) 
 </script>
 
 </body>

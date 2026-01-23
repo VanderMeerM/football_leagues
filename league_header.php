@@ -141,35 +141,8 @@ echo "
 </div>";
 }
 
-// Zet rondes internationale leagues in volgorde bij live wedstrijden (nog niet af)...
-
-$array_dates_intern_leagues_live_round = [];
-
-if (explode(',' , array_values($array_dates_intern_leagues)[0])[0] >
-  explode(',', array_values($array_dates_intern_leagues)[1])[0]) {
-    
-  //array_push($array_dates_intern_leagues_live_round,
-  //array_key_first($array_dates_intern_leagues) => array_first($array_dates_intern_leagues_live_round)); 
-  };
-
-//print_r($array_dates_intern_leagues_live_round);
-
-// !! als op laatste dag een wedstrijd is, staat deze ook als begindatum; wordt niet opgelost met sortering zoals onder..
-// alleen array met geselecteerde ronde op volgorde zetten; de rest staat al goed. 
-
-//print_r(explode(',', $array_dates_round[$_GET['round_selection']]));
- //print_r($array_dates_round[$_GET['round_selection']]); //print_r($array_dates_round[28]);
 
 if (!str_contains($current_page, $menu_standings)) {
-
-  /* 
-  for ($u = 0; $u < sizeof($array_dates_round); $u++) {
-  explode(',', $array_dates_round[$u]);
-  //asort($array_dates_round[$u]);
- }
-  */
-
-//echo $array_rounds_International_leagues[$lastdate_selected_round_int_leagues];
 
 echo "
 <div class='container_select_rounds'>
@@ -191,8 +164,8 @@ for ($i = 0; $i < sizeof($array_dates_intern_leagues); $i++) {
  echo '
     <option '. (array_keys($array_dates_intern_leagues)[$i] === $round_to_select ? 'selected' : null) . ' value= "' . array_keys($array_dates_intern_leagues)[$i] . '">'
      . array_keys($array_dates_intern_leagues)[$i] . ' 
-     (' .  date('d-m', explode(',', $array_dates_intern_leagues[array_keys($array_dates_intern_leagues)[$i]])[0]) . ' - ' 
-      . date('d-m', explode(',', $array_dates_intern_leagues[array_keys($array_dates_intern_leagues)[$i]])[sizeof($array_dates_intern_leagues)-1]) .')
+     (' .  date('d-m', $array_dates_int_round_sorted[$i][$first_key_int]) . ' - ' 
+      . date('d-m', $array_dates_int_round_sorted[$i][$last_key_int]) .')
      </option>'; 
  }
 }
@@ -211,7 +184,7 @@ if (date('Y-m-d', $array_dates_int_round_sorted[$i][0]) >= date('Y-m-d', strtoti
     array_push($selected_date_int_round, $array_dates_int_round_sorted[$i][0]);
   };
 
-  $round_to_select = $array_dates_int_round_sorted[$_GET['round_selection']];
+  echo $round_to_select = $array_dates_int_round_sorted[$_GET['round_selection']];
 
 }
 
@@ -266,7 +239,7 @@ echo "
 // Rij met logo's van competities opbouwen..
 
 echo "<div style=display:" . (str_contains($current_page, $menu_standings) ? 'block;' : "flex;") . "text-align: center>";
-echo "<div class='container_league_logos'>";
+echo "<div class='container_league_logos'". (str_contains($current_page, $menu_day) ? 'style="margin-top: 70px;"' : null) . ">";
 
 foreach ($array_leagues as $al) {
 
@@ -311,6 +284,8 @@ echo
 
 // Rij met data opbouwen..
 
+ if (!str_contains($current_page, $menu_standings)) {
+
 $array_of_dates = [];
 $number_dates = 14;
 
@@ -335,8 +310,8 @@ foreach ($array_of_dates as $aod) {
 }
     
 echo "</div>";
+ }
 ?>
-
 
 <script>
 
@@ -346,7 +321,7 @@ echo "</div>";
   currentPage = <?php echo json_encode($current_page) ?>;
   currentSeason = <?php echo json_encode($current_season) ?>;
 
-if (currentPage !="standings.php") {
+if (currentPage !="/football_leagues/standings.php") {
 
 if (document.getElementById('round_selection') != undefined) {
 
@@ -370,7 +345,7 @@ seasonSelection = ev.target.value;
 (window.location.href.split('round_selection=')[1] == undefined) ? roundSelection = 1 :
 roundSelection = window.location.href.split('round_selection=')[1];
 
-if (currentPage !="standings.php") {
+if (currentPage !="/football_leagues/standings.php") {
 
 window.location.href='./league?league='+leagueId+'&season='+seasonSelection;
 }
