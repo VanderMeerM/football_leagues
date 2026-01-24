@@ -20,8 +20,23 @@
 
 <?php
 
-/*echo $_POST['sel_day'] = '10-12-2025';
+/*if ($_POST['orderByLeagueTime'] === 'ob_time' || !$_POST['orderByLeagueTime']) {
 
+setcookie('LeagueTime', 'ob_time', time() + (86400 * 30), "/");
+}
+*/
+
+if ($_POST['orderByLeagueTime'] === 'ob_league') {
+  setcookie('LeagueTime', 'ob_league', time() + (86400 * 30), "/");
+
+}
+
+elseif ($_POST['orderByLeagueTime'] === 'ob_time') {
+  setcookie('LeagueTime', 'ob_time', time() + (86400 * 30), "/");
+
+}
+
+/*
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -146,7 +161,10 @@ if (sizeof($matches_on_selected_day) == 0) {
 
 //Westrijden sorteren op tijdstip;
 
-if ($_POST['orderByLeagueTime'] === 'ob_time' || !$_POST['orderByLeagueTime']) {
+if ($_POST['orderByLeagueTime'] === 'ob_time' || $_COOKIE['LeagueTime'] === 'ob_time' 
+|| (!$_COOKIE['LeagueTime'] && !$_POST['orderByLeagueTime'])) {
+
+//($_POST['orderByLeagueTime'] === 'ob_time' || !$_POST['orderByLeagueTime'] || $_COOKIE['LeagueTime'] === 'ob_time') {
 
 $matches_ind_ts = [];
 
@@ -194,7 +212,8 @@ $prevent_loop = false;
 // $enddate_selected_round = [];
 $games_per_round = [];
 
-
+//echo 'Cookie: ' . $_COOKIE['LeagueTime'] . '<br>';
+//echo 'POST: ' . $_POST['orderByLeagueTime'];
 
 
 echo '</div>';
@@ -211,9 +230,13 @@ echo '
 <div class= "container_sortby_league_time">
 <form method="post" action="./day'. ($_GET['datum'] ? '?datum='. $_GET['datum'] : null) . '">
 <input name="orderByLeagueTime" id="ob_league" onchange="this.form.submit();" 
-value="ob_league" type="radio" ' . ($_POST['orderByLeagueTime'] === 'ob_league' ? 'checked' : null) . '> 
+value="ob_league" type="radio" ' . 
+(($_COOKIE['LeagueTime'] === 'ob_league' || $_POST['orderByLeagueTime'] === 'ob_league') ? 'checked' : null) . '> 
 <label for="ob_league">Competitie</label>
-<input name="orderByLeagueTime" id="ob_time" onchange="this.form.submit();" value="ob_time" type="radio" ' . ($_POST['orderByLeagueTime'] === 'ob_time' || !$_POST['orderByLeagueTime'] ? 'checked' : null) . '> 
+
+<input name="orderByLeagueTime" id="ob_time" onchange="this.form.submit();" value="ob_time" type="radio" ' . 
+(($_POST['orderByLeagueTime'] === 'ob_time' || $_COOKIE['LeagueTime'] === 'ob_time' 
+|| (!$_COOKIE['LeagueTime'] && !$_POST['orderByLeagueTime'])) ? 'checked' : null) . '> 
 <label for="ob_time">Tijdstip</label>
 </form>
 </div>';

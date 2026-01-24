@@ -1,30 +1,48 @@
 
+
+- styling events/line-up 
+
+- pagina voor spelers 
+
+- ronde-aanduiding bij bekerwedstrijden / Europese competities na voorrondes op day 
+
+- cookie voor sortering op competitie/tijdstip op day 
+Switch naar competitie werkt na 2x 
+
+- bij url met alleen league wedstrijden uit eerstvolgende ronde tonen (selectie is goed, wedstrijden zijn ronde 1) 
+
+
 - styling pagina clubs 
 
-- selectieflow Europese competities 
+- selecties onthouden op club-pagina 
 
-
--styling wedstrijden vandaag kleine schermen
-
-- GET-waarden niet tonen in url (.htaccess) 
+- styling afzonderlijke wedstrijden op club-pagina 
 
 
 
+- sortering Europese competities bij live wedstrijden  
 
-- styling voor league_header optimaliseren voor kleinere schermen v
 
-- array voor enddates ahv season/response aanmaken v
-Werking php_array_for_dates kan worden vervangen (geen enndates-map en -json files meer nodig)
+
+- GET-waarden niet tonen in url (.htaccess)
 
 - markering voor kampioen, degradatie etc. 
 (opgenomen in standings (description))
 
-
 - virtuele stand inbouwen 
+
 
 ----
 
-- wedstrijden in chronologische volgorde v (via API)
+- styling voor league_header optimaliseren voor kleinere schermen v
+
+-styling wedstrijden vandaag kleine schermen v 
+
+- array voor enddates ahv season/response aanmaken v
+Werking php_array_for_dates kan worden vervangen (geen enndates-map en -json files meer nodig)
+
+
+- wedstrijden in chronologische volgorde v (via API) 
 
 - begin- en einddatum onder options bij rondes v
 
