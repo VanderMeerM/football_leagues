@@ -179,7 +179,7 @@ for ($i = 0; $i < $num_lineups; $i++) {
         echo  '
         <tr>
         <td>
-        <a href="./players?id='.$home_startXI[$i]['id'].'" target=_blank ' . $home_startXI[$i]['number'] . '. ' . $home_startXI[$i]['name'] . '></td> 
+        <a href="./players?id='.$home_startXI[$i]['id'].'" target=_blank> ' . $home_startXI[$i]['number'] . '. ' . $home_startXI[$i]['name'] . '</td> 
         <td>' .  $away_startXI[$i]['number'] . '. ' . $away_startXI[$i]['name'] . '</div>';
         echo '</tr>'; 
      }
