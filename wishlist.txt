@@ -7,7 +7,7 @@
 - ronde-aanduiding bij bekerwedstrijden / Europese competities na voorrondes op day 
 
 - cookie voor sortering op competitie/tijdstip op day 
-Switch naar competitie werkt na 2x 
+ (bug: switch naar competitie werkt pas na 2x) 
 
 - bij url met alleen league wedstrijden uit eerstvolgende ronde tonen (selectie is goed, wedstrijden zijn ronde 1) 
 
@@ -17,6 +17,8 @@ Switch naar competitie werkt na 2x
 - selecties onthouden op club-pagina 
 
 - styling afzonderlijke wedstrijden op club-pagina 
+
+- competities uitbreiden (beker + internationale competities)
 
 
 
