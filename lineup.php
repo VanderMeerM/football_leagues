@@ -147,13 +147,13 @@ for ($i = 0; $i < $num_lineups; $i++) {
  $home_team_lineup[0]['formation'] . '<br> 
   
   <u>Coach:</u> ' . $home_team_lineup[0]['coach'] . '<br>    
-  <img class="img_coach" src=' . $home_team_lineup[0]['coach_img'] . '</td> 
+  <img class="img_coach" src=' . $home_team_lineup[0]['coach_img'] . '></td> 
 
   <td>' 
   . $away_team_lineup[0]['formation'] . '<br>
   
   <u>Coach:</u> ' . $away_team_lineup[0]['coach'] . '<br>
-  <img class="img_coach" src=' . $away_team_lineup[0]['coach_img'] . '</td>
+  <img class="img_coach" src=' . $away_team_lineup[0]['coach_img'] . '></td>
   </tr>'; 
 
   echo '<tr><td colspan="2"> <strong>Basiselftal</strong></td></tr>';
@@ -198,10 +198,11 @@ for ($i = 0; $i < $num_lineups; $i++) {
      echo '</div>
      </div>';
 */
-  echo '<tr><td colspan="2"> <strong>Wisselspelers</strong></td></tr>';
-
-     echo '<div class="main_container_lineup">
-     <table>';
+  echo '
+  <table>
+  <tr><td colspan="2"> <strong>Wisselspelers</strong></td></tr>
+  
+  <div class="main_container_lineup">';
 
      //<div class="main_container_lineup_home">';
 
