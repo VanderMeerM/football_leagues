@@ -2,7 +2,7 @@
 
 - styling events/line-up 
 
-- pagina voor spelers 
+- pagina voor spelers v 
 
 - ronde-aanduiding bij bekerwedstrijden / Europese competities na voorrondes op day 
 
@@ -22,6 +22,7 @@
 
 - competities op clubs uitbreiden (beker + internationale competities toevoegen) 
 
+---
 
 
 - sortering Europese competities bij live wedstrijden  
