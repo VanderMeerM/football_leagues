@@ -334,7 +334,7 @@ if ( (date('Y') >  ($selected_season + 1)) ||
 
    if ($_GET['id']) {
    include ('./events.php');
- //  include ('./lineup.php');
+   include ('./lineup.php');
    }
 
   }}
@@ -373,10 +373,6 @@ if (sizeof($matchesInRound) > 3) {
   <div id="arrow_up">↑</div>';
 };
 
-
-if ($_GET['id']) {
-include ('./lineup.php');
-}
 ?>
 
 <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
