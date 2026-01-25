@@ -334,7 +334,7 @@ if ( (date('Y') >  ($selected_season + 1)) ||
 
    if ($_GET['id']) {
    include ('./events.php');
-   include ('./lineup.php');
+ //  include ('./lineup.php');
    }
 
   }}

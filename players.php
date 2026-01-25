@@ -71,34 +71,41 @@
     curl_close($curl_player_teams);
 
 $response_player_teams = json_decode($response_player_teams, true);
+ 
+?>
+
+<style>
+
+table {
+    margin: auto;
+    width: 30%;
+    border-collapse: collapse;
+}
+
+table tr td img {
+    display: block;
+    margin: 0 auto;
+}
+
+td {
+    width: 50%;
+    padding: 2%;
+}
 
 
-    // Sla speler op ... 
+</style>
 
-   /* if ( file_exists($json_players) && (!file_exists($json_players_path)) )
-
-  {
-
-   $json_file_lineup = fopen($json_lineup_path, "w");
-    
-   fwrite($json_file_lineup, json_encode($response_lineup));
-    
-   fclose($json_file_lineup);
-    
-   }
-   */
-
+<?php 
 
 echo '<br> 
 
-<div style="display:flex; justify-content: center">
-
 <table>
 
-<tr><td>
+<tr>
+<td colspan="2">
 <img src='. $response_player['response'][0]['player']['photo'] .'>
-</td></tr>
- 
+</td>
+</tr>
 <tr>
 <td> Naam: </td> 
 <td> ' . $response_player['response'][0]['player']['firstname'] . ' ' . $response_player['response'][0]['player']['lastname'] .
@@ -106,21 +113,28 @@ echo '<br>
 '</td></tr>
 
 <tr><td>
-Geboren: </td>
+Geboren op: </td>
 <td> ' .$response_player['response'][0]['player']['birth']['date'] . 
 ' (' . $response_player['response'][0]['player']['age'] .' jaar) 
+<br>te ' .$response_player['response'][0]['player']['birth']['place'] . ' (' .$response_player['response'][0]['player']['birth']['country']. ')
 </td></tr> 
 
 <tr><td>
 Nationaliteit: </td>
 <td> ' . $response_player['response'][0]['player']['nationality'] .
+'</td></tr>
+
+<tr><td>
+Positie: </td>
+<td> ' . $response_player['response'][0]['player']['position'] .
 '</td></tr>';  
 
 
 
 $array_teams = array_reverse($response_player_teams['response']); 
 
-echo '<tr><td><strong>Clubs</strong></td></tr>';
+
+echo '<td colspan="2"><strong>Clubs</strong></td>';
 
 for ($i=0; $i < sizeof($array_teams); $i++) {
 
@@ -128,16 +142,18 @@ echo
 '<tr><td>' . $array_teams[$i]['team']['name'] . '</td>
 <td>'; 
 
+$counter = 0; 
+
 foreach (array_reverse($array_teams[$i]['seasons']) as $seasons) {
     echo 
-    $seasons .',';  
+    $seasons . ($counter < (count($array_teams[$i]['seasons']) - 1) ? ', ' : null);
+    $counter++;  
 
 }}
 
 echo 
 '</td></tr>
-</table>
-</div>';
+</table>';
 
 
   /*

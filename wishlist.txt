@@ -11,6 +11,8 @@
 
 - bij url met alleen league wedstrijden uit eerstvolgende ronde tonen (selectie is goed, wedstrijden zijn ronde 1) 
 
+- bij internationale competitie ronde ook 1 dag na speeldatum nog selecteren 
+
 
 - styling pagina clubs 
 
@@ -18,7 +20,7 @@
 
 - styling afzonderlijke wedstrijden op club-pagina 
 
-- competities uitbreiden (beker + internationale competities)
+- competities op clubs uitbreiden (beker + internationale competities toevoegen) 
 
 
 
