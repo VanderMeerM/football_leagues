@@ -139,36 +139,28 @@ for ($i = 0; $i < $num_lineups; $i++) {
   </div>
   
   <div id="show_hide"> 
-  <div class="main_container_lineup_coach">
-  <div class="lineup_container">
-  <div>' 
-  . $home_team_lineup[0]['formation'] .
-  '</div>' .
- 
-  '<u>Coach:</u> ' . $home_team_lineup[0]['coach'] . 
-  '<div>
-  <img class="img_coach" src=' . $home_team_lineup[0]['coach_img'] . '>
-  </div>
-  </div> 
+  <table>
+  <tr><td>';
+ // <div class="main_container_lineup_coach">
+ // <div class="lineup_container">
+ echo 
+ $home_team_lineup[0]['formation'] . '<br> 
+  
+  <u>Coach:</u> ' . $home_team_lineup[0]['coach'] . '<br>    
+  <img class="img_coach" src=' . $home_team_lineup[0]['coach_img'] . '</td> 
 
-  <div class="lineup_container">
-  <div>' 
-  . $away_team_lineup[0]['formation'] .  
-  '</div>' .
- 
-  '<u>Coach:</u> ' . $away_team_lineup[0]['coach'] . 
-  '<div>
-  <img class="img_coach" src=' . $away_team_lineup[0]['coach_img'] . '>
-  </div>
-  </div>
-  </div>'; 
+  <td>' 
+  . $away_team_lineup[0]['formation'] . '<br>
+  
+  <u>Coach:</u> ' . $away_team_lineup[0]['coach'] . '<br>
+  <img class="img_coach" src=' . $away_team_lineup[0]['coach_img'] . '</td>
+  </tr>'; 
 
-  echo '<div id="start_sub_team">Basiselftal</div>';
+  echo '<tr><td colspan="2"> <strong>Basiselftal</strong></td></tr>';
 
      $prevent_loop = true;
 
-     echo '<div class="main_container_lineup">
-     <table>';
+     echo '<div class="main_container_lineup">';
 
      //<div class="main_container_lineup_home">';
 
@@ -206,7 +198,7 @@ for ($i = 0; $i < $num_lineups; $i++) {
      echo '</div>
      </div>';
 */
-     echo '<div id="start_sub_team">Wisselspelers</div>';
+  echo '<tr><td colspan="2"> <strong>Wisselspelers</strong></td></tr>';
 
      echo '<div class="main_container_lineup">
      <table>';
@@ -223,8 +215,10 @@ for ($i = 0; $i < $num_lineups; $i++) {
 
        echo  '
         <tr>
-        <td> ' . $home_sub[$i]['number'] . '. ' . $home_sub[$i]['name'] . '</td> 
-        <td>' .  $away_sub[$i]['number'] . '. ' . $away_sub[$i]['name'] . '</div>';
+        <td> 
+        <a href="./players?id='. $home_sub[$i]['id'].'" target=_blank> ' . $home_sub[$i]['number'] . '. ' . $home_sub[$i]['name'] . '</td> 
+        <td>
+        <a href="./players?id='.$away_sub[$i]['id'].'" target=_blank> ' . $away_sub[$i]['number'] . '. ' . $away_sub[$i]['name'] . '</div>';
         echo '</tr>'; 
      }
 

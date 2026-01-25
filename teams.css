@@ -711,6 +711,11 @@ margin-top: 20px;
 }
 
 @media (max-width: 500px) {
+
+    .btn_lineup {
+        width: 500px;
+    }
+
     ul li a {
         width: 100px;
     }
@@ -726,9 +731,6 @@ margin-top: 20px;
 table {
     width: 450px;
 }
-}
-
-@media (max-width: 500px) {
 
  .background_match {
    width: 375px;
