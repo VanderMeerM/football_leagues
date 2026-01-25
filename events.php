@@ -164,6 +164,7 @@ $away_team_goals = array();
        echo '
       </div> 
        </div>
+     </div>
      </div>';
 
        // Event opslaan als de wedstrijd ook is opgeslagen (en dus minstens een dag in het verleden ligt..)
