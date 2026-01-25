@@ -45,12 +45,12 @@ $min_playing_minute =
 $response_event['response'][$num_events-1]['time']['elapsed'] + 
 $response_event['response'][$num_events-1]['time']['extra'];
 
-$home_team_events = array();
-$away_team_events = array();
-$all_team_events = array();
+$home_team_events = [];
+$away_team_events = [];
+$all_team_events = [];
 
-$home_team_goals = array();
-$away_team_goals = array();
+$home_team_goals = [];
+$away_team_goals = [];
 
  for ($i = 0; $i < $num_events; $i++) {
       
@@ -64,6 +64,7 @@ $away_team_goals = array();
         'detail' => $response_event['response'][$i]['detail'],
         'elapsed' => $response_event['response'][$i]['time']['elapsed'] + $response_event['response'][$i]['time']['extra'], 
         'name' => $response_event['response'][$i]['player']['name'],
+        'id' => $response_event['response'][$i]['player']['id'],
         'assist_name' => $response_event['response'][$i]['assist']['name'],
         'comments' => $response_event['response'][$i]['comments']
         ]);
@@ -79,6 +80,7 @@ $away_team_goals = array();
         'detail' => $response_event['response'][$i]['detail'],
         'elapsed' => $response_event['response'][$i]['time']['elapsed'] + $response_event['response'][$i]['time']['extra'], 
         'name' => $response_event['response'][$i]['player']['name'],
+         'id' => $response_event['response'][$i]['player']['id'],
         'assist_name' => $response_event['response'][$i]['assist']['name'],
         'comments' => $response_event['response'][$i]['comments']
         ]);
@@ -130,7 +132,7 @@ $away_team_goals = array();
  
                   $all_team_events[$i]['elapsed']) . "' " .
 
-               $all_team_events[$i]['name'];
+              '<a href= "./players?id='.$all_team_events[$i]['id']'" target=_blank>' . $all_team_events[$i]['name'];
 
                if ($all_team_events[$i]['type'] === 'subst') {
                 echo ' (voor ' . $all_team_events[$i]['assist_name'] . ')';
