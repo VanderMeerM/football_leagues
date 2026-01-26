@@ -97,6 +97,8 @@ $teams = array(
   ['club' => 'NEC', 'value' => 413, 'bg' => '#009b69, #ed1c24, #080808'],
   ['club' => 'Feyenoord', 'value' => 209, 'bg' => '#ed1c24, #000'],
   ['club' => 'PSV', 'value' => 197, 'bg' => '#ed1c24, #fff'],
+  ['club' => 'MVV', 'value' => 412, 'bg' => '#e73140, #fff']
+  
 );
 
 for ($i=0 ; $i < sizeof($teams); $i++) {

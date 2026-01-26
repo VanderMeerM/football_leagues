@@ -141,17 +141,19 @@ $prevent_loop = false;
 $numGames = sizeof($all_matches_leagues);
 
 
-//if ($numGames > 0 ) {
+if ($numGames > 0 ) {
 
-  for ($i = 0; $i < $numGames; $i++) {
+for ($n = 0; $n < $numGames; $n++) {
+
+  for ($i = 0; $i < sizeof($all_matches_leagues[$n]); $i++) {
 
   if (!$prevent_loop) {
 
-  $homeTeam = $all_matches_leagues[0]['response'][$i]['teams']['home']['name'];
-  $awayTeam = $all_matches_leagues[0]['response'][$i]['teams']['away']['name'];
-  $matchId = $all_matches_leagues[0]['response'][$i]['fixture']['id'];
-  $matchStatus = $$all_matches_leagues[0]['response'][$i]['fixture']['status']['short'];
-  $date = date('d-m-Y', $all_matches_leagues[0]['response'][$i]['fixture']['timestamp']);
+  $homeTeam = $all_matches_leagues[$n]['response'][$i]['teams']['home']['name'];
+  $awayTeam = $all_matches_leagues[$n]['response'][$i]['teams']['away']['name'];
+  $matchId = $all_matches_leagues[$n]['response'][$i]['fixture']['id'];
+  $matchStatus = $all_matches_leagues[$n]['response'][$i]['fixture']['status']['short'];
+  $date = date('d-m-Y', $all_matches_leagues[$n]['response'][$i]['fixture']['timestamp']);
 
   
   if ((!$_GET['id']) || ($_GET['id'] && $_GET['id'] == $matchId)) {
@@ -170,21 +172,21 @@ echo'
   <div class="country_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') . '">
 
  <div class="flag_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'">
-  <img src="'. $all_matches_leagues[0]['response'][$i]['teams']['home']['logo'] . '"/></div>
+  <img src="'. $all_matches_leagues[$n]['response'][$i]['teams']['home']['logo'] . '"/></div>
    <p>
-  ' . $all_matches_leagues[0]['response'][$i]['teams']['home']['name'] . ''; 
+  ' . $all_matches_leagues[$n]['response'][$i]['teams']['home']['name'] . ''; 
 
    
   echo '</div>
           <div class="stscore_container white_color">';
                      
-         if ($_GET['id']) { echo $all_matches_leagues[0]['response'][$i]['fixture']['venue']['name'] . '<br>'; }
+         if ($_GET['id']) { echo $all_matches_leagues[$n]['response'][$i]['fixture']['venue']['name'] . '<br>'; }
 
-         if (!$_GET['id'])  { echo $all_matches_leagues[0]['response'][$i]['fixture']['venue']['city'] . '<br>'; }
+         if (!$_GET['id'])  { echo $all_matches_leagues[$n]['response'][$i]['fixture']['venue']['city'] . '<br>'; }
 
         // $date = date_create($all_matches_leagues[0]['response'][$i]['fixture']['date']);
        // echo date_format($date, 'd-m-Y') . ' ';
-         echo date('d-m-Y H:i', $all_matches_leagues[0]['response'][$i]['fixture']['timestamp'])  . '<br>
+         echo date('d-m-Y H:i', $all_matches_leagues[$n]['response'][$i]['fixture']['timestamp'])  . '<br>
          
          <div style="font-size:15pt; font-weight: 600">'. (array_key_exists($matchStatus, $status)? 
          $status[$matchStatus] : null) . 
@@ -196,10 +198,10 @@ echo'
          '<br>
          <div class="score" ' . (!array_key_exists($matchStatus, $status)? 'style="padding-top: 10%"' :null) . '>' .
         '<div class="score_home ' 
-        . (!is_null($all_matches_leagues[0]['response'][$i]['goals']['home']) ? 'pd_score' : null) . 
+        . (!is_null($all_matches_leagues[$n]['response'][$i]['goals']['home']) ? 'pd_score' : null) . 
         ((!array_key_exists($matchStatus, $status) && $all_matches_leagues[$i]['goals']['home'] !=0) ? 
         ' background_score_small_screens padding_background_score_small_screens' : null) .  
-        '">' . $all_matches_leagues[0]['response'][$i]['goals']['home'] . '</div>' . 
+        '">' . $all_matches_leagues[$n]['response'][$i]['goals']['home'] . '</div>' . 
         
           '<div class="vs ' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'"> - </div>
         
@@ -207,7 +209,7 @@ echo'
         . (!is_null($all_matches_leagues[0]['response'][$i]['goals']['away']) ? 'pd_score' : null) .
           ((!array_key_exists($matchStatus, $status) && $all_matches_leagues[0]['response'][$i]['goals']['away'] !=0)? 
           ' background_score_small_screens padding_background_score_small_screens' : null) .  
-        '">'. $all_matches_leagues[0]['response'][$i]['goals']['away'] . '</div>
+        '">'. $all_matches_leagues[$n]['response'][$i]['goals']['away'] . '</div>
           
         </div>
         </div>';
@@ -224,9 +226,9 @@ echo'
 
             echo
 
-           (array_search(explode(', ', $all_matches_leagues[0]['response'][$i]['fixture']['referee'])[1], $countries) ? 
-           '(' . array_search(explode(', ', $all_matches_leagues[0]['response'][$i]['fixture']['referee'])[1], $countries) : 
-           '(' . explode(', ', $all_matches_leagues[0]['response'][$i]['fixture']['referee'])[1]) . ')
+           (array_search(explode(', ', $all_matches_leagues[$n]['response'][$i]['fixture']['referee'])[1], $countries) ? 
+           '(' . array_search(explode(', ', $all_matches_leagues[$n]['response'][$i]['fixture']['referee'])[1], $countries) : 
+           '(' . explode(', ', $all_matches_leagues[$n]['response'][$i]['fixture']['referee'])[1]) . ')
            <br></div>'; 
                    
            }
@@ -241,10 +243,10 @@ echo'
    echo '
   <div class="country_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') . '">
  <div class="flag_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'">
-   <img src="'.$all_matches_leagues[0]['response'][$i]['teams']['away']['logo'] . '"/></div>
+   <img src="'.$all_matches_leagues[$n]['response'][$i]['teams']['away']['logo'] . '"/></div>
    
     <p>
-  ' . $all_matches_leagues[0]['response'][$i]['teams']['away']['name'] . ''; 
+  ' . $all_matches_leagues[$n]['response'][$i]['teams']['away']['name'] . ''; 
 
 
  // if (array_search($awayTeam, $countries)) { echo array_search($awayTeam, $countries); } 
@@ -264,7 +266,8 @@ echo'
    }      
 
   }}
-  }
+  }}
+}
 //}
 
 /*
