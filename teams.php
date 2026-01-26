@@ -142,9 +142,10 @@ $numGames = sizeof($all_matches_leagues);
 
 // Tel aantal wesdstijden voor betreffende club in gekozen seizoen..
 
+/*
+
 $total_matches = [];
 
-/*
 for ($i=0; $i < $numGames; $i++) {
   array_push($total_matches, $all_matches_leagues[$i]['results']);
 }
@@ -157,7 +158,7 @@ if ($numGames > 0 ) {
 
 for ($n = 0; $n < $numGames; $n++) {
 
-  for ($i = 0; $i <= $total_matches; $i++) {
+  for ($i = 0; $i <= 50; $i++) {
 
   if (!$prevent_loop) {
 
