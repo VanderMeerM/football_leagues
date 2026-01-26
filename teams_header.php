@@ -120,7 +120,7 @@ echo "
 <div id='header_info'> 
 </div>
 <p>
-<form action='./teams.php' method='post'>";
+<form action='./teams' method='post'>";
 
 echo "<select name='team_selection' id='team_selection' onchange='this.form.submit()'> 
 
@@ -145,7 +145,7 @@ echo "
 </select>
 </form>";
 
-echo "<form action='./teams.php' method='post'>";
+echo "<form action='./teams' method='post'>";
 
 echo "<select name='season_selection' onchange='this.form.submit()'> 
 
