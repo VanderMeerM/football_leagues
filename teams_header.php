@@ -120,7 +120,7 @@ echo "
 <p>
 <form action='./teams.php' method='post'>";
 
-echo "<select name='team_selection' onchange='this.form.submit()'> 
+echo "<select name='team_selection' id='team_selection' onchange='this.form.submit()'> 
 
 <option disabled>Kies een team</option>"; 
 
@@ -136,6 +136,7 @@ for ($i =0; $i < sizeof($teams); $i++) {
    
   }
 } 
+  setcookie('teams_team_selection', $_POST['team_selection'], time() + 3600, '/');
 
 
 echo "
@@ -159,13 +160,26 @@ for ($i =0; $i < sizeof($allseasons); $i++) {
     echo '<option  value= ' . $allseasons[$i] . '>' . $allseasons[$i] . '</option>'; 
    
   }
+
 } 
+setcookie('teams_season_selection', $_POST['season_selection'], time() + 3600, '/');
+
+?>
+
+<script> // cookie in JS opslaan, zodat selectie altijd behouden blijft. 
+  for (i=1; i< document.getElementById('team_selection').length; i++) {
+if (document.getElementById('team_selection')[i].selected) {
+  selectedTeam = document.getElementById('team_selection')[i].value
+}
+}
+document.cookie = 'teams_team_selection=' + selectedTeam + ';expires= ' + Date.now() + 86400 + '; path=/';
+</script> 
+
+<?php 
 
 echo "
 </select>
 </form>";
 
-setcookie('teams_team_selection', $_POST['team_selection'], time() + 3600, '/');
-setcookie('teams_season_selection', $_POST['season_selection'], time() + 3600, '/');
 
 

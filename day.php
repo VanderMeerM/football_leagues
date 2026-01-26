@@ -263,9 +263,15 @@ for ($i = 0; $i < $numGames; $i++) {
   $selectedround_int_leagues =  $matches_on_selected_day [$i]['league']['round']; 
   $selectedround = intval(explode(' ', $matches_on_selected_day [$i]['league']['round'])[3]);
   $league_name = $matches_on_selected_day [$i]['league']['name'];
+  $league_id = $matches_on_selected_day [$i]['league']['id'];
+  $round = 'ronde ';
   //$enddate_selected_round['Ronde '. $selectedround] = $response["response"][$i]["fixture"]["timestamp"];
   
+if (!in_array($league_id, $array_reg_leagues)) {
 
+  $selectedround = $selectedround_int_leagues;
+  $round = '';
+};
 
 // Competitielogo met -naam 
 echo 
@@ -273,7 +279,7 @@ echo
 <div class="container_league_logo_name">
 <a id="space_cont_league_logo" href="#">
 <img id="league_logo" src = ' . $matches_on_selected_day [$i]['league']['logo'] . ' id="img_logo_day"">' 
-. $league_name . ' (ronde ' . $selectedround .')</a></div>
+. $league_name . ' ('.$round . (array_key_exists($selectedround, $array_rounds) ? $array_rounds[$selectedround] : $selectedround) .')</a></div>
 
 <div class="main_container">';
 

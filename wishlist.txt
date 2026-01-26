@@ -2,10 +2,6 @@
 
 - styling events/line-up 
 
-- pagina voor spelers v 
-
-- ronde-aanduiding bij bekerwedstrijden / Europese competities na voorrondes op day 
-
 - cookie voor sortering op competitie/tijdstip op day 
  (bug: switch naar competitie werkt pas na 2x) 
 
@@ -28,7 +24,6 @@
 - sortering Europese competities bij live wedstrijden  
 
 
-
 - GET-waarden niet tonen in url (.htaccess)
 
 - markering voor kampioen, degradatie etc. 
@@ -38,6 +33,10 @@
 
 
 ----
+
+- pagina voor spelers v 
+
+- ronde-aanduiding bij bekerwedstrijden / Europese competities na voorrondes op day v 
 
 - styling voor league_header optimaliseren voor kleinere schermen v
 

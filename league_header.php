@@ -161,9 +161,13 @@ if ($_GET['round_selection']) {
 echo $round_to_select = $_GET['round_selection']; 
 
 for ($i = 0; $i < sizeof($array_dates_intern_leagues); $i++) {
+
+ $first_key_int = array_key_first($array_dates_int_round_sorted[$i]);
+ $last_key_int = array_key_last($array_dates_int_round_sorted[$i]);
+ 
  echo '
     <option '. (array_keys($array_dates_intern_leagues)[$i] === $round_to_select ? 'selected' : null) . ' value= "' . array_keys($array_dates_intern_leagues)[$i] . '">'
-     . array_keys($array_dates_intern_leagues)[$i] . ' 
+     . (array_key_exists(array_keys($array_dates_intern_leagues)[$i], $array_rounds) ? ucfirst($array_rounds[array_keys($array_dates_intern_leagues)[$i]]) : array_keys($array_dates_intern_leagues)[$i]) . ' 
      (' .  date('d-m', $array_dates_int_round_sorted[$i][$first_key_int]) . ' - ' 
       . date('d-m', $array_dates_int_round_sorted[$i][$last_key_int]) .')
      </option>'; 
@@ -195,7 +199,7 @@ for ($i = 0; $i < sizeof($array_dates_intern_leagues); $i++) {
 
    echo '
     <option '. ($selected_date_int_round[0] >=  $array_dates_int_round_sorted[$i][$first_key_int] ? 'selected' : null) . ' value= "' . array_keys($array_dates_intern_leagues)[$i] . '">'
-     . array_keys($array_dates_intern_leagues)[$i] . ' 
+     . (array_key_exists(array_keys($array_dates_intern_leagues)[$i], $array_rounds) ? ucfirst($array_rounds[array_keys($array_dates_intern_leagues)[$i]]) : array_keys($array_dates_intern_leagues)[$i]) . ' 
      (' .  date('d-m', $array_dates_int_round_sorted[$i][$first_key_int]) . ' - ' 
       . date('d-m', $array_dates_int_round_sorted[$i][$last_key_int]) .')
      </option>'; 

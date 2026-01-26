@@ -26,7 +26,9 @@ document.addEventListener("visibilitychange", function() {
 
 <?php 
 
-$league_id = 88;
+$all_matches_leagues = [];
+
+$array_of_leagues = [88, 89, 90, 2, 3, 848]; 
 // 2, 3, 848 (CL, EL & Conf. League)
 // 90 KNVB beker
 
@@ -78,10 +80,12 @@ include('./teams_header.php');
 //412 mvv
 //413 nec
 
+for ($i=0; $i < sizeof($array_of_leagues); $i++) {
+
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://v3.football.api-sports.io/fixtures?team='. $team_id . '&league=' . $league_id . '&season='. $season,
+  CURLOPT_URL => 'https://v3.football.api-sports.io/fixtures?team='. $team_id . '&league=' . $array_of_leagues[$i] . '&season='. $season,
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_MAXREDIRS => 10,
@@ -100,7 +104,7 @@ curl_setopt_array($curl, array(
 
 $response = curl_exec($curl);
 
-curl_close($curl);
+//curl_close($curl);
 
 /*
 
@@ -123,14 +127,18 @@ fclose($json_file_mt);
 
 */
 
-//
 $response= json_decode($response, true);
+
+if ($response['results'] > 0) {
+
+array_push($all_matches_leagues, $response);
+}}
 
 $prevent_loop = false;
 
-//print_r($response);
+//print_r($all_matches_leagues);
 
-$numGames = $response['results'];
+$numGames = sizeof($all_matches_leagues);
 
 
 //if ($numGames > 0 ) {
@@ -139,11 +147,11 @@ $numGames = $response['results'];
 
   if (!$prevent_loop) {
 
-  $homeTeam = $response['response'][$i]['teams']['home']['name'];
-  $awayTeam = $response['response'][$i]['teams']['away']['name'];
-  $matchId = $response['response'][$i]['fixture']['id'];
-  $matchStatus = $response['response'][$i]['fixture']['status']['short'];
-  $date = date('d-m-Y', $response['response'][$i]['fixture']['timestamp']);
+  $homeTeam = $all_matches_leagues[0]['response'][$i]['teams']['home']['name'];
+  $awayTeam = $all_matches_leagues[0]['response'][$i]['teams']['away']['name'];
+  $matchId = $all_matches_leagues[0]['response'][$i]['fixture']['id'];
+  $matchStatus = $$all_matches_leagues[0]['response'][$i]['fixture']['status']['short'];
+  $date = date('d-m-Y', $all_matches_leagues[0]['response'][$i]['fixture']['timestamp']);
 
   
   if ((!$_GET['id']) || ($_GET['id'] && $_GET['id'] == $matchId)) {
@@ -153,7 +161,7 @@ $numGames = $response['results'];
   
   if (!$_GET['id']) {
 
-         $_GET['date'] = date('Y-m-d', strtotime('today'));
+       //  $_GET['date'] = date('Y-m-d', strtotime('today'));
    
     echo '<a href="' . $_SERVER['PHP_SELF'] . '?date='. $_GET['date'] . '&id=' . $matchId . '">';
   }
@@ -162,21 +170,21 @@ echo'
   <div class="country_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') . '">
 
  <div class="flag_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'">
-  <img src="'.$response['response'][$i]['teams']['home']['logo'] . '"/></div>
+  <img src="'. $all_matches_leagues[0]['response'][$i]['teams']['home']['logo'] . '"/></div>
    <p>
-  ' . $response['response'][$i]['teams']['home']['name'] . ''; 
+  ' . $all_matches_leagues[0]['response'][$i]['teams']['home']['name'] . ''; 
 
    
   echo '</div>
           <div class="stscore_container white_color">';
                      
-         if ($_GET['id']) { echo $response['response'][$i]['fixture']['venue']['name'] . '<br>'; }
+         if ($_GET['id']) { echo $all_matches_leagues[0]['response'][$i]['fixture']['venue']['name'] . '<br>'; }
 
-         if (!$_GET['id'])  { echo $response['response'][$i]['fixture']['venue']['city'] . '<br>'; }
+         if (!$_GET['id'])  { echo $all_matches_leagues[0]['response'][$i]['fixture']['venue']['city'] . '<br>'; }
 
-         $date = date_create($response['response'][$i]['fixture']['date']);
-         echo date_format($date, 'd-m-Y') . ' ';
-         echo date('H:i', $response['response'][$i]['fixture']['timestamp'])  . '<br>
+        // $date = date_create($all_matches_leagues[0]['response'][$i]['fixture']['date']);
+       // echo date_format($date, 'd-m-Y') . ' ';
+         echo date('d-m-Y H:i', $all_matches_leagues[0]['response'][$i]['fixture']['timestamp'])  . '<br>
          
          <div style="font-size:15pt; font-weight: 600">'. (array_key_exists($matchStatus, $status)? 
          $status[$matchStatus] : null) . 
@@ -188,18 +196,18 @@ echo'
          '<br>
          <div class="score" ' . (!array_key_exists($matchStatus, $status)? 'style="padding-top: 10%"' :null) . '>' .
         '<div class="score_home ' 
-        . (!is_null($response['response'][$i]['goals']['home']) ? 'pd_score' : null) . 
-        ((!array_key_exists($matchStatus, $status) && $response['response'][$i]['goals']['home'] !=0) ? 
+        . (!is_null($all_matches_leagues[0]['response'][$i]['goals']['home']) ? 'pd_score' : null) . 
+        ((!array_key_exists($matchStatus, $status) && $all_matches_leagues[$i]['goals']['home'] !=0) ? 
         ' background_score_small_screens padding_background_score_small_screens' : null) .  
-        '">' . $response['response'][$i]['goals']['home'] . '</div>' . 
+        '">' . $all_matches_leagues[0]['response'][$i]['goals']['home'] . '</div>' . 
         
           '<div class="vs ' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'"> - </div>
         
         <div class="score_away '
-        . (!is_null($response['response'][$i]['goals']['away']) ? 'pd_score' : null) .
-          ((!array_key_exists($matchStatus, $status) && $response['response'][$i]['goals']['away'] !=0)? 
+        . (!is_null($all_matches_leagues[0]['response'][$i]['goals']['away']) ? 'pd_score' : null) .
+          ((!array_key_exists($matchStatus, $status) && $all_matches_leagues[0]['response'][$i]['goals']['away'] !=0)? 
           ' background_score_small_screens padding_background_score_small_screens' : null) .  
-        '">'. $response['response'][$i]['goals']['away'] . '</div>
+        '">'. $all_matches_leagues[0]['response'][$i]['goals']['away'] . '</div>
           
         </div>
         </div>';
@@ -208,17 +216,17 @@ echo'
         if ($_GET['id']) { 
 
             echo '<p><div class="stscore_ref">
-            <img id="ref" src="../ref.png">' . '<br> ' . explode(',', $response['response'][$i]['fixture']['referee'])[0] . 
+            <img id="ref" src="../ref.png">' . '<br> ' . explode(',', $all_matches_leagues[0]['response'][$i]['fixture']['referee'])[0] . 
            '<br>'; 
 
            
-          if (sizeof(explode(',', $response['response'][$i]['fixture']['referee'])) > 1) {
+          if (sizeof(explode(',', $all_matches_leagues[0]['response'][$i]['fixture']['referee'])) > 1) {
 
             echo
 
-           (array_search(explode(', ', $response['response'][$i]['fixture']['referee'])[1], $countries) ? 
-           '(' . array_search(explode(', ', $response['response'][$i]['fixture']['referee'])[1], $countries) : 
-           '(' . explode(', ', $response['response'][$i]['fixture']['referee'])[1]) . ')
+           (array_search(explode(', ', $all_matches_leagues[0]['response'][$i]['fixture']['referee'])[1], $countries) ? 
+           '(' . array_search(explode(', ', $all_matches_leagues[0]['response'][$i]['fixture']['referee'])[1], $countries) : 
+           '(' . explode(', ', $all_matches_leagues[0]['response'][$i]['fixture']['referee'])[1]) . ')
            <br></div>'; 
                    
            }
@@ -233,10 +241,10 @@ echo'
    echo '
   <div class="country_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') . '">
  <div class="flag_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'">
-   <img src="'.$response['response'][$i]['teams']['away']['logo'] . '"/></div>
+   <img src="'.$all_matches_leagues[0]['response'][$i]['teams']['away']['logo'] . '"/></div>
    
     <p>
-  ' . $response['response'][$i]['teams']['away']['name'] . ''; 
+  ' . $all_matches_leagues[0]['response'][$i]['teams']['away']['name'] . ''; 
 
 
  // if (array_search($awayTeam, $countries)) { echo array_search($awayTeam, $countries); } 

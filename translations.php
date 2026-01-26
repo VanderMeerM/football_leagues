@@ -57,6 +57,24 @@ $array_standings = array(
   '2. Bundesliga (Relegation)' => 'Relegation',
   'Relegation - 3. Liga' => 'Gedegradeerd naar 3. Liga'
 
-
 );
 
+$array_rounds = array(
+'1st Qualifying Round' => '1e kwalificatieronde',
+'2nd Qualifying Round' => '2e kwalificatieronde',
+'3rd Qualifying Round' => '3e kwalificatieronde',
+'Play-offs' => 'play-offs',
+'League Stage - 1' => 'ronde 1',
+'League Stage - 2' => 'ronde 2',
+'League Stage - 3' => 'ronde 3',
+'League Stage - 4' => 'ronde 4',
+'League Stage - 5' => 'ronde 5',
+'League Stage - 6' => 'ronde 6',
+'League Stage - 7' => 'ronde 7',
+'League Stage - 8' => 'ronde 8', 
+'Round of 16' => 'achtste finales',
+'Quarter-finals' => 'kwartfinale',
+'Semi-finals' => 'halve finale',
+'Final' => 'finale'
+
+);
