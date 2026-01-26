@@ -145,7 +145,7 @@ if ($numGames > 0 ) {
 
 for ($n = 0; $n < $numGames; $n++) {
 
-  for ($i = 0; $i < sizeof($all_matches_leagues[$n]); $i++) {
+  for ($i = 0; $i <= sizeof($all_matches_leagues[$n]); $i++) {
 
   if (!$prevent_loop) {
 
