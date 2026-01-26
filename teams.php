@@ -144,11 +144,14 @@ $numGames = sizeof($all_matches_leagues);
 
 $total_matches = [];
 
-for ($i=0; $i < sizeof($all_matches_leagues); $i++) {
+/*
+for ($i=0; $i < $numGames; $i++) {
   array_push($total_matches, $all_matches_leagues[$i]['results']);
 }
 
-$num_match = array_sum($total_matches);
+echo $num_match = array_sum($total_matches);
+
+*/
 
 if ($numGames > 0 ) {
 
