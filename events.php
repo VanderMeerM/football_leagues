@@ -140,7 +140,7 @@ $away_team_goals = [];
 
                if ($all_team_events[$i]['type'] === 'subst') {
                 echo ' (voor <a href= "./players?id='.$all_team_events[$i]['assist_id'] .'" target=_blank>'  
-               . $all_team_events[$i]['assist_name'] . ')';
+               . $all_team_events[$i]['assist_name'] . $all_team_events[$i]['assist_id']')';
                }
 
                if ($all_team_events[$i]['comments']) {
