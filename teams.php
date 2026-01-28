@@ -180,11 +180,14 @@ if ($numGames > 0 ) {
   
   if ((!$_GET['id']) || ($_GET['id'] && $_GET['id'] == $matchId)) {
 
+if (strtotime('today') <= strtotime($date)) {
+
+    echo '<div id="focus"></div>';
+}
+
   if (date('d-m-Y') === $date) {
 
-  echo '<div id="focus"></div>';
-
-    echo '<div class="main_container background_today_match extra_padding" ' . ($_GET['id'] ? 'style="display:flex"' : null) . '>';
+   echo '<div class="main_container background_today_match extra_padding" ' . ($_GET['id'] ? 'style="display:flex"' : null) . '>';
    }
   
 else { 
@@ -244,7 +247,7 @@ echo'
         if ($_GET['id']) { 
 
           echo '<p><div class="stscore_ref">
-            <img id="ref" src="./ref.png">' . '<br> ' . explode(',', $all_matches_leagues[$i]['fixture']['referee'])[0] . 
+            <img id="ref" src="../ref.png">' . '<br> ' . explode(',', $all_matches_leagues[$i]['fixture']['referee'])[0] . 
            '<br>'; 
 
             }

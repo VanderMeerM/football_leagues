@@ -22,7 +22,6 @@ op eind
 
 Clubs 
 - styling pagina clubs 
-extra kader/kleurtje voor aankomende/eerste wedstrijd 
 
 - styling afzonderlijke wedstrijden op club-pagina 
 
