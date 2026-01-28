@@ -126,16 +126,14 @@ if ($_GET['id']) {
 
 $prevent_loop = false;
 
-// $enddate_selected_round = [];
 $games_per_round = [];
 
+echo '<div id="top"></div>';
 
 // Uitcommentariëren bij binnenhalen einddata afgelopen seizoenen (zie ook 260)
 include('./league_header.php');
 
-echo '</div>
-<div id="top"></div>';
-
+echo '</div>';
 
 $matchesInRound = [];
 
@@ -144,7 +142,6 @@ if ($numGames > 0 ) {
   for ($i = 0; $i < $numGames; $i++) {
 
   if (!$prevent_loop) {
-
   $homeTeam = $response['response'][$i]['teams']['home']['name'];
   $awayTeam = $response['response'][$i]['teams']['away']['name'];
   $matchId = $response['response'][$i]['fixture']['id'];
@@ -152,11 +149,8 @@ if ($numGames > 0 ) {
 
   $selectedround_int_leagues = $response['response'][$i]['league']['round']; 
   $selectedround = intval(explode(' ', $response['response'][$i]['league']['round'])[3]);
-  //$enddate_selected_round['Ronde '. $selectedround] = $response["response"][$i]["fixture"]["timestamp"];
   
   if ((!$_GET['round_selection']) || is_null($_GET['round_selection'])) { 
-
-   // header("/league.php?league=' . $league_id . '&season=' . $selected_season . ");
 
        if ($_GET['season'] != $current_season) {
         $round_to_select = 1;
@@ -169,16 +163,17 @@ if ($numGames > 0 ) {
        $round_to_select = $round_to_fixture;
       
    }
-    //$selectedround = $round_of_first_upcoming_matches;
    }
   
    elseif ($_GET['round_selection']) {
-    $round_to_select = $_GET['round_selection'];
+
+   $round_to_select = $_GET['round_selection'];
+   
    }
 
    if (($round_to_select == $selectedround) || ($round_to_select === $selectedround_int_leagues)) {
     
- array_push($matchesInRound, $response['response'][$i]);
+  array_push($matchesInRound, $response['response'][$i]);
 
   $date = date('d-m-Y', $response['response'][$i]['fixture']['timestamp']);
 
@@ -198,18 +193,14 @@ else {
   }  
 
   echo '
-  <div class="country_container">'; 
-
-//  <div class="flag_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'">
-
-  echo '
+  <div class="country_container">
+ 
  <div class="flag_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'">
   <img src="'.$response['response'][$i]['teams']['home']['logo'] . '"/>
   <p>
-  ' . $response['response'][$i]['teams']['home']['name'] . '</div>'; 
-
-  
-  echo '</div>
+  ' . $homeTeam . '</div>
+ 
+   </div>
     <div class="stscore_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'">'; 
                   
          if ($_GET['id']) { echo $response['response'][$i]['fixture']['venue']['name'] . '<br>'; }
@@ -220,6 +211,8 @@ else {
          echo date('H:i', $response['response'][$i]['fixture']['timestamp'])  . '<br>';
 
       
+    // Bij live westrijden elke minuut pagina herladen om status te checken..
+
          if (array_key_exists($matchStatus, $status)) {
           ?>
           <script>
@@ -230,10 +223,11 @@ else {
             <?php
          }
 
-         echo 
-         '<div style="font-size:15pt; font-weight:600" '. (array_key_exists($matchStatus, $status)? 'class="red">' 
+         echo '
+         <div '. (array_key_exists($matchStatus, $status)? 'class="font_status_match red">' 
          . $status[$matchStatus] : 'class="black_color"') . 
          '<br>
+         
          <div class="score" ' . (!array_key_exists($matchStatus, $status)? 'style="padding-top: 10%"' :null) . '>' .
         '<div class="score_home ' 
         . (!is_null($response['response'][$i]['goals']['home']) ? 'pd_score' : null) . 
@@ -277,24 +271,6 @@ else {
                 
            }
  
-                    
-
-        /*  if (sizeof(explode(',', $response['response'][$i]['fixture']['referee'])) > 1) {
-
-            echo
-
-           (array_search(explode(', ', $response['response'][$i]['fixture']['referee'])[1], $countries) ? 
-           '(' . array_search(explode(', ', $response['response'][$i]['fixture']['referee'])[1], $countries) : 
-           '(' . explode(', ', $response['response'][$i]['fixture']['referee'])[1]) . ')
-           <br></div>'; 
-                   
-           }
-
-           else {
-            echo '</div>';
-           }
-         
-           */
         }
         echo '
         </div>';
@@ -307,7 +283,7 @@ else {
    <div class="flag_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'">
    <img src="'.$response['response'][$i]['teams']['away']['logo'] . '"/>
    <p>' . 
-   $response['response'][$i]['teams']['away']['name'] . '
+   $awayTeam . '
    </div>'; 
 
  
@@ -340,20 +316,11 @@ if ( (date('Y') >  ($selected_season + 1)) ||
   }}
   }}
 
-  $miR_sorted = array_map(function ($mt) {
-    return $mt['timestamp'];
-  }, $matchesInRound);
+/*  
 
-array_multisort($miR_sorted, SORT_ASC, $matchesInRound);
-
-//sort_by_end($matchesInRound); 
-
-//print_r($matchesInRound[0]);
+Binnenhalen einddata seizoenen (seizoen invullen in url; include league_header uitcommentariëren (zie 139))
 
 
-// Binnenhalen einddata seizoenen (seizoen invullen in url; include league_header uitcommentariëren (zie 139))
-
-/*
 $array_leagues = [88, 89, 78, 79, 135, 140, 39, 40, 179, 408]; // 357 = Ierse competitie
 
 foreach($array_leagues as $al) {

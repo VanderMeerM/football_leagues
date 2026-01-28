@@ -1,6 +1,6 @@
 <?php 
 
-$status_short = array('1H', 'HT', '2H', 'ET');
+$status_live = array('1H', 'HT', '2H', 'ET', 'P', 'SUSP', 'INT');
 
 $statusInPlay = array('1H', 'HT', '2H','ET', 'P', 'SUSP', 'INT', 'PEN', 'PST', 'ABD');
 

@@ -108,13 +108,13 @@ $away_team_goals = [];
 
           if ($all_team_events[$i]['team'] === $homeTeam) {
             
-          echo '<td style="display:flex">'; 
+          echo '<td>'; 
           //   echo '<div class= "event_container"><span class="align-left">'; 
           }
 
             else if ($all_team_events[$i]['team'] === $awayTeam) {
             echo '<td>
-            <td style="display:flex">'; 
+            <td>'; 
 ;
              // echo '<div class= "event_container"><span class="align-right">'; 
             }

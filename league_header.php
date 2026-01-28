@@ -12,8 +12,6 @@ echo "
 
 <ul>";
 
-//<li><a href= './teams'>Clubs</a></li>
-
 echo "
 <div class='menubuttons'>
 <a style='padding: 0px' href= './teams' > <img id='shirt' style='cursor:pointer' src='./img/shirt.png'></a>

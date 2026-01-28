@@ -24,11 +24,7 @@
 
 .fixed_menubar {
     width: 100%;
-   /* top: 13%; 
-    left: 50%; */
     height: 44px; 
-  /*  margin-top: -100px; 
-    margin-left: -250px */
 }
 
 .menubar {
@@ -92,6 +88,11 @@ height: 2px;
     font-size: larger;
 }
 
+.white_background {
+    background-color: white;
+    padding: 2%;
+}
+
 .container_dates {
     width: fit-content; 
     margin: 0 15px;
@@ -107,6 +108,11 @@ height: 2px;
     width: 700px;
     padding-bottom: 3%;
     margin: auto;   
+}
+
+.font_status_match {
+    font-size:15pt; 
+    font-weight: 600
 }
 
 .container_league_logo_name, 
@@ -138,12 +144,18 @@ height: 2px;
     cursor: none;
 }
 
-#league_logo {
+#league_logo, 
+#league_logo_club {
     margin: 0 15px 0 5px;
     width: 25px;
     height: auto;
 
 }
+
+#league_logo_club {
+    width: 50px;
+}
+
 
 .center_buttons {
     justify-content: center;
@@ -204,7 +216,6 @@ text-align: center;
    white-space: nowrap;
    background-color: var(--lightgray);
     width: 100%;
-   /* background-image: url('./img/pitch.png');*/
 }
 
 .container_league_logos a {
@@ -252,6 +263,7 @@ button {
 
 
 #season_title,
+#oncoming_match,
 .country_container,
 .stscore_container, 
 .score, .nomatches, a,
@@ -270,6 +282,12 @@ label {
     font-size: 25px;
 }
 
+#oncoming_match {
+width: 600px; 
+margin: 0 auto;
+font-size: large;
+}
+
 #season_title {
     margin-top: 50px;
 }
@@ -277,7 +295,7 @@ label {
 
 .extra_padding {
     padding: 20px 0px;
-    margin: 3% auto 0px;
+    margin: 2% auto 0px;
 }
 
 .btn_container {
@@ -333,12 +351,10 @@ form {
 
 
 a {
-   /* background-color: black; */
     color: black;
     padding: 20px 0px;
     font-size: medium;
     text-decoration: none;
-    /* margin: 0 10px; */
 }
 
 
@@ -748,6 +764,14 @@ table {
     width: fit-content;
  }
 
+ #league_logo_club {
+    width: 25px;
+}
+
+#oncoming_match {
+width: 350px; 
+}
+
 .country_container,
 .stscore_container {
     width: 60px;
@@ -761,7 +785,7 @@ table {
 
 .btn_container {
    padding: 0;
-   width: 50%;
+   /*width: 50%; */
    margin: auto;
 }
 

@@ -2,26 +2,40 @@
 
 - styling events/line-up 
 
+- bij url met alleen _GET[league] wedstrijden uit eerstvolgende ronde tonen 
+(selectie is goed, wedstrijden zijn nog standaard ronde 1) 
+
 - cookie voor sortering op competitie/tijdstip op day 
- (bug: switch naar competitie werkt pas na 2x) 
+ (bug: switch naar competitie werkt pas bij tweede keer, cookie werkt überhaupt niet op Strato) 
 
-- bij url met alleen league wedstrijden uit eerstvolgende ronde tonen (selectie is goed, wedstrijden zijn ronde 1) 
-
-- bij internationale competitie ronde ook 1 dag na speeldatum nog selecteren 
+- bij internationale competities ronde ook 1 dag na speeldatum nog selecteren 
 
 
+op eind 
+- 3.Liga en Portugese competitie toevoegen 
+
+- api uit harde code halen (verwijzen naar api-bestand)
+
+
+- live wedstrijden op day als eerste tonen (met een beetje hoop klaar)
+
+
+Clubs 
 - styling pagina clubs 
-
-- selecties onthouden op club-pagina 
+extra kader/kleurtje voor aankomende/eerste wedstrijd 
 
 - styling afzonderlijke wedstrijden op club-pagina 
 
-- competities op clubs uitbreiden (beker + internationale competities toevoegen) 
+- link Toon stand onder clubs moet naar reguliere competitie van betreffende club wijzen 
+(is nu standaard 88)  
+
 
 ---
 
 
 - sortering Europese competities bij live wedstrijden  
+
+- clubnaam uit teams-array halen onder clubs (curl wordt later uitgevoerd) 
 
 
 - GET-waarden niet tonen in url (.htaccess)
@@ -32,7 +46,15 @@
 - virtuele stand inbouwen 
 
 
-----
+
+Afgerond: 
+
+- eerstvolgende wedstrijd op clubs (incl. vandaag) als eerste plaatsen v
+
+- selecties onthouden op club-pagina v 
+
+- competities op clubs uitbreiden (beker + internationale competities toevoegen) 
+en in chronologische volgorde plaatsen v 
 
 - pagina voor spelers v 
 
