@@ -155,9 +155,7 @@ for ($x=0; $x < sizeof($all_matches_leagues_sorted); $x++) {
   } 
 }}
 
-$all_matches_leagues_sorted = array_merge($match_today,$all_matches_leagues_sorted);
-
-$all_matches_leagues = $all_matches_leagues_sorted;
+$all_matches_leagues = array_merge($match_today,$all_matches_leagues_sorted);
 
 
 // Toon wedstrijden...
