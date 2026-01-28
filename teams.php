@@ -144,6 +144,7 @@ for ($i=0; $i < sizeof($matches_leagues_ts_keys); $i++) {
 
 // Bepaal eerstvolgende wedstrijd (incl. vandaag) en zet deze bovenaan 
 
+/*
 $match_today = []; 
 
 for ($x=0; $x < sizeof($all_matches_leagues_sorted); $x++) {
@@ -155,14 +156,11 @@ for ($x=0; $x < sizeof($all_matches_leagues_sorted); $x++) {
   } 
 }}
 
-$all_matches_leagues = array_merge($match_today,$all_matches_leagues_sorted);
+*/
+$all_matches_leagues = $all_matches_leagues_sorted; //array_merge($match_today,$all_matches_leagues_sorted);
 
 
 // Toon wedstrijden...
-
-if ($all_matches_leagues[0]['league']['season'] == $current_season) {
-echo '<p><div id="oncoming_match"> Aankomende wedstrijd </div>';
-}
 
 $prevent_loop = false;
 
@@ -183,6 +181,8 @@ if ($numGames > 0 ) {
   if ((!$_GET['id']) || ($_GET['id'] && $_GET['id'] == $matchId)) {
 
   if (date('d-m-Y') === $date) {
+
+  echo '<div id="focus"></div>';
 
     echo '<div class="main_container background_today_match extra_padding" ' . ($_GET['id'] ? 'style="display:flex"' : null) . '>';
    }
@@ -217,28 +217,25 @@ echo'
 
          echo date('d-m-Y H:i', $all_matches_leagues[$i]['fixture']['timestamp'])  . '<br>
          
-         <div class="font_status_match">'. (array_key_exists($matchStatus, $status_live)? 
+         <div class="font_status_match red">'. (array_key_exists($matchStatus, $status)? 
          $status[$matchStatus] : null) . 
           '</div>'; 
 
-        echo 
-         '<div '. (array_key_exists($matchStatus, $status_live)? 'class="font_status_match red">' 
-         . $status[$matchStatus] : 'class="black_color"') . 
+     echo
+         '<div '. (array_key_exists($matchStatus, $status)? 'class="font_status_match red">' 
+         . $status_live[$matchStatus] : 'class="black_color"') . 
          '<br>
-         <div class="score" ' . (!array_key_exists($matchStatus, $status)? 'style="padding-top: 10%"' :null) . '>' .
-        '<div class="score_home ' 
-        . (!is_null($all_matches_leagues[$i]['goals']['home']) ? 'pd_score' : null) . 
-        ((!array_key_exists($matchStatus, $status) && $all_matches_leagues[$i]['goals']['home'] !=0) ? 
-        ' background_score_small_screens padding_background_score_small_screens' : null) .  
-        '">' . $all_matches_leagues[$i]['goals']['home'] . '</div>' . 
+         <div class="score" ' . (!array_key_exists($matchStatus, $status)? 'style="padding-top: 10%"' :null) . '>'
+         . '<div class="score_home ' . (!is_null($all_matches_leagues[$i]['goals']['home']) ? 'pd_score' : null) . '
+          '. (array_key_exists($matchStatus, $status)? 'height_live_score_small_screens' :null) .'">' 
+
+        . $all_matches_leagues[$i]['goals']['home'] . '</div>' . 
         
-          '<div class="vs ' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'"> - </div>
+        '<div class="vs '. (date('d-m-Y') === $date ? 'black_color' : 'white_color') . '"> - ' . '</div>' .   
         
-        <div class="score_away '
-        . (!is_null($all_matches_leagues[$i]['goals']['away']) ? 'pd_score' : null) .
-          ((!array_key_exists($matchStatus, $status) && $all_matches_leagues[$i]['goals']['away'] !=0)? 
-          ' background_score_small_screens padding_background_score_small_screens' : null) .  
-        '">'. $all_matches_leagues[$i]['goals']['away'] . '</div>
+         '<div class="score_away '. (!is_null($all_matches_leagues[$i]['goals']['away']) ? 'pd_score' : null) . '
+         '. (array_key_exists($matchStatus, $status)? 'height_live_score_small_screens' :null) .'">' 
+         . $all_matches_leagues[$i]['goals']['away'] . '</div>
           
         </div>
         </div>';
@@ -329,7 +326,10 @@ echo'
 
   document.getElementById('top').scrollIntoView({behavior: 'smooth'});
   
-}) 
+});
+
+document.getElementById('focus').scrollIntoView({behavior: 'smooth'});
+
 </script>
 
 

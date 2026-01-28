@@ -846,6 +846,10 @@ table {
     padding: 5% 10%;;
 }
 
+.height_live_score_small_screens {
+    height: 60px;
+}
+
 .pd_score {
  padding: 0 10%;
 }
