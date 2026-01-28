@@ -85,7 +85,7 @@ if ($_GET['id']) {
 
     $array_all_leagues = array_merge($array_leagues, $array_extra_leagues);
 
-   for ($i=0; $i < 18; $i++) { //sizeof($array_all_leagues); $i++) { 
+   for ($i=0; $i < sizeof($array_all_leagues); $i++) { 
    $cur_url = 'https://v3.football.api-sports.io/fixtures?&league='. $array_all_leagues[$i] . '&season='. $selected_season;
    
   
@@ -117,14 +117,8 @@ array_push($all_matches_leagues, $response);
 }
 }}
 
+
 $array_values_all_leagues = array_values($all_matches_leagues);
-
-
-//echo sizeof($array_values_all_leagues) . '<br>';
-//echo sizeof($array_values_all_leagues[10]['response']);
-
-//Voorbeeld met Franse competitie (timestamp van eerste wedstrijd)
-//print_r( $array_values_all_leagues[10]['response'][0]['fixture']['timestamp']);
 
 $ind = 0; 
 
@@ -149,22 +143,21 @@ $ind++;
 
 };
 
-// Uitcommentariëren bij binnenhalen einddata afgelopen seizoenen (zie ook 289)
-include('./league_header.php'); 
-
 echo '<div id="top"></div>';
+
+// Uitcommentariëren bij binnenhalen einddata afgelopen seizoenen (zie ook 289)
+
+include('./league_header.php'); 
 
 if (sizeof($matches_on_selected_day) == 0) {
   echo '<div id="no_found_matches"> Geen wedstrijden op '. date('d-m-Y', $_POST['sel_day']).' gevonden.</div>';
   return;
 };
 
-//Westrijden sorteren op tijdstip;
+//Wedstrijden sorteren op tijdstip;
 
 if ($_POST['orderByLeagueTime'] === 'ob_time' || $_COOKIE['LeagueTime'] === 'ob_time' 
 || (!$_COOKIE['LeagueTime'] && !$_POST['orderByLeagueTime'])) {
-
-//($_POST['orderByLeagueTime'] === 'ob_time' || !$_POST['orderByLeagueTime'] || $_COOKIE['LeagueTime'] === 'ob_time') {
 
 $matches_ind_ts = [];
 
@@ -186,20 +179,25 @@ $matches_on_selected_day = $matches_on_selected_day_sorted;
 
 };
 
+// Live wedstrijd(en) bovenaan plaatsen..  
+
+$matches_live = []; 
+
+for ($x=0; $x < sizeof($matches_on_selected_day); $x++) {
+  if (array_key_exists($matches_on_selected_day[$x]['fixture']['status']['short'], $status_live)) 
+    {
+    array_push($matches_live, $matches_on_selected_day[$x]);
+     array_splice($matches_on_selected_day,$x,1);
+  } 
+}
+
+$matches_on_selected_day = array_merge($matches_live,$matches_on_selected_day);
+
+//$matches_on_selected_day = $all_matches_leagues_sorted;
+
 
 $numGames = sizeof($matches_on_selected_day);
 
-//include('./get_current_round.php');
-
-// Deze 5 regels uitcommentariëren
-
-/*
-$array_season = './season_20242025.json';
-$curr_season = fopen($array_season, 'r');
-fclose($curr_season);
-$response_json = file_get_contents($array_season, true);
-$response= json_decode($response_json, true);
-*/
 
 if ($_GET['id']) {
   $round_to_fixture = intval(explode(' ', $response[0]['league']['round'])[3]);
@@ -209,7 +207,6 @@ if ($_GET['id']) {
 
 $prevent_loop = false;
 
-// $enddate_selected_round = [];
 $games_per_round = [];
 
 //echo 'Cookie: ' . $_COOKIE['LeagueTime'] . '<br>';
@@ -218,8 +215,10 @@ $games_per_round = [];
 
 echo '</div>';
 
-// Aantal competities tellen..
+// Aantal competities tellen om sorteerkeuze te tonen (bij meer dan 1 competitie)..
+
 $num_leagues = []; 
+
 for ($i=0; $i < sizeof($matches_on_selected_day); $i++) {
  array_push($num_leagues, $matches_on_selected_day[$i]['league']['id']);
 }
@@ -256,16 +255,11 @@ for ($i = 0; $i < $numGames; $i++) {
  $matchId = $matches_on_selected_day[$i]['fixture']['id'];
  $matchStatus = $matches_on_selected_day[$i]['fixture']['status']['short'];
  
- ///if (!$_GET['id']) {
-     // echo '<a '. (date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? 'style="background-color: ' $backgr_today_match : null) . ' href="./league.php?id=' . $matchId . '">';
-  //} 
-
   $selectedround_int_leagues =  $matches_on_selected_day [$i]['league']['round']; 
   $selectedround = intval(explode(' ', $matches_on_selected_day [$i]['league']['round'])[3]);
   $league_name = $matches_on_selected_day [$i]['league']['name'];
   $league_id = $matches_on_selected_day [$i]['league']['id'];
   $round = 'ronde ';
-  //$enddate_selected_round['Ronde '. $selectedround] = $response["response"][$i]["fixture"]["timestamp"];
   
 if (!in_array($league_id, $array_reg_leagues)) {
 
@@ -283,9 +277,7 @@ echo
 
 <div class="main_container">';
 
-  //if (!$_GET['id']) {
    echo '<a style="background-color: ' .(date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? $backgr_today_match : null) .'" href="./league.php?id=' . $matchId . '">';
- // }  
 
 }
 
@@ -307,7 +299,10 @@ echo
 
          echo date('d-m-Y H:i', $matches_on_selected_day[$i]['fixture']['timestamp']);
 
-         if (array_key_exists($matchStatus, $status)) {
+
+         // Bij live westrijden elke minuut pagina herladen om status te checken..
+
+         if (array_key_exists($matchStatus, $status_live)) {
           ?>
           <script>
       setTimeout(() => {
@@ -319,13 +314,14 @@ echo
           
 
           echo
-         '<div style="font-size:15pt; font-weight:600" '. (array_key_exists($matchStatus, $status)? 'class="red">' 
+         '<div '. (array_key_exists($matchStatus, $status)? 'class="font_status_match red">' 
          . $status[$matchStatus] : 'class="black_color"') . 
          '<br>
          <div class="score" ' . (!array_key_exists($matchStatus, $status)? 'style="padding-top: 10%"' :null) . '>' .
         '<div class="score_home ' . (!is_null($matches_on_selected_day[$i]['goals']['home']) ? 'pd_score' : null) . '">' . $matches_on_selected_day[$i]['goals']['home'] . '</div>' . 
         
-        '<div class="vs '. (date('d-m-Y') === $date ? 'black_color' : 'white_color') . '"> - ' . '</div>' .   
+        '<div class="vs '. (date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? 'black_color' : 'white_color') . '"> - ' . '</div>' .   
+        
          '<div class="score_away '. (!is_null($matches_on_selected_day[$i]['goals']['away']) ? 'pd_score' : null) . '">'. $matches_on_selected_day[$i]['goals']['away'] . '</div>
           
         </div>
