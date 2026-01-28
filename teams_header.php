@@ -28,12 +28,7 @@ $view = 'hidden';
  
 if (str_contains($current_page, $menu_league) && (!str_contains($current_page, $menu_day)) && (!str_contains($current_page, $menu_standings))) {
   
-  if ($_GET['id']) {
-    echo '<li><a id="table_txt" href="./standings?league=' . $league_to_fixture . '&season=' . $season_to_fixture . '"></a></li>';
-  }
-  else {
   echo '<li><a id="table_txt" href="./standings?league=' . $league_id . '&season=' . $selected_season . '"></a></li>';
-}
 }
 
 if (str_contains($current_page, $menu_standings)) {
@@ -97,7 +92,8 @@ $teams = array(
   ['club' => 'NEC', 'value' => 413, 'bg' => '#009b69, #ed1c24, #080808'],
   ['club' => 'Feyenoord', 'value' => 209, 'bg' => '#ed1c24, #000'],
   ['club' => 'PSV', 'value' => 197, 'bg' => '#ed1c24, #fff'],
-  ['club' => 'MVV', 'value' => 412, 'bg' => '#e73140, #fff']
+  ['club' => 'MVV', 'value' => 412, 'bg' => '#e73140, #fff'],
+  ['club' => '1. FC Köln', 'value' => 192, 'bg' => '#ff0000, #fff']
   
 );
 
@@ -115,11 +111,13 @@ echo "
  
 </div>
 
-<div class= 'btn_container'> 
+<div> 
 
 <div id='header_info'> 
 </div>
-<p>
+
+<div class='center_buttons'>
+
 <form action='./teams' method='post'>";
 
 echo "<select name='team_selection' id='team_selection' onchange='this.form.submit()'> 
@@ -166,9 +164,11 @@ for ($i =0; $i < sizeof($allseasons); $i++) {
 } 
 setcookie('teams_season_selection', $_POST['season_selection'], time() + 3600, '/');
 
+// cookie in JS opslaan, zodat selectie altijd behouden blijft. 
+
 ?>
 
-<script> // cookie in JS opslaan, zodat selectie altijd behouden blijft. 
+<script> 
   for (i=1; i< document.getElementById('team_selection').length; i++) {
 if (document.getElementById('team_selection')[i].selected) {
   selectedTeam = document.getElementById('team_selection')[i].value
@@ -181,7 +181,8 @@ document.cookie = 'teams_team_selection=' + selectedTeam + ';expires= ' + Date.n
 
 echo "
 </select>
-</form>";
+</form>
+</div>";
 
 
 
