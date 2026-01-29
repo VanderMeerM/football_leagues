@@ -16,6 +16,8 @@ op eind
 
 - api uit harde code halen (verwijzen naar api-bestand)
 
+- tailwind op webserver (Strato) installeren 
+
 
 - live wedstrijden op day als eerste tonen (met een beetje hoop klaar)
 
