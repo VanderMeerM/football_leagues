@@ -81,7 +81,6 @@ echo
 </div>';
 
 
-
 /* IS ONDERSTAANDE ARRAY (3 regels) NOG NODIG?
 $json_enddates = './JSON/enddates/enddates_'. $league_id . '_' . $selected_season . ($selected_season + 1) . '.json'; 
 
@@ -357,28 +356,6 @@ else
 
 }}
 )
-
-
-/* 
-function clickBtnLeague(idBtn) {
-  document.getElementById(idBtn).addEventListener('click', () => { 
- 
-
-     
-    if (currentPage === 'standings.php') {
-      window.location.href='./standings.php?league='+document.getElementById(idBtn).id+'&season='+<?php echo json_encode($_GET['season']); ?>
-      }
-     
-     else { 
-      window.location.href='./league.php?league='+document.getElementById(idBtn).id+'&round_selection='+<?php echo json_encode($round_of_first_upcoming_matches) ?>
-      
-    }
-       
- })
-      
-}
-
-*/
 
  </script>
  

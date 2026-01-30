@@ -124,7 +124,6 @@ if ($_GET['id']) {
   $league_to_fixture = $response['response'][0]['league']['id'];
  }
 
-$prevent_loop = false;
 
 $games_per_round = [];
 
@@ -132,6 +131,10 @@ echo '<div id="top"></div>';
 
 // Uitcommentariëren bij binnenhalen einddata afgelopen seizoenen (zie ook 260)
 include('./league_header.php');
+
+$prevent_loop = false;
+
+//echo $league_id; //'Ronde:' . $round_of_first_upcoming_matches; 
 
 echo '</div>';
 
@@ -150,28 +153,37 @@ if ($numGames > 0 ) {
   $selectedround_int_leagues = $response['response'][$i]['league']['round']; 
   $selectedround = intval(explode(' ', $response['response'][$i]['league']['round'])[3]);
   
-  if ((!$_GET['round_selection']) || is_null($_GET['round_selection'])) { 
+  if ((!$_GET['round_selection']) || is_null($_GET['round_selection'])) {  // Indien er geen round_selection in url is...
 
        if ($_GET['season'] != $current_season) {
         $round_to_select = 1;
         }
-         else {
-           $round_to_select = $round_of_first_upcoming_matches;
-        } 
-        
+
+        // Bij internationale competities... (werkt nog niet in combinatie met beide soorten competties..)
+        /*
+        elseif (sizeof($selected_date_int_round) == 0) 
+        {
+            $round_to_select = array_key_first($array_dates_intern_leagues);
+        }
+        */
+         
+        // Bij reguliere competities...
+        else {
+          $round_to_select = $round_of_first_upcoming_matches;
+        }
+
         if ($_GET['id']) {
        $round_to_select = $round_to_fixture;
-      
+        }
    }
-   }
-  
-   elseif ($_GET['round_selection']) {
+   
+   else { 
 
    $round_to_select = $_GET['round_selection'];
    
    }
 
-   if (($round_to_select == $selectedround) || ($round_to_select === $selectedround_int_leagues)) {
+if (($round_to_select == $selectedround) || ($round_to_select === $selectedround_int_leagues)) {
     
   array_push($matchesInRound, $response['response'][$i]);
 
