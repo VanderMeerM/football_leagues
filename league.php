@@ -159,7 +159,7 @@ if ($numGames > 0 ) {
         $round_to_select = 1;
         }
 
-        // Bij internationale competities... (werkt nog niet in combinatie met beide soorten competties..)
+        // Bij internationale competities... (werkt nog niet icm beide soorten competties (en als int. leagues geen volgende ronde hadden)..)
         /*
         elseif (sizeof($selected_date_int_round) == 0) 
         {
@@ -183,7 +183,9 @@ if ($numGames > 0 ) {
    
    }
 
-if (($round_to_select == $selectedround) || ($round_to_select === $selectedround_int_leagues)) {
+ //  echo 'RtS: ' . $round_to_select . 'Fuc: ' . $round_of_first_upcoming_matches;
+
+if ( ($round_to_select == $selectedround) || ($round_to_select === $selectedround_int_leagues) ) {
     
   array_push($matchesInRound, $response['response'][$i]);
 
