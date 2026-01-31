@@ -141,7 +141,7 @@ $away_team_goals = [];
                if ($all_team_events[$i]['type'] === 'subst') {
 
                   if (is_null($all_team_events[$i]['assist_id'])) {
-                      echo ' (voor <span style="color:darkgrey;"> ' . $all_team_events[$i]['assist_name'] . '</span>)';
+                      echo ' (voor <span style="color:#676161;"> ' . $all_team_events[$i]['assist_name'] . '</span>)';
                   
                   } else {                    
                     
