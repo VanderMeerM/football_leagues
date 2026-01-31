@@ -237,7 +237,6 @@ td {
     text-align: center;
 }
 
-
 .container_big_logo_league {
     width: 25%;
 }
@@ -355,6 +354,10 @@ a {
     padding: 20px 0px;
     font-size: medium;
     text-decoration: none;
+}
+
+td a {
+    padding: 0px;
 }
 
 
