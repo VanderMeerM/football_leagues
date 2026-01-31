@@ -148,6 +148,7 @@ $away_team_goals = [];
                 echo ' (voor <a href= "./players?id='.$all_team_events[$i]['assist_id'] .'" 
                target=_blank>'  . $all_team_events[$i]['assist_name'] . ')';
                }
+               }
 
                if ($all_team_events[$i]['comments']) {
 
