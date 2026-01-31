@@ -78,3 +78,12 @@ $array_rounds = array(
 'Final' => 'finale'
 
 );
+
+$array_position_player {
+  'Midfielder' => 'Middenvelder'
+}
+
+$array_countries {
+  'Netherlands' => 'Nederland',
+  'Spain' => 'Spanje'
+}

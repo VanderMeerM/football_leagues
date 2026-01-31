@@ -116,7 +116,9 @@ echo '<br>
 Geboren op: </td>
 <td> ' .$response_player['response'][0]['player']['birth']['date'] . 
 ' (' . $response_player['response'][0]['player']['age'] .' jaar) 
-<br>te ' .$response_player['response'][0]['player']['birth']['place'] . ' (' .$response_player['response'][0]['player']['birth']['country']. ')
+<br>te ' .$response_player['response'][0]['player']['birth']['place'] . ' (' . 
+(in_array($response_player['response'][0]['player']['birth']['country'], $array_countries) ?  
+$array_countries[$response_player['response'][0]['player']['birth']['country']] : $response_player['response'][0]['player']['birth']['country']) . '
 </td></tr> 
 
 <tr><td>
