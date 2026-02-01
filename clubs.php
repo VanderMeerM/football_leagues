@@ -71,6 +71,12 @@ td {
     padding: 2%;
 }
 
+@media (max-width: 400px) {
+
+table tr td img {
+    max-width: 300px;
+}
+}
 </style>
 
 <?php 
