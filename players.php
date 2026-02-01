@@ -49,7 +49,7 @@ include('./translations.php');
 
     ?>
     <script>
-     document.title= 'Over <?php echo json_encode($response_player['response'][0]['player']['name']); ?>';
+     document.title= <?php echo json_encode($response_player['response'][0]['player']['name']); ?>;
 </script>
 
 <?php
@@ -133,9 +133,9 @@ Geboren op: </td>
 
 <tr><td>
 Nationaliteit: </td>
-<td> ' . (array_key_exists($response_player['response'][0]['player']['birth']['nationality'], $array_countries) ?  
-         $array_countries[$response_player['response'][0]['player']['birth']['nationality']] : 
-         $response_player['response'][0]['player']['birth']['nationality']) . ')
+<td> ' . (array_key_exists($response_player['response'][0]['player']['nationality'], $array_countries) ?  
+         $array_countries[$response_player['response'][0]['player']['nationality']] : 
+         $response_player['response'][0]['player']['nationality']) . '
          </td></tr> 
          </td></tr>
 
