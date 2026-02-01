@@ -105,7 +105,7 @@ Opgericht: </td>
 <td>' . $response_team['response'][0]['team']['founded'] . '
 </td></tr> 
 
-<tr><td>
+<tr><td valign="top">
 Stadion: </td>
 <td>' . $response_team['response'][0]['venue']['name'] . ' te ' . $response_team['response'][0]['venue']['city'] .  
 '</td></tr>  
