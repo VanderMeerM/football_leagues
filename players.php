@@ -43,6 +43,12 @@
 
     $response_player = json_decode($response_player, true);
 
+    ?>
+    <script>
+     document.title= 'Over <?php echo json_encode($response_player['response'][0]['player']['name']); ?>';
+</script>
+
+<?php
 
 // Teams van speler ophalen...
 
@@ -107,27 +113,34 @@ echo '<br>
 </td>
 </tr>
 <tr>
-<td> Naam: </td> 
+<td valign="top"> Naam: </td> 
 <td> ' . $response_player['response'][0]['player']['firstname'] . ' ' . $response_player['response'][0]['player']['lastname'] .
 
 '</td></tr>
 
-<tr><td>
+<tr><td valign="top">
 Geboren op: </td>
 <td> ' .$response_player['response'][0]['player']['birth']['date'] . 
 ' (' . $response_player['response'][0]['player']['age'] .' jaar) 
-<br>te ' .$response_player['response'][0]['player']['birth']['place'] . ' (' .$response_player['response'][0]['player']['birth']['country']. ')
-</td></tr> 
+<br>te ' .$response_player['response'][0]['player']['birth']['place'] . ' (' 
+.   (array_key_exists($response_player['response'][0]['player']['birth']['country'], $array_countries) ?  
+         $array_countries[$response_player['response'][0]['player']['birth']['country']] : 
+         $response_player['response'][0]['player']['birth']['country']) .')</td></tr> 
 
 <tr><td>
 Nationaliteit: </td>
-<td> ' . $response_player['response'][0]['player']['nationality'] .
-'</td></tr>
+<td> ' . (array_key_exists($response_player['response'][0]['player']['birth']['nationality'], $array_countries) ?  
+         $array_countries[$response_player['response'][0]['player']['birth']['nationality']] : 
+         $response_player['response'][0]['player']['birth']['nationality']) . ')
+         </td></tr> 
+         </td></tr>
 
 <tr><td>
-Positie: </td>
-<td> ' . $response_player['response'][0]['player']['position'] .
-'</td></tr>';  
+Positie: </td><td> ' 
+        . (array_key_exists($response_player['response'][0]['player']['position'], $array_position) ?  
+         $array_position[$response_player['response'][0]['player']['position']] : 
+         $response_player['response'][0]['player']['position']) . 
+         '</td></tr>';  
 
 
 

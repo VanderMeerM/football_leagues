@@ -78,3 +78,20 @@ $array_rounds = array(
 'Final' => 'finale'
 
 );
+
+$array_position = array(
+'Goalkeeper' => 'Keeper',
+'Defender' => 'Verdediger',
+'Midfielder' => 'Middenvelder',
+'Attacker' => 'Aanvaller'
+);
+
+$array_countries = array(
+  'Netherlands' => 'Nederland',
+  'Belgium' => 'België',
+  'Germany' => 'Duitsland',
+  'Italy' => 'Italië',
+  'Spain' => 'Spanje',
+  'Switzerland' => 'Zwitserland',
+  'Austria' => 'Oostenrijk'
+);
