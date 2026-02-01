@@ -12,7 +12,11 @@
 
 <?php
 
-//require('./api.php');
+require('./api.php');
+
+include('./variables.php');
+
+include('./translations.php');
 
 
 // Profiel speler ophalen... 
