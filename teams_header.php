@@ -151,17 +151,12 @@ echo "<select name='season_selection' onchange='this.form.submit()'>
 
 for ($i =0; $i < sizeof($allseasons); $i++) {
 
-  if ($allseasons[$i] == $season) {
-
-    echo '<option selected  value= ' . $allseasons[$i] . '>' . $allseasons[$i] . '</option>'; 
-  } 
-  else 
-  { 
-    echo '<option  value= ' . $allseasons[$i] . '>' . $allseasons[$i] . '</option>'; 
+  
+    echo '<option '. ($allseasons[$i] == $season ? 'selected' : null) . ' value= ' . $allseasons[$i] . 
+    '>' . $allseasons[$i] . ' - ' . ($allseasons[$i] +1) .'</option>'; 
    
-  }
+    }
 
-} 
 setcookie('teams_season_selection', $_POST['season_selection'], time() + 3600, '/');
 
 // cookie in JS opslaan, zodat selectie altijd behouden blijft. 

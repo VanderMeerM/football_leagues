@@ -104,6 +104,8 @@ echo
 
 for ($i = 0; $i < $numTeams; $i++) {
 
+  $team_id = $response['response'][0]['league']['standings'][0][$i]['team']['id'];
+  $team_name = $response['response'][0]['league']['standings'][0][$i]['team']['name'];
   $won_matches = $response['response'][0]['league']['standings'][0][$i]['all']['win'];
   $draw_matches = $response['response'][0]['league']['standings'][0][$i]['all']['draw'];
   $lost_matches = $response['response'][0]['league']['standings'][0][$i]['all']['lose'];
@@ -123,9 +125,9 @@ for ($i = 0; $i < $numTeams; $i++) {
 
 echo '<td>' . $response['response'][0]['league']['standings'][0][$i]['rank'] .  '. </td>' .
 
-'<td id="hidden_cell"><img class="logo_standings" src=' . $response['response'][0]['league']['standings'][0][$i]['team']['logo'] . '></td>' .  
+'<td id="hidden_cell"><a href="./clubs.php?id='.$team_id.'" target="_blank"><img class="logo_standings" src=' . $response['response'][0]['league']['standings'][0][$i]['team']['logo'] . '><a></td>' .  
 
-'<td>' . $response['response'][0]['league']['standings'][0][$i]['team']['name'] . '</td>' .  
+'<td><a href="./clubs.php?id='.$team_id.'" target="_blank">' . $team_name . '</a></td>' .  
 
 '<td>' . $played_matches . '</td>' . 
 

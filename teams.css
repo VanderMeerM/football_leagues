@@ -322,7 +322,7 @@ form {
     color: var(--red);
     margin: 5px;
     padding: 3px;
-    width: 90px;
+    width: fit-content;
     text-align: center;
     font-weight: bold;
     border: 0px;
