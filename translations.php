@@ -107,5 +107,15 @@ $array_countries = array(
   'Italy' => 'Italië',
   'Spain' => 'Spanje',
   'Switzerland' => 'Zwitserland',
-  'Austria' => 'Oostenrijk'
+  'Austria' => 'Oostenrijk', 
+  'France' => 'Frankrijk',
+  'Norway' => 'Noorwegen',
+  'Sweden' => 'Zweden',
+  'Denmark' => 'Denemarken',
+  'Iceland' => 'IJsland',
+  'Poland' => 'Polen',
+  'Hungary' => 'Hongarije', 
+  'Slovakia' => 'Slowakije',
+  'Czechia' => 'Tsjechië'
+
 );

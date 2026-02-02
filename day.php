@@ -185,17 +185,20 @@ $matches_live = [];
 
 
 for ($x=0; $x < sizeof($matches_on_selected_day); $x++) {
-  if (array_key_exists($matches_on_selected_day[$x]['fixture']['status']['short'], $status_live)) 
+  if (array_key_exists($matches_on_selected_day[$x]['fixture']['status']['short'], $status)) 
     {
     array_push($matches_live, $matches_on_selected_day[$x]);
      array_splice($matches_on_selected_day,$x,1);
   } 
 }
 
+//print_r($matches_on_selected_day);
+
 $matches_on_selected_day = array_merge($matches_live, $matches_on_selected_day);
 
 //$matches_on_selected_day = $all_matches_leagues_sorted;
 
+//print_r($matches_live);
 
 $numGames = sizeof($matches_on_selected_day);
 
