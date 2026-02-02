@@ -12,7 +12,7 @@
 
 - bij internationale competities ronde ook 1 dag na speeldatum nog selecteren 
 
-- live wedstrijden op day als eerste tonen (werkt nog niet goed) 
+- live wedstrijden op day als eerste tonen (laatste wedstrijd wordt nog 2x getoond) 
 
 
 - styling events/line-up 
