@@ -96,10 +96,12 @@ $away_team_goals = [];
     
     echo '<div class="main_container_event">';
 
+    /*
     if (in_array($matchStatus, $statusInPlay) && ($num_events > 0))   
     { 
      echo '<div id="play_min"> min. '. $min_playing_minute . "'</div>"; 
     }
+     */
               
     echo '<table>';
                     

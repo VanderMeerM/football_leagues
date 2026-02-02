@@ -185,7 +185,7 @@ $matches_live = [];
 
 
 for ($x=0; $x < sizeof($matches_on_selected_day); $x++) {
-  if (array_key_exists($matches_on_selected_day[$x]['fixture']['status']['short'], $status)) 
+  if (array_key_exists(strval($matches_on_selected_day[$x]['fixture']['status']['short']), $status)) 
     {
     array_push($matches_live, $matches_on_selected_day[$x]);
      array_splice($matches_on_selected_day,$x,1);
@@ -258,6 +258,7 @@ for ($i = 0; $i < $numGames; $i++) {
  $awayTeam = $matches_on_selected_day[$i]['teams']['away']['name'];
  $matchId = $matches_on_selected_day[$i]['fixture']['id'];
  $matchStatus = $matches_on_selected_day[$i]['fixture']['status']['short'];
+ $elapsed = $matches_on_selected_day[$i]['fixture']['status']['elapsed'] + $matches_on_selected_day[$i]['fixture']['status']['extra'];
  
   $selectedround_int_leagues =  $matches_on_selected_day [$i]['league']['round']; 
   $selectedround = intval(explode(' ', $matches_on_selected_day [$i]['league']['round'])[3]);
@@ -319,7 +320,7 @@ echo
 
           echo
          '<div '. (array_key_exists($matchStatus, $status)? 'class="font_status_match red">' 
-         . $status[$matchStatus] : 'class="black_color"') . 
+         . $status[$matchStatus] .' - ' . $elapsed . '"' : 'class="black_color"') . 
          '<br>
          <div class="score" ' . (!array_key_exists($matchStatus, $status)? 'style="padding-top: 10%"' :null) . '>' .
         '<div class="score_home ' . (!is_null($matches_on_selected_day[$i]['goals']['home']) ? 'pd_score' : null) . '">' . $matches_on_selected_day[$i]['goals']['home'] . '</div>' . 

@@ -177,7 +177,9 @@ if ($numGames > 0 ) {
   $matchId = $all_matches_leagues[$i]['fixture']['id'];
   $matchStatus = $all_matches_leagues[$i]['fixture']['status']['short'];
   $date = date('d-m-Y', $all_matches_leagues[$i]['fixture']['timestamp']);
-  
+  $elapsed = $all_matches_leagues[$i]['fixture']['status']['elapsed'] + $all_matches_leagues[$i]['fixture']['status']['extra'];
+
+    
   if ((!$_GET['id']) || ($_GET['id'] && $_GET['id'] == $matchId)) {
 
 if (strtotime('today') <= strtotime($date)) {
@@ -221,7 +223,8 @@ echo'
          echo date('d-m-Y H:i', $all_matches_leagues[$i]['fixture']['timestamp'])  . '<br>
          
          <div class="font_status_match red">'. (array_key_exists($matchStatus, $status)? 
-         $status[$matchStatus] : null) . 
+          $status[$matchStatus] .' - ' . $elapsed . '"' : null) . 
+
           '</div>'; 
 
           if ($matchStatus === 'PEN') {

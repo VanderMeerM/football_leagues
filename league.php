@@ -149,6 +149,8 @@ if ($numGames > 0 ) {
   $awayTeam = $response['response'][$i]['teams']['away']['name'];
   $matchId = $response['response'][$i]['fixture']['id'];
   $matchStatus = $response['response'][$i]['fixture']['status']['short'];
+  $elapsed = $response['response'][$i]['fixture']['status']['elapsed'] + $matches_on_selected_day[$i]['fixture']['status']['extra'];
+
 
   $selectedround_int_leagues = $response['response'][$i]['league']['round']; 
   $selectedround = intval(explode(' ', $response['response'][$i]['league']['round'])[3]);
@@ -239,7 +241,7 @@ else {
 
          echo '
          <div '. (array_key_exists($matchStatus, $status)? 'class="font_status_match red">' 
-         . $status[$matchStatus] : 'class="black_color"') . 
+         . $status[$matchStatus] .' - ' . $elapsed . '"' : 'class="black_color"') . 
          '<br>
          
          <div class="score" ' . (!array_key_exists($matchStatus, $status)? 'style="padding-top: 10%"' :null) . '>' .
