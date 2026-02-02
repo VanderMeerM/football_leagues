@@ -39,18 +39,34 @@ height: 2px;
     margin-top: 10px;
 }
 
+.container_logos {
+    display: flex; 
+    justify-content: center;
+    flex-wrap: wrap;
+    border: solid #8c5d5d 1px;
+    width: fit-content;
+    padding: 20px;
+    margin: 0 auto 10px;
+}
 
 #logo {
     margin: 30% 0 0 50%;
     
 }
 
+.larger_logo {
+    width: 150px;
+}
+
 #logo_club {
   text-align: center;
+  padding: 2%;
+  width: 100px;
 }
 
 #logo_club img {
   margin-top: 3%;
+  cursor: pointer;
 }
 
 #table_txt::after {
@@ -258,6 +274,15 @@ button {
     background-color: black;
     color: white;
     margin: 5px;
+}
+
+button img {
+    width: 100px;
+}
+
+#send_team {
+    background-color: transparent;
+    border: 0px;
 }
 
 
@@ -645,7 +670,7 @@ color: rgb(75, 230, 75);
         margin: 3% 0 0 5%;
     }
 
-   /* .flag_container img {
+    /* .flag_container img {
         width: 70px;
     }
         */
@@ -755,6 +780,7 @@ table {
    width: 375px;
  }
 
+ .container_logos,
 .main_container, 
 .main_container_event,
 .main_container_lineup {

@@ -45,8 +45,8 @@ $current_season = date('Y');
 
 $allseasons = [];
 
-if ($_POST['team_selection']) { 
-  $team_id = $_POST['team_selection']; 
+if ($_POST['team_code']) { 
+  $team_id = $_POST['team_code']; 
   } else if (
     $_COOKIE['teams_team_selection'])  
     {
@@ -203,7 +203,7 @@ else {
 echo'
   <div class="country_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') . '">
 
- <div class="flag_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'">
+ <div class="flag_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') . '">
   <img src="'. $all_matches_leagues[$i]['teams']['home']['logo'] . '"/></div>
    <p>
   ' . $all_matches_leagues[$i]['teams']['home']['name'] . ''; 
@@ -224,6 +224,18 @@ echo'
          $status[$matchStatus] : null) . 
           '</div>'; 
 
+          if ($matchStatus === 'PEN') {
+            if ($all_matches_leagues[$i]['teams']['home']['winner'] = '1') { 
+                echo '<div>'. $homeTeam . ' w.n.s. </div>'; 
+                }
+                else {
+                   echo '<div>'. $awayTeam . ' w.n.s.</div>'; 
+                }
+                 echo '(' . $all_matches_leagues[$i]['score']['penalty']['home']. ' - 
+                ' .$all_matches_leagues[$i]['score']['penalty']['away'] . ')';
+          }
+                
+                    
      echo
          '<div '. (array_key_exists($matchStatus, $status)? 'class="font_status_match red">' 
          . $status_live[$matchStatus] : 'class="black_color"') . 

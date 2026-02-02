@@ -83,19 +83,9 @@ echo
 </div>';
 
 
-for ($i=2010; $i <= $current_season; $i++) {
+for ($i=$current_season; $i >= 2010; $i--) {
   array_push($allseasons, $i);
 }
-
-$teams = array(
-  ['club' => 'Ajax', 'value' => 194, 'bg' => '#c2002f, #fff'],
-  ['club' => 'NEC', 'value' => 413, 'bg' => '#009b69, #ed1c24, #080808'],
-  ['club' => 'Feyenoord', 'value' => 209, 'bg' => '#ed1c24, #000'],
-  ['club' => 'PSV', 'value' => 197, 'bg' => '#ed1c24, #fff'],
-  ['club' => 'MVV', 'value' => 412, 'bg' => '#e73140, #fff'],
-  ['club' => '1. FC Köln', 'value' => 192, 'bg' => '#ff0000, #fff']
-  
-);
 
 for ($i=0 ; $i < sizeof($teams); $i++) {
  if ($teams[$i]['value'] == $team_id) {
@@ -103,20 +93,47 @@ for ($i=0 ; $i < sizeof($teams); $i++) {
  }
 }
 
-echo "
-<div class='title_container' style='background-image: linear-gradient(to right, $bc)'>
-<div id='logo_club'>
-  <img src= 'https://media.api-sports.io/football/teams/$team_id.png'/> 
- 
- 
-</div>
+echo '
+<div class="title_container" style="background-image: linear-gradient(to right, ' . $bc . ')">
 
-<div> 
+<div style="height: 20px; background-image: linear-gradient(to right, ' . $bc . ')"></div>
+
+ 
+<div class="container_logos">';
+
+if (!is_null($_POST['team_code'])) {
+ $selected_team_logo = $_POST['team_code'];
+} else {
+$selected_team_logo = $_COOKIE['teams_team_selection'];
+}
+
+foreach ($teams as $team) {
+
+echo '
+<div id="logo_club">
+
+<form action="./teams" method="post">
+  <input type="hidden" id="team_code" name="team_code" value='. $team['value'] .'> 
+ <button type="submit" name="send_team" id="send_team"> 
+ <img '.($team['value'] == $selected_team_logo ? 'style="background-color: #a7f037; padding: 10px"' : null) .' src= "https://media.api-sports.io/football/teams/'. $team['value']. '.png"/> 
+ </button>
+ </form> 
+</div>';
+}
+
+if (isset($_POST['send_team'])) {
+    setcookie('teams_team_selection', $_POST['team_code'], time() + 3600, '/');
+
+}
+
+echo "</div><div> 
 
 <div id='header_info'> 
 </div>
 
-<div class='center_buttons'>
+<div class='center_buttons'>"; 
+
+/*
 
 <form action='./teams' method='post'>";
 
@@ -142,6 +159,7 @@ for ($i =0; $i < sizeof($teams); $i++) {
 echo "
 </select>
 </form>";
+*/
 
 echo "<form action='./teams' method='post'>";
 
@@ -163,13 +181,16 @@ setcookie('teams_season_selection', $_POST['season_selection'], time() + 3600, '
 
 ?>
 
+
 <script> 
-  for (i=1; i< document.getElementById('team_selection').length; i++) {
-if (document.getElementById('team_selection')[i].selected) {
-  selectedTeam = document.getElementById('team_selection')[i].value
+/*
+ for (i=1; i< (document.getElementById('season_selection').length); i++) {
+if (document.getElementById('season_selection')[i].selected) {
+  selectedSeason = document.getElementById('season_selection')[i].value
 }
 }
-document.cookie = 'teams_team_selection=' + selectedTeam + ';expires= ' + Date.now() + 86400 + '; path=/';
+document.cookie = 'teams_season_selection=' + selectedSeason + ';expires= ' + Date.now() + 86400 + '; path=/';
+*/
 </script> 
 
 <?php 

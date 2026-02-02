@@ -115,7 +115,7 @@ $response= json_decode($response_json, true);
 */
 
 if (!$_GET['season']) {
-  header("Location: ./league.php?league=" . $league_id . "&season=" . $selected_season);
+  header("Location: ./league.php?league=" . $league_id . "&season=" . $selected_season . "&round_selection=" .$round_of_first_upcoming_matches);
 }
 
 if ($_GET['id']) {

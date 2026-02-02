@@ -1,11 +1,23 @@
 <?php 
 
+//http://localhost/football_leagues/teams.php?id=864317
+
+$teams = array(
+  ['value' => 194, 'bg' => '#c2002f, #fff'],
+  ['value' => 413, 'bg' => '#009b69, #ed1c24, #080808'],
+  ['value' => 209, 'bg' => '#ed1c24, #000'],
+  ['value' => 197, 'bg' => '#ed1c24, #fff'],
+  ['value' => 412, 'bg' => '#e73140, #fff'],
+  ['value' => 192, 'bg' => '#ff0000, #fff']
+  
+);
+
 $status_live = array('1H', 'HT', '2H', 'ET', 'P', 'SUSP', 'INT');
 
-$statusInPlay = array('1H', 'HT', '2H','ET', 'P', 'SUSP', 'INT', 'PEN', 'PST', 'ABD');
+$statusInPlay = array('1H', 'HT', '2H','ET', 'P', 'SUSP', 'INT', 'PST', 'ABD');
 
 $status_nl = array('1e helft', 'Rust', '2e helft', 'Verlenging', 'Penalties', 'Stilgelegd', 
-'Tijd. stilgelegd', 'Afgelopen NS', 'Uitgesteld', 'Afgelast');
+'Tijd. stilgelegd', 'Uitgesteld', 'Afgelast');
 
 $status = array_combine($statusInPlay, $status_nl);
 
@@ -72,6 +84,8 @@ $array_rounds = array(
 'League Stage - 6' => 'ronde 6',
 'League Stage - 7' => 'ronde 7',
 'League Stage - 8' => 'ronde 8', 
+'Knockout Round Play-offs' => 'Tussenronde',
+'Round of 32' => 'zestiende finales',     
 'Round of 16' => 'achtste finales',
 'Quarter-finals' => 'kwartfinale',
 'Semi-finals' => 'halve finale',
