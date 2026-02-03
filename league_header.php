@@ -91,12 +91,7 @@ $php_array_for_dates = json_decode($enddates, true);
 
 //echo sizeof($php_array_for_dates); 
 
-$IntlDateFormatter = new IntlDateFormatter(
-  'nl_NL',
-  IntlDateFormatter::SHORT,
-  IntlDateFormatter::NONE
 
-);
 
 for ($i = 1; $i < sizeof($allrounds) + 1; $i++) {
     array_push($allrounds, $i);

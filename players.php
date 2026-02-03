@@ -18,6 +18,13 @@ include('./variables.php');
 
 include('./translations.php');
 
+$IntlDateFormatter = new IntlDateFormatter(
+  'nl_NL',
+  IntlDateFormatter::LONG,
+  IntlDateFormatter::NONE
+
+);
+
 
 // Profiel speler ophalen... 
 
@@ -124,7 +131,7 @@ echo '<br>
 
 <tr><td valign="top">
 Geboren op: </td>
-<td> ' .$response_player['response'][0]['player']['birth']['date'] . 
+<td> ' . $IntlDateFormatter->format(strtotime($response_player['response'][0]['player']['birth']['date'])) . 
 ' (' . $response_player['response'][0]['player']['age'] .' jaar) 
 <br>te ' .$response_player['response'][0]['player']['birth']['place'] . ' (' 
 .   (array_key_exists($response_player['response'][0]['player']['birth']['country'], $array_countries) ?  

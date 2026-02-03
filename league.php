@@ -114,8 +114,9 @@ $response_json = file_get_contents($array_season, true);
 $response= json_decode($response_json, true);
 */
 
+
 if (!$_GET['season']) {
-  header("Location: ./league.php?league=" . $league_id . "&season=" . $selected_season . "&round_selection=" .$round_of_first_upcoming_matches);
+  header("Location: ./league.php?league=$league_id&season=$selected_season&round_selection=$round_of_first_upcoming_matches");
 }
 
 if ($_GET['id']) {
@@ -149,7 +150,7 @@ if ($numGames > 0 ) {
   $awayTeam = $response['response'][$i]['teams']['away']['name'];
   $matchId = $response['response'][$i]['fixture']['id'];
   $matchStatus = $response['response'][$i]['fixture']['status']['short'];
-  $elapsed = $response['response'][$i]['fixture']['status']['elapsed'] + $matches_on_selected_day[$i]['fixture']['status']['extra'];
+  $elapsed = $response['response'][$i]['fixture']['status']['elapsed'] + $response['response'][$i]['fixture']['status']['extra'];
 
 
   $selectedround_int_leagues = $response['response'][$i]['league']['round']; 
@@ -227,7 +228,7 @@ else {
          echo date('H:i', $response['response'][$i]['fixture']['timestamp'])  . '<br>';
 
       
-    // Bij live westrijden elke minuut pagina herladen om status te checken..
+    // Bij live wedstrijden elke minuut pagina herladen om status te checken..
 
          if (array_key_exists($matchStatus, $status)) {
           ?>
@@ -239,11 +240,18 @@ else {
             <?php
          }
 
+         if (array_key_exists($matchStatus, $status_cancel)) {
+          echo '<div>' . $status_cancel[$matchStatus] . '<br>';
+         }
+         else {
+               
          echo '
          <div '. (array_key_exists($matchStatus, $status)? 'class="font_status_match red">' 
          . $status[$matchStatus] .' - ' . $elapsed . '"' : 'class="black_color"') . 
-         '<br>
-         
+         '<br>';
+         }
+
+         echo '         
          <div class="score" ' . (!array_key_exists($matchStatus, $status)? 'style="padding-top: 10%"' :null) . '>' .
         '<div class="score_home ' 
         . (!is_null($response['response'][$i]['goals']['home']) ? 'pd_score' : null) . 
@@ -351,7 +359,7 @@ fclose($json_file_enddate);
 }
 */
 
-if (sizeof($matchesInRound) > 3) {
+if ( (sizeof($matchesInRound) > 3) || ($_GET['id']) ) {
   echo '
   <div id="arrow_up">↑</div>';
 };

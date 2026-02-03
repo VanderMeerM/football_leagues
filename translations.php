@@ -14,12 +14,19 @@ $teams = array(
 
 $status_live = array('1H', 'HT', '2H', 'ET', 'P', 'SUSP', 'INT');
 
-$statusInPlay = array('1H', 'HT', '2H','ET', 'P', 'SUSP', 'INT', 'PST', 'ABD');
-
 $status_nl = array('1e helft', 'Rust', '2e helft', 'Verlenging', 'Penalties', 'Stilgelegd', 
-'Tijd. stilgelegd', 'Uitgesteld', 'Afgelast');
+'Tijd. stilgelegd');
 
-$status = array_combine($statusInPlay, $status_nl);
+//$statusInPlay = array('1H', 'HT', '2H','ET', 'P', 'SUSP', 'INT');
+
+$status_cancel_abbrev = array('PST', 'ABD'); 
+
+$status_cancel_nl = array('Uitgesteld', 'Afgelast');
+
+
+$status = array_combine($status_live, $status_nl);
+
+$status_cancel = array_combine($status_cancel_abbrev, $status_cancel_nl);
 
 
 $array_type = array('Goal' => 'football.png', 'Yellow Card' => 'yellow_card.png', 
@@ -104,11 +111,11 @@ $array_countries = array(
   'Netherlands' => 'Nederland',
   'Belgium' => 'België',
   'Germany' => 'Duitsland',
-  'Italy' => 'Italië',
-  'Spain' => 'Spanje',
   'Switzerland' => 'Zwitserland',
   'Austria' => 'Oostenrijk', 
   'France' => 'Frankrijk',
+  'Italy' => 'Italië',
+  'Spain' => 'Spanje',
   'Norway' => 'Noorwegen',
   'Sweden' => 'Zweden',
   'Denmark' => 'Denemarken',
@@ -116,6 +123,8 @@ $array_countries = array(
   'Poland' => 'Polen',
   'Hungary' => 'Hongarije', 
   'Slovakia' => 'Slowakije',
-  'Czechia' => 'Tsjechië'
+  'Czechia' => 'Tsjechië',
+  'Brazil' => 'Brazilië', 
+  'Argentina' => 'Argentinië'
 
 );

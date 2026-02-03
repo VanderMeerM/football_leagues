@@ -1,8 +1,7 @@
 
+- pijltje op individuele wedstrijd-pagina v
 
-- pijltje op individuele wedstrijd-pagina 
-
--datum op spelerspagina 
+- live wedstrijden op day als eerste tonen (laatste live wedstrijd wordt nog 2x getoond) 
 
 - cookie voor sortering op competitie/tijdstip op day 
  (bug: switch naar competitie werkt pas bij tweede keer, cookie werkt überhaupt niet op Strato) 
@@ -12,24 +11,12 @@
 
 - bij internationale competities ronde ook 1 dag na speeldatum nog selecteren 
 
-- live wedstrijden op day als eerste tonen (laatste wedstrijd wordt nog 2x getoond) 
-
-
 - styling events/line-up 
-
-
-
-op eind 
-- 3.Liga en Portugese competitie toevoegen 
-
-- api uit harde code halen (verwijzen naar api-bestand)
-
-- tailwind op webserver (Strato) installeren 
 
 
 Clubs 
 
-- styling afzonderlijke wedstrijden op club-pagina (werkt uberhaupt niet) 
+- styling afzonderlijke wedstrijden op club-pagina (werkt überhaupt niet) 
 
 - seizoen wordt niet onthouden na switchen club (gebeurt wel op leagues)
 
@@ -38,7 +25,9 @@ Clubs
 
 - styling pagina clubs 
 
----
+
+
+--- overige wensen 
 
 - sortering Europese competities bij live wedstrijden  
 
@@ -50,8 +39,18 @@ Clubs
 - virtuele stand inbouwen 
 
 
+--- geheel op eind 
+
+- 3.Liga en Portugese competitie toevoegen 
+
+- api uit harde code halen (verwijzen naar api-bestand)
+
+- tailwind op webserver (Strato) installeren 
+
 
 Afgerond: 
+
+- datum op spelerspagina v
 
 - clubnaam uit teams-array halen onder clubs (curl wordt later uitgevoerd) v 
 selectievenster voor clubs vervangen door 'paneel' met logo's van clubs bovenaan 

@@ -27,12 +27,12 @@ setcookie('LeagueTime', 'ob_time', time() + (86400 * 30), "/");
 */
 
 if ($_POST['orderByLeagueTime'] === 'ob_league') {
-  setcookie('LeagueTime', 'ob_league', time() + (86400 * 30), "/");
+  setcookie("LeagueTime", "ob_league", (time() + (86400 * 30)), "/");
 
 }
 
 elseif ($_POST['orderByLeagueTime'] === 'ob_time') {
-  setcookie('LeagueTime', 'ob_time', time() + (86400 * 30), "/");
+  setcookie("LeagueTime", "ob_time", (time() + (86400 * 30)), "/");
 
 }
 
@@ -199,7 +199,7 @@ $matches_on_selected_day = array_merge($matches_live, $matches_rest);
 
 //$matches_on_selected_day = $all_matches_leagues_sorted;
 
-//print_r($matches_live);
+//print_r($matches_rest);
 
 $numGames = sizeof($matches_on_selected_day);
 
@@ -306,7 +306,7 @@ echo
          echo date('d-m-Y H:i', $matches_on_selected_day[$i]['fixture']['timestamp']);
 
 
-         // Bij live westrijden elke minuut pagina herladen om status te checken..
+         // Bij live wedstrijden elke minuut pagina herladen om status te checken..
 
          if (array_key_exists($matchStatus, $status_live)) {
           ?>
@@ -318,11 +318,16 @@ echo
             <?php
          }
           
-
+         if (array_key_exists($matchStatus, $status_cancel)) {
+          echo '<div>' . $status_cancel[$matchStatus] . '<br>';
+         }
+         else {
           echo
          '<div '. (array_key_exists($matchStatus, $status)? 'class="font_status_match red">' 
          . $status[$matchStatus] .' - ' . $elapsed . '"' : 'class="black_color"') . 
-         '<br>
+         '<br>';
+         }
+         echo '
          <div class="score" ' . (!array_key_exists($matchStatus, $status)? 'style="padding-top: 10%"' :null) . '>' .
         '<div class="score_home ' . (!is_null($matches_on_selected_day[$i]['goals']['home']) ? 'pd_score' : null) . '">' . $matches_on_selected_day[$i]['goals']['home'] . '</div>' . 
         

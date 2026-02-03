@@ -220,12 +220,20 @@ echo'
 
          if (!$_GET['id'])  { echo $all_matches_leagues[$i]['fixture']['venue']['city'] . '<br>'; }
 
-         echo date('d-m-Y H:i', $all_matches_leagues[$i]['fixture']['timestamp'])  . '<br>
-         
+         echo date('d-m-Y H:i', $all_matches_leagues[$i]['fixture']['timestamp'])  . '<br>';
+
+           if (array_key_exists($matchStatus, $status_cancel)) {
+          echo '<div>' . $status_cancel[$matchStatus] . '<br>';
+         }
+         else {
+
+         echo '         
          <div class="font_status_match red">'. (array_key_exists($matchStatus, $status)? 
           $status[$matchStatus] .' - ' . $elapsed . '"' : null) . 
 
           '</div>'; 
+
+         }
 
           if ($matchStatus === 'PEN') {
             if ($all_matches_leagues[$i]['teams']['home']['winner'] = '1') { 
@@ -305,7 +313,7 @@ echo'
     echo '</a>';
    }
 
-   // Bij live westrijden elke minuut pagina herladen om status te checken..
+   // Bij live wedstrijden elke minuut pagina herladen om status te checken..
 
   if (array_key_exists($matchStatus, $status_live)) {
           ?>
