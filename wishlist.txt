@@ -1,13 +1,14 @@
 
-- pijltje op individuele wedstrijd-pagina v
 
-- live wedstrijden op day als eerste tonen (laatste live wedstrijd wordt nog 2x getoond) 
-
-- cookie voor sortering op competitie/tijdstip op day 
- (bug: switch naar competitie werkt pas bij tweede keer, cookie werkt überhaupt niet op Strato) 
+Day 
 
 - aanklikken day moet soms 2x om wedstrijden op gewenste datum te krijgen 
 
+- cookie voor sortering op competitie/tijdstip 
+ (bug: switch naar competitie werkt pas bij tweede keer, cookie werkt überhaupt niet op Strato) 
+
+- bij url met alleen _GET[league] wedstrijden uit eerstvolgende ronde tonen 
+(selectie is goed, wedstrijden zijn nog standaard ronde 1) - werkt niet op Strato 
 
 - bij internationale competities ronde ook 1 dag na speeldatum nog selecteren 
 
@@ -50,13 +51,14 @@ Clubs
 
 Afgerond: 
 
+- live wedstrijden op day als eerste tonen v 
+
+- pijltje op individuele wedstrijd-pagina v
+
 - datum op spelerspagina v
 
 - clubnaam uit teams-array halen onder clubs (curl wordt later uitgevoerd) v 
-selectievenster voor clubs vervangen door 'paneel' met logo's van clubs bovenaan 
-
-- bij url met alleen _GET[league] wedstrijden uit eerstvolgende ronde tonen 
-(selectie is goed, wedstrijden zijn nog standaard ronde 1) v
+(i.c.m. selectievenster voor clubs vervangen door 'paneel' met logo's van clubs bovenaan) 
 
 - eerstvolgende wedstrijd op clubs (incl. vandaag) als eerste plaatsen v
 
