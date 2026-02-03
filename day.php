@@ -389,8 +389,8 @@ echo
    echo '</div>
    <div style="height: 10px"></div>';
 
-   
-   if ( (sizeof($matchesInRound) > 3) || ($_GET['id']) ) {
+
+   if ( (sizeof($matches_on_selected_day) > 3) || ($_GET['id']) ) {
   echo '
   <div id="arrow_up">↑</div>';
 };
