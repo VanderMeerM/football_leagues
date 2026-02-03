@@ -326,7 +326,7 @@ echo
          else {
           echo
          '<div '. (array_key_exists($matchStatus, $status)? 'class="font_status_match red">' 
-         . $status[$matchStatus] .' - ' . $elapsed . '"' : 'class="black_color"') . 
+         . $elapsed . '"' .'('.$status[$matchStatus] .')' : 'class="black_color"') . 
          '<br>';
          }
          echo '
