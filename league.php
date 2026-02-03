@@ -332,6 +332,12 @@ if ( (date('Y') >  ($selected_season + 1)) ||
  }
  }
 
+ if ( (sizeof($matchesInRound) > 3) || ($_GET['id']) ) {
+  echo '
+  <div id="arrow_up">↑</div>';
+};
+
+
    if ($_GET['id']) {
    include ('./events.php');
    include ('./lineup.php');
@@ -359,10 +365,7 @@ fclose($json_file_enddate);
 }
 */
 
-if ( (sizeof($matchesInRound) > 3) || ($_GET['id']) ) {
-  echo '
-  <div id="arrow_up">↑</div>';
-};
+
 
 ?>
 
