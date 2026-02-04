@@ -110,11 +110,16 @@ $array_countries = array(
   'Norway' => 'Noorwegen',
   'Sweden' => 'Zweden',
   'Denmark' => 'Denemarken',
+  'England' => 'Engeland',
+  'Scotland' => 'Schotland',
+  'Ireland' => 'Ierland',
+  'Northern Ireland' => 'Noord-Ierland',
   'Iceland' => 'IJsland',
   'Poland' => 'Polen',
   'Hungary' => 'Hongarije', 
   'Slovakia' => 'Slowakije',
   'Czechia' => 'Tsjechië',
+  'Morocco' => 'Marokko',
   'Brazil' => 'Brazilië', 
   'Argentina' => 'Argentinië'
 
