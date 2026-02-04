@@ -237,7 +237,7 @@ echo'
 
          echo '         
          <div class="font_status_match red">'. (array_key_exists($matchStatus, $status)? 
-          $elapsed .'"' .  '('.$status[$matchStatus] .')' : null) . 
+          $elapsed .'"' .  ' ('.$status[$matchStatus] .')' : null) . 
 
           '</div>'; 
 

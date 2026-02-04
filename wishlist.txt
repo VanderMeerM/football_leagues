@@ -15,18 +15,17 @@ Day
 - styling events/line-up 
 
 
-- bij url met alleen _GET[league] wedstrijden uit eerstvolgende ronde tonen 
-(selectie is goed, wedstrijden zijn nog standaard ronde 1) - werkt niet op Strato 
 
+Teams 
 
-Clubs 
+- Seizoen wordt niet onthouden na switchen team (gebeurt wel op leagues; wrs vanwege $_Get['season'])
 
-- Seizoen wordt niet onthouden na switchen club (gebeurt wel op leagues wrs vanwege $_Get['season'])
+- afzonderlijke wedstrijden werkt niet 
 
 - Bij aanklikken afzonderlijke wedstrijdflow moet menu Overzicht terug naar overzicht wedstrijden
 + hightlighten geselecteerde club 
 
-- In stand moet Toon programma weer terug naar overzicht wedstrijden - of niet?  
+- In stand moet Toon programma weer terug naar overzicht wedstrijden (of juist op competitieronde laten)?  
 
 
 - styling pagina clubs 
@@ -57,6 +56,9 @@ Clubs
 
 
 Afgerond: 
+
+- bij url zonder 'gets' wedstrijden uit eerstvolgende ronde tonen 
+(selectie is goed, wedstrijden zijn nog standaard ronde 1) v  
 
 - link Toon stand onder clubs moet naar reguliere competitie van betreffende club wijzen 
 (is standaard 88) v 
