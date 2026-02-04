@@ -114,9 +114,17 @@ $response_json = file_get_contents($array_season, true);
 $response= json_decode($response_json, true);
 */
 
-
 if (!$_GET['season']) {
-  header("Location: ./league.php?league=$league_id&season=$selected_season&round_selection=$round_of_first_upcoming_matches");
+
+?>
+<script>
+  let leagueId = <?php echo json_encode($league_id); ?>;
+  let currentSeason = <?php echo json_encode($current_season) ?>;
+  let roundFirstUpcomingMatch = <?php echo json_encode($round_of_first_upcoming_matches); ?>;
+  window.location.replace(`./league.php?league=${leagueId}&season=${currentSeason}&round_selection=${roundFirstUpcomingMatch}`);
+</script>
+<?php
+ // header("Location: ./league.php?league=$league_id&season=$selected_season&round_selection=$round_of_first_upcoming_matches");
 }
 
 if ($_GET['id']) {
@@ -241,7 +249,7 @@ else {
          }
 
          if (array_key_exists($matchStatus, $status_cancel)) {
-          echo '<div>' . $status_cancel[$matchStatus] . '<br>';
+          echo '<div class="font_status_match red">' . $status_cancel[$matchStatus] . '<br>';
          }
          else {
                

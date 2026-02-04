@@ -25,23 +25,25 @@ echo "
 </div>";
 
 $view = 'hidden';
- 
-if (str_contains($current_page, $menu_league) && (!str_contains($current_page, $menu_day)) && (!str_contains($current_page, $menu_standings))) {
-  
-  echo '<li><a id="table_txt" href="./standings?league=' . $league_id . '&season=' . $selected_season . '"></a></li>';
-}
 
-if (str_contains($current_page, $menu_standings)) {
-  echo '<li><a id="prog_txt" href="./league?league=' . $league_id . '&season=' . $selected_season . '"></a></li>';
-}
+  echo '<li><a id="table_txt" href="./standings?league=' . $selected_leage_team . '&season=' . $selected_season_team . '&team='.$selected_team_team.'"></a></li>';
+
 
 // Menu Overzicht
-if ($_GET['id']) {
+
+if ( ($_GET['id']) && (str_contains($current_page, $menu_teams)) ) {
+ $ref = "./teams";
+ $font_color = "white";
+ $cursor = "pointer";
+}
+
+elseif ($_GET['id']) {
 
  $ref = "./league?league=$league_to_fixture&season=$season_to_fixture&round_selection=$round_to_fixture";
  $font_color = "white";
  $cursor = "pointer";
 } 
+
 else {
   $ref = "#";
   $font_color = 'lightgray';
@@ -122,7 +124,7 @@ echo '
 }
 
 if (isset($_POST['send_team'])) {
-    setcookie('teams_team_selection', $_POST['team_code'], time() + 3600, '/');
+    setcookie('teams_team_selection', $team['value'], time() + 3600, '/');
 
 }
 

@@ -321,7 +321,7 @@ echo
          }
           
          if (array_key_exists($matchStatus, $status_cancel)) {
-          echo '<div>' . $status_cancel[$matchStatus] . '<br>';
+          echo '<div class="font_status_match red">' . $status_cancel[$matchStatus] . '<br>';
          }
          else {
           echo

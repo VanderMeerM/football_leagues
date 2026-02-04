@@ -18,6 +18,9 @@ include('./variables.php');
 
 include('./translations.php');
 
+include('./close_window.php');
+
+
 $IntlDateFormatter = new IntlDateFormatter(
   'nl_NL',
   IntlDateFormatter::LONG,
@@ -94,7 +97,7 @@ $response_player_teams = json_decode($response_player_teams, true);
 <style>
 
 table {
-    margin: auto;
+    margin: 80px auto;
     width: 30%;
     border-collapse: collapse;
 }
@@ -163,7 +166,7 @@ echo '<td colspan="2"><strong>Clubs</strong></td>';
 for ($i=0; $i < sizeof($array_teams); $i++) {
 
 echo 
-'<tr><td>' . $array_teams[$i]['team']['name'] . '</td>
+'<tr><td valign="top">' . $array_teams[$i]['team']['name'] . '</td>
 <td>'; 
 
 $counter = 0; 

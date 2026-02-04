@@ -18,6 +18,8 @@ include('./variables.php');
 
 include('./translations.php');
 
+include('./close_window.php');
+
 
 // Info team ophalen... 
 
@@ -55,7 +57,7 @@ include('./translations.php');
 <style>
 
 table {
-    margin: auto;
+    margin: 80px auto;
     width: 30%;
     border-collapse: collapse;
 }
@@ -110,7 +112,7 @@ Stadion: </td>
 <td>' . $response_team['response'][0]['venue']['name'] . ' te ' . $response_team['response'][0]['venue']['city'] .  
 '</td></tr>  
 
-<tr><td>
+<tr><td valign="top">
 Capaciteit: </td>
 <td>' . $response_team['response'][0]['venue']['capacity'] .  
 '</td></tr>

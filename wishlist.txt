@@ -1,5 +1,7 @@
 
 
+- Sluiten pagina op speler en club 
+
 Day 
 
 - aanklikken day moet soms 2x om wedstrijden op gewenste datum te krijgen 
@@ -7,24 +9,29 @@ Day
 - cookie voor sortering op competitie/tijdstip 
  (bug: switch naar competitie werkt pas bij tweede keer, cookie werkt überhaupt niet op Strato) 
 
-- bij url met alleen _GET[league] wedstrijden uit eerstvolgende ronde tonen 
-(selectie is goed, wedstrijden zijn nog standaard ronde 1) - werkt niet op Strato 
 
 - bij internationale competities ronde ook 1 dag na speeldatum nog selecteren 
 
 - styling events/line-up 
 
 
+- bij url met alleen _GET[league] wedstrijden uit eerstvolgende ronde tonen 
+(selectie is goed, wedstrijden zijn nog standaard ronde 1) - werkt niet op Strato 
+
+
 Clubs 
 
-- styling afzonderlijke wedstrijden op club-pagina (werkt überhaupt niet) 
+- Seizoen wordt niet onthouden na switchen club (gebeurt wel op leagues wrs vanwege $_Get['season'])
 
-- seizoen wordt niet onthouden na switchen club (gebeurt wel op leagues)
+- Bij aanklikken afzonderlijke wedstrijdflow moet menu Overzicht terug naar overzicht wedstrijden
++ hightlighten geselecteerde club 
 
-- link Toon stand onder clubs moet naar reguliere competitie van betreffende club wijzen 
-(is nu standaard 88)  
+- In stand moet Toon programma weer terug naar overzicht wedstrijden - of niet?  
+
 
 - styling pagina clubs 
+
+- styling afzonderlijke wedstrijden op club-pagina 
 
 
 
@@ -50,6 +57,9 @@ Clubs
 
 
 Afgerond: 
+
+- link Toon stand onder clubs moet naar reguliere competitie van betreffende club wijzen 
+(is standaard 88) v 
 
 - live wedstrijden op day als eerste tonen v 
 

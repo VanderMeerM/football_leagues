@@ -2,15 +2,6 @@
 
 //http://localhost/football_leagues/teams.php?id=864317
 
-$teams = array(
-  ['value' => 194, 'bg' => '#c2002f, #fff'],
-  ['value' => 413, 'bg' => '#009b69, #ed1c24, #080808'],
-  ['value' => 209, 'bg' => '#ed1c24, #000'],
-  ['value' => 197, 'bg' => '#ed1c24, #fff'],
-  ['value' => 412, 'bg' => '#e73140, #fff'],
-  ['value' => 192, 'bg' => '#ff0000, #fff']
-  
-);
 
 $status_live = array('1H', 'HT', '2H', 'ET', 'P', 'SUSP', 'INT');
 

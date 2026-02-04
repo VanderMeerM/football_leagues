@@ -99,8 +99,7 @@ $show_qualifications = floor( 0.8 * (($numTeams * 2) -2));
 echo 
 '<div style="margin-top: 3%"></div>
 
-<table>
-<tr>';
+<table>';
 
 for ($i = 0; $i < $numTeams; $i++) {
 
@@ -123,7 +122,7 @@ for ($i = 0; $i < $numTeams; $i++) {
   $goals_against = $response['response'][0]['league']['standings'][0][$i]['all']['goals']['against'];
   $goals_diff = $goals_for - $goals_against;  
 
-echo '<td>' . $response['response'][0]['league']['standings'][0][$i]['rank'] .  '. </td>' .
+echo '<tr '. ($_GET['team'] == $team_id ? 'style="background-color:yellow" id="focus_team"' : null) .'><td>' . $response['response'][0]['league']['standings'][0][$i]['rank'] .  '. </td>' .
 
 '<td id="hidden_cell"><a href="./clubs.php?id='.$team_id.'" target="_blank"><img class="logo_standings" src=' . $response['response'][0]['league']['standings'][0][$i]['team']['logo'] . '><a></td>' .  
 
@@ -168,6 +167,13 @@ echo '
   </div>';
 
 ?>
+
+
+<script defer>
+  
+  document.getElementById('focus_team').scrollIntoView({behavior: 'smooth'});
+ 
+  </script>
 
 </body>
 

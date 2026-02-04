@@ -24,6 +24,20 @@ $array_leagues = array_merge($array_reg_leagues, $array_intern_leagues);
 $menu_league = 'league';
 $menu_standings = 'standings';
 $menu_day = 'day';
+$menu_teams = 'teams';
+
+
+$teams = array(
+  ['value' => 194, 'bg' => '#c2002f, #fff'], // Ajax
+  ['value' => 209, 'bg' => '#ed1c24, #000'], // Feyenoord
+  ['value' => 197, 'bg' => '#ed1c24, #fff'], // PSV 
+  ['value' => 413, 'bg' => '#009b69, #ed1c24, #080808'], // NEC
+  ['value' => 200, 'bg' => '#fec900, #000'], // Vitesse 
+  ['value' => 412, 'bg' => '#e73140, #fff'], // MVV
+  ['value' => 192, 'bg' => '#ff0000, #fff'], // 1. FC Köln 
+  ['value' => 174, 'bg' => '#004b9c, #fff'], // FC Schalke 04
+  
+);
 
 /* 
 

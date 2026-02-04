@@ -73,8 +73,6 @@ include('./translations.php');
 
 echo '<div id="top"></div>';
 
-include('./teams_header.php');
-
 /*
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -113,6 +111,13 @@ if ($response['results'] > 0) {
 array_push($all_matches_leagues, $response);
 }}
 
+$selected_team_team = $all_matches_leagues[0]['parameters']['team'];
+$selected_leage_team = $all_matches_leagues[0]['parameters']['league'];
+$selected_season_team = $all_matches_leagues[0]['parameters']['season'];
+
+include('./teams_header.php');
+
+//print_r($all_matches_leagues[0]['parameters']['team']);
 
 // Gevonden wedstrijden in de competities chronologisch sorteren...
 
@@ -126,6 +131,7 @@ for ($n=0; $n < sizeof($all_matches_leagues); $n++) {
   array_push($matches_in_one_array, $all_matches_leagues[$n]['response'][$i]);
  } 
 }
+
 
 for ($i=0; $i < sizeof($matches_in_one_array); $i++) {
 
@@ -141,6 +147,8 @@ for ($i=0; $i < sizeof($matches_leagues_ts_keys); $i++) {
   
   $all_matches_leagues_sorted[] = $matches_in_one_array[$matches_leagues_ts_keys[$i]];
 }
+
+
 
 // Bepaal eerstvolgende wedstrijd (incl. vandaag) en zet deze bovenaan 
 
@@ -223,7 +231,7 @@ echo'
          echo date('d-m-Y H:i', $all_matches_leagues[$i]['fixture']['timestamp'])  . '<br>';
 
            if (array_key_exists($matchStatus, $status_cancel)) {
-          echo '<div>' . $status_cancel[$matchStatus] . '<br>';
+          echo '<div class="font_status_match red">' . $status_cancel[$matchStatus] . '<br>';
          }
          else {
 
