@@ -310,7 +310,7 @@ echo
 
          // Bij live wedstrijden elke minuut pagina herladen om status te checken..
 
-         if (array_key_exists($matchStatus, $status_live)) {
+         if (array_key_exists($matchStatus, $status)) {
           ?>
           <script>
       setTimeout(() => {
