@@ -114,7 +114,7 @@ $response_json = file_get_contents($array_season, true);
 $response= json_decode($response_json, true);
 */
 
-if (!$_GET['season']) {
+if ((!$_GET['season']) && (!$_GET['id'])) {
 
 ?>
 <script>
