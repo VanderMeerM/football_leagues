@@ -18,8 +18,19 @@ echo "
 </div>";
 
 $view = 'hidden';
+
+if (($_GET['id']) && (in_array($league_to_fixture, $array_extra_leagues))) // bij tonen afzonderlijke bekerwedstrijd.. 
+  {
+    echo '<li><a href= "#" style= "color: lightgray; cursor: none">Toon stand</a></li>';
+   
+
+  } 
  
-if (str_contains($current_page, $menu_league) && (!str_contains($current_page, $menu_day)) && (!str_contains($current_page, $menu_standings))) {
+elseif 
+(str_contains($current_page, $menu_league) && (!str_contains($current_page, $menu_day)) && (!str_contains($current_page, $menu_standings)))
+// alleen bij reguliere competitie, niet bij dag of stand.. 
+
+{
   
   if ($_GET['id']) {
     echo '<li><a id="table_txt" href="./standings?league=' . $league_to_fixture . '&season=' . $season_to_fixture . '"></a></li>';
@@ -29,22 +40,31 @@ if (str_contains($current_page, $menu_league) && (!str_contains($current_page, $
 }
 }
 
-if (str_contains($current_page, $menu_standings)) {
+if (str_contains($current_page, $menu_standings)) { // bij menu Stand.. 
   echo '<li><a id="prog_txt" href="./league?league=' . $league_id . '&season=' . $selected_season . '"></a></li>';
 }
 
 // Menu Overzicht
-if ($_GET['id']) {
+
+if ( ( ($_GET['id']) && (in_array($league_to_fixture, $array_extra_leagues)) ) // bij tonen afzonderlijke bekerwedstrijd.. 
+  || (!$_GET['id']) ) {
+  $ref = './day?datum=' . $_GET['datum']. '';
+  $font_color = 'white';
+  $cursor = "pointer"; 
+}
+else if ($_GET['id']) {
 
  $ref = "./league?league=$league_to_fixture&season=$season_to_fixture&round_selection=$round_to_fixture";
  $font_color = "white";
  $cursor = "pointer";
 } 
+
 else {
   $ref = "#";
   $font_color = 'lightgray';
   $cursor = "none";
 }
+
 
 echo "
 <li><a href= $ref style= 'color: $font_color ;cursor: $cursor'>

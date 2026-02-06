@@ -16,7 +16,7 @@ $array_reg_leagues = [88, 89, 78, 79, 135, 140, 39, 40, 179, 408, 61, 144];
 
 $array_intern_leagues = [2, 3, 848]; 
 
-$array_extra_leagues = [81, 90, 45, 137, 32, 960, 5];
+$array_extra_leagues = [48, 81, 90, 45, 137, 32, 960, 5];
 
 $array_leagues = array_merge($array_reg_leagues, $array_intern_leagues); 
 

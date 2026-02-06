@@ -285,7 +285,8 @@ echo
 
 <div class="main_container">';
 
-   echo '<a style="background-color: ' .(date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? $backgr_today_match : null) .'" href="./league.php?id=' . $matchId . '">';
+   echo '<a style="background-color: ' .(date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? $backgr_today_match : null) .'" 
+   href="./league.php?id=' . $matchId . (in_array($league_id, $array_extra_leagues) ? '&datum='.$_GET['datum'] : null) .'">';
 
 }
 
