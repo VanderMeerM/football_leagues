@@ -234,7 +234,7 @@ echo "
 
 // Rij met logo's van competities opbouwen..
 
-echo "<div style=display:" . (str_contains($current_page, $menu_standings) ? 'block;' : "flex;") . "text-align: center>";
+echo "<div style=display:" . (str_contains($current_page, $menu_standings) ? 'block;' : "flex;") . ">";
 echo "<div class='container_league_logos'". (str_contains($current_page, $menu_day) ? 'style="margin-top: 70px;"' : null) . ">";
 
 foreach ($array_leagues as $al) {
@@ -305,7 +305,7 @@ foreach ($array_of_dates as $aod) {
     . date('m', $aod) . '</a></div>';
 }
     
-echo "</div>";
+echo "</div></div>";
  }
 ?>
 

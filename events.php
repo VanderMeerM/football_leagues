@@ -25,7 +25,8 @@ if ($_GET['id'] && file_exists($json_events_path)) {
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'GET',
       CURLOPT_HTTPHEADER => array(
-        'x-rapidapi-key: ' . $api_key . '',
+       //'x-rapidapi-key: ' . $api_key .'',
+     'x-rapidapi-key: 863bcd048478f98225b64bced629b376',
         'x-rapidapi-host: v3.football.api-sports.io',
         
       ),
@@ -137,20 +138,23 @@ $away_team_goals = [];
  
                   $all_team_events[$i]['elapsed']) . "' " .
 
-              '<a href= "./players?id='.$all_team_events[$i]['id'] .'" target=_blank>' 
+              '<a href= "./players?id='.$all_team_events[$i]['id'] .'" target=_blank>'
+              . ($all_team_events[$i]['type'] === 'subst' ?  '<span id="arrow_red"> → </span>' : null) 
               . $all_team_events[$i]['name'] . '</a>';
 
                if ($all_team_events[$i]['type'] === 'subst') {
 
-                  if (is_null($all_team_events[$i]['assist_id'])) {
-                      echo ' (voor <span style="color:#676161;"> ' . $all_team_events[$i]['assist_name'] . '</span>)';
+                if (is_null($all_team_events[$i]['assist_id'])) {
+                 echo ' <span id="arrow_green"> ← </span> ' . '<span style="color:#676161;"> ' . $all_team_events[$i]['assist_name'] . '</span>';
                   
-                  } else {                    
+                  } else {             
                     
-                echo ' (voor <a href= "./players?id='.$all_team_events[$i]['assist_id'] .'" 
-               target=_blank</a>'  . $all_team_events[$i]['assist_name'] . ')';
+                echo 
+              '<a href= "./players?id='.$all_team_events[$i]['assist_id'] .'" target=_blank>
+              <span id="arrow_green"> ← </span>'. $all_team_events[$i]['assist_name'] . '</a>';
                }
                }
+               
 
                if ($all_team_events[$i]['comments']) {
 

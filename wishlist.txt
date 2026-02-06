@@ -2,6 +2,8 @@
 
 - Sluiten pagina op speler en club 
 
+- Flow bij bekerwedstrijden (Toon stand = grijs, Overzicht = terug naar dagoverzicht)
+
 Day 
 
 - aanklikken day moet soms 2x om wedstrijden op gewenste datum te krijgen 
@@ -20,7 +22,7 @@ Teams
 
 - Seizoen wordt niet onthouden na switchen team (gebeurt wel op leagues; wrs vanwege $_Get['season'])
 
-- afzonderlijke wedstrijden werkt niet 
+- afzonderlijke wedstrijden werkt niet - alleen live? 
 
 - Bij aanklikken afzonderlijke wedstrijdflow moet menu Overzicht terug naar overzicht wedstrijden
 + hightlighten geselecteerde club 

@@ -505,6 +505,7 @@ img {
 #type_pic {
     width: 20px;
     height: auto;
+    margin: 0;
 }
 
 #play_min {
@@ -577,6 +578,17 @@ img {
 font-weight: bold; 
 font-size: 20px;
 color: rgb(75, 230, 75);
+}
+
+#arrow_green, 
+#arrow_red {
+    font-size: x-large;
+    color: #3c803c;
+    display: contents;
+}
+
+#arrow_red {
+   color: #d41818
 }
 
 .event_container, 

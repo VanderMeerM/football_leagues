@@ -167,7 +167,7 @@ for ($i=0; $i < sizeof($array_teams); $i++) {
 
 echo 
 '<tr><td valign="top">' . $array_teams[$i]['team']['name'] . '</td>
-<td>'; 
+<td <tr><td valign="top">'; 
 
 $counter = 0; 
 
