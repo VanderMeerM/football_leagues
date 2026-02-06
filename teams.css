@@ -505,7 +505,7 @@ img {
 #type_pic {
     width: 20px;
     height: auto;
-    margin: 0;
+   /* margin: 0; */
 }
 
 #play_min {
