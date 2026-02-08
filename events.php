@@ -127,16 +127,22 @@ $away_team_goals = [];
              || array_key_exists($all_team_events[$i]['detail'], $array_type)
             ) 
             {
-                echo
+
+            if ($all_team_events[$i]['type'] !== 'subst') {
+
+
+               echo
               
                 '<img id="type_pic" src="./img/' . 
                $array_type[$all_team_events[$i]['type']] . 
-               $array_type[$all_team_events[$i]['detail']] . ' ' . '">  ' .    
+               $array_type[$all_team_events[$i]['detail']] . ' ' . '">  ';
+            }    
             
+            echo 
                (sizeof(explode('-', $all_team_events[$i]['elapsed'])) > 1 ? 
-               explode('-', $all_team_events[$i]['elapsed'])[1]:
+                explode('-', $all_team_events[$i]['elapsed'])[1]:
  
-                  $all_team_events[$i]['elapsed']) . "' " .
+                $all_team_events[$i]['elapsed']) . "' " .
 
               '<a href= "./players?id='.$all_team_events[$i]['id'] .'" target=_blank>'
               . ($all_team_events[$i]['type'] === 'subst' ?  '<span id="arrow_red"> → </span>' : null) 
