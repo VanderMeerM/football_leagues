@@ -220,15 +220,23 @@ echo'
 
    
   echo '</div>
-          <div class="stscore_container ' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') . '">
+          <div class="stscore_container ' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') . '">';
 
-        <img class="white_background" id="league_logo_club" src="'. $all_matches_leagues[$i]['league']['logo'] . '" id="img_logo_day"><br>';
-                     
+        if (!$_GET['id'])  {
+
+        echo '<img class="white_background" id="league_logo_club" src="'. $all_matches_leagues[$i]['league']['logo'] . '" id="img_logo_day"><br>';
+
+        }
+         
+      if (!array_key_exists($matchStatus, $status)) {
+
          if ($_GET['id']) { echo $all_matches_leagues[$i]['fixture']['venue']['name'] . '<br>'; }
 
-         if (!$_GET['id'])  { echo $all_matches_leagues[$i]['fixture']['venue']['city'] . '<br>'; }
+         if (!$_GET['id'])  { echo $all_matches_leagues[$i]['fixture']['venue']['city'] . '<br>'; 
 
-         echo date('d-m-Y H:i', $all_matches_leagues[$i]['fixture']['timestamp'])  . '<br>';
+         echo date('d-m-Y H:i', $all_matches_leagues[$i]['fixture']['timestamp'])  . '<br>'; }
+      
+      }
 
            if (array_key_exists($matchStatus, $status_cancel)) {
           echo '<div class="font_status_match red">' . $status_cancel[$matchStatus] . '<br>';
@@ -237,7 +245,7 @@ echo'
 
          echo '         
          <div class="font_status_match red">'. (array_key_exists($matchStatus, $status)? 
-          $elapsed .'"' .  ' ('.$status[$matchStatus] .')' : null) . 
+          $elapsed .'"' .  '<br>'.$status[$matchStatus] : null) . 
 
           '</div>'; 
 

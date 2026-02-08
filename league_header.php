@@ -287,7 +287,7 @@ foreach ($array_leagues as $al) {
   echo "
   <form action='' name='form_leagues$al' method='post'>
 
-  <a href=$page_to_go> 
+  <a id= 'league_logo_a' href=$page_to_go> 
   <img class='league_icon' src='https://media.api-sports.io/football/leagues/$al.png'/>
   <input type='hidden' value=$al >
   </a>

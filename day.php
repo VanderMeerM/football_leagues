@@ -301,14 +301,17 @@ echo
   </div>
 
    <div class="stscore_container' . (date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? ' black_color' : ' white_color') .'">'; 
-                  
+ 
+        if (!array_key_exists($matchStatus, $status)) {
+
+   
          if ($_GET['id']) { echo $matches_on_selected_day[$i]['fixture']['venue']['name'] . '<br>'; }
 
          if (!$_GET['id'])  { echo $matches_on_selected_day[$i]['fixture']['venue']['city'] . '<br>'; }
 
          echo date('d-m-Y H:i', $matches_on_selected_day[$i]['fixture']['timestamp']);
 
-
+        }
          // Bij live wedstrijden elke minuut pagina herladen om status te checken..
 
          if (array_key_exists($matchStatus, $status)) {
@@ -327,7 +330,7 @@ echo
          else {
           echo
          '<div '. (array_key_exists($matchStatus, $status)? 'class="font_status_match red">' 
-         . $elapsed . '"' .' ('.$status[$matchStatus] .')' : 'class="black_color"') . 
+         . $elapsed . '"' .'<br>'.$status[$matchStatus] : 'class="black_color"') . 
          '<br>';
          }
          echo '

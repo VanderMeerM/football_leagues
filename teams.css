@@ -128,7 +128,7 @@ height: 2px;
 
 .font_status_match {
     font-size:15pt; 
-    font-weight: 600
+    font-weight: 600;
 }
 
 .container_league_logo_name, 
@@ -318,7 +318,7 @@ font-size: large;
 
 
 .extra_padding {
-    padding: 20px 0px;
+    padding: 20px 0px; 
     margin: 2% auto 0px;
 }
 
@@ -381,7 +381,8 @@ a {
     text-decoration: none;
 }
 
-td a {
+td a, 
+#league_logo_a {
     padding: 0px;
 }
 
@@ -806,7 +807,7 @@ table {
  }
 
  #league_logo_club {
-    width: 25px;
+    width: 15px;
 }
 
 #oncoming_match {
@@ -853,6 +854,11 @@ width: 350px;
     content: "Scheidsrechter: ";
 }
 
+
+.font_status_match {
+    font-size: 13pt; 
+}
+
 table {
     width: 350px;
 }
@@ -867,11 +873,14 @@ table {
  
      }
 
+ 
+     /*
+
+.score {
+    padding-top: 0px;
+ }
     
-     .score {
-        padding-top: 0px;
-     }
-        
+    */    
      
  .score_home, 
 .score_away {
