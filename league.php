@@ -232,10 +232,10 @@ else {
                   
          if ($_GET['id']) { echo $response['response'][$i]['fixture']['venue']['name'] . '<br>'; }
 
-         if (!$_GET['id'])  { echo $response['response'][$i]['fixture']['venue']['city'] . '<br>'; 
+         if (!$_GET['id'])  { echo $response['response'][$i]['fixture']['venue']['city'] . '<br>'; }
 
          echo $date . ' ';
-         echo date('H:i', $response['response'][$i]['fixture']['timestamp'])  . '<br>'; }
+         echo date('H:i', $response['response'][$i]['fixture']['timestamp'])  . '<br>'; 
      
       };
       
@@ -343,6 +343,8 @@ if ( (date('Y') >  ($selected_season + 1)) ||
  }
  }
 
+}}}
+
  if ( (sizeof($matchesInRound) > 3) || ($_GET['id']) ) {
   echo '
   <div id="arrow_up">↑</div>';
@@ -354,8 +356,7 @@ if ( (date('Y') >  ($selected_season + 1)) ||
    include ('./lineup.php');
    }
 
-  }}
-  }}
+  }
 
 /*  
 
