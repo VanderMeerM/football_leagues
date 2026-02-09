@@ -204,7 +204,7 @@ if ( ($round_to_select == $selectedround) || ($round_to_select === $selectedroun
 
   if (date('d-m-Y') === $date) {
 
-    echo '<div class="main_container background_today_match" ' . ($_GET['id'] ? 'style="display:flex"' : null) . '>';
+    echo '<div class="main_container background_today_match extra_padding" ' . ($_GET['id'] ? 'style="display:flex"' : null) . '>';
    }
   
 else { 
