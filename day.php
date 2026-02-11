@@ -304,11 +304,21 @@ echo
  
         if (!array_key_exists($matchStatus, $status)) {
    
-         if ($_GET['id']) { echo $matches_on_selected_day[$i]['fixture']['venue']['name'] . '<br>'; }
+       /* echo '<div'. ($matchStatus === 'PEN' ? ' id="rem_text_when_pen"' : null) .'>'
+         . $matches_on_selected_day[$i]['fixture']['venue']['name'] . '<br>'; 
 
-         if (!$_GET['id'])  { echo $matches_on_selected_day[$i]['fixture']['venue']['city'] . '<br>'; }
+         */
+
+        echo '<div'. ($matchStatus === 'PEN' ? ' id="rem_text_when_pen"' : null) .'>'
+          . $matches_on_selected_day[$i]['fixture']['venue']['city']; 
+
+          echo '</div>';
          
-         echo date('d-m-Y H:i', $matches_on_selected_day[$i]['fixture']['timestamp']); }
+                  
+         echo '<div'. ($matchStatus === 'PEN' ? ' id="rem_text_when_pen"' : null) .'>' 
+
+        . date('d-m-Y H:i', $matches_on_selected_day[$i]['fixture']['timestamp']) . '</div>'; 
+        }
 
         
          // Bij live wedstrijden elke minuut pagina herladen om status te checken..
@@ -328,10 +338,23 @@ echo
          }
          else {
           echo
-         '<div '. (array_key_exists($matchStatus, $status)? 'class="font_status_match red">' 
-         . $elapsed . '"' .'<br>'.$status[$matchStatus] : 'class="black_color"') . 
+         '<div '. (array_key_exists($matchStatus, $status)? 'class="font_status_match red">
+         '. ($matchStatus === 'P' ? null : $elapsed . '"') . 
+         '<br>'.$status[$matchStatus] : 'class="black_color"') . 
          '<br>';
          }
+
+          if ($matchStatus === 'PEN') {
+            if ($matches_on_selected_day[$i]['teams']['home']['winner'] == 1) { 
+                echo '<div class="white_color">'. $homeTeam . ' w.n.s. <br>'; 
+                }
+                elseif ($matches_on_selected_day[$i]['teams']['away']['winner'] == 1) { 
+                   echo '<div class="white_color">'. $awayTeam . ' w.n.s.<br>'; 
+                }
+                 echo '(' . $matches_on_selected_day[$i]['score']['penalty']['home']. ' - 
+                ' .$matches_on_selected_day[$i]['score']['penalty']['away'] . ')</div>';
+          }
+             
          echo '
          <div class="score" ' . (!array_key_exists($matchStatus, $status)? 'style="padding-top: 10%"' :null) . '>' .
         '<div class="score_home ' . (!is_null($matches_on_selected_day[$i]['goals']['home']) ? 'pd_score' : null) . '">' . $matches_on_selected_day[$i]['goals']['home'] . '</div>' . 

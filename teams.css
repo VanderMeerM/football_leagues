@@ -409,6 +409,7 @@ width: 600px;
 margin: 0 auto;
 }
 
+
 #start_sub_team {
     text-align: center;
     font-weight: bold;
@@ -812,6 +813,11 @@ table {
 
 #oncoming_match {
 width: 350px; 
+}
+
+
+#rem_text_when_pen {
+    display: none;
 }
 
 .country_container,
