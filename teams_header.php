@@ -85,6 +85,12 @@ echo
 </div>';
 
 
+
+if ($_GET['id']) {
+  setcookie('teams_team_selection', $selected_team_team, (time() + 3600), '/');
+
+}
+
 for ($i=$current_season; $i >= 2010; $i--) {
   array_push($allseasons, $i);
 }
@@ -94,6 +100,8 @@ for ($i=0 ; $i < sizeof($teams); $i++) {
    $bc = $teams[$i]['bg'];
  }
 }
+
+
 
 echo '
 <div class="title_container" style="background-image: linear-gradient(to right, ' . $bc . ')">
@@ -117,14 +125,15 @@ echo '
 <form action="./teams" method="post">
   <input type="hidden" id="team_code" name="team_code" value='. $team['value'] .'> 
  <button type="submit" name="send_team" id="send_team"> 
- <img '.($team['value'] == $selected_team_logo ? 'style="background-color: #a7f037; padding: 10px"' : null) .' src= "https://media.api-sports.io/football/teams/'. $team['value']. '.png"/> 
+ <img '.($team['value'] == $selected_team_logo ? setcookie('teams_team_selection', $team['value'], time() + 3600, '/')
+ : null) .' src= "https://media.api-sports.io/football/teams/'. $team['value']. '.png"/> 
  </button>
  </form> 
 </div>';
 }
 
 if (isset($_POST['send_team'])) {
-    setcookie('teams_team_selection', $team['value'], time() + 3600, '/');
+   setcookie('teams_team_selection', $team['value'], time() + 3600, '/');
 
 }
 
@@ -177,7 +186,7 @@ for ($i =0; $i < sizeof($allseasons); $i++) {
    
     }
 
-setcookie('teams_season_selection', $_POST['season_selection'], time() + 3600, '/');
+setcookie('teams_season_selection', $_POST['season_selection'], (time() + 3600), '/');
 
 // cookie in JS opslaan, zodat selectie altijd behouden blijft. 
 

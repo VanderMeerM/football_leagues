@@ -188,9 +188,10 @@ if ($numGames > 0 ) {
   $elapsed = $all_matches_leagues[$i]['fixture']['status']['elapsed'] + $all_matches_leagues[$i]['fixture']['status']['extra'];
 
     
-  if ((!$_GET['id']) || ($_GET['id'] && $_GET['id'] == $matchId)) {
+ if ((!$_GET['id']) || ($_GET['id'] && $_GET['id'] == $matchId)) {
 
-if (strtotime('today') <= strtotime($date)) {
+  
+    if (strtotime('today') <= strtotime($date)) {
 
     echo '<div id="focus"></div>';
 }
@@ -355,9 +356,9 @@ echo'
   }}
   }}
 
-   if (!$_GET['id']) {
+  
     echo '<div class="white_background" style="padding: 0" id="arrow_up">↑</div>';
-    }
+  
 
 ?>
 
