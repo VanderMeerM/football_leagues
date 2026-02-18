@@ -1,17 +1,11 @@
 
 
-- Sluiten pagina op speler en club 
-
-
 Day 
 
 - aanklikken day moet soms 2x om wedstrijden op gewenste datum te krijgen 
 
 - cookie voor sortering op competitie/tijdstip 
  (bug: switch naar competitie werkt pas bij tweede keer, cookie werkt überhaupt niet op Strato) 
-
- - bij afzonderlijke wedstrijd moet menu Overzicht teruggaan naar dagoverzicht en datum selecteren 
-
 
 - bij internationale competities ronde ook 1 dag na speeldatum nog selecteren 
 
@@ -58,6 +52,8 @@ Teams
 
 
 Afgerond: 
+
+- Day: bij afzonderlijke wedstrijd moet menu Overzicht teruggaan naar dagoverzicht en datum selecteren v
 
 - Flow bij bekerwedstrijden (Toon stand = grijs, Overzicht = terug naar dagoverzicht) v
 

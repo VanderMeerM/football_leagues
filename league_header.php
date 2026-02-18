@@ -46,30 +46,35 @@ if (str_contains($current_page, $menu_standings)) { // bij menu Stand..
 
 // Menu Overzicht
 
+/*
 if ( ( ($_GET['id']) && (in_array($league_to_fixture, $array_extra_leagues)) ) // bij tonen afzonderlijke bekerwedstrijd.. 
-  || (!$_GET['id']) ) {
-  $ref = './day?datum=' . $_GET['datum']. '';
+  || ( (!$_GET['id']) && ( (!str_contains($current_page, $menu_day)) ))) { // bij dagoverzicht
+  $ref = './day?datum' . $_GET['datum']. '';
   $font_color = 'white';
   $cursor = "pointer"; 
 }
-else if ($_GET['id']) {
+  */
+if ($_GET['id']) {
 
- $ref = "./league?league=$league_to_fixture&season=$season_to_fixture&round_selection=$round_to_fixture";
+ (!$_GET['datum'] ? 
+ $ref = "./league?league=$league_to_fixture&season=$season_to_fixture&round_selection=$round_to_fixture" :
+ $ref = './day?datum=' . $_GET['datum'] . '');
+
  $font_color = "white";
  $cursor = "pointer";
+ 
+ echo "
+<li><a href= $ref style= 'color: $font_color ;cursor: $cursor'>
+Overzicht</a></li>";
 } 
 
+/*
 else {
   $ref = "#";
   $font_color = 'lightgray';
   $cursor = "none";
 }
-
-
-echo "
-<li><a href= $ref style= 'color: $font_color ;cursor: $cursor'>
-Overzicht</a></li>";
-
+*/
 
 // Menu Vandaag 
 
@@ -209,8 +214,9 @@ for ($i = 0; $i < sizeof($array_dates_intern_leagues); $i++) {
  $first_key_int = array_key_first($array_dates_int_round_sorted[$i]);
  $last_key_int = array_key_last($array_dates_int_round_sorted[$i]);
 
+ 
    echo '
-    <option '. ($selected_date_int_round[0] >=  $array_dates_int_round_sorted[$i][$first_key_int] ? 'selected' : null) . ' value= "' . array_keys($array_dates_intern_leagues)[$i] . '">'
+    <option '. ( intval($selected_date_int_round[0] + 86400) >=  intval($array_dates_int_round_sorted[$i][$first_key_int]) ? 'selected' : null) . ' value= "' . array_keys($array_dates_intern_leagues)[$i] . '">'
      . (array_key_exists(array_keys($array_dates_intern_leagues)[$i], $array_rounds) ? ucfirst($array_rounds[array_keys($array_dates_intern_leagues)[$i]]) : array_keys($array_dates_intern_leagues)[$i]) . ' 
      (' .  date('d-m', $array_dates_int_round_sorted[$i][$first_key_int]) . ' - ' 
       . date('d-m', $array_dates_int_round_sorted[$i][$last_key_int]) .')

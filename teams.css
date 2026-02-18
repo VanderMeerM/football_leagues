@@ -185,6 +185,9 @@ height: 2px;
     align-items: center;
 }
 
+.menubuttons a {
+    width: 100px;
+}
 
 ul {
 display: flex;
@@ -249,7 +252,7 @@ tr:nth-child(odd) {
 }
 
 tr:nth-child(even) {
-    background-color: rgb(173, 171, 171);
+    background-color: rgb(221, 212, 212);
 }
 
 td {
@@ -789,6 +792,11 @@ margin-top: 20px;
 #prog_txt::after {
     content: "Programma";
 } 
+
+.menubuttons a {
+    width: 70px;
+}
+
 
 table {
     width: 450px;
