@@ -172,11 +172,11 @@ for ($i = 0; $i < $num_lineups; $i++) {
         <tr>
         
         <td>
-        <a href="./players?id='.$home_startXI[$i]['id'].'" target=_blank> ' . $home_startXI[$i]['number'] . '. ' . $home_startXI[$i]['name'] . '
+        <a href="./assets/players?id='.$home_startXI[$i]['id'].'" target=_blank> ' . $home_startXI[$i]['number'] . '. ' . $home_startXI[$i]['name'] . '
         </td> 
         
         <td>
-        <a href="./players?id='.$away_startXI[$i]['id'].'" target=_blank> ' .  $away_startXI[$i]['number'] . '. ' . $away_startXI[$i]['name'] . '
+        <a href="./assets/players?id='.$away_startXI[$i]['id'].'" target=_blank> ' .  $away_startXI[$i]['number'] . '. ' . $away_startXI[$i]['name'] . '
         </td>
         
         </tr>'; 
@@ -217,9 +217,9 @@ for ($i = 0; $i < $num_lineups; $i++) {
        echo  '
         <tr>
         <td> 
-        <a href="./players?id='. $home_sub[$i]['id'].'" target=_blank> ' . $home_sub[$i]['number'] . '. ' . $home_sub[$i]['name'] . '</td> 
+        <a href="./assets/players?id='. $home_sub[$i]['id'].'" target=_blank> ' . $home_sub[$i]['number'] . '. ' . $home_sub[$i]['name'] . '</td> 
         <td>
-        <a href="./players?id='.$away_sub[$i]['id'].'" target=_blank> ' . $away_sub[$i]['number'] . '. ' . $away_sub[$i]['name'] . '</div>';
+        <a href="./assets/players?id='.$away_sub[$i]['id'].'" target=_blank> ' . $away_sub[$i]['number'] . '. ' . $away_sub[$i]['name'] . '</div>';
         echo '</tr>'; 
      }
 
