@@ -12,13 +12,13 @@
 
 <?php
 
-require('./assets/api.php');
+require('./api.php');
 
-include('./assets/variables.php');
+include('./variables.php');
 
-include('./assets/translations.php');
+include('./translations.php');
 
-include('./assets/close_window.php');
+include('./close_window.php');
 
 
 $IntlDateFormatter = new IntlDateFormatter(
