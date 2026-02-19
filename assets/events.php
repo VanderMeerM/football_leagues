@@ -1,7 +1,7 @@
 
 <?php
 
-require('./assets/api.php');
+require('./api.php');
 
 if ($_GET['id'] && file_exists($json_events_path)) {
 
