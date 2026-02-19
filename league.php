@@ -39,11 +39,11 @@ document.addEventListener("visibilitychange", function() {
 
 <?php 
 
-require('./api.php');
+require('./assets/api.php');
 
-include('./variables.php');
+include('./assets/variables.php');
 
-include('./translations.php');
+include('./assets/translations.php');
 
 
 // Controleer of er al een seizoen (uit het verleden) is opgeslagen..
@@ -102,7 +102,7 @@ $response = json_decode($response, true);
 
 $numGames = $response['results'];
 
-include('./get_current_round.php');
+include('./assets/get_current_round.php');
 
 // Deze 5 regels uitcommentariëren
 
@@ -139,7 +139,7 @@ $games_per_round = [];
 echo '<div id="top"></div>';
 
 // Uitcommentariëren bij binnenhalen einddata afgelopen seizoenen (zie ook 260)
-include('./league_header.php');
+include('./assets/league_header.php');
 
 $prevent_loop = false;
 
@@ -352,8 +352,8 @@ if ( (date('Y') >  ($selected_season + 1)) ||
 
 
    if ($_GET['id']) {
-   include ('./events.php');
-   include ('./lineup.php');
+   include ('./assets/events.php');
+   include ('./assets/lineup.php');
    }
 
   }

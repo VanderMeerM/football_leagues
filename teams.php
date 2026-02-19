@@ -65,11 +65,11 @@ if ($_POST['season_selection']) {
   $season = $current_season;
  };
 
-require('./api.php');
+require('./assets/api.php');
 
-include('./variables.php');
+include('./assets/variables.php');
 
-include('./translations.php');
+include('./assets/translations.php');
 
 echo '<div id="top"></div>';
 
@@ -115,7 +115,7 @@ $selected_team_team = $all_matches_leagues[0]['parameters']['team'];
 $selected_leage_team = $all_matches_leagues[0]['parameters']['league'];
 $selected_season_team = $all_matches_leagues[0]['parameters']['season'];
 
-include('./teams_header.php');
+include('./assets/teams_header.php');
 
 //print_r($all_matches_leagues[0]['parameters']['team']);
 
@@ -348,8 +348,8 @@ echo'
    // Scoreverloop en opstellingen ophalen (alleen op afzonderlijke wedstrijdpagina)...
 
    if ($_GET['id']) {
-   include ('./events.php');
-   include ('./lineup.php');
+   include ('./assets/events.php');
+   include ('./assets/lineup.php');
    }      
 
    
