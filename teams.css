@@ -7,6 +7,10 @@
     --bg_today_match: #e4cd84;
 }
 
+body {
+    width: 100%;
+}
+
 .menubar
 .main_container,
 .main_container_lineup_coach,
@@ -181,11 +185,21 @@ height: 2px;
 
 .menubuttons {
     margin: 2% 0;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.menubuttons a {
+li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menubuttons,
+.menubuttons a,
+#table_txt
+ {
     width: 100px;
 }
 
@@ -199,10 +213,10 @@ margin: 0;
 ul li a {
 /* background-color: var(--black); */
 display: block;
-padding: 10px;
+padding: 10px 0px;
 color:white;
 margin: 0 5px;
-width: 150px;
+width: 100px;
 text-align: center;
 }
 
@@ -293,8 +307,8 @@ button img {
 }
 
 
+/*# oncoming_match, */
 #season_title,
-#oncoming_match,
 .country_container,
 .stscore_container, 
 .score, .nomatches, a,
@@ -313,11 +327,13 @@ label {
     font-size: 25px;
 }
 
+/*
 #oncoming_match {
 width: 600px; 
 margin: 0 auto;
 font-size: large;
 }
+*/
 
 #season_title {
     margin-top: 50px;
@@ -755,6 +771,14 @@ margin-top: 20px;
 
 @media (max-width: 550px) {
 
+.menubuttons,
+.menubuttons a,
+#table_txt 
+{
+    width: fit-content;
+    padding: 0 5px;
+}
+
   .align-right {
     margin-left: 30%;
 }
@@ -793,9 +817,6 @@ margin-top: 20px;
     content: "Programma";
 } 
 
-.menubuttons a {
-    width: 70px;
-}
 
 
 table {
@@ -823,10 +844,11 @@ table {
     width: 15px;
 }
 
+/*
 #oncoming_match {
 width: 350px; 
 }
-
+*/
 
 #rem_text_when_pen {
     display: none;

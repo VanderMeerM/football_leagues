@@ -1,4 +1,6 @@
 
+- bij internationale competities ronde ook 1 dag na speeldatum nog selecteren 
+
 
 Day 
 
@@ -6,8 +8,6 @@ Day
 
 - cookie voor sortering op competitie/tijdstip 
  (bug: switch naar competitie werkt pas bij tweede keer, cookie werkt überhaupt niet op Strato) 
-
-- bij internationale competities ronde ook 1 dag na speeldatum nog selecteren 
 
 - styling events/line-up 
 
@@ -18,8 +18,6 @@ Teams
 - Seizoen wordt niet onthouden na switchen team (gebeurt wel op leagues; wrs vanwege $_Get['season'])
 
 - afzonderlijke wedstrijden werkt niet (verwijst naar club in cookie; hoe is live)? 
-
-- In stand moet Toon programma weer terug naar overzicht wedstrijden (of juist op competitieronde laten)?  
 
 - Bij afzonderlijke bekerwedstrijd stand 'ausgrauen'
 
@@ -42,16 +40,21 @@ Teams
 - virtuele stand inbouwen 
 
 
+
 --- geheel op eind 
 
-- 3.Liga en Portugese competitie toevoegen 
+- 3.Liga en Portugese competitie toevoegen (?) 
 
-- api uit harde code halen (verwijzen naar api-bestand)
+- api uit harde code halen (verwijzen naar api-bestand) 
 
-- tailwind op webserver (Strato) installeren 
+- overbodige uitgecommentarieerde code verwijderen 
+
+- tailwind op server (Strato) installeren 
 
 
 Afgerond: 
+
+- Day: in stand moet Toon programma weer terug naar overzicht wedstrijden (toch zo gelaten) 
 
 - Day: bij afzonderlijke wedstrijd moet menu Overzicht teruggaan naar dagoverzicht en datum selecteren v
 

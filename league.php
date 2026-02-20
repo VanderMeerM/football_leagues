@@ -121,7 +121,7 @@ if ((!$_GET['season']) && (!$_GET['id'])) {
   let leagueId = <?php echo json_encode($league_id); ?>;
   let currentSeason = <?php echo json_encode($current_season) ?>;
   let roundFirstUpcomingMatch = <?php echo json_encode($round_of_first_upcoming_matches); ?>;
-  window.location.replace(`./league.php?league=${leagueId}&season=${currentSeason}&round_selection=${roundFirstUpcomingMatch}`);
+  window.location.replace(`./league?league=${leagueId}&season=${currentSeason}&round_selection=${roundFirstUpcomingMatch}`);
 </script>
 <?php
  // header("Location: ./league.php?league=$league_id&season=$selected_season&round_selection=$round_of_first_upcoming_matches");
@@ -209,7 +209,7 @@ if ( ($round_to_select == $selectedround) || ($round_to_select === $selectedroun
   
 else { 
 
- echo '<div class="main_container" '. ($_GET['id'] ? 'style="display:flex"' : null) . '>'; 
+ echo '<div class="main_container extra_padding" '. ($_GET['id'] ? 'style="display:flex"' : null) . '>'; 
 }
 
   if (!$_GET['id']) {
