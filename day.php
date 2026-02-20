@@ -40,8 +40,8 @@ elseif ($_POST['orderByLeagueTime'] === 'ob_time') {
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
 */
+
 ?>
 
 <script>
@@ -57,11 +57,11 @@ document.addEventListener("visibilitychange", function() {
 
 <?php 
 
-require('./api.php');
+require('./assets/api.php');
 
-include('./variables.php');
+include('./assets/variables.php');
 
-include('./translations.php');
+include('./assets/translations.php');
 
 $all_matches_leagues = [];
 $matches_on_selected_day = [];
@@ -147,7 +147,7 @@ echo '<div id="top"></div>';
 
 // Uitcommentariëren bij binnenhalen einddata afgelopen seizoenen (zie ook 289)
 
-include('./league_header.php'); 
+include('./assets/league_header.php'); 
 
 if (sizeof($matches_on_selected_day) == 0) {
   echo '<div id="no_found_matches"> Geen wedstrijden op '. date('d-m-Y', $_POST['sel_day']).' gevonden.</div>';
@@ -330,7 +330,7 @@ echo
        if ($_GET['id']) { 
 
             echo '<p><div class="stscore_ref">
-            <img id="ref" src="./ref.png">' . '<br> ' . explode(',', $matches_on_selected_day[$i]['fixture']['referee'])[0] . 
+            <img id="ref" src="ref.png">' . '<br> ' . explode(',', $matches_on_selected_day[$i]['fixture']['referee'])[0] . 
            '<br>'; 
           
           
@@ -378,8 +378,8 @@ echo
 
 
    if ($_GET['id']) {
-   include ('./events.php');
-   include ('./lineup.php');
+   include ('./assets/events.php');
+   include ('./assets/lineup.php');
    }
 
   }
