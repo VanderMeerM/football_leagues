@@ -39,11 +39,11 @@ document.addEventListener("visibilitychange", function() {
 
 <?php 
 
-require('./api.php');
+require('./assets/api.php');
 
-include('./variables.php');
+include('./assets/variables.php');
 
-include('./translations.php');
+include('./assets/translations.php');
 
 
 // Controleer of er al een seizoen (uit het verleden) is opgeslagen..
@@ -102,7 +102,7 @@ $response = json_decode($response, true);
 
 $numGames = $response['results'];
 
-include('./get_current_round.php');
+include('./assets/get_current_round.php');
 
 // Deze 5 regels uitcommentariëren
 
@@ -114,8 +114,17 @@ $response_json = file_get_contents($array_season, true);
 $response= json_decode($response_json, true);
 */
 
-if (!$_GET['season']) {
-  header("Location: ./league.php?league=" . $league_id . "&season=" . $selected_season);
+if ((!$_GET['season']) && (!$_GET['id'])) {
+
+?>
+<script>
+  let leagueId = <?php echo json_encode($league_id); ?>;
+  let currentSeason = <?php echo json_encode($current_season) ?>;
+  let roundFirstUpcomingMatch = <?php echo json_encode($round_of_first_upcoming_matches); ?>;
+  window.location.replace(`./league.php?league=${leagueId}&season=${currentSeason}&round_selection=${roundFirstUpcomingMatch}`);
+</script>
+<?php
+ // header("Location: ./league.php?league=$league_id&season=$selected_season&round_selection=$round_of_first_upcoming_matches");
 }
 
 if ($_GET['id']) {
@@ -130,7 +139,7 @@ $games_per_round = [];
 echo '<div id="top"></div>';
 
 // Uitcommentariëren bij binnenhalen einddata afgelopen seizoenen (zie ook 260)
-include('./league_header.php');
+include('./assets/league_header.php');
 
 $prevent_loop = false;
 
@@ -149,6 +158,8 @@ if ($numGames > 0 ) {
   $awayTeam = $response['response'][$i]['teams']['away']['name'];
   $matchId = $response['response'][$i]['fixture']['id'];
   $matchStatus = $response['response'][$i]['fixture']['status']['short'];
+  $elapsed = $response['response'][$i]['fixture']['status']['elapsed'] + $response['response'][$i]['fixture']['status']['extra'];
+
 
   $selectedround_int_leagues = $response['response'][$i]['league']['round']; 
   $selectedround = intval(explode(' ', $response['response'][$i]['league']['round'])[3]);
@@ -198,7 +209,7 @@ if ( ($round_to_select == $selectedround) || ($round_to_select === $selectedroun
   
 else { 
 
- echo '<div class="main_container extra_padding" '. ($_GET['id'] ? 'style="display:flex"' : null) . '>'; 
+ echo '<div class="main_container" '. ($_GET['id'] ? 'style="display:flex"' : null) . '>'; 
 }
 
   if (!$_GET['id']) {
@@ -216,16 +227,19 @@ else {
  
    </div>
     <div class="stscore_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'">'; 
+      
+      if (!array_key_exists($matchStatus, $status)) {
                   
          if ($_GET['id']) { echo $response['response'][$i]['fixture']['venue']['name'] . '<br>'; }
 
          if (!$_GET['id'])  { echo $response['response'][$i]['fixture']['venue']['city'] . '<br>'; }
 
          echo $date . ' ';
-         echo date('H:i', $response['response'][$i]['fixture']['timestamp'])  . '<br>';
-
+         echo date('H:i', $response['response'][$i]['fixture']['timestamp'])  . '<br>'; 
+     
+      };
       
-    // Bij live westrijden elke minuut pagina herladen om status te checken..
+    // Bij live wedstrijden elke minuut pagina herladen om status te checken..
 
          if (array_key_exists($matchStatus, $status)) {
           ?>
@@ -237,11 +251,18 @@ else {
             <?php
          }
 
+         if (array_key_exists($matchStatus, $status_cancel)) {
+          echo '<div class="font_status_match red">' . $status_cancel[$matchStatus] . '<br>';
+         }
+         else {
+               
          echo '
-         <div '. (array_key_exists($matchStatus, $status)? 'class="font_status_match red">' 
-         . $status[$matchStatus] : 'class="black_color"') . 
-         '<br>
-         
+         <div '. (array_key_exists($matchStatus, $status) ? 'class="font_status_match red">' 
+         . $elapsed . '"' .'<br>'.$status[$matchStatus] : 'class="black_color"') . 
+         '<br>';
+         }
+
+         echo '         
          <div class="score" ' . (!array_key_exists($matchStatus, $status)? 'style="padding-top: 10%"' :null) . '>' .
         '<div class="score_home ' 
         . (!is_null($response['response'][$i]['goals']['home']) ? 'pd_score' : null) . 
@@ -264,7 +285,7 @@ else {
         if ($_GET['id']) { 
 
             echo '<p><div class="stscore_ref">
-            <img id="ref" src="./ref.png">' . '<br> ' . explode(',', $response['response'][$i]['fixture']['referee'])[0] . 
+            <img id="ref" src="ref.png">' . '<br> ' . explode(',', $response['response'][$i]['fixture']['referee'])[0] . 
            '<br>'; 
           
           
@@ -322,13 +343,20 @@ if ( (date('Y') >  ($selected_season + 1)) ||
  }
  }
 
+}}}
+
+ if ( (sizeof($matchesInRound) > 3) || ($_GET['id']) ) {
+  echo '
+  <div id="arrow_up">↑</div>';
+};
+
+
    if ($_GET['id']) {
-   include ('./events.php');
-   include ('./lineup.php');
+   include ('./assets/events.php');
+   include ('./assets/lineup.php');
    }
 
-  }}
-  }}
+  }
 
 /*  
 
@@ -349,10 +377,7 @@ fclose($json_file_enddate);
 }
 */
 
-if (sizeof($matchesInRound) > 3) {
-  echo '
-  <div id="arrow_up">↑</div>';
-};
+
 
 ?>
 
