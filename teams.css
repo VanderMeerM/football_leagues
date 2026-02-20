@@ -801,7 +801,7 @@ margin-top: 20px;
 
 @media (max-width: 500px) {
 
-    .btn_lineup {
+    .btn_lineup { 
         width: 500px;
     }
 
