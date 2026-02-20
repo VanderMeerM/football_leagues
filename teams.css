@@ -203,6 +203,10 @@ li {
     width: 100px;
 }
 
+#prog_txt {
+    width: fit-content;
+}
+
 ul {
 display: flex;
 list-style-type: none;
