@@ -31,29 +31,32 @@ $view = 'hidden';
 
 // Menu Overzicht
 
-if ( ($_GET['id']) && (str_contains($current_page, $menu_teams)) ) {
+/*if ( ($_GET['id']) && (str_contains($current_page, $menu_teams)) ) {
  $ref = "./teams";
  $font_color = "white";
  $cursor = "pointer";
 }
+ */
 
-elseif ($_GET['id']) {
+if ($_GET['id']) {
 
  $ref = "./league?league=$league_to_fixture&season=$season_to_fixture&round_selection=$round_to_fixture";
  $font_color = "white";
  $cursor = "pointer";
+ 
+ echo "
+<li><a href= $ref style= 'color: $font_color ;cursor: $cursor'>
+Overzicht</a></li>";
 } 
 
+/*
 else {
   $ref = "#";
   $font_color = 'lightgray';
   $cursor = "none";
 }
 
-echo "
-<li><a href= $ref style= 'color: $font_color ;cursor: $cursor'>
-Overzicht</a></li>";
-
+*/
 
 // Menu Vandaag 
 
