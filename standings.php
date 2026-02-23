@@ -19,6 +19,13 @@
 
 <?php 
 
+/*
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+*/
+
+
 require('./assets/api.php');
 
 include('./assets/variables.php');
@@ -78,16 +85,18 @@ $response = file_get_contents($json_standings, true);
 
 // Oudere standen opslaan (indien seizoen is afgelopen)...
 
+
 if ( (date('Y') >  ($_GET['season'] + 1)) || 
-(date('Y') ==  ($_GET['season'] + 1)) && (date('m') >= 6) 
+(date('Y') == ($_GET['season'] + 1)) && (date('m') >= 6) 
 && (!file_exists($json_standings_path)) ) {
 
-  $json_file_standing = fopen($json_standings_path, "w");
-  
+ $json_file_standing = fopen($json_standings_path, "w");
+   
+ /*
   fwrite($json_file_standing, json_encode($response));
   
   fclose($json_file_standing);
-      
+ */   
  }
 
 $numTeams = sizeof($response['response'][0]['league']['standings'][0]);
@@ -155,7 +164,7 @@ if ($played_to_show_qualifications >= $show_qualifications) {
 
 echo '
 <tr>
-<td colspan="6"><div class="text-sm italic">' . $description_qualifications . '</div>
+<td colspan="12"><div class="text-sm italic">' . $description_qualifications . '</div>
 </td>
 </tr>';
 }

@@ -65,7 +65,7 @@ height: 2px;
 #logo_club {
   text-align: center;
   padding: 2%;
-  width: 100px;
+  /*width: 100px;*/
 }
 
 #logo_club img {
@@ -301,15 +301,23 @@ button {
     margin: 5px;
 }
 
-button img {
-    width: 100px;
-}
 
-#send_team {
+#send_team, #bigger_logo {
     background-color: transparent;
     border: 0px;
 }
 
+#send_team img {
+    width: 100px;
+}
+
+#bigger_logo {
+    border: 2px rgb(161, 158, 158) solid;
+}
+
+#bigger_logo img {
+    width: 125px;
+}
 
 /*# oncoming_match, */
 #season_title,

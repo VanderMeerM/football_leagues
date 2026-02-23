@@ -15,16 +15,17 @@ Day
 
 Teams 
 
-- Seizoen wordt niet onthouden na switchen team (gebeurt wel op leagues; wrs vanwege $_Get['season'])
-
 - afzonderlijke wedstrijden werkt niet (verwijst naar club in cookie; hoe is live)? 
-
-- Bij afzonderlijke bekerwedstrijd stand 'ausgrauen'
 
 
 - styling pagina clubs 
 
 - styling afzonderlijke wedstrijden op club-pagina 
+
+
+Standen 
+
+- Opslaan oudere seizoenen werkt niet 
 
 
 
@@ -53,6 +54,10 @@ Teams
 
 
 Afgerond: 
+
+- Teams: bij bekerwedstrijd stand verbergen v 
+
+- Teams: seizoen wordt niet onthouden na switchen team (gebeurt wel op leagues; wrs vanwege $_Get['season']) v 
 
 - Day: in stand moet Toon programma weer terug naar overzicht wedstrijden (toch zo gelaten) 
 
