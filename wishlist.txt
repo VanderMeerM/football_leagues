@@ -1,6 +1,8 @@
 
 - bij internationale competities ronde ook 1 dag na speeldatum nog selecteren 
 
+-cookies lijken niet op Strato te werken..(gevolgen voor werking Day en Teams)
+
 
 Day
 
@@ -16,6 +18,7 @@ Day
 Teams 
 
 - afzonderlijke wedstrijden werkt niet (verwijst naar club in cookie; hoe is live)? 
+- Toon stand heeft geen league in url bij afzonderlijke wedstrijd 
 
 
 - styling pagina clubs 
