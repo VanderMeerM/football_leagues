@@ -12,7 +12,13 @@ $backgr_today_match = '#e4cd84';
 
 $allrounds = [];
 
-$array_reg_leagues = [88, 89, 78, 79, 135, 140, 39, 40, 179, 408, 61, 144]; 
+$array_dutch_leagues = [88,89];
+
+$array_german_leagues = [78,79]; 
+
+$array_nat_leagues = [135, 140, 39, 40, 179, 408, 61, 144]; 
+
+$array_reg_leagues = array_merge($array_dutch_leagues, $array_german_leagues, $array_nat_leagues);
 
 $array_intern_leagues = [2, 3, 848]; 
 
@@ -78,6 +84,8 @@ $json_fixture = './JSON/fixtures/fixture_' . $_GET['id'] . '.json';
 $json_lineup_path = './JSON/lineups/lineup_' . $_GET['id'] . '.json'; 
 
 $json_events_path = './JSON/events/event_' . $_GET['id'] . '.json'; 
+
+$json_standings_path = './JSON/seasons/season_' . $_GET['season'] . '.json'; 
 
 //$current_page = explode('/', $_SERVER['PHP_SELF'])[4];
 
