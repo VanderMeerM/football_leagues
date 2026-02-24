@@ -27,12 +27,12 @@ setcookie('LeagueTime', 'ob_time', time() + (86400 * 30), "/");
 */
 
 if ($_POST['orderByLeagueTime'] === 'ob_league') {
-  setcookie("LeagueTime", "ob_league", (time() + (86400 * 30)), "/");
+  setcookie("LeagueTime", "ob_league", time() + 86400, "/", '', true);
 
 }
 
 elseif ($_POST['orderByLeagueTime'] === 'ob_time') {
-  setcookie("LeagueTime", "ob_time", (time() + (86400 * 30)), "/");
+  setcookie("LeagueTime", "ob_time", time() + 86400, "/", '', true);
 
 }
 
@@ -244,8 +244,20 @@ value="ob_league" type="radio" ' .
 (($_POST['orderByLeagueTime'] === 'ob_time' || $_COOKIE['LeagueTime'] === 'ob_time' 
 || (!$_COOKIE['LeagueTime'] && !$_POST['orderByLeagueTime'])) ? 'checked' : null) . '> 
 <label for="ob_time">Tijdstip</label>
-</form>
-</div>';
+</form>';
+
+if (array_key_exists($matchStatus, $status)) {
+echo '<div id="loading">
+  <div class="hold left">
+    <div class="fill"></div>
+  </div>
+  <div class="hold right">
+    <div class="fill"></div>
+  </div>
+</div>'; 
+}
+
+echo '</div>';
 };
 
 

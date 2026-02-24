@@ -141,6 +141,20 @@ echo '<div id="top"></div>';
 // Uitcommentariëren bij binnenhalen einddata afgelopen seizoenen (zie ook 260)
 include('./assets/league_header.php');
 
+if (array_key_exists($matchStatus, $status)) {
+echo '
+<div class="container_circle">
+<div id="loading">
+  <div class="hold left">
+    <div class="fill"></div>
+  </div>
+  <div class="hold right">
+    <div class="fill"></div>
+  </div>
+</div>
+</div>'; 
+}
+
 $prevent_loop = false;
 
 //echo $league_id; //'Ronde:' . $round_of_first_upcoming_matches; 

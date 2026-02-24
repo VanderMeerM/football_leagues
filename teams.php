@@ -57,6 +57,8 @@ if ($_POST['team_code']) {
 
 if ($_POST['season_selection']) {
   $season = $_POST['season_selection'];
+  setcookie('teams_season_selection', $_POST['season_selection'], time() + 3600, '/', '', true);
+ 
 } else if (
  $_COOKIE['teams_season_selection'])
  {
@@ -113,9 +115,7 @@ array_push($all_matches_leagues, $response);
 
 $selected_team_team = $all_matches_leagues[0]['parameters']['team'];
 $selected_leage_team = $all_matches_leagues[0]['parameters']['league'];
-$selected_season_team = $all_matches_leagues[0]['parameters']['season'];
-
-include('./assets/teams_header.php');
+$selected_season_team = $all_matches_leagues[0]['parameters']['season']; 
 
 //print_r($all_matches_leagues[0]['parameters']['team']);
 
@@ -139,7 +139,7 @@ for ($i=0; $i < sizeof($matches_in_one_array); $i++) {
    
   }
  
- asort($matches_leagues_ts);
+asort($matches_leagues_ts);
  
 $matches_leagues_ts_keys = array_keys($matches_leagues_ts); 
 
@@ -147,7 +147,6 @@ for ($i=0; $i < sizeof($matches_leagues_ts_keys); $i++) {
   
   $all_matches_leagues_sorted[] = $matches_in_one_array[$matches_leagues_ts_keys[$i]];
 }
-
 
 
 // Bepaal eerstvolgende wedstrijd (incl. vandaag) en zet deze bovenaan 
@@ -167,6 +166,18 @@ for ($x=0; $x < sizeof($all_matches_leagues_sorted); $x++) {
 */
 $all_matches_leagues = $all_matches_leagues_sorted; //array_merge($match_today,$all_matches_leagues_sorted);
 
+
+// Bepalen van competitie bij 1 wedstrijd (belangrijk voor niet tonen menu Stand bij bekerwedstrijden)
+
+if ($_GET['id']) {
+  for ($i=0; $i < sizeof($all_matches_leagues); $i++) {
+    if ($all_matches_leagues[$i]['fixture']['id'] == $_GET['id']) {
+     $league_to_fixture = $all_matches_leagues[$i]['league']['id'];
+    };
+  }
+}
+
+include('./assets/teams_header.php');
 
 // Toon wedstrijden...
 

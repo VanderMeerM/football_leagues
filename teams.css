@@ -130,6 +130,11 @@ height: 2px;
     margin: auto;   
 }
 
+.container_sortby_league_time {
+    justify-content: center;
+    width: 700px;
+    }
+
 .font_status_match {
     font-size:15pt; 
     font-weight: 600;
@@ -141,11 +146,6 @@ height: 2px;
    /*  width: 600px; */
      justify-content: left; 
      margin: 30px auto 0px;
-}
-
-.container_sortby_league_time {
-    justify-content: center;
-    
 }
 
 #ob_time, #ob_league {
@@ -240,6 +240,95 @@ text-align: center;
 } 
 */
 
+.container_circle {
+    width: 600px;
+    display: flex;
+    justify-content: right;
+    margin: 0 auto;
+}
+
+/* Vullende cirkel voor aanduiden verversen live-wedstrijden */
+
+#loading {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  margin: 10px 0 0 0;
+}
+
+.hold {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  clip: rect(0px, 50px, 50px, 25px);
+  border-radius: 100%;
+  background-color: #fff;
+}
+
+.fill {  
+  background-color: #f50;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  clip: rect(0px, 25px, 50px, 0px); 
+
+}
+.left .fill {
+  z-index: 1;
+  -webkit-animation: left 30s linear;
+  -moz-animation: left 39s linear;
+  animation: left 30s linear both;
+}
+@keyframes left {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+@-webkit-keyframes left {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(180deg);
+  }
+}
+.right {
+  z-index: 3;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.right .fill {
+  z-index: 3;
+  -webkit-animation: right 30s linear;
+  -moz-animation: right 30s linear;
+  animation: right 30s linear both;
+  -webkit-animation-delay: 30s;
+  -moz-animation-delay: 30s;
+  animation-delay: 30s;
+}
+@keyframes right {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+@-webkit-keyframes right {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+/* Eind CSS cirkel */
 
 .main_container_league_season_rounds {
     display: flex;
@@ -727,7 +816,9 @@ color: rgb(75, 230, 75);
 
 @media (max-width: 600px) {
 
- .background_match {
+ .background_match, 
+ .container_sortby_league_time,
+ .container_circle {
     width: 550px;
  }
 
@@ -795,7 +886,8 @@ margin-top: 20px;
     margin-left: 30%;
 }
 
- .background_match {
+ .background_match,
+ .container_sortby_league_time {
     width: 500px;
  }
 
@@ -835,14 +927,16 @@ table {
     width: 450px;
 }
 
- .background_match {
+ .background_match,
+ .container_sortby_league_time {
    width: 375px;
  }
 
  .container_logos,
 .main_container, 
 .main_container_event,
-.main_container_lineup {
+.main_container_lineup,
+.container_circle {
     width: 350px;
     /* height: 200px; */
  }

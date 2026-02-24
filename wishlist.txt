@@ -17,8 +17,7 @@ Day
 
 Teams 
 
-- afzonderlijke wedstrijden werkt niet (verwijst naar club in cookie; hoe is live)? 
-- Toon stand heeft geen league in url bij afzonderlijke wedstrijd 
+- afzonderlijke wedstrijden werkt niet op Strato (cookies werken daar niet) 
 
 
 - styling pagina clubs 
@@ -58,9 +57,11 @@ Standen
 
 Afgerond: 
 
-- Teams: bij bekerwedstrijd stand verbergen v 
-
 - Teams: seizoen wordt niet onthouden na switchen team (gebeurt wel op leagues; wrs vanwege $_Get['season']) v 
+
+- Teams: Toon stand heeft geen league in url bij afzonderlijke wedstrijd v 
+
+- Teams: bij bekerwedstrijd stand verbergen v 
 
 - Day: in stand moet Toon programma weer terug naar overzicht wedstrijden (toch zo gelaten) 
 
