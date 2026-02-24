@@ -8,7 +8,6 @@ error_reporting(E_ALL);
 
 */
 
-
 echo "
 <div class='fixed fixed_menubar' style='background-color: #002e61;'>
 <div class='center_buttons'>
@@ -27,13 +26,15 @@ echo
 <a style='padding: 0px' href= './teams' > <img id='shirt' style='cursor:pointer' src='./img/shirt.png'></a>
 </div>";
 
-$view = 'hidden';
+//$view = 'hidden';
 
 // Menu Stand
 
-if (!in_array($league_to_fixture, $array_cup_leagues)) {
+if (!in_array($league_to_fixture, $array_cup_leagues)) { // Alleen tonen indien geen bekerwedstrijd 
 
-echo '<li><a id="table_txt" href="./standings?league='. ($_GET['id'] ? $league_to_fixture : $selected_leage_team) .'&season=' . $selected_season_team . '&team='.$team_id.'"></a></li>';
+//echo '<li><a id="table_txt" href="./standings?league='. ($_GET['id'] ? $league_to_fixture : $selected_leage_team) .'&season=' . $selected_season_team . '&team='.$team_id.'"></a></li>';
+echo '<li><a id="table_txt" href="./standings?league='. $selected_leage_team .'&season=' . $selected_season_team . '&team='.$team_id.'"></a></li>';
+
 
 }
 
@@ -69,8 +70,8 @@ echo
 '<div class="menubuttons"> 
 <select class="menu_sel_item" style=background-color:' .  $array_bgcolor_menubar[$league_id] . ' name="EKWK" onchange="window.open(this.value);">
   <option class="menu_option" selected disabled value="">EK/WK</option>
-  <option class="menu_option" value="../EK">EK</option>
-  <option class="menu_option" value="../WK">WK</option>
+  <option class="menu_option" value="./EK">EK</option>
+  <option class="menu_option" value="./WK">WK</option>
   </select>
 
 </ul>
@@ -80,7 +81,7 @@ echo
 
 
 if ($_GET['id']) {
-  setcookie('teams_team_selection', $selected_team_team, (time() + 3600), '/');
+  setcookie('teams_team_selection', $selected_team_team, (time() + 3600), '/', '', true);
 
 }
 
@@ -118,17 +119,19 @@ echo '
 <form action="./teams" method="post">
   <input type="hidden" id="team_code" name="team_code" value='. $team['value'] .'> 
  <button type="submit" name="send_team" id="send_team"> 
- <img '.($team['value'] == $selected_team_logo ? setcookie('teams_team_selection', $team['value'], time() + 3600, '/')
+ <img '.($team['value'] == $selected_team_logo ? setcookie('teams_team_selection', $team['value'], time() + 3600, '/', '', true)
  : null) . ' src= "https://media.api-sports.io/football/teams/'. $team['value']. '.png"/> 
  </button>
  </form> 
 </div>';
 }
 
+/*
 if (isset($_POST['send_team'])) {
    setcookie('teams_team_selection', $team['value'], time() + 3600, '/');
 
 }
+*/
 
 echo "</div><div> 
 
@@ -144,32 +147,29 @@ echo "<form action='./teams' method='post'>
 <option disabled>Kies een seizoen</option>"; 
 
 for ($i =0; $i < sizeof($allseasons); $i++) {
-
   
     echo '<option '. ($allseasons[$i] == $season ? 'selected' : null) . ' value= ' . $allseasons[$i] . 
     '>' . $allseasons[$i] . ' - ' . ($allseasons[$i] +1) .'</option>'; 
-   
     }
 
-//setcookie('teams_season_selection', $_POST['season_selection'], time() + 3600, '/');
 
-// cookie in JS opslaan, zodat selectie altijd behouden blijft. 
-
-?>
+//setcookie('teams_season_selection', $season, time() + 3600, '/', '', true);
 
 
-<script> 
 /*
+<script> 
+
  for (i=1; i< (document.getElementById('season_selection').length); i++) {
 if (document.getElementById('season_selection')[i].selected) {
   selectedSeason = document.getElementById('season_selection')[i].value
 }
 }
 document.cookie = 'teams_season_selection=' + selectedSeason + ';expires= ' + Date.now() + 86400 + '; path=/';
-*/
+
 </script> 
 
 <?php 
+*/
 
 echo "
 </select>

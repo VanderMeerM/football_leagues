@@ -67,14 +67,6 @@ $array_bgcolor_leagues =
 
 $array_bgcolor_menubar = array_combine($array_leagues, $array_bgcolor_leagues); 
 
-//$round_from_match_to_overview = setcookie('round_from_match_to_overview', $_GET['round_selection'], 3600, '/');
-
-//$_GET['league'] ? $league_id = $_GET['league'] : $league_id = 88; 
-
-//$_GET['season'] ? $selected_season = $_GET['season'] : $selected_season = $current_season; 
-
-
-
 // Paden 
 
 $json_league_season_path = './JSON/seasons/'. $league_id . '_season_'. $selected_season . ($selected_season + 1) . '.json'; 
