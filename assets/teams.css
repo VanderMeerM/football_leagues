@@ -1,0 +1,1060 @@
+
+:root {
+    --lightgray:  rgba(231, 229, 229, 0.888);
+    --blue: blue;
+    --black: rgb(31, 28, 28);
+    --grassgreen: #7ee26e;
+    --bg_today_match: #e4cd84;
+}
+
+body {
+    width: 100%;
+}
+
+.menubar
+.main_container,
+.main_container_lineup_coach,
+ a  {
+    display: flex;
+} 
+
+.title_container {
+    height:fit-content;
+}
+
+.top_standings {
+    margin: 20px 0 auto;
+}
+
+.fixed_menubar {
+    width: 100%;
+    height: 44px; 
+}
+
+.menubar {
+position: fixed;
+width: 100%;
+height: 2px;
+}
+
+.menu_dates {
+    display:flex; 
+    justify-content: center; 
+    margin-top: 10px;
+}
+
+.container_logos {
+    display: flex; 
+    justify-content: center;
+    flex-wrap: wrap;
+    border: solid #8c5d5d 1px;
+    width: fit-content;
+    padding: 20px;
+    margin: 0 auto 10px;
+}
+
+#logo {
+    margin: 20% 0 0;
+    max-width: 150px;
+}
+
+.larger_logo {
+    width: 150px;
+}
+
+#logo_club {
+  text-align: center;
+  padding: 2%;
+  /*width: 100px;*/
+}
+
+#logo_club img {
+  margin-top: 3%;
+  cursor: pointer;
+}
+
+#table_txt::after {
+    content: "Toon stand";
+} 
+
+#prog_txt::after {
+    content: "Toon programma";
+} 
+
+#agenda, #shirt {
+    width: 30px;
+    height: 30px;
+}
+
+#day, #day_menus {
+    background-color: #002e61;
+    color: white;
+}
+
+#day_menus {
+    text-align: center;
+    width: 80px;
+}
+
+#img_logo_day {
+    width: 25px; 
+    height: auto;
+}
+
+#no_found_matches {
+    text-align: center;
+    margin-top: 2%;
+    font-style: italic;
+    font-size: larger;
+}
+
+.white_background {
+    background-color: white;
+    padding: 2%;
+}
+
+.container_dates {
+    width: fit-content; 
+    margin: 0 15px;
+}
+
+.highlight_date {
+    background-color: rgb(226, 226, 37); 
+    width: 60px;
+}
+
+.background_match {
+    background-color: rgb(247, 243, 243);
+    width: 700px;
+    padding-bottom: 3%;
+    margin: auto;   
+}
+
+.container_sortby_league_time {
+    justify-content: center;
+    width: 700px;
+    }
+
+.font_status_match {
+    font-size:15pt; 
+    font-weight: 600;
+}
+
+.container_league_logo_name, 
+.container_sortby_league_time {
+    display: flex;
+   /*  width: 600px; */
+     justify-content: center; 
+     margin: 30px auto 0px;
+}
+
+#ob_time, #ob_league {
+    height: 15px;
+    margin: 2% 10px;
+    width: 15px;
+}
+
+
+.container_league_logo_name a {
+    padding: 30px 0 0 0;
+}
+
+#space_cont_league_logo {
+    padding: 5px 0px;
+    cursor: none;
+}
+
+#league_logo, 
+#league_logo_club {
+    margin: 0 15px 0 5px;
+    width: 25px;
+    height: auto;
+
+}
+
+#league_logo_club {
+    width: 50px;
+}
+
+
+.center_buttons {
+    justify-content: center;
+    display: flex;
+}
+
+
+.menubuttons {
+    margin: 2% 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menubuttons,
+.menubuttons a,
+#table_txt
+ {
+    width: 100px;
+}
+
+#prog_txt {
+    width: fit-content;
+}
+
+ul {
+display: flex;
+list-style-type: none;
+margin: 0;
+
+}
+
+ul li a {
+/* background-color: var(--black); */
+display: block;
+padding: 10px 0px;
+color:white;
+margin: 0 5px;
+width: 100px;
+text-align: center;
+}
+
+
+.main_container, 
+.main_container_event
+ {
+    width: 600px;
+    margin: 1% auto 0px;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+/*
+.main_container {
+    display: flex;
+} 
+*/
+
+.container_circle {
+    width: 600px;
+    display: flex;
+    justify-content: right;
+    margin: 0 auto;
+}
+
+/* Vullende cirkel voor aanduiden verversen live-wedstrijden */
+
+#loading {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  left: 25%;
+}
+
+.hold {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  clip: rect(0px, 50px, 50px, 25px);
+  border-radius: 100%;
+  background-color: #fff;
+}
+
+.fill {  
+  background-color: red;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  clip: rect(0px, 25px, 50px, 0px); 
+
+}
+.left .fill {
+  z-index: 1;
+  -webkit-animation: left 30s linear;
+  -moz-animation: left 39s linear;
+  animation: left 30s linear both;
+}
+@keyframes left {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+@-webkit-keyframes left {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(180deg);
+  }
+}
+.right {
+  z-index: 3;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.right .fill {
+  z-index: 3;
+  -webkit-animation: right 30s linear;
+  -moz-animation: right 30s linear;
+  animation: right 30s linear both;
+  -webkit-animation-delay: 30s;
+  -moz-animation-delay: 30s;
+  animation-delay: 30s;
+}
+@keyframes right {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+@-webkit-keyframes right {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+/* Eind CSS cirkel */
+
+.main_container_league_season_rounds {
+    display: flex;
+}
+
+.container_league_logos, 
+.menu_dates {
+   text-align: center;
+   max-height: fit-content;
+   overflow: auto;
+   white-space: nowrap;
+   background-color: var(--lightgray);
+    width: 100%;
+}
+
+.container_league_logos a {
+    display: inline-block;
+    text-decoration: none;
+}
+
+table {
+    margin: auto;
+    width: 600px;
+}
+
+tr:nth-child(odd) {
+    background-color: rgb(229, 223, 223);
+}
+
+tr:nth-child(even) {
+    background-color: rgb(221, 212, 212);
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+}
+
+.container_big_logo_league {
+    width: 25%;
+   /* display: none; */
+}
+
+
+#round_selection,
+#round_selection>option {
+ width: fit-content;
+ color: rgb(136, 27, 27);
+ margin-top: 30px;
+}
+
+
+#season_selection {
+    width: fit-content;
+}
+
+button {
+    background-color: black;
+    color: white;
+    margin: 5px;
+}
+
+
+#send_team, #bigger_logo {
+    background-color: transparent;
+    border: 0px;
+}
+
+#send_team img {
+    width: 100px;
+}
+
+#bigger_logo {
+    border: 2px rgb(161, 158, 158) solid;
+}
+
+#bigger_logo img {
+    width: 125px;
+}
+
+/*# oncoming_match, */
+#season_title,
+.country_container,
+.stscore_container, 
+.score, .nomatches, a,
+.event_container, 
+.event_container,
+.lineup_container, 
+#start_sub_team, 
+#play_min, 
+#no_found_matches,
+label, td {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#season_title, 
+label {
+    font-size: 25px;
+}
+
+/*
+#oncoming_match {
+width: 600px; 
+margin: 0 auto;
+font-size: large;
+}
+*/
+
+#season_title {
+    margin-top: 50px;
+}
+
+
+.extra_padding {
+    padding: 20px 0px; 
+    margin: 2% auto 0px;
+}
+
+.btn_container {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    /* margin: 2% 0 0 25%;*/
+}
+
+.block_class {
+    display:  block;
+}
+
+label {
+    font-style: italic;
+}
+
+form {
+    display: inline-flex;
+}
+
+/*.btn_container a, */
+#datepicker, select, option {
+    background-color: white;
+    color: var(--red);
+    margin: 5px;
+    padding: 3px;
+    width: fit-content;
+    text-align: center;
+    font-weight: bold;
+    border: 0px;
+}
+
+.menu_sel_item {
+ font-weight: bold;
+ color: white;
+ margin: 0 5px;
+ width: 100px;
+}
+
+.menu_option {
+    color:black;
+}
+
+#season_selection {
+    width: fit-content;
+}
+
+.txt-underline {
+    text-decoration: underline;
+    text-transform: uppercase;
+}
+
+
+a {
+    color: black;
+    padding: 20px 0px;
+    font-size: medium;
+    text-decoration: none;
+}
+
+td a, 
+#league_logo_a {
+    padding: 0px;
+}
+
+
+.main_container_line {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.main_container,
+.main_container_event,
+.main_container_lineup,
+.main_container_lineup_coach,
+#startteam,
+ a {
+    justify-content: center;
+   /* margin: 25px auto;
+    padding-bottom: 10px;
+    */
+}
+
+.main_container_lineup_coach {
+width: 600px;
+margin: 0 auto;
+}
+
+
+#start_sub_team {
+    text-align: center;
+    font-weight: bold;
+    margin: 5px;
+}
+
+/*.main_container_event,*/
+.main_container,
+.main_container a {
+    background-color: var(--black);
+}
+
+.background_today_match {
+    background-color: var(--bg_today_match);
+}
+
+.btn_lineup {
+    background-color: rgb(247, 244, 244);
+    width: 600px;
+    margin: 0 auto;
+    position: relative;
+    height: 80px;
+}
+
+#show_hide {
+   /* width: 600px; */
+    margin: 0 auto;
+}
+
+.main_container_event,
+.main_container_lineup {
+    padding: 5px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.main_container_lineup_home, 
+.main_container_lineup_away {
+    display: inline-block;
+    width: 50%;
+}
+
+.main_container_lineup_away {
+    float: right;
+
+}
+
+.main_container_event div 
+ {
+    background-color: #eeeaea;
+    margin: 3px 0px;
+}
+
+.country_container
+ {
+    width: 200px;
+    text-align: center;
+}
+
+.flag_container, 
+.flag_container img {
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+}
+
+.white_color {
+    color: white;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto 5%;
+    
+}
+
+.league_icon {
+    width: 60px;
+    height: auto; 
+    margin: 10px;
+}
+
+.league_icon:hover {
+    cursor: pointer;
+}
+
+.img_coach {
+    width: 80px;
+    height: auto;
+    
+}
+
+#type_pic {
+    width: 20px;
+    height: auto;
+   /* margin: 0; */
+}
+
+#play_min {
+    color: red;
+    font-style: italic;
+    font-weight: bold;
+    text-align: center;
+}
+
+#ref {
+    width: 20%;
+    height: auto;
+    margin-top: 10px;
+}
+
+.stscore_container, 
+.stscore_ref {
+    margin-top: 3%;
+    text-align: center;
+    width: 200px;
+   /* color:white; */
+}
+
+.stscore_ref {
+    display: flex;
+    justify-content: center;
+}
+
+.score {
+        font-weight: 500;
+        font-size: 30pt;
+        padding-top: 5%;
+        display: inline-flex;
+        justify-content: center;
+
+}
+
+.score_home, 
+.score_away {
+    background-color: whitesmoke;
+    font-size: 60px;
+    margin: 10%;
+    display: flex;
+    align-items: center;
+}
+
+.background_score_small_screens {
+    padding: 0%;
+}
+
+.pd_score {
+ padding: 5% 10%;
+}
+
+.vs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.red {
+    color: red;
+}
+
+.black_color {
+    color: black;
+}
+
+.p_shootout {
+font-weight: bold; 
+font-size: 20px;
+color: rgb(75, 230, 75);
+}
+
+#arrow_green, 
+#arrow_red {
+    font-size: x-large;
+    color: #3c803c;
+    display: contents;
+}
+
+#arrow_red {
+   color: #d41818
+}
+
+.event_container, 
+.event_container {
+    padding: 5px;
+    display: flex;
+    line-height: 1.8;
+}
+
+.lineup_container {
+    width: 50%;
+    text-align: center;
+}
+
+.align-left {
+    margin-left: 20%;
+}
+
+.align-right{
+    margin-left: 50%;
+}
+
+.nomatches {
+    padding-top: 5%;
+    text-align: center;
+    font-style: italic;
+}
+
+#show_hide_lineup, 
+#show_league {
+    margin-left: 3%;
+    background-color: var(--blue);
+    color: white;
+    border: 0px;
+    padding: 10px;
+    position: absolute;
+    top: 25%;
+    }
+
+.hide {
+    visibility: hidden;
+}
+
+.logo_standings {
+    width: 50px;
+    height: auto;
+}
+
+#arrow_up {
+   color: red;
+    position: fixed;
+    cursor: pointer;
+    bottom: 0%;
+    width: 100%;
+    font-size: xx-large;
+    }
+
+@media (max-width: 1500px) {
+.align-left {
+    margin-left: 20%;
+}
+}
+
+@media (max-width: 1300px) {
+    .align-left {
+        margin-left: 15%;
+    }
+    }
+
+ 
+@media (max-width: 900px) {
+
+  
+    .flag_container img {
+        width: 125px;
+        height: auto;
+    }
+
+    .align-right {
+        margin-left: 50%;
+    }
+
+    .align-left {
+        margin-left: 5%;
+    }
+}
+
+@media (max-width: 700px) {
+
+     #show_hide_lineup {
+        margin: 3% 0 0 5%;
+    }
+
+    #loading {
+        left: 15%;
+    }
+
+    /* .flag_container img {
+        width: 70px;
+    }
+        */
+}
+
+@media (max-width: 600px) {
+
+ .background_match, 
+ .container_sortby_league_time,
+ .container_circle {
+    width: 550px;
+ }
+
+.container_league_logos, 
+.menu_dates,
+.title_container, 
+.main_container,
+.main_container_event,
+.main_container_lineup,
+table {
+   width: 500px;
+   margin: 10px auto;
+}
+
+
+.container_big_logo_league a {
+    padding: 0px;
+}
+
+#logo {
+    margin: 20% auto 0;
+}
+
+.country_container {
+    width: 150px;
+}
+
+#hidden_cell {
+    display: none;
+}
+
+
+.main_container_league_season_rounds {
+    display: block;
+}
+    
+
+.container_big_logo_league {
+    width: 50%;
+    margin: auto;
+}
+
+#round_selection,
+#round_selection>option {
+margin-top: 20px;
+}
+
+/*
+.fixed_menubar {
+  width: 400px;
+  left: 59%;
+}
+  */
+}
+
+@media (max-width: 550px) {
+
+.menubuttons,
+.menubuttons a,
+#table_txt 
+{
+    width: fit-content;
+    padding: 0 5px;
+}
+
+  .align-right {
+    margin-left: 30%;
+}
+
+ .background_match,
+ .container_sortby_league_time {
+    width: 500px;
+ }
+
+.main_container_league_season_rounds img {
+    padding-top: 20px;
+}
+
+.btn_container {
+    padding: 0px;
+}
+.country_container {
+    width: 150px;
+}
+}
+
+@media (max-width: 500px) {
+
+    .btn_lineup { 
+        width: 500px;
+    }
+
+    ul li a {
+        width: 100px;
+    }
+
+    #table_txt::after {
+    content: "Stand";
+} 
+
+#prog_txt::after {
+    content: "Programma";
+} 
+
+
+
+table {
+    width: 450px;
+}
+
+ .background_match,
+ .container_sortby_league_time {
+   width: 375px;
+ }
+
+ .container_logos,
+.main_container, 
+.main_container_event,
+.main_container_lineup,
+.container_circle {
+    width: 350px;
+    /* height: 200px; */
+ }
+
+.container_league_logos form a, 
+.container_dates a {
+    width: fit-content;
+ }
+
+ #league_logo_club {
+    width: 15px;
+}
+
+/*
+#oncoming_match {
+width: 350px; 
+}
+*/
+
+#rem_text_when_pen {
+    display: none;
+}
+
+.country_container,
+.stscore_container {
+    width: 60px;
+    height: 130px;
+ }
+
+ .league_icon {
+    width: 50px;
+    margin: 5px;
+ }
+
+.btn_container {
+   padding: 0;
+   /*width: 50%; */
+    margin: 50px auto 0;
+}
+
+#logo {
+    width: 180px;
+    height: auto;
+}
+
+#season_title {
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.stscore_ref {
+    display: none;
+    
+}
+
+#ref {
+    display: none;
+}
+
+#ref::after {
+    content: "Scheidsrechter: ";
+}
+
+
+.font_status_match {
+    font-size: 13pt; 
+}
+
+table {
+    width: 350px;
+}
+
+    .stscore_container {
+        margin: 3%;
+        width: 170px;
+    }
+
+     .align-right {
+        margin-left: 25%;
+ 
+     }
+
+ 
+     /*
+
+.score {
+    padding-top: 0px;
+ }
+    
+    */    
+     
+ .score_home, 
+.score_away {
+    margin: 0;
+    height: 75px;
+}
+
+.background_score_small_screens {
+    background-color: whitesmoke;
+   }
+
+.padding_background_score_small_screens {
+    padding: 5% 10%;;
+}
+
+.height_live_score_small_screens {
+    height: 60px;
+}
+
+.pd_score {
+ padding: 0 10%;
+}
+
+}

@@ -124,10 +124,10 @@ for ($i = 1; $i < sizeof($allrounds) + 1; $i++) {
 
 ($_GET['id'] ? $big_image_leage = $league_to_fixture : $big_image_leage = $league_id); 
 
-echo "
+echo '
 
-<div class='main_container_league_season_rounds " 
- . (str_contains($current_page, $menu_standings) ? 'block_class' : null)  . ">";
+<div class="main_container_league_season_rounds" ' 
+ . (str_contains($current_page, $menu_standings) ? 'block_class' : null)  . '>';
 
 
 echo "
@@ -138,8 +138,9 @@ if (!str_contains($current_page, $menu_day)) {
 echo "
 <a href='./league?league=" . $league_id . "&season=" . $selected_season . "'>
   <img id='logo' src='https://media.api-sports.io/football/leagues/" . $big_image_leage . ".png'/>
-  </a>
+  </a>";
 
+echo "</div> 
 <div class='btn_container'>"; 
 
 if (!$_GET['id']) {
