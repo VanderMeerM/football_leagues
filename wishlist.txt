@@ -17,7 +17,7 @@ Day
 
 Teams 
 
-- afzonderlijke wedstrijden werkt niet op Strato (cookies werken daar niet) 
+- afzonderlijke wedstrijden werkt niet op Strato (m.u.v. Ajax; cookies werken daar niet) 
 
 
 - styling pagina clubs 

@@ -102,6 +102,21 @@ $response = json_decode($response, true);
 
 $numGames = $response['results'];
 
+
+// Kijken of er live wedstrijd(en) zijn (ivm weergave ververs-cirkeltje)...  
+
+/*
+$matches_live = []; 
+
+for ($x=0; $x < sizeof($numGames); $x++) {
+  if (array_key_exists(strval($response['response'][$i]['fixture']['status']['short']), $status)) 
+    {
+    array_push($matches_live, $response['response'][$i]);
+     } 
+   
+}
+*/
+
 include('./assets/get_current_round.php');
 
 // Deze 5 regels uitcommentariëren
@@ -141,7 +156,8 @@ echo '<div id="top"></div>';
 // Uitcommentariëren bij binnenhalen einddata afgelopen seizoenen (zie ook 260)
 include('./assets/league_header.php');
 
-if (array_key_exists($matchStatus, $status)) {
+/*
+if (sizeof($matches_live == 0)) {
 echo '
 <div class="container_circle">
 <div id="loading">
@@ -154,6 +170,7 @@ echo '
 </div>
 </div>'; 
 }
+*/
 
 $prevent_loop = false;
 

@@ -54,8 +54,8 @@ height: 2px;
 }
 
 #logo {
-    margin: 30% 0 0 50%;
-    
+    margin: 20% 0 0;
+    max-width: 150px;
 }
 
 .larger_logo {
@@ -144,7 +144,7 @@ height: 2px;
 .container_sortby_league_time {
     display: flex;
    /*  width: 600px; */
-     justify-content: left; 
+     justify-content: center; 
      margin: 30px auto 0px;
 }
 
@@ -253,7 +253,7 @@ text-align: center;
   width: 50px;
   height: 50px;
   position: relative;
-  margin: 10px 0 0 0;
+  left: 25%;
 }
 
 .hold {
@@ -266,7 +266,7 @@ text-align: center;
 }
 
 .fill {  
-  background-color: #f50;
+  background-color: red;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -369,6 +369,7 @@ td {
 
 .container_big_logo_league {
     width: 25%;
+   /* display: none; */
 }
 
 
@@ -447,8 +448,8 @@ font-size: large;
 }
 
 .btn_container {
-     width: 80%;
-    margin: 0 auto;
+    width: 80%;
+    margin: auto;
     text-align: center;
     /* margin: 2% 0 0 25%;*/
 }
@@ -808,6 +809,10 @@ color: rgb(75, 230, 75);
         margin: 3% 0 0 5%;
     }
 
+    #loading {
+        left: 15%;
+    }
+
     /* .flag_container img {
         width: 70px;
     }
@@ -839,7 +844,7 @@ table {
 }
 
 #logo {
-    margin: 10% auto 0;
+    margin: 20% auto 0;
 }
 
 .country_container {
@@ -850,9 +855,11 @@ table {
     display: none;
 }
 
+
 .main_container_league_season_rounds {
     display: block;
 }
+    
 
 .container_big_logo_league {
     width: 50%;
@@ -974,11 +981,11 @@ width: 350px;
 .btn_container {
    padding: 0;
    /*width: 50%; */
-   margin: auto;
+    margin: 50px auto 0;
 }
 
 #logo {
-    width: 80px;
+    width: 180px;
     height: auto;
 }
 

@@ -246,7 +246,8 @@ value="ob_league" type="radio" ' .
 <label for="ob_time">Tijdstip</label>
 </form>';
 
-if (array_key_exists($matchStatus, $status)) {
+
+if (sizeof($matches_live) > 0) {
 echo '<div id="loading">
   <div class="hold left">
     <div class="fill"></div>
