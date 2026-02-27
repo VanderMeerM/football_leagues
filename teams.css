@@ -144,9 +144,13 @@ height: 2px;
 .container_sortby_league_time {
     display: flex;
    /*  width: 600px; */
-     justify-content: center; 
-     margin: 30px auto 0px;
+    margin: 30px auto 0px;
 }
+
+.container_league_logo_name {
+    justify-content: left;
+}
+
 
 #ob_time, #ob_league {
     height: 15px;
@@ -253,8 +257,12 @@ text-align: center;
   width: 50px;
   height: 50px;
   position: relative;
-  left: 25%;
+  }
+
+.position_circle_left {
+     left: 20%;
 }
+ 
 
 .hold {
   position: absolute;
@@ -803,16 +811,20 @@ color: rgb(75, 230, 75);
     }
 }
 
+@media (max-width: 650px) {
+
+  .position_circle_left {
+        left: 15%;
+    }
+}
+
 @media (max-width: 700px) {
 
      #show_hide_lineup {
         margin: 3% 0 0 5%;
     }
 
-    #loading {
-        left: 15%;
-    }
-
+  
     /* .flag_container img {
         width: 70px;
     }
@@ -824,7 +836,7 @@ color: rgb(75, 230, 75);
  .background_match, 
  .container_sortby_league_time,
  .container_circle {
-    width: 550px;
+    width: 500px;
  }
 
 .container_league_logos, 
@@ -855,6 +867,9 @@ table {
     display: none;
 }
 
+.position_circle_left {
+        left: 10%;
+    }
 
 .main_container_league_season_rounds {
     display: block;
@@ -927,7 +942,6 @@ margin-top: 20px;
 #prog_txt::after {
     content: "Programma";
 } 
-
 
 
 table {

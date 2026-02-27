@@ -248,7 +248,7 @@ value="ob_league" type="radio" ' .
 
 
 if (sizeof($matches_live) > 0) {
-echo '<div id="loading">
+echo '<div id="loading" class="position_circle_left">
   <div class="hold left">
     <div class="fill"></div>
   </div>

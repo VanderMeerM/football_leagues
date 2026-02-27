@@ -105,17 +105,16 @@ $numGames = $response['results'];
 
 // Kijken of er live wedstrijd(en) zijn (ivm weergave ververs-cirkeltje)...  
 
-/*
 $matches_live = []; 
 
-for ($x=0; $x < sizeof($numGames); $x++) {
-  if (array_key_exists(strval($response['response'][$i]['fixture']['status']['short']), $status)) 
+for ($x=0; $x < $numGames; $x++) {
+
+  if (array_key_exists($response['response'][$x]['fixture']['status']['short'], $status)) 
     {
-    array_push($matches_live, $response['response'][$i]);
+    array_push($matches_live, $response['response'][$x]);
      } 
-   
-}
-*/
+  
+  }
 
 include('./assets/get_current_round.php');
 
@@ -156,10 +155,10 @@ echo '<div id="top"></div>';
 // Uitcommentariëren bij binnenhalen einddata afgelopen seizoenen (zie ook 260)
 include('./assets/league_header.php');
 
-/*
-if (sizeof($matches_live == 0)) {
+
+if (sizeof($matches_live) > 0) {
 echo '
-<div class="container_circle">
+<div class="container_circle" style="margin-top:15px">
 <div id="loading">
   <div class="hold left">
     <div class="fill"></div>
@@ -170,7 +169,6 @@ echo '
 </div>
 </div>'; 
 }
-*/
 
 $prevent_loop = false;
 
@@ -201,7 +199,7 @@ if ($numGames > 0 ) {
         $round_to_select = 1;
         }
 
-        // Bij internationale competities... (werkt nog niet icm beide soorten competties (en als int. leagues geen volgende ronde hadden)..)
+        // Bij internationale competities... (werkt nog niet icm beide soorten competities (en als int. leagues geen volgende ronde hadden)..)
         /*
         elseif (sizeof($selected_date_int_round) == 0) 
         {

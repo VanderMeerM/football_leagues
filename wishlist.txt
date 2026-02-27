@@ -1,7 +1,14 @@
 
-- bij internationale competities ronde ook 1 dag na speeldatum nog selecteren 
-
 -cookies lijken niet op Strato te werken..(gevolgen voor werking Day en Teams)
+
+- cirkeltje voor live verversen iets kleiner en betere code 
+
+
+League (internationaal)
+
+- ronde ook 1 dag na speeldatum selecteren 
+
+- optie Zestiende finales wordt niet geselecteerd 
 
 
 Day
@@ -11,23 +18,16 @@ Day
 - cookie voor sortering op competitie/tijdstip 
  (bug: switch naar competitie werkt pas bij tweede keer, cookie werkt überhaupt niet op Strato) 
 
-- styling events/line-up 
-
-
 
 Teams 
 
 - afzonderlijke wedstrijden werkt niet op Strato (m.u.v. Ajax; cookies werken daar niet) 
 
 
-- styling pagina clubs 
-
-- styling afzonderlijke wedstrijden op club-pagina 
-
 
 Standen 
 
-- Opslaan oudere seizoenen werkt niet 
+- Opslaan oudere seizoenen werkt niet? 
 
 
 
