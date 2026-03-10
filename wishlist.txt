@@ -3,6 +3,10 @@
 
 - cirkeltje voor live verversen iets kleiner en betere code 
 
+- extensie .php weglaten 
+
+- wedstrijd opslaan nadat deze dag in het verleden ligt werkt niet (momenteel uitgecommentarieerd) 
+
 
 League (internationaal)
 

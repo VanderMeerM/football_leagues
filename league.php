@@ -319,7 +319,7 @@ else {
           
           
            // Wedstrijd opslaan nadat deze een dag in het verleden ligt..
-
+/*
           if ( (!file_exists($json_fixture)) &&
             (date('d-m-Y', $response['response'][$i]['fixture']['timestamp'])) < 
               date('d-m-Y', strtotime('today')) &&
@@ -333,7 +333,7 @@ else {
    
            fclose($json_file_fixture);
                 
-           }
+           }*/
  
         }
         echo '
