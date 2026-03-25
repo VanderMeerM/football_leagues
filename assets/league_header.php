@@ -14,7 +14,7 @@ echo "
 
 echo "
 <div class='menubuttons'>
-<a style='padding: 0px' href= './teams' > <img id='shirt' style='cursor:pointer' src='./img/shirt.png'></a>
+<a style='padding: 0px' href= './teams.php' > <img id='shirt' style='cursor:pointer' src='./img/shirt.png'></a>
 </div>";
 
 $view = 'hidden';
@@ -33,15 +33,15 @@ elseif
 {
   
   if ($_GET['id']) {
-    echo '<li><a id="table_txt" href="./standings?league=' . $league_to_fixture . '&season=' . $season_to_fixture . '"></a></li>';
+    echo '<li><a id="table_txt" href="./standings.php?league=' . $league_to_fixture . '&season=' . $season_to_fixture . '"></a></li>';
   }
   else {
-  echo '<li><a id="table_txt" href="./standings?league=' . $league_id . '&season=' . $selected_season . '"></a></li>';
+  echo '<li><a id="table_txt" href="./standings.php?league=' . $league_id . '&season=' . $selected_season . '"></a></li>';
 }
 }
 
 if (str_contains($current_page, $menu_standings)) { // bij menu Stand.. 
-  echo '<li><a id="prog_txt" href="./league?league=' . $league_id . '&season=' . $selected_season . '"></a></li>';
+  echo '<li><a id="prog_txt" href="./league.php?league=' . $league_id . '&season=' . $selected_season . '"></a></li>';
 }
 
 // Menu Overzicht
@@ -57,8 +57,8 @@ if ( ( ($_GET['id']) && (in_array($league_to_fixture, $array_extra_leagues)) ) /
 if ($_GET['id']) {
 
  (!$_GET['datum'] ? 
- $ref = "./league?league=$league_to_fixture&season=$season_to_fixture&round_selection=$round_to_fixture" :
- $ref = './day?datum=' . $_GET['datum'] . '');
+ $ref = "./league.php?league=$league_to_fixture&season=$season_to_fixture&round_selection=$round_to_fixture" :
+ $ref = './day.php?datum=' . $_GET['datum'] . '');
 
  $font_color = "white";
  $cursor = "pointer";
@@ -82,7 +82,7 @@ $today = strtotime('today');
 
 echo 
   "<div class='menubuttons'>
-<form method='post' action='./day'>
+<form method='post' action='./day.php'>
 <input type='image' id='agenda' style='cursor:pointer' src='./img/agenda.png'>
 <input type='hidden' name='sel_day' value=$today>
 <input type='submit' style='display: none'>
@@ -95,8 +95,8 @@ echo
 '<div class="menubuttons"> 
 <select class="menu_sel_item" style=background-color:' .  $array_bgcolor_menubar[$league_id] . ' name="EKWK" onchange="window.open(this.value);">
   <option class="menu_option" selected disabled value="">EK/WK</option>
-  <option class="menu_option" value="./EK">EK</option>
-  <option class="menu_option" value="./WK">WK</option>
+  <option class="menu_option" value="./EK.php">EK</option>
+  <option class="menu_option" value="./WK.php">WK</option>
   </select>';
 
  echo '
@@ -136,7 +136,7 @@ echo "
 if (!str_contains($current_page, $menu_day)) {
 
 echo "
-<a href='./league?league=" . $league_id . "&season=" . $selected_season . "'>
+<a href='./league.php?league=" . $league_id . "&season=" . $selected_season . "'>
   <img id='logo' src='https://media.api-sports.io/football/leagues/" . $big_image_leage . ".png'/>
   </a>";
 
@@ -165,7 +165,7 @@ if (!str_contains($current_page, $menu_standings)) {
 echo "
 <div class='container_select_rounds'>
 
-<form action='./league?season=$selected_season&round_selection=$round_of_first_upcoming_matches' method='get'>
+<form action='./league.php?season=$selected_season&round_selection=$round_of_first_upcoming_matches' method='get'>
 
 <select " . ($_GET['id'] ? 'style=visibility: hidden' : null) . " id='round_selection' name='round_selection'>";
 
@@ -285,10 +285,10 @@ foreach ($array_leagues as $al) {
   
    
  if (!str_contains($current_page, $menu_standings)) {
-      $page_to_go = "./league?league=$al&season=$selected_season";
+      $page_to_go = "./league.php?league=$al&season=$selected_season";
     }
  else {
-      $page_to_go = "./standings?league=$al&season=$selected_season";
+      $page_to_go = "./standings.php?league=$al&season=$selected_season";
     }
 
   echo "
@@ -326,7 +326,7 @@ foreach ($array_of_dates as $aod) {
     '<div class="container_dates ' . 
     (($_GET['datum'] === date('d-m-Y', $aod) && str_contains($current_page, $menu_day)) || 
     ((!$_GET['datum'] && date('d-m-Y', $today) === date('d-m-Y', $aod)) && str_contains($current_page, $menu_day)) ? 'highlight_date' : null).'"> 
-    <a href="./day?datum='. date('d-m-Y', $aod) . '">
+    <a href="./day.php?datum='. date('d-m-Y', $aod) . '">
     <strong>' . 
     date('d', $aod) . '</strong><br> '
     . date('m', $aod) . '</a></div>';
@@ -356,7 +356,7 @@ currentSeason = <?php echo json_encode($current_season) ?>;
 (window.location.href.split('season=')[1] == undefined) ? seasonSelection = 1 :
 seasonSelection = window.location.href.split('season=')[1].slice(0,4);
 
-window.location.href='./league?league='+leagueId+'&season='+seasonSelection+'&round_selection='+roundSelection;
+window.location.href='./league.php?league='+leagueId+'&season='+seasonSelection+'&round_selection='+roundSelection;
 
 }
 );
@@ -370,11 +370,11 @@ roundSelection = window.location.href.split('round_selection=')[1];
 
 if (currentPage !="/football_leagues/standings.php") {
 
-window.location.href='./league?league='+leagueId+'&season='+seasonSelection;
+window.location.href='./league.php?league='+leagueId+'&season='+seasonSelection;
 }
 else 
 {
-  window.location.href='./standings?league='+leagueId+'&season='+seasonSelection;
+  window.location.href='./standings.php?league='+leagueId+'&season='+seasonSelection;
 
 }}
 )

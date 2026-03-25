@@ -234,7 +234,7 @@ if (sizeof(array_unique($num_leagues)) > 1) {
 
 echo ' 
 <div class= "container_sortby_league_time">
-<form method="post" action="./day'. ($_GET['datum'] ? '?datum='. $_GET['datum'] : null) . '">
+<form method="post" action="./day.php'. ($_GET['datum'] ? '?datum='. $_GET['datum'] : null) . '">
 <input name="orderByLeagueTime" id="ob_league" onchange="this.form.submit();" 
 value="ob_league" type="radio" ' . 
 (($_COOKIE['LeagueTime'] === 'ob_league' || $_POST['orderByLeagueTime'] === 'ob_league') ? 'checked' : null) . '> 
@@ -299,7 +299,7 @@ echo
 <div class="main_container">';
 
    echo '<a style="background-color: ' .(date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? $backgr_today_match : null) .'" 
-   href="./league?id=' . $matchId . '&datum='. date('d-m-Y', $matches_on_selected_day[$i]['fixture']['timestamp'])  .'">';
+   href="./league.php?id=' . $matchId . '&datum='. date('d-m-Y', $matches_on_selected_day[$i]['fixture']['timestamp'])  .'">';
 
 }
 
