@@ -23,7 +23,7 @@ echo "
 
 echo 
 "<div class='menubuttons'>
-<a style='padding: 0px' href= './teams' > <img id='shirt' style='cursor:pointer' src='./img/shirt.png'></a>
+<a style='padding: 0px' href= './teams.php' > <img id='shirt' style='cursor:pointer' src='./img/shirt.png'></a>
 </div>";
 
 //$view = 'hidden';
@@ -32,8 +32,8 @@ echo
 
 if (!in_array($league_to_fixture, $array_cup_leagues)) { // Alleen tonen indien geen bekerwedstrijd 
 
-//echo '<li><a id="table_txt" href="./standings?league='. ($_GET['id'] ? $league_to_fixture : $selected_leage_team) .'&season=' . $selected_season_team . '&team='.$team_id.'"></a></li>';
-echo '<li><a id="table_txt" href="./standings?league='. $selected_leage_team .'&season=' . $selected_season_team . '&team='.$team_id.'"></a></li>';
+//echo '<li><a id="table_txt" href="./standings.php?league='. ($_GET['id'] ? $league_to_fixture : $selected_leage_team) .'&season=' . $selected_season_team . '&team='.$team_id.'"></a></li>';
+echo '<li><a id="table_txt" href="./standings.php?league='. $selected_leage_team .'&season=' . $selected_season_team . '&team='.$team_id.'"></a></li>';
 
 
 }
@@ -45,7 +45,7 @@ echo '<li><a id="table_txt" href="./standings?league='. $selected_leage_team .'&
 if ($_GET['id']) {
 
  echo "
-<li><a href= './teams' style= 'color: 'white'; cursor: 'pointer'>
+<li><a href= './teams.php' style= 'color: 'white'; cursor: 'pointer'>
 Overzicht</a></li>";
 } 
 
@@ -57,7 +57,7 @@ $today = strtotime('today');
 
 echo 
   "<div class='menubuttons'>
-<form method='post' action='./day'>
+<form method='post' action='./day.php'>
 <input type='image' id='agenda' style='cursor:pointer' src='./img/agenda.png'>
 <input type='hidden' name='sel_day' value=$today>
 <input type='submit' style='display: none'>
@@ -70,8 +70,8 @@ echo
 '<div class="menubuttons"> 
 <select class="menu_sel_item" style=background-color:' .  $array_bgcolor_menubar[$league_id] . ' name="EKWK" onchange="window.open(this.value);">
   <option class="menu_option" selected disabled value="">EK/WK</option>
-  <option class="menu_option" value="./EK">EK</option>
-  <option class="menu_option" value="./WK">WK</option>
+  <option class="menu_option" value="./EK.php">EK</option>
+  <option class="menu_option" value="./WK.php">WK</option>
   </select>
 
 </ul>
