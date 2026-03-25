@@ -142,7 +142,7 @@ $away_team_goals = [];
  
                 $all_team_events[$i]['elapsed']) . "' " .
 
-              '<a href= "./assets/players?id='.$all_team_events[$i]['id'] .'" target=_blank>'
+              '<a href= "./assets/players.php?id='.$all_team_events[$i]['id'] .'" target=_blank>'
               . ($all_team_events[$i]['type'] === 'subst' ?  '<span id="arrow_red"> → </span>' : null) 
               . $all_team_events[$i]['name'] . '</a>';
 
@@ -154,7 +154,7 @@ $away_team_goals = [];
                   } else {             
                     
                 echo 
-              '<a href= "./assets/players?id='.$all_team_events[$i]['assist_id'] .'" target=_blank>
+              '<a href= "./assets/players.php?id='.$all_team_events[$i]['assist_id'] .'" target=_blank>
               <span id="arrow_green"> ← </span>'. $all_team_events[$i]['assist_name'] . '</a>';
                }
                }
