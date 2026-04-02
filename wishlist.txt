@@ -1,5 +1,4 @@
 
--cookies lijken niet op Strato te werken..(gevolgen voor werking Day en Teams)
 
 - cirkeltje voor live verversen iets kleiner en betere code 
 
@@ -24,8 +23,6 @@ Day
 
 
 Teams 
-
-- afzonderlijke wedstrijden werkt niet op Strato (m.u.v. Ajax; cookies werken daar niet) 
 
 
 
@@ -60,6 +57,8 @@ Standen
 
 
 Afgerond: 
+
+-cookies lijken niet op Strato te werken..(gevolgen voor werking Day en Teams) v 
 
 - Teams: seizoen wordt niet onthouden na switchen team (gebeurt wel op leagues; wrs vanwege $_Get['season']) v 
 

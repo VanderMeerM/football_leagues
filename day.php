@@ -234,7 +234,7 @@ if (sizeof(array_unique($num_leagues)) > 1) {
 
 echo ' 
 <div class= "container_sortby_league_time">
-<form method="post" action="./day'. ($_GET['datum'] ? '?datum='. $_GET['datum'] : null) . '">
+<form method="post" action="./day.php'. ($_GET['datum'] ? '?datum='. $_GET['datum'] : null) . '">
 <input name="orderByLeagueTime" id="ob_league" onchange="this.form.submit();" 
 value="ob_league" type="radio" ' . 
 (($_COOKIE['LeagueTime'] === 'ob_league' || $_POST['orderByLeagueTime'] === 'ob_league') ? 'checked' : null) . '> 
