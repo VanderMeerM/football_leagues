@@ -19,7 +19,7 @@ Day
 - aanklikken day moet soms 2x om wedstrijden op gewenste datum te krijgen 
 
 - cookie voor sortering op competitie/tijdstip 
- (bug: switch naar competitie werkt pas bij tweede keer, cookie werkt überhaupt niet op Strato) 
+ (bug: switch naar competitie werkt pas bij tweede keer) 
 
 
 Teams 
