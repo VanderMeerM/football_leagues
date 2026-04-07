@@ -63,6 +63,9 @@ include('./assets/variables.php');
 
 include('./assets/translations.php');
 
+include('./assets/getTZ.php');
+
+
 $all_matches_leagues = [];
 $matches_on_selected_day = [];
 

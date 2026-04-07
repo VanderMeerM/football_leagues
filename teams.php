@@ -26,6 +26,8 @@ document.addEventListener("visibilitychange", function() {
 
 <?php 
 
+include('./assets/getTZ.php');
+
 $all_matches_leagues = [];
 
 $array_competition_leagues = [78,79, 88,89]; // 78, 79 (1e en 2e Bundesliga), 88 - Eredivisie, 89 - KVK 

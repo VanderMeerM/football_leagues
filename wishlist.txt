@@ -1,8 +1,8 @@
 
 
-- cirkeltje voor live verversen iets kleiner en betere code 
-
 - extensie .php weglaten 
+
+- cirkeltje voor live verversen iets kleiner en betere code 
 
 - wedstrijd opslaan nadat deze dag in het verleden ligt werkt niet (momenteel uitgecommentarieerd) 
 
@@ -57,6 +57,8 @@ Standen
 
 
 Afgerond: 
+
+- wedstrijden worden obv tijdzone getoond v 
 
 -cookies lijken niet op Strato te werken..(gevolgen voor werking Day en Teams) v 
 

@@ -45,6 +45,8 @@ include('./assets/variables.php');
 
 include('./assets/translations.php');
 
+include('./assets/getTZ.php');
+
 
 // Controleer of er al een seizoen (uit het verleden) is opgeslagen..
 
