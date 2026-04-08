@@ -29,7 +29,6 @@ $array_dates_intern_leagues[$each_round_int_leagues] .= $response["response"][$i
 
 // Keys (rondes) extra in juiste volgorde plaatsen vanwege andere volgorde bij live wedstrijden  
 ksort($array_dates_round); 
-//ksort($array_dates_intern_leagues);
 
   for ($i=1; $i < sizeof($array_dates_round); $i++) {
     substr($array_dates_round[$i], 0, -1);
@@ -41,6 +40,7 @@ ksort($array_dates_round);
   
   
 // Wedstrijden in ronde op volgorde zetten  
+
 $array_dates_round_values = array_values($array_dates_round); 
 $array_dates_intern_leagues_values = array_values($array_dates_intern_leagues);
 
@@ -59,19 +59,7 @@ for ($i=0; $i < sizeof($array_dates_intern_leagues_values); $i++) {
   asort($array_dates_int_round_sorted[$i]); // Zet waarden in volgorde om in rondeselectie de eerste en laatste speeldag te tonen. 
 }
 
-//echo date('d-m', $array_dates_round_sorted[0][11]);
-
- // echo rtrim(end($array_dates_round[1]));
-
-/*
-$array_dates_round = rtrim(implode($array_dates_round), ",");
-$array_dates_round = explode(',', $array_dates_round);
-*/
-
 }
-
-//$startdate_selected_round = $array_dates_round_sorted[0][0]; //explode(',', $array_dates_round[2])[0] . '<br>';
-//$lastdate_selected_round = intval(sizeof(explode(',', $array_dates_round[2])) - 2);
 
 $lastdate_selected_round_int_leagues = intval(sizeof(explode(',', $array_rounds_International_leagues[2])) - 2);
 

@@ -26,13 +26,11 @@ echo
 <a style='padding: 0px' href= './teams.php' > <img id='shirt' style='cursor:pointer' src='./img/shirt.png'></a>
 </div>";
 
-//$view = 'hidden';
 
 // Menu Stand
 
 if (!in_array($league_to_fixture, $array_cup_leagues)) { // Alleen tonen indien geen bekerwedstrijd 
 
-//echo '<li><a id="table_txt" href="./standings.php?league='. ($_GET['id'] ? $league_to_fixture : $selected_leage_team) .'&season=' . $selected_season_team . '&team='.$team_id.'"></a></li>';
 echo '<li><a id="table_txt" href="./standings.php?league='. $selected_leage_team .'&season=' . $selected_season_team . '&team='.$team_id.'"></a></li>';
 
 
@@ -126,12 +124,6 @@ echo '
 </div>';
 }
 
-/*
-if (isset($_POST['send_team'])) {
-   setcookie('teams_team_selection', $team['value'], time() + 3600, '/');
-
-}
-*/
 
 echo "</div><div> 
 
@@ -151,25 +143,6 @@ for ($i =0; $i < sizeof($allseasons); $i++) {
     echo '<option '. ($allseasons[$i] == $season ? 'selected' : null) . ' value= ' . $allseasons[$i] . 
     '>' . $allseasons[$i] . ' - ' . ($allseasons[$i] +1) .'</option>'; 
     }
-
-
-//setcookie('teams_season_selection', $season, time() + 3600, '/', '', true);
-
-
-/*
-<script> 
-
- for (i=1; i< (document.getElementById('season_selection').length); i++) {
-if (document.getElementById('season_selection')[i].selected) {
-  selectedSeason = document.getElementById('season_selection')[i].value
-}
-}
-document.cookie = 'teams_season_selection=' + selectedSeason + ';expires= ' + Date.now() + 86400 + '; path=/';
-
-</script> 
-
-<?php 
-*/
 
 echo "
 </select>

@@ -79,8 +79,6 @@ $json_events_path = './JSON/events/event_' . $_GET['id'] . '.json';
 
 $json_standings_path = './JSON/seasons/season_' . $_GET['season'] . '.json'; 
 
-//$current_page = explode('/', $_SERVER['PHP_SELF'])[4];
-
 $current_page = $_SERVER['PHP_SELF'];
 
 ?>

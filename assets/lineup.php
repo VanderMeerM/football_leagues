@@ -141,8 +141,7 @@ for ($i = 0; $i < $num_lineups; $i++) {
   <div id="show_hide"> 
   <table>
   <tr><td>';
- // <div class="main_container_lineup_coach">
- // <div class="lineup_container">
+
  echo 
  $home_team_lineup[0]['formation'] . '<br> 
   
@@ -162,11 +161,9 @@ for ($i = 0; $i < $num_lineups; $i++) {
 
      echo '<div class="main_container_lineup">';
 
-     //<div class="main_container_lineup_home">';
 
      for ($i=0; $i < sizeof($home_startXI); $i++ ) {
 
-     // for ($a=0; $a < sizeof($away_startXI); $a++ ) {
 
         echo  '
         <tr>
@@ -184,27 +181,11 @@ for ($i = 0; $i < $num_lineups; $i++) {
 
      echo '</table>';
 
-    //<div class="main_container_lineup_away">';
-
-/*
-     for ($i=0; $i < sizeof($away_startXI); $i++ ) {
-
-        echo '
-        <div class="lineup_container"><span class="align-left">' .
-        $away_startXI[$i]['number'] . '. ' . $away_startXI[$i]['name'] . 
-        '</span></div>';
-     }
-
-     echo '</div>
-     </div>';
-*/
   echo '
   <table>
   <tr><td colspan="2"> <strong>Wisselspelers</strong></td></tr>
   
   <div class="main_container_lineup">';
-
-     //<div class="main_container_lineup_home">';
 
      if (sizeof($home_sub) > sizeof($away_sub)) {
         $num_sub = $home_sub;
@@ -225,29 +206,6 @@ for ($i = 0; $i < $num_lineups; $i++) {
 
      echo '</table>';
 
-     /*
-        echo  '    
-        <div class="lineup_container"><span class="align-left">' .
-        $home_sub[$i]['number'] . '. ' . $home_sub[$i]['name'] . 
-        '</span></div>';
-     
-
-     echo '</div>
-    <div class="main_container_lineup_away">';
-
-
-     for ($i=0; $i < sizeof($away_sub); $i++ ) {
-
-        echo '
-        <div class="lineup_container"><span class="align-left">' .
-        $away_sub[$i]['number'] . '. ' . $away_sub[$i]['name'] . 
-        '</div>';
-     }
-
-     echo '</div>
-     </div>
-     </div>';
-*/
     }
     else {
         echo '<div class="nomatches"> Geen details beschikbaar </div>';

@@ -46,14 +46,6 @@ if (str_contains($current_page, $menu_standings)) { // bij menu Stand..
 
 // Menu Overzicht
 
-/*
-if ( ( ($_GET['id']) && (in_array($league_to_fixture, $array_extra_leagues)) ) // bij tonen afzonderlijke bekerwedstrijd.. 
-  || ( (!$_GET['id']) && ( (!str_contains($current_page, $menu_day)) ))) { // bij dagoverzicht
-  $ref = './day?datum' . $_GET['datum']. '';
-  $font_color = 'white';
-  $cursor = "pointer"; 
-}
-  */
 if ($_GET['id']) {
 
  (!$_GET['datum'] ? 
@@ -67,14 +59,6 @@ if ($_GET['id']) {
 <li><a href= $ref style= 'color: $font_color ;cursor: $cursor'>
 Overzicht</a></li>";
 } 
-
-/*
-else {
-  $ref = "#";
-  $font_color = 'lightgray';
-  $cursor = "none";
-}
-*/
 
 // Menu Vandaag 
 
@@ -104,18 +88,6 @@ echo
 </div>
 </div>
 </div>';
-
-
-/* IS ONDERSTAANDE ARRAY (3 regels) NOG NODIG?
-$json_enddates = './JSON/enddates/enddates_'. $league_id . '_' . $selected_season . ($selected_season + 1) . '.json'; 
-
-$enddates = file_get_contents($json_enddates, true);
-
-$php_array_for_dates = json_decode($enddates, true);
-*/
-
-//echo sizeof($php_array_for_dates); 
-
 
 
 for ($i = 1; $i < sizeof($allrounds) + 1; $i++) {
@@ -265,24 +237,6 @@ echo "<div style=display:" . (str_contains($current_page, $menu_standings) ? 'bl
 echo "<div class='container_league_logos'". (str_contains($current_page, $menu_day) ? 'style="margin-top: 70px;"' : null) . ">";
 
 foreach ($array_leagues as $al) {
-
-
-  /* Kan weg? 
-  
-  $json_enddates = './JSON/enddates/enddates_'. $al . '_' . $selected_season . ($selected_season + 1) . '.json'; 
-  
-  $enddates = file_get_contents($json_enddates, true);
-  
-  $php_array_for_dates = json_decode($enddates, true);
-  
-   print_r ($array_dates_round[1]);
-  
-  echo 'Aantal: ' . sizeof(explode(',',$array_dates_round[1]));
-  
-  echo 'Eind: ' . explode(',',$array_dates_round[1])[8];
-  
-  */
-  
    
  if (!str_contains($current_page, $menu_standings)) {
       $page_to_go = "./league.php?league=$al&season=$selected_season";

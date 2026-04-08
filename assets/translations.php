@@ -1,19 +1,14 @@
 <?php 
 
-//http://localhost/football_leagues/teams.php?id=864317
-
 
 $status_live = array('1H', 'HT', '2H', 'ET', 'P', 'SUSP', 'INT');
 
 $status_nl = array('1e helft', 'Rust', '2e helft', 'Verlenging', 'Penalties', 'Stilgelegd', 
 'Tijd. stilgelegd');
 
-//$statusInPlay = array('1H', 'HT', '2H','ET', 'P', 'SUSP', 'INT');
-
 $status_cancel_abbrev = array('PST', 'ABD'); 
 
 $status_cancel_nl = array('Uitgesteld', 'Afgelast');
-
 
 $status = array_combine($status_live, $status_nl);
 

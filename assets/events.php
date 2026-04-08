@@ -23,8 +23,8 @@ if ($_GET['id'] && file_exists($json_events_path)) {
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'GET',
       CURLOPT_HTTPHEADER => array(
-       //'x-rapidapi-key: ' . $api_key .'',
-     'x-rapidapi-key: 863bcd048478f98225b64bced629b376',
+      'x-rapidapi-key: ' . $api_key .'',
+     //'x-rapidapi-key: 863bcd048478f98225b64bced629b376',
         'x-rapidapi-host: v3.football.api-sports.io',
         
       ),
@@ -95,13 +95,7 @@ $away_team_goals = [];
     
     echo '<div class="main_container_event">';
 
-    /*
-    if (in_array($matchStatus, $statusInPlay) && ($num_events > 0))   
-    { 
-     echo '<div id="play_min"> min. '. $min_playing_minute . "'</div>"; 
-    }
-     */
-              
+                
     echo '<table>';
                     
         for($i=0; $i < sizeof($all_team_events); $i++) {
@@ -111,14 +105,12 @@ $away_team_goals = [];
           if ($all_team_events[$i]['team'] === $homeTeam) {
             
           echo '<td>'; 
-          //   echo '<div class= "event_container"><span class="align-left">'; 
           }
 
             else if ($all_team_events[$i]['team'] === $awayTeam) {
             echo '<td>
             <td>'; 
 ;
-             // echo '<div class= "event_container"><span class="align-right">'; 
             }
          
             if (array_key_exists($all_team_events[$i]['type'], $array_type)
