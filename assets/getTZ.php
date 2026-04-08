@@ -1,11 +1,17 @@
 <?php 
 
-// IP-adres client achterhalen..
+// IP-adres client achterhalen (indien mogelijk)..
 
-$data_ip = file_get_contents('https://api.ipify.org?format=json');  
-$data_ip = json_decode($data_ip, true); 
+$data_ip = $_SERVER['REMOTE_ADDR'];
 
-$curr_ip = $data_ip['ip'];
+if (!$data_ip) { // anders server-adres 
+  $data_ip = file_get_contents('https://api.ipify.org?format=json');
+  $data_ip = json_decode($data_ip, true); 
+  $curr_ip = $data_ip['ip'];
+}
+else {
+  $curr_ip = $data_ip;
+}
 
 
 // Tijdzone bij IP-adres achterhalen..
@@ -32,15 +38,6 @@ $response = curl_exec($curl);
 $response = unserialize($response); 
 
 $curr_timezone = $response['timezone'];
-
-/*
-if ($curr_timezone = '') {
- $curr_timezone = 'Europe/Amsterdam';
-}
-else {
-  $curr_timezone = $response['timezone'];
-}
-*/
 
 // Tijdzone instellen...
 
