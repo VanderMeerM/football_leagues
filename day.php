@@ -20,12 +20,6 @@
 
 <?php
 
-/*if ($_POST['orderByLeagueTime'] === 'ob_time' || !$_POST['orderByLeagueTime']) {
-
-setcookie('LeagueTime', 'ob_time', time() + (86400 * 30), "/");
-}
-*/
-
 if ($_POST['orderByLeagueTime'] === 'ob_league') {
   setcookie("LeagueTime", "ob_league", time() + 86400, "/", '', true);
 
@@ -105,8 +99,8 @@ curl_setopt_array($curl, array(
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => 'GET',
   CURLOPT_HTTPHEADER => array(
-    //'x-rapidapi-key: ' . $api_key .'',
-     'x-rapidapi-key: 863bcd048478f98225b64bced629b376',
+    'x-rapidapi-key: ' . $api_key .'',
+    // 'x-rapidapi-key: 863bcd048478f98225b64bced629b376',
     'x-rapidapi-host: v3.football.api-sports.io',
     
   ),
@@ -198,13 +192,7 @@ for ($x=0; $x < sizeof($matches_on_selected_day); $x++) {
      }
 }
 
-//print_r($matches_on_selected_day);
-
 $matches_on_selected_day = array_merge($matches_live, $matches_not_live);
-
-//$matches_on_selected_day = $all_matches_leagues_sorted;
-
-//print_r($matches_rest);
 
 $numGames = sizeof($matches_on_selected_day);
 
@@ -218,10 +206,6 @@ if ($_GET['id']) {
 $prevent_loop = false;
 
 $games_per_round = [];
-
-//echo 'Cookie: ' . $_COOKIE['LeagueTime'] . '<br>';
-//echo 'POST: ' . $_POST['orderByLeagueTime'];
-
 
 echo '</div>';
 
@@ -320,12 +304,7 @@ echo
  
         if (!array_key_exists($matchStatus, $status)) {
    
-       /* echo '<div'. ($matchStatus === 'PEN' ? ' id="rem_text_when_pen"' : null) .'>'
-         . $matches_on_selected_day[$i]['fixture']['venue']['name'] . '<br>'; 
-
-         */
-
-        echo '<div'. ($matchStatus === 'PEN' ? ' id="rem_text_when_pen"' : null) .'>'
+       echo '<div'. ($matchStatus === 'PEN' ? ' id="rem_text_when_pen"' : null) .'>'
           . $matches_on_selected_day[$i]['fixture']['venue']['city']; 
 
           echo '</div>';

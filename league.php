@@ -89,8 +89,8 @@ curl_setopt_array($curl, array(
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => 'GET',
   CURLOPT_HTTPHEADER => array(
-      //'x-rapidapi-key: ' . $api_key .'',
-     'x-rapidapi-key: 863bcd048478f98225b64bced629b376',
+      'x-rapidapi-key: ' . $api_key .'',
+     //'x-rapidapi-key: 863bcd048478f98225b64bced629b376',
      'x-rapidapi-host: v3.football.api-sports.io',
     
   ),
@@ -140,7 +140,6 @@ if ((!$_GET['season']) && (!$_GET['id'])) {
   window.location.replace(`./league?league=${leagueId}&season=${currentSeason}&round_selection=${roundFirstUpcomingMatch}`);
 </script>
 <?php
- // header("Location: ./league.php?league=$league_id&season=$selected_season&round_selection=$round_of_first_upcoming_matches");
 }
 
 if ($_GET['id']) {
@@ -154,7 +153,7 @@ $games_per_round = [];
 
 echo '<div id="top"></div>';
 
-// Uitcommentariëren bij binnenhalen einddata afgelopen seizoenen (zie ook 260)
+// Uitcommentariëren bij binnenhalen einddata afgelopen seizoenen (zie r. 389) 
 include('./assets/league_header.php');
 
 
@@ -173,8 +172,6 @@ echo '
 }
 
 $prevent_loop = false;
-
-//echo $league_id; //'Ronde:' . $round_of_first_upcoming_matches; 
 
 echo '</div>';
 
@@ -224,8 +221,6 @@ if ($numGames > 0 ) {
    $round_to_select = $_GET['round_selection'];
    
    }
-
- //  echo 'RtS: ' . $round_to_select . 'Fuc: ' . $round_of_first_upcoming_matches;
 
 if ( ($round_to_select == $selectedround) || ($round_to_select === $selectedround_int_leagues) ) {
     
@@ -391,7 +386,7 @@ if ( (date('Y') >  ($selected_season + 1)) ||
 
 /*  
 
-Binnenhalen einddata seizoenen (seizoen invullen in url; include league_header uitcommentariëren (zie 139))
+Binnenhalen einddata seizoenen (seizoen invullen in url; include league_header uitcommentariëren (zie r. 156))
 
 
 $array_leagues = [88, 89, 78, 79, 135, 140, 39, 40, 179, 408]; // 357 = Ierse competitie

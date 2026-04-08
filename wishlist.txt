@@ -47,16 +47,15 @@ Standen
 
 --- geheel op eind 
 
-- 3.Liga en Portugese competitie toevoegen (?) 
-
 - api uit harde code halen (verwijzen naar api-bestand) 
-
-- overbodige uitgecommentarieerde code verwijderen 
+ uitgecommentarieerde hardcoded regel met API-key verwijderen 
 
 - tailwind op server (Strato) installeren 
 
 
 Afgerond: 
+
+- overbodige uitgecommentarieerde code verwijderen v 
 
 - wedstrijden worden obv tijdzone getoond v 
 

@@ -98,8 +98,8 @@ curl_setopt_array($curl, array(
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => 'GET',
   CURLOPT_HTTPHEADER => array(
-     //'x-rapidapi-key: ' . $api_key .'',
-     'x-rapidapi-key: 863bcd048478f98225b64bced629b376',
+     'x-rapidapi-key: ' . $api_key .'',
+     //'x-rapidapi-key: 863bcd048478f98225b64bced629b376',
     'x-rapidapi-host: v3.football.api-sports.io',
     
   ),
@@ -118,8 +118,6 @@ array_push($all_matches_leagues, $response);
 $selected_team_team = $all_matches_leagues[0]['parameters']['team'];
 $selected_leage_team = $all_matches_leagues[0]['parameters']['league'];
 $selected_season_team = $all_matches_leagues[0]['parameters']['season']; 
-
-//print_r($all_matches_leagues[0]['parameters']['team']);
 
 // Gevonden wedstrijden in de competities chronologisch sorteren...
 
@@ -151,21 +149,6 @@ for ($i=0; $i < sizeof($matches_leagues_ts_keys); $i++) {
 }
 
 
-// Bepaal eerstvolgende wedstrijd (incl. vandaag) en zet deze bovenaan 
-
-/*
-$match_today = []; 
-
-for ($x=0; $x < sizeof($all_matches_leagues_sorted); $x++) {
-  if ($all_matches_leagues_sorted[$x]['fixture']['timestamp'] >= strtotime('now')) {
-    
-  if (sizeof($match_today) == 0) {
-    array_push($match_today, $all_matches_leagues_sorted[$x]);
-     array_splice($all_matches_leagues_sorted,$x,1);
-  } 
-}}
-
-*/
 $all_matches_leagues = $all_matches_leagues_sorted; //array_merge($match_today,$all_matches_leagues_sorted);
 
 
@@ -304,23 +287,6 @@ echo'
            '<br>'; 
 
             }
-
-            /*
-          if (sizeof(explode(',', $all_matches_leagues[0]['response'][$i]['fixture']['referee'])) > 1) {
-
-            echo
-
-           (array_search(explode(', ', $all_matches_leagues[$n]['response'][$i]['fixture']['referee'])[1], $countries) ? 
-           '(' . array_search(explode(', ', $all_matches_leagues[$n]['response'][$i]['fixture']['referee'])[1], $countries) : 
-           '(' . explode(', ', $all_matches_leagues[$n]['response'][$i]['fixture']['referee'])[1]) . ')
-           <br></div>'; 
-                   
-           }
-
-           else {
-            echo '</div>';
-           }
-         */
 
         echo '</div>';
 
