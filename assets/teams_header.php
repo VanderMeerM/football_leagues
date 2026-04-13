@@ -114,7 +114,7 @@ foreach ($teams as $team) {
 echo '
 <div id="logo_club" ' . ($team['value'] == $selected_team_logo ? "style='border: grey 2px solid'" : null) . '">
 
-<form action="./teams" method="post">
+<form action="./teams.php" method="post">
   <input type="hidden" id="team_code" name="team_code" value='. $team['value'] .'> 
  <button type="submit" name="send_team" id="send_team"> 
  <img '.($team['value'] == $selected_team_logo ? setcookie('teams_team_selection', $team['value'], time() + 3600, '/', '', true)
