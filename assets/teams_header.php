@@ -132,7 +132,7 @@ echo "</div><div>
 
 <div class='center_buttons'>"; 
 
-echo "<form action='./teams' method='post'>
+echo "<form action='./teams.php' method='post'>
 
 <select name='season_selection' onchange='this.form.submit()'> 
 
