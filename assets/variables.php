@@ -45,6 +45,18 @@ $teams = array(
   
 );
 
+$teams1 = array(
+  [194 => '#c2002f, #fff'], // Ajax
+  [209 => '#ed1c24, #000'], // Feyenoord
+  [197 => '#ed1c24, #fff'], // PSV 
+  [413 => '#009b69, #ed1c24, #080808'], // NEC
+  [200 => '#fec900, #000'], // Vitesse 
+  [412 => '#e73140, #fff'], // MVV
+  [192 => '#ff0000, #fff'], // 1. FC Köln 
+  [174 => '#004b9c, #fff'], // FC Schalke 04
+  
+);
+
 /* 
 
 Internationale competities 
