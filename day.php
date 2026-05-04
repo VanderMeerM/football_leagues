@@ -20,6 +20,10 @@
 
 <?php
 
+if ($_POST['sel_day']) {
+  $_POST['sel_day'] = null;
+}
+
 if ($_POST['orderByLeagueTime'] === 'ob_league') {
   setcookie("LeagueTime", "ob_league", time() + 86400, "/", '', true);
 
@@ -100,7 +104,6 @@ curl_setopt_array($curl, array(
   CURLOPT_CUSTOMREQUEST => 'GET',
   CURLOPT_HTTPHEADER => array(
     'x-rapidapi-key: ' . $api_key .'',
-    // 'x-rapidapi-key: 863bcd048478f98225b64bced629b376',
     'x-rapidapi-host: v3.football.api-sports.io',
     
   ),
