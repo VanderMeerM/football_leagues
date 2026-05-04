@@ -1,4 +1,5 @@
 
+
 <?php 
 
 /*
@@ -125,12 +126,14 @@ echo '
 }
 
 
-echo "</div><div> 
+echo "</div><div>";
 
-<div id='header_info'> 
-</div>
+include('./teams_from_lg.php');
 
-<div class='center_buttons'>"; 
+
+//<div id='header_info'></div>
+
+echo "<div class='center_buttons'>"; 
 
 echo "<form action='./teams.php' method='post'>
 
