@@ -1,4 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" type="text/css" href="./assets/teams.css" />   
 
+
+</head>
+<body>
+  
 <?php
 
 require('./assets/api.php');
@@ -7,11 +17,25 @@ include('./assets/variables.php');
 
 include('./assets/translations.php');
 
-// Kan weg bij include.. 
+$array_leagues = array_merge($array_dutch_leagues, $array_german_leagues);
 
-$season = 2025;
+echo '<div class="container_logos">';
 
-$cur_url_teams_in_league = 'https://v3.football.api-sports.io/teams?league=88&season=' .$season;
+for ($i=0; $i < sizeof($array_leagues); $i++) {
+  echo '
+  <form action="" method="post">
+  <input type="hidden" name="sel_league" id="sel_league" value= '.$array_leagues[$i].'>
+ 
+  <button type="submit" name="send_league" id="send_league"> 
+  <img class="league_icon" src="https://media.api-sports.io/football/leagues/' . $array_leagues[$i] . '.png"/>
+  </button>
+
+  </form>';
+}
+
+echo '</div>';
+
+$cur_url_teams_in_league = 'https://v3.football.api-sports.io/teams?league='.$_POST['sel_league'].'&season=' .$season;
 
 $curl_teams_in_league = curl_init();
 
@@ -36,9 +60,7 @@ $response_teams_in_league = curl_exec($curl_teams_in_league);
 
 $response_teams_in_league = json_decode($response_teams_in_league, true);
 
-echo '
-<div class="container_logos">';
-
+echo '<div class="container_leagues">';
 
 for ($i=0; $i < $response_teams_in_league['results']; $i++) {
 
@@ -48,16 +70,20 @@ for ($i=0; $i < $response_teams_in_league['results']; $i++) {
  */
 
 echo '
+
 <div id="logo_club">
+
 <form action="./teams.php" method="post">
+
 <input type="hidden" id="team_code" name="team_code" value='. $response_teams_in_league['response'][$i]['team']['id'] .'> 
 <button type="submit" name="send_team" id="send_team"> 
 <img class="league_icon" src='.$response_teams_in_league['response'][$i]['team']['logo'].'>
 </button>
 </form>
+
 </div>';
 }
 
 echo '</div>';
-    
+
 ?>

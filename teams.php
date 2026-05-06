@@ -45,6 +45,9 @@ $current_season = date('Y');
 
 }
 
+setcookie('teams_team_selection', $_POST['team_code'], time() + 3600, '/', '', true); 
+
+
 $allseasons = [];
 
 if ($_POST['team_code']) { 
