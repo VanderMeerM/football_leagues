@@ -1,18 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eredivisieclubs</title>  
-    <link rel="shortcut icon" href="https://www.api-football.com/public/img/favicon.ico">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/smoothness/jquery-ui.css"> 
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-   <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
-   <link rel="stylesheet" type="text/css" href="./teams.css" />   
-  
-</head>
-
-<body>
 
 <?php
 
@@ -26,12 +11,12 @@ include('./assets/translations.php');
 
 $season = 2025;
 
-$cur_url = 'https://v3.football.api-sports.io/teams?league=88&season=' .$season;
+$cur_url_teams_in_league = 'https://v3.football.api-sports.io/teams?league=88&season=' .$season;
 
-$curl = curl_init();
+$curl_teams_in_league = curl_init();
 
-curl_setopt_array($curl, array(
-  CURLOPT_URL => $cur_url,
+curl_setopt_array($curl_teams_in_league, array(
+  CURLOPT_URL => $cur_url_teams_in_league,
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_MAXREDIRS => 10,
@@ -47,18 +32,15 @@ curl_setopt_array($curl, array(
 ));
 
 
-$response = curl_exec($curl);
+$response_teams_in_league = curl_exec($curl_teams_in_league);
 
-$response = json_decode($response, true);
+$response_teams_in_league = json_decode($response_teams_in_league, true);
 
-//print_r($response['results']);
+echo '
+<div class="container_logos">';
 
 
-for ($i=0; $i < $response['results']; $i++) {
-
-//echo $response['response'][$i]['team']['id'];
-//echo $response['response'][$i]['team']['name'];
-
+for ($i=0; $i < $response_teams_in_league['results']; $i++) {
 
 // inbouwen, gebaseerd op teams..
  /*<img '.($team['value'] == $selected_team_logo ? setcookie('teams_team_selection', $team['value'], time() + 3600, '/', '', true)
@@ -66,15 +48,16 @@ for ($i=0; $i < $response['results']; $i++) {
  */
 
 echo '
+<div id="logo_club">
 <form action="./teams.php" method="post">
-<input type="hidden" id="team_code" name="team_code" value='. $response['response'][$i]['team']['id'] .'> 
+<input type="hidden" id="team_code" name="team_code" value='. $response_teams_in_league['response'][$i]['team']['id'] .'> 
 <button type="submit" name="send_team" id="send_team"> 
-<img class="league_icon" src='.$response['response'][$i]['team']['logo'].'>
+<img class="league_icon" src='.$response_teams_in_league['response'][$i]['team']['logo'].'>
 </button>
-</form>';
+</form>
+</div>';
 }
+
+echo '</div>';
     
 ?>
-
-</body>
-</html>
