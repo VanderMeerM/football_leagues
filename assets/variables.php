@@ -33,7 +33,7 @@ $menu_day = 'day';
 $menu_teams = 'teams';
 
 
-$teams = array(
+$fav_teams = array(
   ['value' => 194, 'bg' => '#c2002f, #fff'], // Ajax
   ['value' => 209, 'bg' => '#ed1c24, #000'], // Feyenoord
   ['value' => 197, 'bg' => '#ed1c24, #fff'], // PSV 

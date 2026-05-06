@@ -88,12 +88,11 @@ for ($i=$current_season; $i >= 2010; $i--) {
   array_push($allseasons, $i);
 }
 
-for ($i=0 ; $i < sizeof($teams); $i++) {
- if ($teams[$i]['value'] == $team_id) {
-   $bc = $teams[$i]['bg'];
+for ($i=0 ; $i < sizeof($fav_teams); $i++) {
+ if ($fav_teams[$i]['value'] == $team_id) {
+   $bc = $fav_teams[$i]['bg'];
  }
 }
-
 
 
 echo '
@@ -110,7 +109,7 @@ if (!is_null($_POST['team_code'])) {
 $selected_team_logo = $_COOKIE['teams_team_selection'];
 }
 
-foreach ($teams as $team) {
+foreach ($fav_teams as $team) {
 
 echo '
 <div id="logo_club" ' . ($team['value'] == $selected_team_logo ? "style='border: grey 2px solid'" : null) . '">
@@ -126,16 +125,13 @@ echo '
 }
 
 
-echo "</div><div>";
+echo '</div>';
 
 include('./teams_from_lg.php');
 
+echo "<div class='center_buttons'>
 
-//<div id='header_info'></div>
-
-echo "<div class='center_buttons'>"; 
-
-echo "<form action='./teams.php' method='post'>
+<form action='./teams.php' method='post'>
 
 <select name='season_selection' onchange='this.form.submit()'> 
 
