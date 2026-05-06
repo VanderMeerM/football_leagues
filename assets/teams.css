@@ -43,14 +43,19 @@ height: 2px;
     margin-top: 10px;
 }
 
-.container_logos {
+.container_logos, 
+.container_leagues {
     display: flex; 
     justify-content: center;
     flex-wrap: wrap;
     border: solid #8c5d5d 1px;
     width: fit-content;
-    padding: 20px;
+    padding: 10px;
     margin: 0 auto 10px;
+}
+
+.container_leagues {
+    border: 0px;
 }
 
 #logo {
@@ -64,8 +69,8 @@ height: 2px;
 
 #logo_club {
   text-align: center;
-  padding: 2%;
-  /*width: 100px;*/
+  /*padding: 2%;
+  width: 100px;*/
 }
 
 #logo_club img {
@@ -386,9 +391,10 @@ td {
 }
 
 button {
-    background-color: black;
+    background-color: transparent;
     color: white;
     margin: 5px;
+    border: 0px;
 }
 
 
@@ -398,7 +404,7 @@ button {
 }
 
 #send_team img {
-    width: 100px;
+    width: 70px;
 }
 
 #bigger_logo {
