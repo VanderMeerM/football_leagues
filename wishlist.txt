@@ -1,5 +1,4 @@
 
-- teams uit competitie in alfabetische volgorde
 
 - onder teams Engelse, Italiaanse en Spaanse competities toevoegen  
 
@@ -60,6 +59,8 @@ Standen
 
 
 Afgerond: 
+
+- teams uit competitie in alfabetische volgorde v 
 
 - overbodige uitgecommentarieerde code verwijderen v 
 
