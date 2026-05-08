@@ -70,7 +70,7 @@ echo
 <select class="menu_sel_item" style=background-color:' .  $array_bgcolor_menubar[$league_id] . ' name="EKWK" onchange="window.open(this.value);">
   <option class="menu_option" selected disabled value="">EK/WK</option>
   <option class="menu_option" value="./EK.php">EK</option>
-  <option class="menu_option" value="./WK.php">WK</option>
+  <option class="menu_option" value="./WK/">WK</option>
   </select>
 
 </ul>
@@ -94,6 +94,11 @@ for ($i=0 ; $i < sizeof($fav_teams); $i++) {
  }
 }
 
+$fav_teams_3 = []; 
+
+array_push($fav_teams_3, [$fav_teams[0], $fav_teams[1], $fav_teams[2]]);
+
+$fav_teams_3 = $fav_teams_3[0];
 
 echo '
 <div class="title_container" style="background-image: linear-gradient(to right, ' . $bc . ')">
@@ -109,7 +114,7 @@ if (!is_null($_POST['team_code'])) {
 $selected_team_logo = $_COOKIE['teams_team_selection'];
 }
 
-foreach ($fav_teams as $team) {
+foreach ($fav_teams_3 as $team) {
 
 echo '
 <div id="logo_club" ' . ($team['value'] == $selected_team_logo ? "style='border: grey 2px solid'" : null) . '">
