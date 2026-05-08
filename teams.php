@@ -352,10 +352,21 @@ echo'
   
 });
 
-document.getElementById('focus').scrollIntoView({behavior: 'smooth'});
-
 </script>
 
+<?php
+
+if ($_POST['no_scroll'] != 'yes') {
+
+?> 
+<script>
+document.getElementById('focus').scrollIntoView({behavior: 'smooth'});
+</script>
+
+<?php
+}
+
+?>
 
 </body>
 </html>
