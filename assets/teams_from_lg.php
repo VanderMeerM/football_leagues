@@ -60,9 +60,34 @@ $response_teams_in_league = curl_exec($curl_teams_in_league);
 
 $response_teams_in_league = json_decode($response_teams_in_league, true);
 
+$response_teams_in_league = $response_teams_in_league['response'];
+
+
+// Teams sorteren op naam...
+
+$teams_on_name = [];
+
+for ($i=0; $i < sizeof($response_teams_in_league); $i++) {
+
+    array_push($teams_on_name, $response_teams_in_league[$i]['team']['name']); 
+  }
+ 
+asort($teams_on_name);
+
+$teams_on_name_keys = array_keys($teams_on_name);
+
+for ($i=0; $i < sizeof($teams_on_name_keys); $i++) {
+  
+  $teams_on_name_sorted[] = $response_teams_in_league[$teams_on_name_keys[$i]];
+}
+
+$response_teams_in_league = $teams_on_name_sorted;
+
+if ($response_teams_in_league) {
+
 echo '<div class="container_leagues">';
 
-for ($i=0; $i < $response_teams_in_league['results']; $i++) {
+for ($i=0; $i < sizeof($response_teams_in_league); $i++) {
 
 // inbouwen, gebaseerd op teams..
  /*<img '.($team['value'] == $selected_team_logo ? setcookie('teams_team_selection', $team['value'], time() + 3600, '/', '', true)
@@ -75,10 +100,10 @@ echo '
 
 <form action="./teams.php" method="post">
 
-<input type="hidden" id="team_code" name="team_code" value='. $response_teams_in_league['response'][$i]['team']['id'] .'> 
+<input type="hidden" id="team_code" name="team_code" value='. $response_teams_in_league[$i]['team']['id'] .'> 
 <input type="hidden" id="no_scroll" name="no_scroll" value= ""> 
 <button type="submit" name="send_team" id="send_team"> 
-<img class="league_icon" src='.$response_teams_in_league['response'][$i]['team']['logo'].'>
+<img class="league_icon" src='.$response_teams_in_league[$i]['team']['logo'].'>
 </button>
 </form>
 
@@ -86,5 +111,6 @@ echo '
 }
 
 echo '</div>';
+};
 
 ?>

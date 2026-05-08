@@ -94,11 +94,11 @@ for ($i=0 ; $i < sizeof($fav_teams); $i++) {
  }
 }
 
-$fav_teams_3 = []; 
+if (!$bc) {
+ $bc = '#e6e7ec';
+}
 
-array_push($fav_teams_3, [$fav_teams[0], $fav_teams[1], $fav_teams[2]]);
-
-$fav_teams_3 = $fav_teams_3[0];
+$fav_teams_3 = [$fav_teams[0], $fav_teams[1], $fav_teams[2]]; 
 
 echo '
 <div class="title_container" style="background-image: linear-gradient(to right, ' . $bc . ')">
