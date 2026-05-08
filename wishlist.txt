@@ -1,6 +1,12 @@
 
+- teams uit competitie in alfabetische volgorde
+
+- EK/WK-functionaliteit 
+
+- onder teams Engelse, Italiaanse en Spaanse competities toevoegen  
 
 - extensie .php weglaten 
+
 
 - cirkeltje voor live verversen iets kleiner en betere code 
 
