@@ -1,9 +1,9 @@
 
 - teams uit competitie in alfabetische volgorde
 
-- EK/WK-functionaliteit 
-
 - onder teams Engelse, Italiaanse en Spaanse competities toevoegen  
+
+- EK/WK-functionaliteit 
 
 - extensie .php weglaten 
 
@@ -22,7 +22,7 @@ League (internationaal)
 
 Day
 
-- aanklikken day moet soms 2x om wedstrijden op gewenste datum te krijgen 
+- aanklikken day moet soms 2x om wedstrijden op gewenste datum te krijgen v 
 
 - cookie voor sortering op competitie/tijdstip 
  (bug: switch naar competitie werkt pas bij tweede keer) 
