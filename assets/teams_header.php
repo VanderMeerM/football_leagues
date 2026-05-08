@@ -116,7 +116,7 @@ echo '
 
 <form action="./teams.php" method="post">
   <input type="hidden" id="team_code" name="team_code" value='. $team['value'] .'> 
- <button type="submit" name="send_team" id="send_team"> 
+  <button type="submit" name="send_team" id="send_team"> 
  <img '.($team['value'] == $selected_team_logo ? setcookie('teams_team_selection', $team['value'], time() + 3600, '/', '', true)
  : null) . ' src= "https://media.api-sports.io/football/teams/'. $team['value']. '.png"/> 
  </button>
@@ -127,7 +127,7 @@ echo '
 
 echo '</div>';
 
-include('./teams_from_lg.php');
+include('./assets/teams_from_lg.php');
 
 echo "<div class='center_buttons'>
 
