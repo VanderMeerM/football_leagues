@@ -123,7 +123,7 @@ $away_team_goals = [];
 
                echo
               
-                '<img id="type_pic" src="./img/' . 
+                '<img id="type_pic" src="../img/' . 
                $array_type[$all_team_events[$i]['type']] . 
                $array_type[$all_team_events[$i]['detail']] . ' ' . '">  ';
             }    

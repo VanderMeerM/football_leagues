@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" type="text/css" href="./assets/teams.css" />   
+   <link rel="stylesheet" type="text/css" href="../assets/teams.css" />   
 
 
 </head>
@@ -11,11 +11,11 @@
   
 <?php
 
-require('./assets/api.php');
+require('../assets/api.php');
 
-include('./assets/variables.php');
+include('../assets/variables.php');
 
-include('./assets/translations.php');
+include('../assets/translations.php');
 
 $array_leagues = array_merge($array_dutch_leagues, $array_german_leagues);
 
@@ -98,7 +98,7 @@ echo '
 
 <div id="logo_club">
 
-<form action="./teams.php" method="post">
+<form action="./" method="post">
 
 <input type="hidden" id="team_code" name="team_code" value='. $response_teams_in_league[$i]['team']['id'] .'> 
 <input type="hidden" id="no_scroll" name="no_scroll" value= ""> 

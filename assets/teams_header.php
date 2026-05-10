@@ -24,7 +24,7 @@ echo "
 
 echo 
 "<div class='menubuttons'>
-<a style='padding: 0px' href= './teams.php' > <img id='shirt' style='cursor:pointer' src='./img/shirt.png'></a>
+<a style='padding: 0px' href= './teams/' > <img id='shirt' style='cursor:pointer' src='../img/shirt.png'></a>
 </div>";
 
 
@@ -32,7 +32,7 @@ echo
 
 if (!in_array($league_to_fixture, $array_cup_leagues)) { // Alleen tonen indien geen bekerwedstrijd 
 
-echo '<li><a id="table_txt" href="./standings.php?league='. $selected_leage_team .'&season=' . $selected_season_team . '&team='.$team_id.'"></a></li>';
+echo '<li><a id="table_txt" href="../standings.php?league='. $selected_leage_team .'&season=' . $selected_season_team . '&team='.$team_id.'"></a></li>';
 
 
 }
@@ -44,7 +44,7 @@ echo '<li><a id="table_txt" href="./standings.php?league='. $selected_leage_team
 if ($_GET['id']) {
 
  echo "
-<li><a href= './teams.php' style= 'color: 'white'; cursor: 'pointer'>
+<li><a href= './' style= 'color: 'white'; cursor: 'pointer'>
 Overzicht</a></li>";
 } 
 
@@ -56,8 +56,8 @@ $today = strtotime('today');
 
 echo 
   "<div class='menubuttons'>
-<form method='post' action='./day.php'>
-<input type='image' id='agenda' style='cursor:pointer' src='./img/agenda.png'>
+<form method='post' action='../day'>
+<input type='image' id='agenda' style='cursor:pointer' src='../img/agenda.png'>
 <input type='hidden' name='sel_day' value=$today>
 <input type='submit' style='display: none'>
 </form>
@@ -119,7 +119,7 @@ foreach ($fav_teams_3 as $team) {
 echo '
 <div id="logo_club" ' . ($team['value'] == $selected_team_logo ? "style='border: grey 2px solid'" : null) . '">
 
-<form action="./teams.php" method="post">
+<form action="./" method="post">
   <input type="hidden" id="team_code" name="team_code" value='. $team['value'] .'> 
   <button type="submit" name="send_team" id="send_team"> 
  <img '.($team['value'] == $selected_team_logo ? setcookie('teams_team_selection', $team['value'], time() + 3600, '/', '', true)
@@ -132,11 +132,11 @@ echo '
 
 echo '</div>';
 
-include('./assets/teams_from_lg.php');
+include('../assets/teams_from_lg.php');
 
 echo "<div class='center_buttons'>
 
-<form action='./teams.php' method='post'>
+<form action='./' method='post'>
 
 <select name='season_selection' onchange='this.form.submit()'> 
 
