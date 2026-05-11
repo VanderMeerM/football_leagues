@@ -27,14 +27,28 @@ document.addEventListener("visibilitychange", function() {
 <?php 
 
 include('../assets/getTZ.php');
+include('../assets/variables.php');
+
+if (!$_POST['country_code']) {
+  $_POST['country_code'] === $_COOKIE['ctt'];
+}
+
+$array_leagues_sep = [];
+$array_leagues_to_selected_country = $array_leagues_countries[$_POST['country_code']];
+
+foreach($array_leagues_to_selected_country as $key=>$value) {
+  array_push($array_leagues_sep, $value);
+};
+
+//print_r($array_leagues_sep);
 
 $all_matches_leagues = [];
 
-$array_competition_leagues = [78,79, 88,89]; // 78, 79 (1e en 2e Bundesliga), 88 - Eredivisie, 89 - KVK 
-$array_cup_leagues = [81, 90]; // 81 - DFB Pokal, 90 - KNVB beker
-$array_international_leagues = [2, 3, 848]; // 2, 3, 848 (CL, EL & Conf. League)
+//$array_competition_leagues = [78,79, 88,89]; // 78, 79 (1e en 2e Bundesliga), 88 - Eredivisie, 89 - KVK 
 
-$array_of_leagues = array_merge($array_competition_leagues, $array_cup_leagues, $array_international_leagues); 
+//$array_international_leagues = [2, 3, 848]; // 2, 3, 848 (CL, EL & Conf. League)
+
+$array_of_leagues = array_merge($array_leagues_sep, $array_intern_leagues); 
 
 
 if (date('m') >= 1 && date('m') < 8) {
@@ -85,7 +99,6 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 */
-
 
 for ($i=0; $i < sizeof($array_of_leagues); $i++) {
 
@@ -206,7 +219,7 @@ else {
 
   if (!$_GET['id']) {
  
-    echo '<a '. (date('d-m-Y') === $date ? ' style="background-color: ' . $backgr_today_match : null) . '" href="' . $_SERVER['PHP_SELF'] . '?id=' . $matchId . '">';
+    echo '<a '. (date('d-m-Y') === $date ? ' style="background-color: ' . $backgr_today_match : null) . '" href="./?id=' . $matchId . '">';
   }
 
 echo'
