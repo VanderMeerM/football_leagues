@@ -104,7 +104,7 @@ echo '
 <input type="hidden" id="team_code" name="team_code" value='. $response_teams_in_league[$i]['team']['id'] .'> 
 <input type="hidden" id="country_code" name="country_code" value= '.$country_code.'> 
 <input type="hidden" id="no_scroll" name="no_scroll" value= ""> 
-<button type="submit" name="send_team" id="send_team"> 
+<button type="submit" title="'.$response_teams_in_league[$i]['team']['name'].'" name="send_team" id="send_team"> 
 <img class="league_icon" src='.$response_teams_in_league[$i]['team']['logo'].'>
 </button>
 </form>
