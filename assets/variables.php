@@ -12,18 +12,37 @@ $backgr_today_match = '#e4cd84';
 
 $allrounds = [];
 
-$array_dutch_leagues = [88,89];
+// Nodig om in team alleen in competities van betreffende land te kijken..
 
-$array_german_leagues = [78,79]; 
+$array_leagues_countries = 
+[
+  'Netherlands' => [88, 89, 90],  // 90 KNVB beker,
+  'Germany' => [78,79, 81], // 81 DFB Pokal
+  'Italy' => [135, 137], // 137 Coppa Italia 
+  'Spain' => [140],
+  'England' => [39, 40, 45], // 45 FA Cup,
+  'Scotland' => [179],
+  'Northern Ireland' => [408],
+  'France' => [61],
+  'Belgium' => [144]
+  
+];
 
-$array_nat_leagues = [135, 140, 39, 40, 179, 408, 61, 144]; 
+// To do: hierboven nog eventueel '2e divisies' en bekertoernooien toevoegen (zie ook hieronder array_cup_leagues)
 
-$array_reg_leagues = array_merge($array_dutch_leagues, $array_german_leagues, $array_nat_leagues);
 
-$array_intern_leagues = [2, 3, 848]; 
+// In league (reguliere competities tonen)..
+$array_reg_leagues = [78,79, 88, 89, 135, 140, 39, 40, 179, 408, 61, 144];  
 
-$array_extra_leagues = [48, 81, 90, 45, 137, 32, 960, 5];
+// In league om wel/niet menu voor stand te tonen..
+$array_cup_leagues = [81, 90, 137, 45]; // 81 - DFB Pokal, 90 - KNVB beker
 
+$array_intern_leagues = [2, 3, 848]; // 2, 3, 848 (CL, EL & Conf. League)
+
+// In day (32 WK-Kwalificatie Europa, 960 EK-kwalificatie, 5 Nations League)..
+$array_extra_leagues = [48, 32, 960, 5];
+
+// In league (reguliere + internationale competities tonen) & teams (ook door internationale competities)..
 $array_leagues = array_merge($array_reg_leagues, $array_intern_leagues); 
 
 
@@ -47,6 +66,7 @@ $fav_teams = array(
   
 );
 
+/* 
 $teams1 = array(
   [194 => '#c2002f, #fff'], // Ajax
   [209 => '#ed1c24, #000'], // Feyenoord
@@ -59,17 +79,6 @@ $teams1 = array(
   
 );
 
-/* 
-
-Internationale competities 
-2, 3, 848 (CL, EL & Conf. League)
-
-Extra competitites 
-
-81 DFB Pokal; 90 KNVB beker, 45 FA Cup, 137 Coppa Italia 
-32 WK-Kwalificatie Europa
-960 EK-kwalificatie
-5 Nations League  
 357 = Ierse competitie
 
 */ 

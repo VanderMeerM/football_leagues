@@ -121,6 +121,7 @@ echo '
 
 <form action="./" method="post">
   <input type="hidden" id="team_code" name="team_code" value='. $team['value'] .'> 
+  <input type="hidden" id="country_code" name="country_code" value="Netherlands"> 
   <button type="submit" name="send_team" id="send_team"> 
  <img '.($team['value'] == $selected_team_logo ? setcookie('teams_team_selection', $team['value'], time() + 3600, '/', '', true)
  : null) . ' src= "https://media.api-sports.io/football/teams/'. $team['value']. '.png"/> 

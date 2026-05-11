@@ -17,11 +17,10 @@ include('../assets/variables.php');
 
 include('../assets/translations.php');
 
-$array_leagues = array_merge($array_dutch_leagues, $array_german_leagues);
 
 echo '<div class="container_logos">';
 
-for ($i=0; $i < sizeof($array_leagues); $i++) {
+for ($i=0; $i < sizeof($array_reg_leagues); $i++) {
   echo '
   <form action="" method="post">
   <input type="hidden" name="sel_league" id="sel_league" value= '.$array_leagues[$i].'>
@@ -62,6 +61,7 @@ $response_teams_in_league = json_decode($response_teams_in_league, true);
 
 $response_teams_in_league = $response_teams_in_league['response'];
 
+$country_code = $response_teams_in_league[0]['team']['country'];
 
 // Teams sorteren op naam...
 
@@ -83,6 +83,7 @@ for ($i=0; $i < sizeof($teams_on_name_keys); $i++) {
 
 $response_teams_in_league = $teams_on_name_sorted;
 
+
 if ($response_teams_in_league) {
 
 echo '<div class="container_leagues">';
@@ -101,6 +102,7 @@ echo '
 <form action="./" method="post">
 
 <input type="hidden" id="team_code" name="team_code" value='. $response_teams_in_league[$i]['team']['id'] .'> 
+<input type="hidden" id="country_code" name="country_code" value= '.$country_code.'> 
 <input type="hidden" id="no_scroll" name="no_scroll" value= ""> 
 <button type="submit" name="send_team" id="send_team"> 
 <img class="league_icon" src='.$response_teams_in_league[$i]['team']['logo'].'>
