@@ -49,8 +49,8 @@ if (str_contains($current_page, $menu_standings)) { // bij menu Stand..
 if ($_GET['id']) {
 
  (!$_GET['datum'] ? 
- $ref = "./league?league=$league_to_fixture&season=$season_to_fixture&round_selection=$round_to_fixture" :
- $ref = './day?datum=' . $_GET['datum'] . '');
+ $ref = "../league?league=$league_to_fixture&season=$season_to_fixture&round_selection=$round_to_fixture" :
+ $ref = '../day?datum=' . $_GET['datum'] . '');
 
  $font_color = "white";
  $cursor = "pointer";
