@@ -1,0 +1,97 @@
+
+body {
+    text-align: center;
+}
+
+div {
+    display: inline-block;
+    margin: 10px;
+ }
+
+ #countryA, 
+ #countryB {
+  width: 150px;
+ }
+
+#playerA_name, 
+#playerB_name {
+  display: flex;
+  justify-content: center;
+ }
+
+ .lightblue_background {
+  background-color: lightblue;
+}
+
+#playerA_name #flagA, 
+#playerB_name #flagB {
+  margin-top: 2.5%;
+}
+
+.right,
+.left {
+  height: 70px;
+  width: 35px;
+}
+
+.redborder {
+  border: red 1px solid;
+}
+
+.right {
+  margin-left: -2px;
+  border-bottom-right-radius: 90px;
+  border-top-right-radius: 90px;
+}
+
+.left {
+  margin-right: -2px;
+  border-bottom-left-radius: 90px;
+  border-top-left-radius: 90px;
+}
+
+#flagA img, 
+#flagB img {
+  width: 50px;
+  height: 41px;
+  border: 1px solid black;
+}
+
+
+@media (max-width: 550px) {
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .right, 
+  .left {
+    height: 50px;
+    width: 25px;
+  }
+
+  #flagA img, 
+  #flagB img {
+    width: 30px;
+    height: 25px;
+  }
+}
+
+@media (max-width: 420px) {
+
+  h2 {
+    font-size: 15px;
+  }
+
+  .right, 
+  .left {
+    height: 30px;
+    width: 15px;
+  }
+
+  #flagA img, 
+  #flagB img {
+    width: 20px;
+    height: 16px;
+  }
+ }
