@@ -1,11 +1,12 @@
 
 
 - onder teams Engelse, Italiaanse en Spaanse competities toevoegen  
+(afzonderlijke wedstrijden onder Teams werken niet altijd)
 
 - extensie .php weglaten 
 
+- EK/WK-functionaliteit + penalty's 
 
-- EK/WK-functionaliteit 
 
 - cirkeltje voor live verversen iets kleiner en betere code 
 
