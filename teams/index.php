@@ -30,7 +30,7 @@ include('../assets/getTZ.php');
 include('../assets/variables.php');
 
 if (!$_POST['country_code']) {
-  $_POST['country_code'] === $_COOKIE['ctt'];
+  $_POST['country_code'] = 'Netherlands';
 }
 
 $array_leagues_sep = [];
