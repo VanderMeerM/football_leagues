@@ -32,7 +32,7 @@ echo
 
 if (!in_array($league_to_fixture, $array_cup_leagues)) { // Alleen tonen indien geen bekerwedstrijd 
 
-echo '<li><a id="table_txt" href="../standings.php?league='. $selected_leage_team .'&season=' . $selected_season_team . '&team='.$team_id.'"></a></li>';
+echo '<li><a id="table_txt" href="../standings?league='. $selected_leage_team .'&season=' . $selected_season_team . '&team='.$team_id.'"></a></li>';
 
 
 }

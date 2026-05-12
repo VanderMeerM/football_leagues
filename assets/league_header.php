@@ -33,15 +33,15 @@ elseif
 {
   
   if ($_GET['id']) {
-    echo '<li><a id="table_txt" href="../standings.php?league=' . $league_to_fixture . '&season=' . $season_to_fixture . '"></a></li>';
+    echo '<li><a id="table_txt" href="../standings?league=' . $league_to_fixture . '&season=' . $season_to_fixture . '"></a></li>';
   }
   else {
-  echo '<li><a id="table_txt" href="../standings.php?league=' . $league_id . '&season=' . $selected_season . '"></a></li>';
+  echo '<li><a id="table_txt" href="../standings?league=' . $league_id . '&season=' . $selected_season . '"></a></li>';
 }
 }
 
 if (str_contains($current_page, $menu_standings)) { // bij menu Stand.. 
-  echo '<li><a id="prog_txt" href="./league?league=' . $league_id . '&season=' . $selected_season . '"></a></li>';
+  echo '<li><a id="prog_txt" href="../league?league=' . $league_id . '&season=' . $selected_season . '"></a></li>';
 }
 
 // Menu Overzicht
@@ -108,7 +108,7 @@ echo "
 if (!str_contains($current_page, $menu_day)) {
 
 echo "
-<a href='./league?league=" . $league_id . "&season=" . $selected_season . "'>
+<a href='../league?league=" . $league_id . "&season=" . $selected_season . "'>
   <img id='logo' src='https://media.api-sports.io/football/leagues/" . $big_image_leage . ".png'/>
   </a>";
 
@@ -280,7 +280,7 @@ foreach ($array_of_dates as $aod) {
     '<div class="container_dates ' . 
     (($_GET['datum'] === date('d-m-Y', $aod) && str_contains($current_page, $menu_day)) || 
     ((!$_GET['datum'] && date('d-m-Y', $today) === date('d-m-Y', $aod)) && str_contains($current_page, $menu_day)) ? 'highlight_date' : null).'"> 
-    <a href="./day?datum='. date('d-m-Y', $aod) . '">
+    <a href="../day?datum='. date('d-m-Y', $aod) . '">
     <strong>' . 
     date('d', $aod) . '</strong><br> '
     . date('m', $aod) . '</a></div>';
