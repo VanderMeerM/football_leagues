@@ -40,13 +40,7 @@ foreach($array_leagues_to_selected_country as $key=>$value) {
   array_push($array_leagues_sep, $value);
 };
 
-//print_r($array_leagues_sep);
-
 $all_matches_leagues = [];
-
-//$array_competition_leagues = [78,79, 88,89]; // 78, 79 (1e en 2e Bundesliga), 88 - Eredivisie, 89 - KVK 
-
-//$array_international_leagues = [2, 3, 848]; // 2, 3, 848 (CL, EL & Conf. League)
 
 $array_of_leagues = array_merge($array_leagues_sep, $array_intern_leagues); 
 
@@ -164,8 +158,7 @@ for ($i=0; $i < sizeof($matches_leagues_ts_keys); $i++) {
 }
 
 
-$all_matches_leagues = $all_matches_leagues_sorted; //array_merge($match_today,$all_matches_leagues_sorted);
-
+$all_matches_leagues = $all_matches_leagues_sorted; 
 
 // Bepalen van competitie bij 1 wedstrijd (belangrijk voor niet tonen menu Stand bij bekerwedstrijden)
 
@@ -338,21 +331,17 @@ echo'
   };
       
 
-
    // Scoreverloop en opstellingen ophalen (alleen op afzonderlijke wedstrijdpagina)...
 
    if ($_GET['id']) {
    include ('../assets/events.php');
    include ('../assets/lineup.php');
    }      
-
    
   }}
   }}
-
   
     echo '<div class="white_background" style="padding: 0" id="arrow_up">↑</div>';
-  
 
 ?>
 
@@ -361,7 +350,7 @@ echo'
 <script defer>
  document.getElementById('arrow_up').addEventListener('click', () => {
 
-  document.getElementById('top').scrollIntoView({behavior: 'smooth'});
+ document.getElementById('top').scrollIntoView({behavior: 'smooth'});
   
 });
 
