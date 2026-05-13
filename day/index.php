@@ -24,6 +24,7 @@ if ($_POST['sel_day']) {
   $_POST['sel_day'] = null;
 }
 
+/*
 if ($_POST['orderByLeagueTime'] === 'ob_league') {
   setcookie("LeagueTime", "ob_league", time() + 86400, "/", '', true);
 
@@ -33,6 +34,7 @@ elseif ($_POST['orderByLeagueTime'] === 'ob_time') {
   setcookie("LeagueTime", "ob_time", time() + 86400, "/", '', true);
 
 }
+*/
 
 /*
 ini_set('display_errors', 1);
@@ -156,8 +158,7 @@ if (sizeof($matches_on_selected_day) == 0) {
 
 //Wedstrijden sorteren op tijdstip;
 
-if ($_POST['orderByLeagueTime'] === 'ob_time' || $_COOKIE['LeagueTime'] === 'ob_time' 
-|| (!$_COOKIE['LeagueTime'] && !$_POST['orderByLeagueTime'])) {
+if (($_POST['orderByLeagueTime'] === 'ob_time') || (!$_POST['orderByLeagueTime'])) {
 
 $matches_ind_ts = [];
 
@@ -224,16 +225,14 @@ if (sizeof(array_unique($num_leagues)) > 1) {
 
 echo ' 
 <div class= "container_sortby_league_time">
-<form method="post" action="../day'. ($_GET['datum'] ? '?datum='. $_GET['datum'] : null) . '">
-<input name="orderByLeagueTime" id="ob_league" onchange="this.form.submit();" 
-value="ob_league" type="radio" ' . 
-(($_COOKIE['LeagueTime'] === 'ob_league' || $_POST['orderByLeagueTime'] === 'ob_league') ? 'checked' : null) . '> 
-<label for="ob_league">Competitie</label>
+<form method="post" action=" '.($_GET['datum'] ? '?datum='. $_GET['datum'] : null) . '">
 
-<input name="orderByLeagueTime" id="ob_time" onchange="this.form.submit();" value="ob_time" type="radio" ' . 
-(($_POST['orderByLeagueTime'] === 'ob_time' || $_COOKIE['LeagueTime'] === 'ob_time' 
-|| (!$_COOKIE['LeagueTime'] && !$_POST['orderByLeagueTime'])) ? 'checked' : null) . '> 
-<label for="ob_time">Tijdstip</label>
+<input name="orderByLeagueTime" onchange="this.form.submit();" value="ob_league" type="radio" 
+'. ($_POST['orderByLeagueTime'] === 'ob_league' ? 'checked' : null ) .' > Competitie
+
+<input name="orderByLeagueTime" onchange="this.form.submit();" value="ob_time" type="radio" 
+'. (($_POST['orderByLeagueTime'] === 'ob_time' || !$_POST['orderByLeagueTime']) ? 'checked' : null ) .' > Tijdstip 
+
 </form>';
 
 
