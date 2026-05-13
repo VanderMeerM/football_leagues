@@ -12,7 +12,7 @@ $backgr_today_match = '#e4cd84';
 
 $allrounds = [];
 
-// Nodig om in team alleen in competities van betreffende land te kijken..
+// Nodig om in team alleen in competities (reguliere en beker) van betreffende land te kijken..
 
 $array_leagues_countries = 
 [
@@ -30,6 +30,7 @@ $array_leagues_countries =
 
 
 // In league (reguliere competities tonen)..
+// 357 = Ierse competitie
 $array_reg_leagues = [78,79, 88, 89, 135, 140, 39, 40, 179, 408, 61, 144];  
 
 // In league om wel/niet menu voor stand te tonen..
@@ -41,8 +42,7 @@ $array_intern_leagues = [2, 3, 848]; // 2, 3, 848 (CL, EL & Conf. League)
 $array_extra_leagues = [48, 32, 960, 5];
 
 // In league (reguliere + internationale competities) 
-// teams (ook door internationale competities)
-// day (alle competities doornemen)...
+// day (alle competities doornemen, cup leagues worden op day zelf toegevoegd)...
 $array_leagues = array_merge($array_reg_leagues, $array_intern_leagues); 
 
 
@@ -66,22 +66,6 @@ $fav_teams = array(
   
 );
 
-/* 
-$teams1 = array(
-  [194 => '#c2002f, #fff'], // Ajax
-  [209 => '#ed1c24, #000'], // Feyenoord
-  [197 => '#ed1c24, #fff'], // PSV 
-  [413 => '#009b69, #ed1c24, #080808'], // NEC
-  [200 => '#fec900, #000'], // Vitesse 
-  [412 => '#e73140, #fff'], // MVV
-  [192 => '#ff0000, #fff'], // 1. FC Köln 
-  [174 => '#004b9c, #fff'], // FC Schalke 04
-  
-);
-
-357 = Ierse competitie
-
-*/ 
 
 $array_bgcolor_leagues = 
 ['#002e61', '#c9152a', '#cf0513', '#cf0513', '#0c90fd', '#ff4b44', 
