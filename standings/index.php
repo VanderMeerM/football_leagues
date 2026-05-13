@@ -133,9 +133,9 @@ for ($i = 0; $i < $numTeams; $i++) {
 
 echo '<tr '. ($_GET['team'] == $team_id ? 'style="background-color:yellow" id="focus_team"' : null) .'><td>' . $response['response'][0]['league']['standings'][0][$i]['rank'] .  '. </td>' .
 
-'<td id="hidden_cell"><a href="./assets/clubs.php?id='.$team_id.'" target="_blank"><img class="logo_standings" src=' . $response['response'][0]['league']['standings'][0][$i]['team']['logo'] . '><a></td>' .  
+'<td id="hidden_cell"><a href="../assets/clubs.php?id='.$team_id.'" target="_blank"><img class="logo_standings" src=' . $response['response'][0]['league']['standings'][0][$i]['team']['logo'] . '><a></td>' .  
 
-'<td><a href="./assets/clubs.php?id='.$team_id.'" target="_blank">' . $team_name . '</a></td>' .  
+'<td><a href="../assets/clubs.php?id='.$team_id.'" target="_blank">' . $team_name . '</a></td>' .  
 
 '<td>' . $played_matches . '</td>' . 
 
