@@ -40,7 +40,9 @@ $array_intern_leagues = [2, 3, 848]; // 2, 3, 848 (CL, EL & Conf. League)
 // In day (32 WK-Kwalificatie Europa, 960 EK-kwalificatie, 5 Nations League)..
 $array_extra_leagues = [48, 32, 960, 5];
 
-// In league (reguliere + internationale competities tonen) & teams (ook door internationale competities)..
+// In league (reguliere + internationale competities) 
+// teams (ook door internationale competities)
+// day (alle competities doornemen)...
 $array_leagues = array_merge($array_reg_leagues, $array_intern_leagues); 
 
 

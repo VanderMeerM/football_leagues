@@ -1,7 +1,7 @@
 
 <?php
 
-require('./assets/api.php');
+require('../assets/api.php');
 
 if ($_GET['id'] && file_exists($json_lineup_path)) {
 
@@ -169,11 +169,11 @@ for ($i = 0; $i < $num_lineups; $i++) {
         <tr>
         
         <td>
-        <a href="./assets/players.php?id='.$home_startXI[$i]['id'].'" target=_blank> ' . $home_startXI[$i]['number'] . '. ' . $home_startXI[$i]['name'] . '
+        <a href="../assets/players.php?id='.$home_startXI[$i]['id'].'" target=_blank> ' . $home_startXI[$i]['number'] . '. ' . $home_startXI[$i]['name'] . '
         </td> 
         
         <td>
-        <a href="./assets/players.php?id='.$away_startXI[$i]['id'].'" target=_blank> ' .  $away_startXI[$i]['number'] . '. ' . $away_startXI[$i]['name'] . '
+        <a href="../assets/players.php?id='.$away_startXI[$i]['id'].'" target=_blank> ' .  $away_startXI[$i]['number'] . '. ' . $away_startXI[$i]['name'] . '
         </td>
         
         </tr>'; 
