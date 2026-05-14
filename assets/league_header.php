@@ -242,7 +242,7 @@ foreach ($array_leagues as $al) {
       $page_to_go = "../league?league=$al&season=$selected_season";
     }
  else {
-      $page_to_go = "../standings.php?league=$al&season=$selected_season";
+      $page_to_go = "../standings?league=$al&season=$selected_season";
     }
 
   echo "
@@ -298,7 +298,7 @@ echo "</div></div>";
   currentPage = <?php echo json_encode($current_page) ?>;
   currentSeason = <?php echo json_encode($current_season) ?>;
 
-if (currentPage !="/football_leagues/standings.php") {
+if (currentPage !="/football_leagues/standings") {
 
 if (document.getElementById('round_selection') != undefined) {
 
@@ -322,13 +322,13 @@ seasonSelection = ev.target.value;
 (window.location.href.split('round_selection=')[1] == undefined) ? roundSelection = 1 :
 roundSelection = window.location.href.split('round_selection=')[1];
 
-if (currentPage !="/football_leagues/standings.php") {
+if (currentPage !="/football_leagues/standings") {
 
 window.location.href='./?league='+leagueId+'&season='+seasonSelection;
 }
 else 
 {
-  window.location.href='./standings.php?league='+leagueId+'&season='+seasonSelection;
+  window.location.href='./standings?league='+leagueId+'&season='+seasonSelection;
 
 }}
 )
