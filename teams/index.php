@@ -160,6 +160,7 @@ for ($i=0; $i < sizeof($matches_leagues_ts_keys); $i++) {
 
 $all_matches_leagues = $all_matches_leagues_sorted; 
 
+
 // Bepalen van competitie bij 1 wedstrijd (belangrijk voor niet tonen menu Stand bij bekerwedstrijden)
 
 if ($_GET['id']) {
@@ -212,7 +213,12 @@ else {
 
   if (!$_GET['id']) {
  
-    echo '<a '. (date('d-m-Y') === $date ? ' style="background-color: ' . $backgr_today_match : null) . '" href="./?id=' . $matchId . '">';
+    echo '
+    <form action="./?id=' . $matchId . '" method="post">
+    <input type="hidden" id="country_code" name="country_code" value= "'. $all_matches_leagues[$i]['league']['country'] .'"> 
+    <button type="submit" name="send_team" id="send_team"> 
+    <a '. (date('d-m-Y') === $date ? ' style="background-color: ' . $backgr_today_match : null) . '>
+    </form>';;
   }
 
 echo'
@@ -291,7 +297,7 @@ echo'
         if ($_GET['id']) { 
 
           echo '<p><div class="stscore_ref">
-            <img id="ref" src="../ref.png">' . '<br> ' . explode(',', $all_matches_leagues[$i]['fixture']['referee'])[0] . 
+            <img id="ref" src="../img/ref.png">' . '<br> ' . explode(',', $all_matches_leagues[$i]['fixture']['referee'])[0] . 
            '<br>'; 
 
             }
