@@ -63,6 +63,7 @@ $response_teams_in_league = $response_teams_in_league['response'];
 
 $country_code = $response_teams_in_league[0]['team']['country'];
 
+
 // Teams sorteren op naam...
 
 $teams_on_name = [];

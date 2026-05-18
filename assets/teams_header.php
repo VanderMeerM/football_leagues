@@ -22,9 +22,11 @@ echo "
 
 // Menu teams (met shirtje) 
 
+(str_contains($current_page, $menu_teams) ? $link_teams = './' : $link_teams = './teams');  
+
 echo 
 "<div class='menubuttons'>
-<a style='padding: 0px' href= './teams/' > <img id='shirt' style='cursor:pointer' src='../img/shirt.png'></a>
+<a style='padding: 0px' href= $link_teams > <img id='shirt' style='cursor:pointer' src='../img/shirt.png'></a>
 </div>";
 
 
