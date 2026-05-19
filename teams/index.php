@@ -216,9 +216,9 @@ else {
     echo '
     <form action="./?id=' . $matchId . '" method="post">
     <input type="hidden" id="country_code" name="country_code" value= "'. $all_matches_leagues[$i]['league']['country'] .'"> 
-    <button type="submit" name="send_team" id="send_team"> 
+    <button type="submit" name="send_team"> 
     <a '. (date('d-m-Y') === $date ? ' style="background-color: ' . $backgr_today_match : null) . '>
-    </form>';;
+    </form>';
   }
 
 echo'
