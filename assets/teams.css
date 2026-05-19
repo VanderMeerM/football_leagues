@@ -454,7 +454,7 @@ font-size: large;
 
 
 .extra_padding {
-    padding: 20px 0px; 
+   padding: 20px 0px; 
     margin: 2% auto 0px;
 }
 
@@ -601,7 +601,7 @@ margin: 0 auto;
 
 .country_container
  {
-    width: 200px;
+    width: 180px;
     text-align: center;
 }
 
@@ -859,7 +859,7 @@ table {
 }
 
 .country_container {
-    width: 150px;
+    width: 130px;
 }
 
 #hidden_cell {
@@ -915,9 +915,6 @@ margin-top: 20px;
 
 .btn_container {
     padding: 0px;
-}
-.country_container {
-    width: 150px;
 }
 }
 

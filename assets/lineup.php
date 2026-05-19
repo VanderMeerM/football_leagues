@@ -198,9 +198,9 @@ for ($i = 0; $i < $num_lineups; $i++) {
        echo  '
         <tr>
         <td> 
-        <a href="./assets/players.php?id='. $home_sub[$i]['id'].'" target=_blank> ' . $home_sub[$i]['number'] . '. ' . $home_sub[$i]['name'] . '</td> 
+        <a href="../assets/players.php?id='. $home_sub[$i]['id'].'" target=_blank> ' . $home_sub[$i]['number'] . '. ' . $home_sub[$i]['name'] . '</td> 
         <td>
-        <a href="./assets/players.php?id='.$away_sub[$i]['id'].'" target=_blank> ' . $away_sub[$i]['number'] . '. ' . $away_sub[$i]['name'] . '</div>';
+        <a href="../assets/players.php?id='.$away_sub[$i]['id'].'" target=_blank> ' . $away_sub[$i]['number'] . '. ' . $away_sub[$i]['name'] . '</div>';
         echo '</tr>'; 
      }
 
