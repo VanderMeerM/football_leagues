@@ -440,11 +440,17 @@ array_multisort($miR_sorted, SORT_ASC, $matchesInRound);
 </script>
 
 <script defer>
+
+if (document.getElementById('arrow_up') !=null) {
+
  document.getElementById('arrow_up').addEventListener('click', () => {
 
+  if (document.getElementById('top') !=null) {
   document.getElementById('top').scrollIntoView({behavior: 'smooth'});
-  
-}) 
+}
+   
+})
+} 
 </script>
 
 </body>
