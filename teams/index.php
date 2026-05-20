@@ -29,6 +29,7 @@ document.addEventListener("visibilitychange", function() {
 include('../assets/getTZ.php');
 include('../assets/variables.php');
 
+
 if (!$_POST['country_code']) {
   $_POST['country_code'] = 'Netherlands';
 }
@@ -167,6 +168,7 @@ if ($_GET['id']) {
   for ($i=0; $i < sizeof($all_matches_leagues); $i++) {
     if ($all_matches_leagues[$i]['fixture']['id'] == $_GET['id']) {
      $league_to_fixture = $all_matches_leagues[$i]['league']['id'];
+     $country_to_match = $all_matches_leagues[$i]['league']['country'];
     };
   }
 }
@@ -217,7 +219,7 @@ else {
     <form action="./?id=' . $matchId . '" method="post">
     <input type="hidden" id="country_code" name="country_code" value= "'. $all_matches_leagues[$i]['league']['country'] .'"> 
     <button type="submit" name="send_team"> 
-    <a '. (date('d-m-Y') === $date ? ' style="background-color: ' . $backgr_today_match : null) . '>
+    <a '. (date('d-m-Y') === $date ? ' style="background-color: ' . $backgr_today_match : null) . '">
     </form>';
   }
 
@@ -368,7 +370,9 @@ if ($_POST['no_scroll'] != 'yes') {
 
 ?> 
 <script>
+  if (document.getElementById('focus') !=null) {
 document.getElementById('focus').scrollIntoView({behavior: 'smooth'});
+  }
 </script>
 
 <?php
