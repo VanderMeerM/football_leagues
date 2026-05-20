@@ -26,7 +26,8 @@ for ($i=0; $i < sizeof($array_reg_leagues); $i++) {
   <input type="hidden" name="sel_league" id="sel_league" value= '.$array_leagues[$i].'>
    <input type="hidden" id="no_scroll" name="no_scroll" value= "yes"> 
   <button type="submit" name="send_league" id="send_league"> 
-  <img class="league_icon" src="https://media.api-sports.io/football/leagues/' . $array_leagues[$i] . '.png"/>
+  <img class="league_icon '.($_POST['sel_league'] == $array_leagues[$i] ? 'border_league' : null) .'"
+  src="https://media.api-sports.io/football/leagues/' . $array_leagues[$i] . '.png"/>
   </button>
 
   </form>';

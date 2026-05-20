@@ -20,6 +20,13 @@ echo "
 
 <ul>";
 
+// Menu Penalty's 
+
+ echo 
+'<div class="menubuttons">
+<li><a target="_blank" href= "../penalty">P</a></li>
+</div>';
+
 // Menu teams (met shirtje) 
 
 (str_contains($current_page, $menu_teams) ? $link_teams = './' : $link_teams = './teams');  
@@ -46,10 +53,11 @@ echo '<li><a id="table_txt" href="../standings?league='. $selected_leage_team .'
 if ($_GET['id']) {
 
  echo "
-<li><a href= './' style= 'color: 'white'; cursor: 'pointer'>
-Overzicht</a></li>";
+<form action='./' method='post'>
+<input type='hidden' name='country_code' value= '$country_to_match'>
+<button type='submit' id='send_cc' name='send_cc'> Overzicht</button>
+</form>";
 } 
-
 
 
 // Menu Vandaag 

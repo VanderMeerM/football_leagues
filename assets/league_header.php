@@ -12,6 +12,16 @@ echo "
 
 <ul>";
 
+// Menu Penalty's 
+
+ echo 
+'<div class="menubuttons">
+<li><a target="_blank" href= "../penalty">P</a></li>
+</div>';
+
+
+// Menu teams (met shirtje) 
+
 echo "
 <div class='menubuttons'>
 <a style='padding: 0px' href= '../teams' > <img id='shirt' style='cursor:pointer' src='../img/shirt.png'></a>
@@ -315,6 +325,8 @@ window.location.href='./?league='+leagueId+'&season='+seasonSelection+'&round_se
 }
 );
 }};
+
+if (document.getElementById('season_selection') !=null) {
   
 document.getElementById('season_selection').addEventListener('change', (ev) => {
 seasonSelection = ev.target.value;
@@ -332,6 +344,7 @@ else
 
 }}
 )
+}
 
  </script>
  

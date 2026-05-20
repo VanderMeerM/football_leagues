@@ -118,6 +118,11 @@ height: 2px;
     font-size: larger;
 }
 
+.border_league {
+    padding: 10%;
+    border: lightgreen 2px solid;
+}
+
 .white_background {
     background-color: white;
     padding: 2%;
@@ -244,11 +249,6 @@ text-align: center;
     align-content: center;
 }
 
-/*
-.main_container {
-    display: flex;
-} 
-*/
 
 .container_circle {
     width: 600px;
@@ -431,6 +431,7 @@ button {
 #start_sub_team, 
 #play_min, 
 #no_found_matches,
+#send_cc,
 label, td {
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -438,6 +439,10 @@ label, td {
 #season_title, 
 label {
     font-size: 25px;
+}
+
+#send_cc {
+    font-size: medium;
 }
 
 /*
@@ -556,6 +561,7 @@ margin: 0 auto;
 .main_container,
 .main_container a {
     background-color: var(--black);
+    cursor: pointer;
 }
 
 .background_today_match {
