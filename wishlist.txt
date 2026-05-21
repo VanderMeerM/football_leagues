@@ -1,10 +1,5 @@
 
 
-- onder teams Engelse, Italiaanse en Spaanse competities toevoegen  
-(afzonderlijke wedstrijden onder Teams werken niet altijd)
-
-- extensie .php weglaten 
-
 - EK/WK-functionaliteit + penalty's 
 
 
@@ -60,6 +55,11 @@ Standen
 
 
 Afgerond: 
+
+- onder teams Engelse, Italiaanse en Spaanse competities toevoegen  
+(afzonderlijke wedstrijden onder Teams werken niet altijd) v 
+
+- extensie .php weglaten v 
 
 - teams uit competitie in alfabetische volgorde v 
 
