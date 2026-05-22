@@ -214,7 +214,7 @@ clubB.addEventListener('input', () => {
     }}
     })
 
-
+/*
 countryA.addEventListener('change', () => {
 
         if (countryA.value !=optionSelectCountry) {
@@ -270,7 +270,7 @@ if (countryA.value ==='Selecteer land:') {
     return;
 } 
     else {
-        */
+        
 setFlagOrClub(flagB, countryB);
  // }
 
@@ -354,7 +354,7 @@ checkIfOnlyClubOrCountry(clubB, countryB);
         setCircles(playerB, totalScorePlayerB, 5, filteredArrayB);
 
     })
-
+*/
     
 function setCircles(player, array, num, filteredarray) {
 
@@ -481,11 +481,8 @@ function setCircles(player, array, num, filteredarray) {
                 return 
                 }
             }
-        
                    
-
-        })
-
+       })
     })
 }
 

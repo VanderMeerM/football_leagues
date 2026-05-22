@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <!--   <link rel="stylesheet" type="text/css" href="../assets/teams.css" />   -->
     <link href="./penaltyboard.css" rel="stylesheet" type="text/css" />
-    <script defer src="./penaltyboard.js"></script>
+    <script defer src="./penaltyboard.js"></script> 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
   
@@ -15,6 +16,90 @@
 </head>
 
 <?php 
+
+/*
+echo "
+<div class='fixed fixed_menubar' style='background-color:  $array_bgcolor_menubar[$league_id]; '>
+<div class='center_buttons'>
+
+<div class='menubar'>
+<div class='menubuttons'>
+</div>
+</div>
+
+<ul>";
+
+// Menu teams (met shirtje) 
+
+echo "
+<div class='menubuttons'>
+<a style='padding: 0px' href= '../teams' > <img id='shirt' style='cursor:pointer' src='../img/shirt.png'></a>
+</div>";
+
+$view = 'hidden';
+
+if (($_GET['id']) && (in_array($league_to_fixture, $array_extra_leagues))) // bij tonen afzonderlijke bekerwedstrijd.. 
+  {
+    echo '<li><a href= "#" style= "color: lightgray; cursor: none">Toon stand</a></li>';
+   
+
+  } 
+ 
+elseif 
+(str_contains($current_page, $menu_league) && (!str_contains($current_page, $menu_day)) && (!str_contains($current_page, $menu_standings)))
+// alleen bij reguliere competitie, niet bij dag of stand.. 
+
+{
+  
+  if ($_GET['id']) {
+    echo '<li><a id="table_txt" href="../standings?league=' . $league_to_fixture . '&season=' . $season_to_fixture . '"></a></li>';
+  }
+  else {
+  echo '<li><a id="table_txt" href="../standings?league=' . $league_id . '&season=' . $selected_season . '"></a></li>';
+}
+}
+
+if (str_contains($current_page, $menu_standings)) { // bij menu Stand.. 
+  echo '<li><a id="prog_txt" href="../league?league=' . $league_id . '&season=' . $selected_season . '"></a></li>';
+}
+
+// Menu Vandaag 
+
+$today = strtotime('today');
+
+echo 
+  "<div class='menubuttons'>
+<form method='post' action='../day'>
+<input type='image' id='agenda' style='cursor:pointer' src='../img/agenda.png'>
+<input type='hidden' name='sel_day' value=$today>
+<input type='submit' style='display: none'>
+</form>
+</div>";
+
+ // Menu EK/WK 
+
+ echo 
+'<div class="menubuttons"> 
+<select class="menu_sel_item" style="background-color:blue;" name="EKWK" onchange="window.open(this.value);">
+  <option class="menu_option" selected disabled value="">EK/WK</option>
+  <option class="menu_option" value="../EK">EK</option>
+  <option class="menu_option" value="../WK">WK</option>
+  </select>';
+
+ echo '
+</ul>
+</div>
+</div>
+</div>';
+*/
+
+if ($_POST['countryA']) {
+setcookie("CountryA", $_POST['countryA'], time() + 86400, "/", '', true);
+}
+
+elseif ($_POST['countryB']) {
+setcookie("CountryB", $_POST['countryB'], time() + 86400, "/", '', true);
+}
 
 $curl_url = "https://www.apicountries.com/countries";
 
@@ -37,77 +122,89 @@ $response = curl_exec($curl);
 
 $response = json_decode($response, true);
 
-//print_r($response[0]['translations']['nl']);
-
-$array_countries_nl = [];
-
 for ($i=0; $i < sizeof($response); $i++) {
 
-  array_push($array_countries_nl, $response[$i]['translations']['nl']);
+  $array_countries_nl[] = 
+  [
+  'country' => $response[$i]['translations']['nl'],
+  'flag' => $response[$i]['flags']['png'] 
+  ];
 
   }
 
-sort($array_countries_nl);
-
-//print_r($array_countries_nl);
+array_multisort(array_column($array_countries_nl, 'country'), SORT_ASC, $array_countries_nl);
 
 
 echo '
-
 <body class="text-center">
 
     <h2>Selecteer land of voer (club)naam in </h2>
 
+    <div class="container_countries_teams">
+
     <div class="float-lg-left">
        <strong> Team A </strong> 
        
-       <p>
+    <form method="post" action="">
 
-    <select id="countryA">
+    <select name="countryA" id="countryA" onchange="this.form.submit()">
         <option selected >Selecteer land:</option>';
-
+        
+        if ($_POST['countryA']) {
+            $selca = $_POST['countryA']; 
+            }
+            else {
+               $selca = $_COOKIE['CountryA'];  
+            }
 
         for ($i=0; $i < sizeof($array_countries_nl); $i++) {
-            echo '<option>'. $array_countries_nl[$i] .'</option>';
+            echo '<option ' . ($array_countries_nl[$i]['flag'] === $selca ? 'selected' : null) .' 
+            value='. $array_countries_nl[$i]['flag'] .'>'. $array_countries_nl[$i]['country'] .'</option>';
         }
 
 echo '
 </select>
-   <p></p>
-    <input placeholder="Naam club" id="clubA">
-    <p>
 
+<div class="container_club">
+<input placeholder="Naam club" id="clubA">
 </div>
+</div>
+</form>';
 
+echo '
 <div class="float-lg-right">
        <strong> Team B </strong> 
-       
-       <p>
+     
+<form method="post" action="">
 
-    <select id="countryB">
+    <select name="countryB" id="countryB" onchange="this.form.submit()">
         <option selected>Selecteer land:</option>';
 
+         if ($_POST['countryB']) {
+            $selcb = $_POST['countryB']; 
+            }
+            else {
+               $selcb = $_COOKIE['CountryB'];  
+            }
        
         for ($i=0; $i < sizeof($array_countries_nl); $i++) {
-            echo '<option>'. $array_countries_nl[$i] .'</option>';
+            echo '<option ' . ($array_countries_nl[$i]['flag'] === $selcb ? 'selected' : null) .' 
+            value='.$array_countries_nl[$i]['flag'].'>'. $array_countries_nl[$i]['country'] .'</option>';
         }
-
 echo '
 </select>
-<p></p>
+<div class="container_club">
 <input placeholder="Naam club" id="clubB">
+</div>
+</div></form>';
 
-<p></p>
+echo '</div>';
 
-</div> 
-
-
+echo '
 <div style="display:block">
 
     Welk team start? 
 
-    <p></p>
- 
 <div id="startingTeam">
     <input type="radio" checked id="Team_A" name="startteam" value="Team A">
     <label for="Team_A">Team A</label>
@@ -122,18 +219,41 @@ echo '
 
 
 <div id="playerA_name">
-    <div id="flagA"></div>
-        <div id="playerA"></div>
+    <div id="flagA">
+    <img src= ' . $selca . '>
+        <div id="playerA">';
+
+        for ($i=0; $i < 5; $i++) {
+       echo 
+       '<div class="left" style="background-color: green;"></div>
+        <div class="right" style="background-color: red;"></div>';
+        }
+        echo '
+        </div>
+        </div>
 </div>
 
 <br>
 
 <div id="playerB_name">
-    <div id="flagB"></div>
-        <div id="playerB"></div>
+   <div id="flagB">
+   <img src= ' . $selcb . '>
+     <div id="playerB">';
+
+      for ($i=0; $i < 5; $i++) {
+       echo 
+       '<div class="left" style="background-color: green;"></div>
+        <div class="right" style="background-color: red;"></div>';
+        }
+
+       echo '
+       </div>
+       </div>
+
 </div>
    
 <div id="winner"> </div>';
+
 
 ?>
 

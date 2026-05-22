@@ -3,6 +3,17 @@ body {
     text-align: center;
 }
 
+.container_countries_teams, 
+.container_club {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container_club {
+  flex-direction: column;
+}
+
 div {
     display: inline-block;
     margin: 10px;
@@ -52,9 +63,10 @@ div {
 
 #flagA img, 
 #flagB img {
-  width: 50px;
-  height: 41px;
+  width: 150px;
+  height: auto;
   border: 1px solid black;
+  vertical-align: baseline;
 }
 
 
