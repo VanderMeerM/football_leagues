@@ -90,7 +90,6 @@ curl_setopt_array($curl, array(
   CURLOPT_CUSTOMREQUEST => 'GET',
   CURLOPT_HTTPHEADER => array(
       'x-rapidapi-key: ' . $api_key .'',
-     //'x-rapidapi-key: 863bcd048478f98225b64bced629b376',
      'x-rapidapi-host: v3.football.api-sports.io',
     
   ),
