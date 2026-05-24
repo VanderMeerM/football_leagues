@@ -55,7 +55,6 @@ console.log(arrayCountries);
 })
 })
 
-
 }
 
 function checkIfOnlyClubOrCountry(club, country) {
@@ -107,12 +106,11 @@ function setFlagOrClub(divflag, selectedCountry) {
     }
 
  
-buildSelectCountry(countryA);
-buildSelectCountry(countryB);
+//buildSelectCountry(countryA);
+//buildSelectCountry(countryB);
 
 
-/*
-confirmTeams.addEventListener('click', () => {
+// confirmTeams.addEventListener('click', () => {
 
 removeItems(playerA);
 removeItems(playerB);
@@ -172,9 +170,8 @@ else if (teamA.checked) {
        flagB.textContent = clubB.value;
     }
      
-}}
-)
-*/
+}
+
 
 clubA.addEventListener('input', () => {
 removeItems(playerA);
@@ -183,7 +180,7 @@ setCircles(playerA, totalScorePlayerA, 5, filteredArrayA);
 
 removeRedBorders(); 
     
-flagA.textContent = clubA.value;
+//flagA.textContent = clubA.value;
 checkIfOnlyClubOrCountry(clubA, countryA);
 
 
@@ -202,7 +199,7 @@ clubB.addEventListener('input', () => {
     
     removeRedBorders(); 
         
-    flagB.textContent = clubB.value;
+    //flagB.textContent = clubB.value;
     checkIfOnlyClubOrCountry(clubB, countryB);
 
 
@@ -355,7 +352,7 @@ checkIfOnlyClubOrCountry(clubB, countryB);
 
     })
 */
-    
+
 function setCircles(player, array, num, filteredarray) {
 
     function switchBackground(player_name) {

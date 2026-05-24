@@ -89,10 +89,10 @@ echo
 </div>';
 
 
-if ($_GET['id']) {
+//if ($_GET['id']) {
   setcookie('teams_team_selection', $selected_team_team, (time() + 3600), '/', '', true);
 
-}
+//}
 
 for ($i=$current_season; $i >= 2010; $i--) {
   array_push($allseasons, $i);

@@ -221,8 +221,9 @@ echo '
 <div id="playerA_name">
     <div id="flagA">
     <img src= ' . $selca . '>
-        <div id="playerA">';
-
+        
+    <div id="playerA">';
+/*
         for ($i=0; $i < 5; $i++) {
        echo 
        '<div class="left" style="background-color: green;"></div>
@@ -230,8 +231,8 @@ echo '
         }
         echo '
         </div>
-        </div>
-</div>
+        </div> */
+echo '</div>
 
 <br>
 
@@ -240,12 +241,12 @@ echo '
    <img src= ' . $selcb . '>
      <div id="playerB">';
 
-      for ($i=0; $i < 5; $i++) {
+/*      for ($i=0; $i < 5; $i++) {
        echo 
        '<div class="left" style="background-color: green;"></div>
         <div class="right" style="background-color: red;"></div>';
         }
-
+*/
        echo '
        </div>
        </div>

@@ -252,7 +252,7 @@ echo'
       }
 
            if (array_key_exists($matchStatus, $status_cancel)) {
-          echo '<div class="font_status_match red">' . $status_cancel[$matchStatus] . '<br>';
+          echo '<div class="font_status_match red">' . $status_cancel[$matchStatus] . '</div>';
          }
          else {
 
@@ -265,7 +265,7 @@ echo'
          }
 
           if ($matchStatus === 'PEN') {
-            if ($all_matches_leagues[$i]['teams']['home']['winner'] = '1') { 
+            if ($all_matches_leagues[$i]['teams']['home']['winner']) { 
                 echo '<div>'. $homeTeam . ' w.n.s. </div>'; 
                 }
                 else {
