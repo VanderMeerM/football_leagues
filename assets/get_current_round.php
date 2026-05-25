@@ -11,14 +11,26 @@ $round_determination = [];
 
 $round_determination_int =[];
 
+$array_playoffs_round = [];
+
 
 if ($numGames > 0 ) {
 
 for ($i = 0; $i < $numGames; $i++) {
 
+if ( ($response['response'][$i]['league']['round'] === 'Final') || 
+($response['response'][$i]['league']['round'] === 'Semi-finals')) 
+{ 
+  $playoffs_round = $response['response'][$i]['league']['round'];
+  $array_playoffs_round[$playoffs_round] .= $response["response"][$i]["fixture"]["timestamp"] . ',';
+}
+
+else {
+
 $each_round = intval(explode(' ', $response['response'][$i]['league']['round'])[3]);
 
 $array_dates_round[$each_round] .= $response["response"][$i]["fixture"]["timestamp"] . ',';
+}
 
 $each_round_int_leagues = $response['response'][$i]['league']['round'];
 

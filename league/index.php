@@ -19,10 +19,12 @@
 
 
 <?php
+
 /*
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
 */
 ?>
 
@@ -355,6 +357,7 @@ else {
 
 // Oudere seizoenen opslaan (vanaf juni als seizoen voorbij is)...
 
+/*
 if ( (date('Y') >  ($selected_season + 1)) || 
 (date('Y') ==  ($selected_season + 1)) && (date('m') >= 6) 
 && (!file_exists($json_league_season_path)) ) {
@@ -365,7 +368,8 @@ if ( (date('Y') >  ($selected_season + 1)) ||
   
   fclose($json_file_mt);
       
- }
+ } 
+  */
  }
 
 }}}

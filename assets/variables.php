@@ -31,7 +31,7 @@ $array_leagues_countries =
 
 // In league (reguliere competities tonen)..
 // 357 = Ierse competitie
-$array_reg_leagues = [78,79, 88, 89, 135, 140, 39, 40, 179, 408, 61, 144];  
+$array_reg_leagues = [88, 89, 78,79, 135, 140, 39, 40, 179, 408, 61, 144];  
 
 // In league om wel/niet menu voor stand te tonen..
 $array_cup_leagues = [81, 90, 137, 143, 45]; // 81 - DFB Pokal, 90 - KNVB beker
@@ -76,15 +76,15 @@ $array_bgcolor_menubar = array_combine($array_leagues, $array_bgcolor_leagues);
 
 // Paden 
 
-$json_league_season_path = './JSON/seasons/'. $league_id . '_season_'. $selected_season . ($selected_season + 1) . '.json'; 
+$json_league_season_path = '../JSON/seasons/'. $league_id . '_season_'. $selected_season . ($selected_season + 1) . '.json'; 
 
-$json_fixture = './JSON/fixtures/fixture_' . $_GET['id'] . '.json';
+$json_fixture = '../JSON/fixtures/fixture_' . $_GET['id'] . '.json';
 
-$json_lineup_path = './JSON/lineups/lineup_' . $_GET['id'] . '.json'; 
+$json_lineup_path = '../JSON/lineups/lineup_' . $_GET['id'] . '.json'; 
 
-$json_events_path = './JSON/events/event_' . $_GET['id'] . '.json'; 
+$json_events_path = '../JSON/events/event_' . $_GET['id'] . '.json'; 
 
-$json_standings_path = './JSON/seasons/season_' . $_GET['season'] . '.json'; 
+$json_standings_path = '../JSON/seasons/season_' . $_GET['season'] . '.json'; 
 
 $current_page = $_SERVER['PHP_SELF'];
 
