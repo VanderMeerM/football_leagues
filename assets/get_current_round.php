@@ -13,24 +13,39 @@ $round_determination_int =[];
 
 $array_playoffs_round = [];
 
-
 if ($numGames > 0 ) {
 
 for ($i = 0; $i < $numGames; $i++) {
 
+// Playoff-wedstrijden ophalen...
+
+if ( ($response['response'][$i]['league']['round'] === 'Final') || 
+($response['response'][$i]['league']['round'] === 'Semi-finals') ) 
+
+{
+  array_push($array_playoffs_round, $response['response'][$i]);
+}
+
+/*
 if ( ($response['response'][$i]['league']['round'] === 'Final') || 
 ($response['response'][$i]['league']['round'] === 'Semi-finals')) 
 { 
   $playoffs_round = $response['response'][$i]['league']['round'];
   $array_playoffs_round[$playoffs_round] .= $response["response"][$i]["fixture"]["timestamp"] . ',';
-}
+  
+  $first_round_po = array_key_first($array_playoffs_round);
+  $first_date_first_round_po_ts = explode(',', $array_playoffs_round[$first_round_po])[0];
 
-else {
+  $last_round_po = array_key_last($array_playoffs_round);
+  
+  $last_date_last_round_po_ts = explode(',', $array_playoffs_round[$last_round_po])[0];
+}
+*/
+
 
 $each_round = intval(explode(' ', $response['response'][$i]['league']['round'])[3]);
 
 $array_dates_round[$each_round] .= $response["response"][$i]["fixture"]["timestamp"] . ',';
-}
 
 $each_round_int_leagues = $response['response'][$i]['league']['round'];
 

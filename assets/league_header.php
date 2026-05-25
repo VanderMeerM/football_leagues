@@ -99,7 +99,6 @@ echo
 </div>
 </div>';
 
-
 for ($i = 1; $i < sizeof($allrounds) + 1; $i++) {
     array_push($allrounds, $i);
 }
@@ -212,6 +211,8 @@ for ($i = 0; $i < sizeof($array_dates_intern_leagues); $i++) {
 
 else {
 
+//print_r($array_playoffs_round);
+
 ($_GET['round_selection'] ? $round_to_select = $_GET['round_selection'] : $round_to_select = $round_of_first_upcoming_matches); 
   
 for ($i =1; $i <= sizeof($array_dates_round_sorted); $i++) {
@@ -226,6 +227,8 @@ for ($i =1; $i <= sizeof($array_dates_round_sorted); $i++) {
      </option>'; 
 
     }
+    echo '<option value="Playoffs">Playoffs ('.date('d-m', $first_date_first_round_po_ts).' - 
+    '.date('d-m', $last_date_last_round_po_ts).')</option>';
   }; 
   
 echo "
@@ -235,10 +238,16 @@ echo "
 </div>";
 }};
 
-
 echo "
 </div>
 </div>";
+
+/*
+print_r($array_playoffs_round);
+
+echo date('d-m', $first_date_first_round_po_ts);
+*/
+
 
 
 // Rij met logo's van competities opbouwen..

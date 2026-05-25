@@ -103,7 +103,20 @@ $response = json_decode($response, true);
 
 }
 
+print_r($response['response'][0]);
+echo '<br>';
+
 $numGames = $response['results'];
+
+include('../assets/get_current_round.php');
+
+//print_r($array_playoffs_round);
+
+
+if ($_GET['round_selection'] === 'Playoffs') {
+  $response = $array_playoffs_round; 
+  print_r($response);
+ }
 
 
 // Kijken of er live wedstrijd(en) zijn (ivm weergave ververs-cirkeltje)...  
@@ -118,8 +131,6 @@ for ($x=0; $x < $numGames; $x++) {
      } 
   
   }
-
-include('../assets/get_current_round.php');
 
 // Deze 5 regels uitcommentariëren
 
@@ -188,7 +199,6 @@ if ($numGames > 0 ) {
   $matchId = $response['response'][$i]['fixture']['id'];
   $matchStatus = $response['response'][$i]['fixture']['status']['short'];
   $elapsed = $response['response'][$i]['fixture']['status']['elapsed'] + $response['response'][$i]['fixture']['status']['extra'];
-
 
   $selectedround_int_leagues = $response['response'][$i]['league']['round']; 
   $selectedround = intval(explode(' ', $response['response'][$i]['league']['round'])[3]);
@@ -386,6 +396,8 @@ if ( (date('Y') >  ($selected_season + 1)) ||
    }
 
   }
+
+  print_r($matchesInRound);
 
 /*  
 
