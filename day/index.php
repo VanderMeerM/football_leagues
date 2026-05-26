@@ -277,6 +277,7 @@ if (!in_array($league_id, $array_reg_leagues)) {
   $round = '';
 };
 
+
 // Competitielogo met -naam 
 echo 
 '<div class="background_match">

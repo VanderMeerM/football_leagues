@@ -24,7 +24,6 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
 */
 ?>
 
@@ -103,20 +102,18 @@ $response = json_decode($response, true);
 
 }
 
-print_r($response['response'][0]);
-echo '<br>';
-
 $numGames = $response['results'];
 
 include('../assets/get_current_round.php');
 
 //print_r($array_playoffs_round);
 
-
 if ($_GET['round_selection'] === 'Playoffs') {
-  $response = $array_playoffs_round; 
-  print_r($response);
- }
+  
+  $response = $array_playoffs_round;
+  $numGames = sizeof($response['response']);
+  
+  }
 
 
 // Kijken of er live wedstrijd(en) zijn (ivm weergave ververs-cirkeltje)...  
@@ -155,11 +152,15 @@ if ((!$_GET['season']) && (!$_GET['id'])) {
 }
 
 if ($_GET['id']) {
-  $round_to_fixture = intval(explode(' ', $response['response'][0]['league']['round'])[3]);
+
+if (!in_array(explode(' ' ,$response['response'][0]['league']['round'])[0], $reg_leag)) {
+   strval($round_to_fixture = $response['response'][0]['league']['round']);
+} else {
+   $round_to_fixture = intval(explode(' ', $response['response'][0]['league']['round'])[3]);
+}
   $season_to_fixture = $response['response'][0]['league']['season'];
   $league_to_fixture = $response['response'][0]['league']['id'];
  }
-
 
 $games_per_round = [];
 
@@ -233,7 +234,8 @@ if ($numGames > 0 ) {
    
    }
 
-if ( ($round_to_select == $selectedround) || ($round_to_select === $selectedround_int_leagues) ) {
+if ( ($round_to_select == $selectedround) || ($round_to_select === $selectedround_int_leagues) 
+  || ($round_to_select === 'Playoffs') ) {
     
   array_push($matchesInRound, $response['response'][$i]);
 
@@ -397,9 +399,7 @@ if ( (date('Y') >  ($selected_season + 1)) ||
 
   }
 
-  print_r($matchesInRound);
-
-/*  
+ /*  
 
 Binnenhalen einddata seizoenen (seizoen invullen in url; include league_header uitcommentariëren (zie r. 156))
 

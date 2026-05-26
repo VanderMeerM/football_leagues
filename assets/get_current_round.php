@@ -11,41 +11,40 @@ $round_determination = [];
 
 $round_determination_int =[];
 
-$array_playoffs_round = [];
+$array_dates_playoffs = [];
+
+$array_response = array('response');
+
+$array_playoffs_round = array_fill_keys($array_response, []);
+
+
+// Playoff-wedstrijden ophalen...
+
+for ($p = 0; $p < $numGames; $p++) {
+
+if ( (in_array($league_id, $array_reg_leagues)) &&
+
+( ($response['response'][$p]['league']['round'] === 'Final') || 
+($response['response'][$p]['league']['round'] === 'Semi-finals') ) )
+
+{
+  array_push($array_playoffs_round['response'], $response['response'][$p]);
+}
+}
+
 
 if ($numGames > 0 ) {
 
 for ($i = 0; $i < $numGames; $i++) {
 
-// Playoff-wedstrijden ophalen...
-
-if ( ($response['response'][$i]['league']['round'] === 'Final') || 
-($response['response'][$i]['league']['round'] === 'Semi-finals') ) 
+if ( ($response['response'][$i]['league']['round'] != 'Final') &&
+($response['response'][$i]['league']['round'] != 'Semi-finals')) 
 
 {
-  array_push($array_playoffs_round, $response['response'][$i]);
-}
-
-/*
-if ( ($response['response'][$i]['league']['round'] === 'Final') || 
-($response['response'][$i]['league']['round'] === 'Semi-finals')) 
-{ 
-  $playoffs_round = $response['response'][$i]['league']['round'];
-  $array_playoffs_round[$playoffs_round] .= $response["response"][$i]["fixture"]["timestamp"] . ',';
-  
-  $first_round_po = array_key_first($array_playoffs_round);
-  $first_date_first_round_po_ts = explode(',', $array_playoffs_round[$first_round_po])[0];
-
-  $last_round_po = array_key_last($array_playoffs_round);
-  
-  $last_date_last_round_po_ts = explode(',', $array_playoffs_round[$last_round_po])[0];
-}
-*/
-
-
 $each_round = intval(explode(' ', $response['response'][$i]['league']['round'])[3]);
 
 $array_dates_round[$each_round] .= $response["response"][$i]["fixture"]["timestamp"] . ',';
+}
 
 $each_round_int_leagues = $response['response'][$i]['league']['round'];
 
@@ -65,8 +64,11 @@ ksort($array_dates_round);
     substr($array_dates_intern_leagues[$i], 0, -1);
   }
   
-  
-// Wedstrijden in ronde op volgorde zetten  
+  for ($i=0; $i < sizeof($array_playoffs_round['response']); $i++) {
+    array_push($array_dates_playoffs, $array_playoffs_round['response'][$i]['fixture']['timestamp']);
+  }
+
+  // Wedstrijden in ronde op volgorde zetten  
 
 $array_dates_round_values = array_values($array_dates_round); 
 $array_dates_intern_leagues_values = array_values($array_dates_intern_leagues);
@@ -90,6 +92,23 @@ for ($i=0; $i < sizeof($array_dates_intern_leagues_values); $i++) {
 
 $lastdate_selected_round_int_leagues = intval(sizeof(explode(',', $array_rounds_International_leagues[2])) - 2);
 
+
+// Indien afzonderlijke Playoff-wedstrijd wordt geopend...
+
+if ( ($_GET['id']) && (!$array_dates_round_sorted) ) {
+
+ $array_zero = array(0);
+ $array_dates_round_sorted = array_fill_keys($array_zero, []);
+ array_push($array_dates_round_sorted[0], $array_dates_playoffs[0]); 
+}
+
+
+if (!empty($array_dates_playoffs)) {
+//$array_dates_round_sorted += ['Playoffs' => $array_dates_playoffs];
+array_push($array_dates_round_sorted, $array_dates_playoffs);
+}
+
+
 //Indien reguliere competitie, doorloop dan volgende loop om eerstvolgende ronde te bepalen..
 
 if (in_array($league_id, $array_reg_leagues)) {
@@ -104,7 +123,7 @@ for ($i=1; $i < sizeof($array_dates_round_sorted); $i++) {
  )->format("%a");
 
  if ($days_between > 2) {
-  $dif = 3; 
+  $diff = 3; 
  }
  else {
   $diff = $days_between + 1;

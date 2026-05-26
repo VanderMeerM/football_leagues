@@ -45,6 +45,7 @@ $array_extra_leagues = [48, 32, 960, 5];
 // day (alle competities doornemen, cup leagues worden op day zelf toegevoegd)...
 $array_leagues = array_merge($array_reg_leagues, $array_intern_leagues); 
 
+$reg_leag = ['Regular', 'League'];
 
 $menu_league = 'league';
 $menu_standings = 'standings';

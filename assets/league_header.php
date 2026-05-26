@@ -16,7 +16,7 @@ echo "
 
  echo 
 '<div class="menubuttons">
-<li><a target="_blank" href= "../penalty">P</a></li>
+<li><a href= "../penalty">P</a></li>
 </div>';
 
 
@@ -157,7 +157,7 @@ if (in_array($league_id, $array_intern_leagues)) {
 
 if ($_GET['round_selection']) {
 
-echo $round_to_select = $_GET['round_selection']; 
+$round_to_select = $_GET['round_selection']; 
 
 for ($i = 0; $i < sizeof($array_dates_intern_leagues); $i++) {
 
@@ -187,7 +187,7 @@ if (date('Y-m-d', $array_dates_int_round_sorted[$i][0]) >= date('Y-m-d', strtoti
     array_push($selected_date_int_round, $array_dates_int_round_sorted[$i][0]);
   };
 
-  echo $round_to_select = $array_dates_int_round_sorted[$_GET['round_selection']];
+  $round_to_select = $array_dates_int_round_sorted[$_GET['round_selection']];
 
 }
 
@@ -211,24 +211,43 @@ for ($i = 0; $i < sizeof($array_dates_intern_leagues); $i++) {
 
 else {
 
-//print_r($array_playoffs_round);
+($_GET['round_selection'] ? $round_to_select = intval($_GET['round_selection']) : 
+$round_to_select = intval($round_of_first_upcoming_matches)); 
 
-($_GET['round_selection'] ? $round_to_select = $_GET['round_selection'] : $round_to_select = $round_of_first_upcoming_matches); 
+if ($_GET['round_selection'] === 'Playoffs') { 
+$round_to_select === 'Playoffs';
+}
+
+$last_round = sizeof($array_dates_round_sorted);
+
+if (sizeof($array_playoffs_round['response']) > 0) {
+  $last_round = intval(sizeof($array_dates_round_sorted) - 1);
+}
+else {
+  $last_round = intval(sizeof($array_dates_round_sorted));
+}
   
-for ($i =1; $i <= sizeof($array_dates_round_sorted); $i++) {
+for ($i =1; $i <= $last_round; $i++) {
 
  $first_key = array_key_first($array_dates_round_sorted[$i-1]);
  $last_key = array_key_last($array_dates_round_sorted[$i-1]);
 
      echo '
-      <option '. ($i == intval($round_to_select) ? 'selected' : null) . ' value= ' . $i . '>Ronde ' . $i . ' 
+      <option '. ($i === $round_to_select ? 'selected' : null) . ' value= ' . $i . '>Ronde ' . $i . ' 
      (' . date('d-m', $array_dates_round_sorted[$i-1][$first_key]) . ' - ' 
       . date('d-m', $array_dates_round_sorted[$i-1][$last_key]) .')
      </option>'; 
 
     }
-    echo '<option value="Playoffs">Playoffs ('.date('d-m', $first_date_first_round_po_ts).' - 
-    '.date('d-m', $last_date_last_round_po_ts).')</option>';
+      if (sizeof($array_playoffs_round['response']) > 0) {
+        $size_array_po = sizeof($array_playoffs_round['response']);
+        $time_first_match_po = $array_playoffs_round['response'][0]['fixture']['timestamp'];
+        $time_last_match_po = $array_playoffs_round['response'][$size_array_po-1]['fixture']['timestamp'];
+
+
+      echo '<option '. ($_GET['round_selection'] === "Playoffs" ? 'selected' : null) . ' value="Playoffs">Playoffs ('.date('d-m', $time_first_match_po).' - 
+    '.date('d-m', $time_last_match_po).')</option>';
+      }
   }; 
   
 echo "
@@ -241,13 +260,6 @@ echo "
 echo "
 </div>
 </div>";
-
-/*
-print_r($array_playoffs_round);
-
-echo date('d-m', $first_date_first_round_po_ts);
-*/
-
 
 
 // Rij met logo's van competities opbouwen..

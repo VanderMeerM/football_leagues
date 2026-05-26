@@ -1,6 +1,7 @@
 
 body {
     text-align: center;
+    margin: 0px;
 }
 
 .container_countries_teams, 
@@ -14,10 +15,11 @@ body {
   flex-direction: column;
 }
 
-div {
-    display: inline-block;
-    margin: 10px;
- }
+.float-lg-left, 
+.float-lg-right {
+      display: flex;
+    flex-direction: column;
+}
 
  #countryA, 
  #countryB {
