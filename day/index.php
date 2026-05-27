@@ -277,6 +277,7 @@ if (!in_array($league_id, $array_reg_leagues)) {
   $round = '';
 };
 
+ (!$selectedround ? $round='' : null);
 
 // Competitielogo met -naam 
 echo 

@@ -75,13 +75,23 @@ echo
 </div>
 </div>';
 
+if ($_POST['clubA']) {
+    setcookie('CountryA', '', 1, '/'); 
+    $_POST['countryA'] = '';
+};
 
-if ($_POST['countryA']) {
-setcookie("CountryA", $_POST['countryA'], time() + 86400, "/", '', true);
+if ($_POST['clubB']) {
+    setcookie('CountryB', '', 1, '/'); 
+    $_POST['countryB'] = '';
+};
+
+
+if ($_POST['countryA'] != 'Selecteer land:') {
+setcookie("CountryA", $_POST['countryA'], time() + 3600, "/", '', true);
 }
 
-elseif ($_POST['countryB']) {
-setcookie("CountryB", $_POST['countryB'], time() + 86400, "/", '', true);
+if ($_POST['countryB'] != 'Selecteer land:') {
+setcookie("CountryB", $_POST['countryB'], time() + 3600, "/", '', true);
 }
 
 $curl_url = "https://www.apicountries.com/countries";
@@ -97,8 +107,6 @@ curl_setopt_array($curl, array(
   CURLOPT_FOLLOWLOCATION => true,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => 'GET',
-  CURLOPT_HTTPHEADER => array(
-  ),
 ));
 
 $response = curl_exec($curl);
@@ -123,13 +131,13 @@ echo '
 
     <h2>Selecteer land of voer (club)naam in </h2>
 
-    <div class="container_countries_teams">
+<div class="main_container_countries_teams">
 
-    <div class="float-lg-left">
-       <strong> Team A </strong> 
+ <div class="container_team_A">
+       <strong><u>Team A</u></strong>  
+<div>
 
-      
-    <form method="post" action="">
+<form method="post" action="">
 
     <select name="countryA" id="countryA" onchange="this.form.submit()">
         <option selected >Selecteer land:</option>';
@@ -147,19 +155,26 @@ echo '
         }
 
 echo '
-</select></div>
-
-<div class="container_club">
-<input placeholder="Naam club" id="clubA">
-
+</select>
 </div>
+
+<div>
+<form action="" method="post">
+<input placeholder="Naam club A" name="clubA" id="clubA">
+<input type="submit" style="display: none">
+
+</form>
 </div>
-</form>';
+
+</form>
+</div>';
 
 echo '
-<div class="float-lg-right">
-       <strong> Team B </strong> 
-     
+<div class="container_team_B">
+<strong><u>Team B</u></strong>  
+<div>
+
+    
 <form method="post" action="">
 
     <select name="countryB" id="countryB" onchange="this.form.submit()">
@@ -178,64 +193,115 @@ echo '
         }
 echo '
 </select>
-<div class="container_club">
-<input placeholder="Naam club" id="clubB">
 </div>
-</div></form>';
 
-echo '</div>';
+<div>
+<form action="" method="post">
+<input placeholder="Naam club B" name="clubB" id="clubB">
+<input type="submit" style="display: none">
+</div>
 
-echo '
-<div style="display:block">
+</form>
+</div>
 
-    Welk team start? 
+</div>';
 
-<div id="startingTeam">
+
+echo '<div>
+
+   <h3> Welk team start? </h3>'; 
+
+if ($_POST['countryA']) {
+
+    for ($i=0; $i < sizeof($array_countries_nl); $i++) {
+
+      if ($array_countries_nl[$i]['flag'] === $_POST['countryA']) {
+        $teamA = $array_countries_nl[$i]['country'];
+      }
+    }    
+ } else {
+    $teamA = 'Team A';
+ }
+
+ if ($_POST['countryB']) {
+
+    for ($i=0; $i < sizeof($array_countries_nl); $i++) {
+
+      if ($array_countries_nl[$i]['flag'] === $_POST['countryB']) {
+        $teamB = $array_countries_nl[$i]['country'];
+      }
+    }    
+ } else {
+    $teamB = 'Team B';
+ }
+
+
+echo '<div id="startingTeam">
     <input type="radio" checked id="Team_A" name="startteam" value="Team A">
-    <label for="Team_A">Team A</label>
+    <label for="Team_A">' . $teamA . '</label>
     <input type="radio" id="Team_B" name="startteam" value="Team B">
-    <label for="Team_B">Team B</label>
+    <label for="Team_B">'. $teamB .'</label>
 
 </div>
-
+</div>
 </div>
 
-</div>
 
+<div class="main_container_penalty"> 
 
-<div id="playerA_name">
+<div class="container_playerA">';
+
+if ($_COOKIE['CountryA'] || $_POST['countryA']) {
+    echo '
     <div id="flagA">
     <img src= ' . $selca . '>
-        
+    </div>';
+}
+else {
+     echo '<div>' . $_POST['clubA'] . '</div>';
+}
+
+echo '       
     <div id="playerA">';
-/*
-        for ($i=0; $i < 5; $i++) {
+
+      for ($i=0; $i < 5; $i++) {
        echo 
-       '<div class="left" style="background-color: green;"></div>
-        <div class="right" style="background-color: red;"></div>';
+       '<div class="right" style="background-color: red;"></div>
+       <div class="left" style="background-color: green;"></div>';
         }
         echo '
         </div>
-        </div> */
-echo '</div>
+        </div>';
 
-<br>
+echo 
+'</div>
+</div>
 
-<div id="playerB_name">
-   <div id="flagB">
-   <img src= ' . $selcb . '>
-     <div id="playerB">';
+<div class="container_playerB">';
 
-/*      for ($i=0; $i < 5; $i++) {
+ if ($_COOKIE['CountryB'] || $_POST['countryB']) {
+    echo '
+    <div id="flagB">
+    <img src= ' . $selcb . '>
+    </div>';
+}
+else {
+     echo '<div>' . $_POST['clubB'] . '</div>';
+}
+
+ echo'
+  <div id="playerB">';
+
+ for ($i=0; $i < 5; $i++) {
        echo 
-       '<div class="left" style="background-color: green;"></div>
-        <div class="right" style="background-color: red;"></div>';
-        }
-*/
-       echo '
-       </div>
-       </div>
+       '<div class="right" style="background-color: red;"></div>
+       <div class="left" style="background-color: green;"></div>';
+        };
+echo 
+'</div>
+</div>
 
+</div>
 </div>
    
 <div id="winner"> </div>';

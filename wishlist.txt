@@ -13,8 +13,6 @@ League (internationaal)
 
 - ronde ook 1 dag na speeldatum selecteren 
 
-- optie Zestiende finales wordt niet geselecteerd 
-
 
 Day
 

@@ -245,7 +245,11 @@ for ($i =1; $i <= $last_round; $i++) {
         $time_last_match_po = $array_playoffs_round['response'][$size_array_po-1]['fixture']['timestamp'];
 
 
-      echo '<option '. ($_GET['round_selection'] === "Playoffs" ? 'selected' : null) . ' value="Playoffs">Playoffs ('.date('d-m', $time_first_match_po).' - 
+      echo '<option '. ( 
+        ($_GET['round_selection'] === "Playoffs" || 
+      $_GET['round_selection'] === "Semi-finals" || 
+      $_GET['round_selection'] === "Final") ? 'selected' : null) . '
+       value="Playoffs">Playoffs ('.date('d-m', $time_first_match_po).' - 
     '.date('d-m', $time_last_match_po).')</option>';
       }
   }; 

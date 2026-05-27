@@ -13,7 +13,7 @@ const clubB = document.getElementById('clubB');
 const teamA = document.getElementById('Team_A');
 const teamB = document.getElementById('Team_B');
 
-const optionSelectCountry = 'Selecteer land:';
+//const optionSelectCountry = 'Selecteer land:';
 
 // const confirmTeams = document.getElementById('confirmTeams');
 const startingTeam = document.getElementById('startingTeam');
@@ -27,6 +27,8 @@ const sessionStoragesToBeRemoved = ['A', 'B', 'A_backup', 'B_backup'];
 sessionStoragesToBeRemoved.map(ss => {sessionStorage.removeItem(ss)
 });
 
+
+//functie is overbodig..
 
 function buildSelectCountry(country) {
 
@@ -58,6 +60,8 @@ console.log(arrayCountries);
 }
 
 function checkIfOnlyClubOrCountry(club, country) {
+    console.log(club.value);
+    
     if (club.value !='' && country.value !=optionSelectCountry) {
      alert ('Kies per team één land of één club - niet beide');
     // country.setAttribute('class', 'redborder');
