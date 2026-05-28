@@ -24,7 +24,7 @@ echo "
 
  echo 
 '<div class="menubuttons">
-<li><a target="_blank" href= "../penalty">P</a></li>
+<li><a href= "../penalty">P</a></li>
 </div>';
 
 // Menu teams (met shirtje) 

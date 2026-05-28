@@ -1,13 +1,13 @@
 
 const playerA = document.getElementById('playerA');
 const playerB = document.getElementById('playerB');
-const playerA_name = document.getElementById('playerA_name');
-const playerB_name = document.getElementById('playerB_name');
+//const playerA_name = document.getElementById('playerA_name');
+//const playerB_name = document.getElementById('playerB_name');
 const winner = document.getElementById('winner');
 const countryA = document.getElementById('countryA');
 const countryB = document.getElementById('countryB');
-const flagA = document.getElementById('flagA');
-const flagB = document.getElementById('flagB');
+//const flagA = document.getElementById('flagA');
+//const flagB = document.getElementById('flagB');
 const clubA = document.getElementById('clubA');
 const clubB = document.getElementById('clubB');
 const teamA = document.getElementById('Team_A');
@@ -23,6 +23,11 @@ let totalScorePlayerB = [];
 let filteredArrayA = [];
 let filteredArrayB = [];
 
+let highlightBackground = true;
+
+let highlightColor = "rgb(235 241 242)";
+
+/*
 const sessionStoragesToBeRemoved = ['A', 'B', 'A_backup', 'B_backup'];
 sessionStoragesToBeRemoved.map(ss => {sessionStorage.removeItem(ss)
 });
@@ -94,20 +99,23 @@ function setFlagOrClub(divflag, selectedCountry) {
                     
         });
     }  
-
+*/
     function removeItems(item) {
         while (item.lastChild) {
             item.removeChild(item.lastChild)
             }  
     }
 
-    function removeRedBorders() {
+  /*  
+  function removeRedBorders() {
     const divsWhereRedBorderToBeRemoved = [countryA, clubA, countryB, clubB, startingTeam]; 
 
-   divsWhereRedBorderToBeRemoved.map(div => {
+
+    divsWhereRedBorderToBeRemoved.map(div => {
         div.removeAttribute('class', 'redborder');
     })
-    }
+*/
+    
 
  
 //buildSelectCountry(countryA);
@@ -122,8 +130,9 @@ removeItems(playerB);
 setCircles(playerA, totalScorePlayerA, 5, filteredArrayA);
 setCircles(playerB, totalScorePlayerB, 5, filteredArrayB);
 
+/*
 removeRedBorders(); 
-    
+
 checkIfOnlyClubOrCountry(clubA, countryA);
 checkIfOnlyClubOrCountry(clubB, countryB);
 
@@ -175,6 +184,9 @@ else if (teamA.checked) {
     }
      
 }
+*/
+
+//setCircles(playerA, totalScorePlayerA, 5, filteredArrayA);
 
 
 clubA.addEventListener('input', () => {
@@ -182,7 +194,7 @@ removeItems(playerA);
   
 setCircles(playerA, totalScorePlayerA, 5, filteredArrayA);
 
-removeRedBorders(); 
+//removeRedBorders(); 
     
 //flagA.textContent = clubA.value;
 checkIfOnlyClubOrCountry(clubA, countryA);
@@ -201,7 +213,7 @@ clubB.addEventListener('input', () => {
     
     setCircles(playerB, totalScorePlayerB, 5, filteredArrayB);
     
-    removeRedBorders(); 
+   // removeRedBorders(); 
         
     //flagB.textContent = clubB.value;
     checkIfOnlyClubOrCountry(clubB, countryB);
@@ -357,9 +369,37 @@ checkIfOnlyClubOrCountry(clubB, countryB);
     })
 */
 
+switchBackground();
+
+// Stel achtergrond in voor het land/team dat begint...
+
+document.getElementById('startingTeam').addEventListener('click', () => {
+
+   if (document.getElementById('Team_B').checked) {
+    highlightBackground = !highlightBackground;
+    switchBackground();
+} 
+else if (document.getElementById('Team_A').checked) {
+    highlightBackground = true;
+    switchBackground();
+}
+})
+
+
+function switchBackground() {
+    if (highlightBackground) {
+        document.querySelector('.container_playerA').setAttribute('style',`background-color: ${highlightColor}`);
+        document.querySelector('.container_playerB').setAttribute('style','');
+    }
+    else {
+        document.querySelector('.container_playerB').setAttribute('style',`background-color: ${highlightColor}`);
+        document.querySelector('.container_playerA').setAttribute('style','');
+    }
+}
+
 function setCircles(player, array, num, filteredarray) {
 
-    function switchBackground(player_name) {
+   /* function switchBackground(player_name) {
         console.dir(player_name.className)
         if (player_name = playerA_name) {
             playerA_name.removeAttribute('class','lightblue_background')
@@ -369,7 +409,8 @@ function setCircles(player, array, num, filteredarray) {
            playerB_name.removeAttribute('class','lightblue_background')
            playerA_name.setAttribute('class','lightblue_background')
         }
-    }   
+    }  
+        */ 
         
     function gameOver() {
        sessionStorage.clear();
@@ -379,8 +420,8 @@ function setCircles(player, array, num, filteredarray) {
 
     function evaluateScore() {
 
-        // console.log(turns-totalScorePlayerB.length)
-        //console.log(filteredArrayB.length - filteredArrayA.length)
+       // console.log(turns-totalScorePlayerB.length)
+       // console.log(filteredArrayB.length - filteredArrayA.length)
         if //((totalScorePlayerA.length && totalScorePlayerB.length == turns) ||
             (filteredArrayB.length - filteredArrayA.length > (num - totalScorePlayerB.length)) {
 
@@ -391,7 +432,9 @@ function setCircles(player, array, num, filteredarray) {
                 }
                 else {
 
-            winner.textContent = `${flagB.innerText} heeft gewonnen`;
+            // winner.textContent = `${flagB.innerText} heeft gewonnen`;
+            winner.textContent = `${nameTeamB} heeft gewonnen!`;
+
                 }
             gameOver()
             return
@@ -402,11 +445,13 @@ function setCircles(player, array, num, filteredarray) {
 
                 if (sessionStorage.getItem('A')) {
                    
-                    winner.textContent = `${sessionStorage.getItem('A')} heeft gewonnen.`
+                    winner.textContent = `${sessionStorage.getItem('A')} heeft gewonnen!`
                 }
                 else {
                 
-                winner.textContent = `${flagA.innerText} heeft gewonnen`;
+                // winner.textContent = `${flagA.innerText} heeft gewonnen`;
+                winner.textContent = `${nameTeamA} heeft gewonnen!`;
+
                 }
 
                 gameOver()
@@ -435,20 +480,21 @@ function setCircles(player, array, num, filteredarray) {
         const newDivRight = document.createElement('div');
 
         newDivLeft.classList.add('left');
-        newDivLeft.style.backgroundColor = 'green';
+        newDivLeft.style.backgroundColor = 'red';
 
         newDivRight.classList.add('right');
-        newDivRight.style.backgroundColor = 'red';
-
-        player.appendChild(newDivLeft);
+        newDivRight.style.backgroundColor = 'green';
+       
         player.appendChild(newDivRight);
+        player.appendChild(newDivLeft);
     }
 
     const divArray = [...player.querySelectorAll('div')]
     divArray.map((arr, idx) => {
         arr.addEventListener('click', () => {
 
-           // if (player_name.className === 'lightblue_background') {
+         highlightBackground = !highlightBackground;
+         switchBackground()
 
             if (!divArray[idx].clicked) {
 
@@ -458,13 +504,10 @@ function setCircles(player, array, num, filteredarray) {
                     divArray[idx].clicked = true;
                     divArray[idx + 1].clicked = true;
                     filteredarray.push({ turn: (idx / 2) + 1, answer: true });
+                                    
+                    evaluateScore();
 
-                    switchBackground(playerA_name)
-                    switchBackground(playerB_name)
-
-                    evaluateScore()
-
-                    return
+                    return;
                 }
 
                 else if (idx % 2 == 1) {
@@ -473,13 +516,10 @@ function setCircles(player, array, num, filteredarray) {
                 array.push({ turn: Math.ceil(idx / 2), answer: false });
                 divArray[idx].clicked = true;
                 divArray[idx - 1].clicked = true;
+                           
+                evaluateScore();
 
-                switchBackground(playerA_name)
-                switchBackground(playerB_name)
-
-                evaluateScore()
-
-                return 
+                return;
                 }
             }
                    

@@ -14,9 +14,10 @@ input[type="radio"] {
 }
 
 .main_container_countries_teams {
-  width: 100%;
+  width: 80%;
   display: flex;
-  margin: 30px 0px;
+  margin: 30px auto;
+  background-color: #75b79d;
   }
 
 .main_container_countries_teams div {
@@ -43,24 +44,19 @@ input[type="radio"] {
  }
 
  .main_container_penalty {
- margin: 3% 0;
+ margin: 3% auto;
  align-items: baseline;
+ background-color: #4b4545;
+ padding: 3% 0%;
+ width: 80%;
  }
 
 .container_playerA, 
 .container_playerB {
   display: flex;
   justify-content: center;
+  padding: 2%;
  }
-
- .lightblue_background {
-  background-color: lightblue;
-}
-
-#playerA_name #flagA, 
-#playerB_name #flagB {
-  margin-top: 2.5%;
-}
 
 .right,
 .left {
@@ -69,34 +65,44 @@ input[type="radio"] {
   margin: 0 0 0 -2px;
 }
 
+/* Overbodig.. */
 .redborder {
   border: red 1px solid;
 }
 
 .right {
   border-radius: 0 5rem 5rem 0;
-  margin-left: 5px;
+  margin: 5px 0px 5px 5px;
 }
 
 .left { 
   border-radius: 0 5rem 5rem 0;
-  margin-right: 5px;
+  margin: 5px 5px 5px 0px;
 
 }
 
-#flagA img, 
-#flagB img {
+#flagA, 
+#flagB {
   width: 150px;
   height: auto;
-  border: 1px solid black;
   vertical-align: baseline;
 }
 
+#winner {
+  font-weight: bold;
+  color: red;
+}
 
-@media (max-width: 550px) {
+
+@media (max-width: 700px) {
 
   h2 {
     font-size: 20px;
+  }
+
+  .main_container_countries_teams, 
+ .main_container_penalty {
+   width: 100%;
   }
 
   input {
@@ -109,10 +115,9 @@ input[type="radio"] {
     width: 25px;
   }
 
-  #flagA img, 
-  #flagB img {
-    width: 30px;
-    height: 25px;
+  #flagA, 
+  #flagB {
+    width: 100px;
   }
 }
 
@@ -128,9 +133,8 @@ input[type="radio"] {
     width: 15px;
   }
 
-  #flagA img, 
-  #flagB img {
-    width: 20px;
-    height: 16px;
+  #flagA, 
+  #flagB {
+    width: 50px;
   }
  }

@@ -9,13 +9,19 @@
     <link href="./penaltyboard.css" rel="stylesheet" type="text/css" />
     <script defer src="./penaltyboard.js"></script> 
 
-   <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"> -->
-  
 
     <title>Penalties schieten</title>
 </head>
 
 <?php 
+
+/* To do:
+
+- Clubnamen functionaliteit
+- flow met penalty's nog beter checken
+- check op zelfde land of club (alert)
+
+*/
 
 // Menu 
 
@@ -75,6 +81,7 @@ echo
 </div>
 </div>';
 
+/*
 if ($_POST['clubA']) {
     setcookie('CountryA', '', 1, '/'); 
     $_POST['countryA'] = '';
@@ -84,7 +91,7 @@ if ($_POST['clubB']) {
     setcookie('CountryB', '', 1, '/'); 
     $_POST['countryB'] = '';
 };
-
+*/
 
 if ($_POST['countryA'] != 'Selecteer land:') {
 setcookie("CountryA", $_POST['countryA'], time() + 3600, "/", '', true);
@@ -212,15 +219,23 @@ echo '<div>
    <h3> Welk team start? </h3>'; 
 
 if ($_POST['countryA']) {
-
+    
     for ($i=0; $i < sizeof($array_countries_nl); $i++) {
 
       if ($array_countries_nl[$i]['flag'] === $_POST['countryA']) {
         $teamA = $array_countries_nl[$i]['country'];
       }
     }    
+ } elseif($_COOKIE['CountryA']) {
+     for ($i=0; $i < sizeof($array_countries_nl); $i++) {
+
+      if ($array_countries_nl[$i]['flag'] === $_COOKIE['CountryA']) {
+        $teamA = $array_countries_nl[$i]['country'];
+      }
+    } 
+   
  } else {
-    $teamA = 'Team A';
+     $teamA = 'Team A';
  }
 
  if ($_POST['countryB']) {
@@ -230,11 +245,26 @@ if ($_POST['countryA']) {
       if ($array_countries_nl[$i]['flag'] === $_POST['countryB']) {
         $teamB = $array_countries_nl[$i]['country'];
       }
-    }    
+    }  
+} elseif($_COOKIE['CountryB']) {
+     for ($i=0; $i < sizeof($array_countries_nl); $i++) {
+
+      if ($array_countries_nl[$i]['flag'] === $_COOKIE['CountryB']) {
+        $teamB = $array_countries_nl[$i]['country'];
+      }
+    } 
+
  } else {
     $teamB = 'Team B';
  }
 
+ ?>
+ <script>
+    let nameTeamA = <?php echo json_encode($teamA); ?>;
+    let nameTeamB = <?php echo json_encode($teamB); ?>;
+
+</script>
+<?php 
 
 echo '<div id="startingTeam">
     <input type="radio" checked id="Team_A" name="startteam" value="Team A">
@@ -249,22 +279,22 @@ echo '<div id="startingTeam">
 
 <div class="main_container_penalty"> 
 
-<div class="container_playerA">';
+<div class="container_playerA">
+ <div id="flagA">';
 
 if ($_COOKIE['CountryA'] || $_POST['countryA']) {
     echo '
-    <div id="flagA">
-    <img src= ' . $selca . '>
-    </div>';
+    <img src= ' . $selca . '>';
 }
 else {
      echo '<div>' . $_POST['clubA'] . '</div>';
 }
 
-echo '       
+echo '
+</div>       
     <div id="playerA">';
 
-      for ($i=0; $i < 5; $i++) {
+     /* for ($i=0; $i < 5; $i++) {
        echo 
        '<div class="right" style="background-color: red;"></div>
        <div class="left" style="background-color: green;"></div>';
@@ -272,31 +302,33 @@ echo '
         echo '
         </div>
         </div>';
-
+*/
 echo 
 '</div>
 </div>
 
-<div class="container_playerB">';
+<div class="container_playerB">
+<div id="flagB">';
 
  if ($_COOKIE['CountryB'] || $_POST['countryB']) {
     echo '
-    <div id="flagB">
-    <img src= ' . $selcb . '>
-    </div>';
+    <img src= ' . $selcb . '>';
 }
 else {
      echo '<div>' . $_POST['clubB'] . '</div>';
 }
 
  echo'
+ </div>
   <div id="playerB">';
 
+  /*
  for ($i=0; $i < 5; $i++) {
        echo 
        '<div class="right" style="background-color: red;"></div>
        <div class="left" style="background-color: green;"></div>';
         };
+*/
 echo 
 '</div>
 </div>
