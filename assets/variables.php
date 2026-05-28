@@ -1,7 +1,13 @@
 
 <?php
  
-(date('m') < 7 ? $current_season = (date('Y') - 1) : $current_season = date('Y')); 
+ $month_starting_new_season = 7;
+
+ if (date('Y') % 2 == 0) {
+  $month_starting_new_season = 6;
+ }
+
+(date('m') < $month_starting_new_season ? $current_season = (date('Y') - 1) : $current_season = date('Y')); 
 
 $_GET['league'] ? $league_id = $_GET['league'] : $league_id = 88; 
 
@@ -36,7 +42,7 @@ $array_reg_leagues = [88, 89, 78,79, 135, 140, 39, 40, 179, 408, 61, 144];
 // In league om wel/niet menu voor stand te tonen..
 $array_cup_leagues = [81, 90, 137, 143, 45]; // 81 - DFB Pokal, 90 - KNVB beker
 
-$array_intern_leagues = [2, 3, 848, 1]; // 2, 3, 848 (CL, EL & Conf. League)
+$array_intern_leagues = [2, 3, 848, 1, 4]; // 2, 3, 848 (CL, EL & Conf. League) 1 + 4 WK / EK 
 
 // In day (32 WK-Kwalificatie Europa, 960 EK-kwalificatie, 5 Nations League)..
 $array_extra_leagues = [48, 32, 960, 5];
@@ -70,7 +76,7 @@ $fav_teams = array(
 
 $array_bgcolor_leagues = 
 ['#002e61', '#c9152a', '#cf0513', '#cf0513', '#0c90fd', '#ff4b44', 
-'#3d185c', '#9ba5d0', '#301b76', '#264439', '#091c3e', '#d6142c','#000', '#ff6b04', '#00be14', '#00be14']; 
+'#3d185c', '#9ba5d0', '#301b76', '#264439', '#091c3e', '#d6142c','#000', '#ff6b04', '#00be14', '#d1b56b', '#d1b56b']; 
 
 
 $array_bgcolor_menubar = array_combine($array_leagues, $array_bgcolor_leagues); 

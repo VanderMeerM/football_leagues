@@ -299,7 +299,7 @@ echo
  if (!str_contains($current_page, $menu_standings)) {
 
 $array_of_dates = [];
-$number_dates = 14;
+$number_dates = 10;
 
 for ($i= (-1 * $number_dates); $i <= $number_dates; $i++) {
   array_push($array_of_dates, $today + $i * 86400);
