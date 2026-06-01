@@ -85,7 +85,7 @@ if ($_GET['id']) {
      $cur_url = 'https://v3.football.api-sports.io/fixtures?&id=' . $_GET['id'];
   }
    else {
-
+   
     $array_all_leagues = array_merge($array_leagues, $array_cup_leagues, $array_extra_leagues);
 
    for ($i=0; $i < sizeof($array_all_leagues); $i++) { 

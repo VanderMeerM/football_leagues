@@ -113,6 +113,12 @@ array_push($array_dates_round_sorted, $array_dates_playoffs);
 
 if (in_array($league_id, $array_reg_leagues)) {
 
+  if(!$array_dates_round_sorted) {
+    header('Location: ../league/?league='.$league_id.'&season='. ($_GET['season'] -1) .'');
+  }
+
+  else {
+
 for ($i=1; $i < sizeof($array_dates_round_sorted); $i++) {
   
  $num_dates = intval(sizeof($array_dates_round_sorted[$i]));
@@ -137,10 +143,17 @@ for ($i=1; $i < sizeof($array_dates_round_sorted); $i++) {
    }
    }
 }
+}
 
    // Indien internationale competitie, doorloop dan deze loop om ronde te bepalen... 
 
   elseif (in_array($league_id, $array_intern_leagues)) {
+
+   if(!$array_dates_round_sorted) {
+    header('Location: ../league/?league='.$league_id.'&season='. ($_GET['season'] -1) .'');
+  }
+
+  else {
 
   $array_keys_int_leagues = array_keys($array_dates_intern_leagues);
 
@@ -155,6 +168,8 @@ for ($i=1; $i < sizeof($array_dates_round_sorted); $i++) {
  $round_of_first_upcoming_matches_int = explode(':', $round_determination_int[0])[0];
 
   }
+  }
+
 
   $array_of_round_of_first_upcoming_matches = $round_determination[0]; 
 

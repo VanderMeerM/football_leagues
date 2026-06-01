@@ -48,7 +48,6 @@ include('../assets/translations.php');
 
 include('../assets/getTZ.php');
 
-
 // Controleer of er al een seizoen (uit het verleden) is opgeslagen..
 
 if (!$_GET['id'] && file_exists($json_league_season_path)) {
@@ -275,6 +274,19 @@ else {
 
          echo $date . ' ';
          echo date('H:i', $response['response'][$i]['fixture']['timestamp'])  . '<br>'; 
+
+          if ($matchStatus === 'PEN') {
+            
+            if ($response['response'][$i]['teams']['home']['winner'] == 1) { 
+                echo '<div class="white_color">'. $homeTeam . ' w.n.s. <br>'; 
+                }
+                elseif ($response['response'][$i]['teams']['away']['winner'] == 1) { 
+                   echo '<div class="white_color">'. $awayTeam . ' w.n.s.<br>'; 
+                } 
+                 echo '(' . $response['response'][$i]['score']['penalty']['home']. ' - 
+                ' .$response['response'][$i]['score']['penalty']['away'] . ')</div>';
+               
+          }
      
       };
       
