@@ -35,21 +35,21 @@ $allrounds = [];
 $array_leagues_countries = 
 [
   'Netherlands' => [88, 89, 90],  // 90 KNVB beker,
-  'Germany' => [78,79, 81], // 81 DFB Pokal
+  'Germany' => [78, 79, 80, 81], // 81 DFB Pokal
   'Italy' => [135, 136, 137], // 137 Coppa Italia 
   'Spain' => [140, 141, 143], 
   'England' => [39, 40, 45], // 45 FA Cup,
   'Scotland' => [179],
   'Northern Ireland' => [408],
   'France' => [61],
-  'Belgium' => [144]
-  
+  'Belgium' => [144], 
+  'Portugal' => [94]  
 ];
 
 
 // In league (reguliere competities tonen)..
 // 357 = Ierse competitie
-$array_reg_leagues = [88, 89, 78,79, 135, 140, 39, 40, 179, 408, 61, 144];  
+$array_reg_leagues = [88, 89, 78,79, 80, 135, 140, 94, 39, 40, 179, 408, 61, 144];  
 
 // In league om wel/niet menu voor stand te tonen..
 $array_cup_leagues = [81, 90, 137, 143, 45]; // 81 - DFB Pokal, 90 - KNVB beker
@@ -87,8 +87,8 @@ $fav_teams = array(
 
 
 $array_bgcolor_leagues = 
-['#002e61', '#c9152a', '#cf0513', '#cf0513', '#0c90fd', '#ff4b44', 
-'#3d185c', '#9ba5d0', '#301b76', '#264439', '#091c3e', '#d6142c','#000', '#ff6b04', '#00be14', '#d1b56b', '#d1b56b']; 
+['#002e61', '#c9152a', '#cf0513', '#cf0513', '#001119', '#0c90fd', '#ff4b44', 
+'#3d185c', '#9ba5d0', '#301b76', '#264439', '#091c3e', '#d6142c','#0f2652', '#000', '#ff6b04', '#00be14', '#d1b56b', '#d1b56b']; 
 
 
 $array_bgcolor_menubar = array_combine($array_leagues, $array_bgcolor_leagues); 
