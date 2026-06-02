@@ -13,9 +13,17 @@ $_GET['league'] ? $league_id = $_GET['league'] : $league_id = 88;
 
 $_GET['season'] ? $selected_season = $_GET['season'] : $selected_season = $current_season; 
 
-if ( ($_GET['datum']) && ((explode('-', $_GET['datum'])[1]) < $month_starting_new_season) ) {
-  $selected_season = explode('-', $_GET['datum'])[2] - 1; 
+
+if ($_GET['datum']) {
+
+   if ((explode('-', $_GET['datum'])[1]) < $month_starting_new_season) {
+     $selected_season = explode('-', $_GET['datum'])[2] - 1; 
+    } 
+    else {
+   $selected_season = explode('-', $_GET['datum'])[2]; 
+    }
 }
+
 
 $backgr_today_match = '#e4cd84';
 

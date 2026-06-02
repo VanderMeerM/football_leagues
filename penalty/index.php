@@ -18,9 +18,8 @@
 /* To do:
 
 - Clubnamen functionaliteit
-- flow met penalty's nog beter checken
-- check op zelfde land of club (alert)
-
+- check op zelfde land of club (alert) 
+- flow met penalty's nog beter checken  (m.n. als team B begint..)
 */
 
 // Menu 
@@ -67,6 +66,7 @@ echo
 
  // Menu EK/WK 
 
+ /*
  echo 
 '<div class="menubuttons"> 
 <select class="menu_sel_item" style="background-color: #002e61; color: white; font-weight: bold;" name="EKWK" onchange="window.open(this.value);">
@@ -75,31 +75,32 @@ echo
   <option class="menu_option" style="color: white; font-weight: bold;" value="../WK">WK</option>
   </select>';
 
+  */
+
  echo '
 </ul>
 </div>
 </div>
 </div>';
 
-/*
-if ($_POST['clubA']) {
-    setcookie('CountryA', '', 1, '/'); 
-    $_POST['countryA'] = '';
-};
-
-if ($_POST['clubB']) {
-    setcookie('CountryB', '', 1, '/'); 
-    $_POST['countryB'] = '';
-};
-*/
-
-if ($_POST['countryA'] != 'Selecteer land:') {
+if ($_POST['countryA'] != 'Selecteer land:') {   
 setcookie("CountryA", $_POST['countryA'], time() + 3600, "/", '', true);
 }
+
 
 if ($_POST['countryB'] != 'Selecteer land:') {
 setcookie("CountryB", $_POST['countryB'], time() + 3600, "/", '', true);
 }
+
+
+if ($_POST['clubA']) { 
+ setcookie("clubA", $_POST['clubA'], time() + 3600, "/", '', true); 
+}
+
+if ($_POST['clubB']) { 
+ setcookie("clubB", $_POST['clubB'], time() + 3600, "/", '', true); 
+}
+
 
 $curl_url = "https://www.apicountries.com/countries";
 
@@ -167,7 +168,7 @@ echo '
 
 <div>
 <form action="" method="post">
-<input placeholder="Naam club A" name="clubA" id="clubA">
+<input placeholder="Naam club A" '. ($_COOKIE['clubA'] ? 'value= ' . $_COOKIE['clubA']. '' : null) .' name="clubA" id="clubA">
 <input type="submit" style="display: none">
 
 </form>
@@ -175,6 +176,18 @@ echo '
 
 </form>
 </div>';
+
+?>
+
+<script>
+  document.getElementById('countryA').addEventListener('change', () => {
+    if (document.getElementById('countryA').value === document.getElementById('countryB').value) {
+      alert('Een land kan niet tegen zichzelf spelen.');
+     }
+    }
+    )
+</script>
+<?php
 
 echo '
 <div class="container_team_B">
@@ -204,17 +217,29 @@ echo '
 
 <div>
 <form action="" method="post">
-<input placeholder="Naam club B" name="clubB" id="clubB">
+<input placeholder="Naam club B" '. ($_COOKIE['clubB'] ? 'value= ' . $_COOKIE['clubB']. '' : null) .' name="clubB" id="clubB">
 <input type="submit" style="display: none">
 </div>
 
 </form>
-</div>
-
 </div>';
 
+?>
 
-echo '<div>
+<script>
+  document.getElementById('countryB').addEventListener('change', () => {
+    if (document.getElementById('countryB').value === document.getElementById('countryA').value) {
+      alert('Een land kan niet tegen zichzelf spelen.');
+     }
+    }
+    )
+</script>
+
+<?php
+
+echo '
+</div>
+<div>
 
    <h3> Welk team start? </h3>'; 
 
@@ -233,10 +258,16 @@ if ($_POST['countryA']) {
         $teamA = $array_countries_nl[$i]['country'];
       }
     } 
-   
+      
  } else {
      $teamA = 'Team A';
  }
+
+  if ($_POST['clubA']) {
+       $teamA = $_POST['clubA'];
+  } elseif ($_COOKIE['clubA']) {
+    $teamA = $_COOKIE['clubA'];
+  }
 
  if ($_POST['countryB']) {
 
@@ -257,6 +288,12 @@ if ($_POST['countryA']) {
  } else {
     $teamB = 'Team B';
  }
+ 
+  if ($_POST['clubB']) {
+       $teamB = $_POST['clubB'];
+  } elseif ($_COOKIE['clubB']) {
+    $teamB = $_COOKIE['clubB'];
+  }
 
  ?>
  <script>
@@ -282,12 +319,12 @@ echo '<div id="startingTeam">
 <div class="container_playerA">
  <div id="flagA">';
 
-if ($_COOKIE['CountryA'] || $_POST['countryA']) {
+if ($_COOKIE['CountryA'] || ($_POST['countryA'] != 'Selecteer land:') ) {
     echo '
     <img src= ' . $selca . '>';
 }
 else {
-     echo '<div>' . $_POST['clubA'] . '</div>';
+     echo '<div>' . $_COOKIE['clubA'] . '</div>';
 }
 
 echo '
@@ -310,12 +347,12 @@ echo
 <div class="container_playerB">
 <div id="flagB">';
 
- if ($_COOKIE['CountryB'] || $_POST['countryB']) {
+ if ($_COOKIE['CountryB'] || ($_POST['countryB'] != 'Selecteer land:') ) {
     echo '
     <img src= ' . $selcb . '>';
 }
 else {
-     echo '<div>' . $_POST['clubB'] . '</div>';
+     echo '<div>' . $_COOKIE['clubB'] . '</div>';
 }
 
  echo'

@@ -261,7 +261,8 @@ else {
  <div class="flag_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'">
   <img src="'.$response['response'][$i]['teams']['home']['logo'] . '"/>
   <p>
-  ' . $homeTeam . '</div>
+   ' . (array_key_exists($homeTeam, $array_countries) ? $array_countries[$homeTeam] : $homeTeam). '
+  </div>
  
    </div>
     <div class="stscore_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'">'; 
@@ -368,8 +369,8 @@ else {
    echo '<div class="country_container">
    <div class="flag_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'">
    <img src="'.$response['response'][$i]['teams']['away']['logo'] . '"/>
-   <p>' . 
-   $awayTeam . '
+   <p>
+     ' . (array_key_exists($awayTeam, $array_countries) ? $array_countries[$awayTeam] : $awayTeam). '
    </div>'; 
 
  

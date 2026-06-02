@@ -300,7 +300,7 @@ echo
  <div class="flag_container' . (date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? ' black_color' : ' white_color') .'">
   <img src="'.$matches_on_selected_day[$i]['teams']['home']['logo'] . '"/>
   <p>
-  ' . $matches_on_selected_day[$i]['teams']['home']['name'] . '
+  ' . (array_key_exists($homeTeam, $array_countries) ? $array_countries[$homeTeam] : $homeTeam). '
   </div> 
   </div>
 
@@ -399,8 +399,8 @@ echo
    echo '<div class="country_container">
  <div class="flag_container' . (date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? ' black_color' : ' white_color') .'">
   <img src="'. $matches_on_selected_day[$i]['teams']['away']['logo'] . '"/>
-   <p>' . 
-   $matches_on_selected_day[$i]['teams']['away']['name'] . '
+   <p>
+  ' . (array_key_exists($awayTeam, $array_countries) ? $array_countries[$awayTeam] : $awayTeam). '
    </div>'; 
 
  

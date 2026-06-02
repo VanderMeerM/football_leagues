@@ -116,6 +116,7 @@ $array_position = array(
 );
 
 $array_countries = array(
+   // Europese landen..
   'Netherlands' => 'Nederland',
   'Belgium' => 'België',
   'Germany' => 'Duitsland',
@@ -136,8 +137,38 @@ $array_countries = array(
   'Hungary' => 'Hongarije', 
   'Slovakia' => 'Slowakije',
   'Czechia' => 'Tsjechië',
+  'Czech Republic' => 'Tsjechië',
+  'Bosnia & Herzegovina' => 'Bosnië en Herzegovina',
+  'Türkiye' => 'Turkije',
+  'Croatia' => 'Kroatië',
+
+  // Afrikaanse landen.. 
   'Morocco' => 'Marokko',
+  'South Africa' => 'Zuid-Afrika',
+  'Ivory Coast' => 'Ivoorkust',
+  'Tunisia' => 'Tunesië',
+  'Cape Verde Islands' => 'Kaapverdische Eilanden',
+  'Egypt' => 'Egypte',
+  'Algeria' => 'Algerije',
+  'Congo DR' => 'DR Congo',
+
+  // Amerikaanse landen..
+  'USA' => 'Verenigde Staten', 
+  'Haiti' => 'Haïti',
   'Brazil' => 'Brazilië', 
-  'Argentina' => 'Argentinië'
+  'Argentina' => 'Argentinië',
+  
+  // Aziatische landen..
+  'Australia' => 'Australië',
+  'New Zealand' => 'Nieuw-Zeeland',
+  'South Korea' => 'Zuid-Korea', 
+  'Saudi Arabia' => 'Saoedie-Arabië',
+  'Iraq' => 'Irak',
+  'Jordan' => 'Jordanië',
+  'Uzbekistan' => 'Oezbekistan',
+   
+  // Clubs.. 
+  'Waalwijk' => 'RKC'
 
 );
+

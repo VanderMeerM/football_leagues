@@ -229,10 +229,9 @@ echo'
  <div class="flag_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') . '">
   <img src="'. $all_matches_leagues[$i]['teams']['home']['logo'] . '"/></div>
    <p>
-  ' . $all_matches_leagues[$i]['teams']['home']['name'] . ''; 
+       ' . (array_key_exists($homeTeam, $array_countries) ? $array_countries[$homeTeam] : $homeTeam). ' 
 
-   
-  echo '</div>
+     </div>
           <div class="stscore_container ' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') . '">';
 
         if (!$_GET['id'])  {
@@ -315,10 +314,9 @@ echo'
  <div class="flag_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'">
    <img src="'. $all_matches_leagues[$i]['teams']['away']['logo'] . '"/></div>
    <p>
-  ' . $all_matches_leagues[$i]['teams']['away']['name'] . ''; 
+      ' . (array_key_exists($awayTeam, $array_countries) ? $array_countries[$awayTeam] : $awayTeam). ' 
 
-
-   echo '</div>
+   </div>
    </div>';
 
    if (!$_GET['id']) {
