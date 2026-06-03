@@ -49,7 +49,7 @@ $array_leagues_countries =
 
 // In league (reguliere competities tonen)..
 // 357 = Ierse competitie
-$array_reg_leagues = [88, 89, 78,79, 80, 135, 140, 94, 39, 40, 179, 408, 61, 144];  
+$array_reg_leagues = [88, 89, 78, 79, 80, 135, 140, 94, 39, 40, 179, 408, 61, 144];  
 
 // In league om wel/niet menu voor stand te tonen..
 $array_cup_leagues = [81, 90, 137, 143, 45]; // 81 - DFB Pokal, 90 - KNVB beker
@@ -63,13 +63,20 @@ $array_extra_leagues = [48, 32, 960, 5];
 // day (alle competities doornemen, cup leagues worden op day zelf toegevoegd)...
 $array_leagues = array_merge($array_reg_leagues, $array_intern_leagues); 
 
+
+$array_bgcolor_leagues = 
+['#002e61', '#c9152a', '#cf0513', '#cf0513', '#001119', '#0c90fd', '#ff4b44', '#0f2652',
+'#3d185c', '#9ba5d0', '#301b76', '#264439', '#091c3e', '#d6142c', '#000', '#ff6b04', '#00be14', '#d1b56b', '#d1b56b']; 
+
+$array_bgcolor_menubar = array_combine($array_leagues, $array_bgcolor_leagues); 
+
+
 $reg_leag = ['Regular', 'League'];
 
 $menu_league = 'league';
 $menu_standings = 'standings';
 $menu_day = 'day';
 $menu_teams = 'teams';
-
 
 $fav_teams = array(
   ['value' => 194, 'bg' => '#c2002f, #fff'], // Ajax
@@ -85,13 +92,6 @@ $fav_teams = array(
   
 );
 
-
-$array_bgcolor_leagues = 
-['#002e61', '#c9152a', '#cf0513', '#cf0513', '#001119', '#0c90fd', '#ff4b44', 
-'#3d185c', '#9ba5d0', '#301b76', '#264439', '#091c3e', '#d6142c','#0f2652', '#000', '#ff6b04', '#00be14', '#d1b56b', '#d1b56b']; 
-
-
-$array_bgcolor_menubar = array_combine($array_leagues, $array_bgcolor_leagues); 
 
 // Paden 
 

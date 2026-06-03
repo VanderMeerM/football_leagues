@@ -87,11 +87,9 @@ if ($_POST['countryA'] != 'Selecteer land:') {
 setcookie("CountryA", $_POST['countryA'], time() + 3600, "/", '', true);
 }
 
-
 if ($_POST['countryB'] != 'Selecteer land:') {
 setcookie("CountryB", $_POST['countryB'], time() + 3600, "/", '', true);
 }
-
 
 if ($_POST['clubA']) { 
  setcookie("clubA", $_POST['clubA'], time() + 3600, "/", '', true); 
@@ -168,12 +166,11 @@ echo '
 
 <div>
 <form action="" method="post">
-<input placeholder="Naam club A" '. ($_COOKIE['clubA'] ? 'value= ' . $_COOKIE['clubA']. '' : null) .' name="clubA" id="clubA">
+<input placeholder="Naam club A" name="clubA" id="clubA">
 <input type="submit" style="display: none">
 
 </form>
 </div>
-
 </form>
 </div>';
 
@@ -217,7 +214,7 @@ echo '
 
 <div>
 <form action="" method="post">
-<input placeholder="Naam club B" '. ($_COOKIE['clubB'] ? 'value= ' . $_COOKIE['clubB']. '' : null) .' name="clubB" id="clubB">
+<input placeholder="Naam club B" name="clubB" id="clubB">
 <input type="submit" style="display: none">
 </div>
 
@@ -251,7 +248,9 @@ if ($_POST['countryA']) {
         $teamA = $array_countries_nl[$i]['country'];
       }
     }    
- } elseif($_COOKIE['CountryA']) {
+ } 
+ 
+ elseif($_COOKIE['CountryA']) {
      for ($i=0; $i < sizeof($array_countries_nl); $i++) {
 
       if ($array_countries_nl[$i]['flag'] === $_COOKIE['CountryA']) {
@@ -264,12 +263,15 @@ if ($_POST['countryA']) {
  }
 
   if ($_POST['clubA']) {
-       $teamA = $_POST['clubA'];
-  } elseif ($_COOKIE['clubA']) {
+
+    $teamA = $_POST['clubA'];
+  } 
+  elseif ($_COOKIE['clubA']) {
     $teamA = $_COOKIE['clubA'];
   }
+ 
 
- if ($_POST['countryB']) {
+  if ($_POST['countryB']) {
 
     for ($i=0; $i < sizeof($array_countries_nl); $i++) {
 
@@ -277,7 +279,7 @@ if ($_POST['countryA']) {
         $teamB = $array_countries_nl[$i]['country'];
       }
     }  
-} elseif($_COOKIE['CountryB']) {
+} elseif ($_COOKIE['CountryB']) {
      for ($i=0; $i < sizeof($array_countries_nl); $i++) {
 
       if ($array_countries_nl[$i]['flag'] === $_COOKIE['CountryB']) {
@@ -296,11 +298,21 @@ if ($_POST['countryA']) {
   }
 
  ?>
- <script>
+
+<script>
     let nameTeamA = <?php echo json_encode($teamA); ?>;
     let nameTeamB = <?php echo json_encode($teamB); ?>;
+    
+   /* if (nameTeamA != 'Team A') {
+      document.getElementById('clubA').value = nameTeamA;
+    }
+    
+    if (nameTeamB != 'Team B') {
+    document.getElementById('clubB').value = nameTeamB;
+    }
+*/
+  </script>
 
-</script>
 <?php 
 
 echo '<div id="startingTeam">
@@ -323,8 +335,9 @@ if ($_COOKIE['CountryA'] || ($_POST['countryA'] != 'Selecteer land:') ) {
     echo '
     <img src= ' . $selca . '>';
 }
-else {
-     echo '<div>' . $_COOKIE['clubA'] . '</div>';
+
+if ($_COOKIE['clubA'] || $_POST['clubA']) {
+     echo '<div>' . $teamA . '</div>';
 }
 
 echo '
@@ -351,8 +364,9 @@ echo
     echo '
     <img src= ' . $selcb . '>';
 }
-else {
-     echo '<div>' . $_COOKIE['clubB'] . '</div>';
+
+if ($_COOKIE['clubB'] || $_POST['clubB']) {
+     echo '<div>' . $teamB . '</div>';
 }
 
  echo'
