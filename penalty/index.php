@@ -85,18 +85,25 @@ echo
 
 if ($_POST['countryA'] != 'Selecteer land:') {   
 setcookie("CountryA", $_POST['countryA'], time() + 3600, "/", '', true);
+setcookie("clubA", '', time() + 3600, "/", '', true); 
+
 }
 
 if ($_POST['countryB'] != 'Selecteer land:') {
 setcookie("CountryB", $_POST['countryB'], time() + 3600, "/", '', true);
+setcookie("clubB", '', time() + 3600, "/", '', true); 
+
 }
 
 if ($_POST['clubA']) { 
  setcookie("clubA", $_POST['clubA'], time() + 3600, "/", '', true); 
+ setcookie("CountryA", '', time() + 3600, "/", '', true);
 }
 
 if ($_POST['clubB']) { 
  setcookie("clubB", $_POST['clubB'], time() + 3600, "/", '', true); 
+ setcookie("CountryB", '', time() + 3600, "/", '', true);
+
 }
 
 
@@ -148,10 +155,10 @@ echo '
     <select name="countryA" id="countryA" onchange="this.form.submit()">
         <option selected >Selecteer land:</option>';
         
-        if ($_POST['countryA']) {
+        if ($_POST['countryA'] ) {
             $selca = $_POST['countryA']; 
             }
-            else {
+            elseif ( ($_COOKIE['CountryA']) && ($_COOKIE['CountryA'] != '') ) {
                $selca = $_COOKIE['CountryA'];  
             }
 
@@ -183,7 +190,8 @@ echo '
      }
     }
     )
-</script>
+
+   </script>
 <?php
 
 echo '
@@ -311,6 +319,7 @@ if ($_POST['countryA']) {
     document.getElementById('clubB').value = nameTeamB;
     }
 */
+
   </script>
 
 <?php 
@@ -331,13 +340,21 @@ echo '<div id="startingTeam">
 <div class="container_playerA">
  <div id="flagA">';
 
-if ($_COOKIE['CountryA'] || ($_POST['countryA'] != 'Selecteer land:') ) {
+if ( ($_COOKIE['CountryA'] !='') || ($_POST['countryA'] != 'Selecteer land:') ) {
     echo '
-    <img src= ' . $selca . '>';
+    <div id="setFlag">
+    <img src= ' . $selca . '>
+    </div>';
 }
 
-if ($_COOKIE['clubA'] || $_POST['clubA']) {
-     echo '<div>' . $teamA . '</div>';
+if ($_POST['clubA']) {
+     echo '
+     <div id="setClub">
+     <div>' . $teamA . '</div>
+     </div>';
+     ?>
+     <script>document.getElementById('setFlag').removeChild()</script>
+     <?php
 }
 
 echo '

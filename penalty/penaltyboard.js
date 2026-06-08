@@ -197,7 +197,7 @@ setCircles(playerA, totalScorePlayerA, 5, filteredArrayA);
 //removeRedBorders(); 
     
 //flagA.textContent = clubA.value;
-checkIfOnlyClubOrCountry(clubA, countryA);
+//checkIfOnlyClubOrCountry(clubA, countryA);
 
 
 if (clubB.value !='') {
@@ -216,7 +216,7 @@ clubB.addEventListener('input', () => {
    // removeRedBorders(); 
         
     //flagB.textContent = clubB.value;
-    checkIfOnlyClubOrCountry(clubB, countryB);
+    //checkIfOnlyClubOrCountry(clubB, countryB);
 
 
     if (clubA.value !='') {
