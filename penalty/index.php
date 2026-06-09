@@ -62,26 +62,12 @@ echo
 <input type='hidden' name='sel_day' value=$today>
 <input type='submit' style='display: none'>
 </form>
-</div>";
+</div>
 
- // Menu EK/WK 
-
- /*
- echo 
-'<div class="menubuttons"> 
-<select class="menu_sel_item" style="background-color: #002e61; color: white; font-weight: bold;" name="EKWK" onchange="window.open(this.value);">
-  <option class="menu_option" style="color: white; font-weight: bold;" selected disabled value="">EK/WK</option>
-  <option class="menu_option" style="color: white; font-weight: bold;" value="../EK">EK</option>
-  <option class="menu_option" style="color: white; font-weight: bold;" value="../WK">WK</option>
-  </select>';
-
-  */
-
- echo '
 </ul>
 </div>
 </div>
-</div>';
+</div>";
 
 if ($_POST['countryA'] != 'Selecteer land:') {   
 setcookie("CountryA", $_POST['countryA'], time() + 3600, "/", '', true);
@@ -125,6 +111,8 @@ curl_setopt_array($curl, array(
 $response = curl_exec($curl);
 
 $response = json_decode($response, true);
+
+// Landen naar het Nederlands vertalen en in alfabetische volgorde zetten...
 
 for ($i=0; $i < sizeof($response); $i++) {
 
@@ -300,8 +288,10 @@ if ($_POST['countryA']) {
  }
  
   if ($_POST['clubB']) {
+
        $teamB = $_POST['clubB'];
-  } elseif ($_COOKIE['clubB']) {
+  } 
+  elseif ($_COOKIE['clubB']) {
     $teamB = $_COOKIE['clubB'];
   }
 
@@ -311,16 +301,7 @@ if ($_POST['countryA']) {
     let nameTeamA = <?php echo json_encode($teamA); ?>;
     let nameTeamB = <?php echo json_encode($teamB); ?>;
     
-   /* if (nameTeamA != 'Team A') {
-      document.getElementById('clubA').value = nameTeamA;
-    }
-    
-    if (nameTeamB != 'Team B') {
-    document.getElementById('clubB').value = nameTeamB;
-    }
-*/
-
-  </script>
+   </script>
 
 <?php 
 
@@ -342,72 +323,87 @@ echo '<div id="startingTeam">
 
 if ( ($_COOKIE['CountryA'] !='') || ($_POST['countryA'] != 'Selecteer land:') ) {
     echo '
-    <div id="setFlag">
+    <div id="setFlagA">
     <img src= ' . $selca . '>
     </div>';
 }
 
 if ($_POST['clubA']) {
      echo '
-     <div id="setClub">
+     <div id="setClubA">
      <div>' . $teamA . '</div>
      </div>';
      ?>
-     <script>document.getElementById('setFlag').removeChild()</script>
-     <?php
-}
+     <script>
+     const setFlagA = document.getElementById('setFlagA');
+
+     if (setFlagA) {
+     setFlagA.removeChild(setFlagA.firstElementChild);
+    }
+   </script>
+   
+   <?php
+    }
 
 echo '
 </div>       
-    <div id="playerA">';
 
-     /* for ($i=0; $i < 5; $i++) {
-       echo 
-       '<div class="right" style="background-color: red;"></div>
-       <div class="left" style="background-color: green;"></div>';
-        }
-        echo '
-        </div>
-        </div>';
-*/
-echo 
-'</div>
+<div id="playerA">
+
+</div>
 </div>
 
 <div class="container_playerB">
 <div id="flagB">';
 
- if ($_COOKIE['CountryB'] || ($_POST['countryB'] != 'Selecteer land:') ) {
+if ( ($_COOKIE['CountryB'] !='') || ($_POST['countryB'] != 'Selecteer land:') ) {
     echo '
-    <img src= ' . $selcb . '>';
+    <div id="setFlagB">
+    <img src= ' . $selcb . '>
+    </div>';
 }
 
-if ($_COOKIE['clubB'] || $_POST['clubB']) {
-     echo '<div>' . $teamB . '</div>';
-}
+if ($_POST['clubB']) {
+     echo '
+     <div id="setClubB">
+     <div>' . $teamB . '</div>
+     </div>';
+     ?>
+     <script>
+     const setFlagB = document.getElementById('setFlagB');
+     if (setFlagB) {
+     setFlagB.removeChild(setFlagB.firstElementChild);
+    }
+     console.log(nameTeamA);
+     </script>
+   
+   <?php
+    }
 
- echo'
- </div>
-  <div id="playerB">';
+echo'
+</div>
 
-  /*
- for ($i=0; $i < 5; $i++) {
-       echo 
-       '<div class="right" style="background-color: red;"></div>
-       <div class="left" style="background-color: green;"></div>';
-        };
-*/
-echo 
-'</div>
+<div id="playerB">
+  
+</div>
 </div>
 
 </div>
 </div>
    
-<div id="winner"> </div>';
+<div id="winner"> </div>
 
+<div style="position: relative">
+<button id="btn_restart">Begin opnieuw</button>
+</div>';
 
 ?>
+
+<script>
+  document.getElementById('btn_restart').addEventListener('click', () => {
+  location.reload();
+  })
+</script>
 
 
 </body>

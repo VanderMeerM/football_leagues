@@ -17,7 +17,7 @@ input[type="radio"] {
   width: 80%;
   display: flex;
   margin: 30px auto;
-  background-color: #75b79d;
+  background-color: #cdd1d0;
   }
 
 .main_container_countries_teams div {
@@ -26,7 +26,7 @@ input[type="radio"] {
 
 .container_team_A, 
 .container_team_B {
-      display: flex;
+    display: flex;
     flex-direction: column;
       width:50%;
 
@@ -36,6 +36,7 @@ input[type="radio"] {
 #playerB {
   display: flex;
   margin-left: 30px;
+  overflow: auto;
 }
 
  #countryA, 
@@ -46,7 +47,7 @@ input[type="radio"] {
  .main_container_penalty {
  margin: 3% auto;
  align-items: baseline;
- background-color: #4b4545;
+ background-color: #000;
  padding: 3% 0%;
  width: 80%;
  }
@@ -55,7 +56,9 @@ input[type="radio"] {
 .container_playerB {
   display: flex;
   justify-content: center;
-  padding: 2%;
+  padding: 1%;
+  width: 70%;
+  margin: auto;
  }
 
 .right,
@@ -65,20 +68,23 @@ input[type="radio"] {
   margin: 0 0 0 -2px;
 }
 
-/* Overbodig.. */
-.redborder {
-  border: red 1px solid;
-}
-
 .right {
   border-radius: 0 5rem 5rem 0;
-  margin: 5px 0px 5px 5px;
+  margin: 5px -1px 5px 5px;
 }
 
 .left { 
   border-radius: 0 5rem 5rem 0;
-  margin: 5px 5px 5px 0px;
+  margin: 5px 5px 5px -1px;
 
+}
+
+#setClubA, 
+#setClubB {
+  margin-top: 20%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  color:red;
 }
 
 #flagA, 
@@ -91,6 +97,14 @@ input[type="radio"] {
 #winner {
   font-weight: bold;
   color: red;
+}
+
+#btn_restart {
+background-color: blue;
+color: white;
+padding: 1%;
+position: absolute;
+right: 10%;
 }
 
 
