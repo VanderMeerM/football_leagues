@@ -173,6 +173,15 @@ function setCircles(player, array, num, filteredarray) {
     divArray.map((arr, idx) => {
         arr.addEventListener('click', () => {
 
+            // Deactiveer dropdown-menu voor landen en invoer club bij beginnen penaltyreeks..
+
+            countryA.setAttribute('disabled', 'disabled');
+            countryB.setAttribute('disabled', 'disabled');
+
+            clubA.setAttribute('disabled', 'disabled');
+            clubB.setAttribute('disabled', 'disabled');
+
+
          highlightBackground = !highlightBackground;
          switchBackground()
 

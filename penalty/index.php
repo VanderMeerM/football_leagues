@@ -17,8 +17,9 @@
 
 /* To do:
 
-- Clubnamen functionaliteit
-- check op zelfde land of club (alert) 
+- check op zelfde land of club (alert) - en vlag niet invullen 
+- stippen in overflow
+
 - flow met penalty's nog beter checken  (m.n. als team B begint..)
 */
 
@@ -68,6 +69,11 @@ echo
 </div>
 </div>
 </div>";
+
+if ($_POST['reload'] === 'yes') {
+   $_POST['countryA'] === 'Selecteer land:';
+   $_POST['countryB'] === 'Selecteer land:';
+};
 
 if ($_POST['countryA'] != 'Selecteer land:') {   
 setcookie("CountryA", $_POST['countryA'], time() + 3600, "/", '', true);
@@ -340,6 +346,9 @@ if ($_POST['clubA']) {
      if (setFlagA) {
      setFlagA.removeChild(setFlagA.firstElementChild);
     }
+
+     document.getElementById('flagB').innerHTML = `<div id="setClubB"> ${nameTeamB}</div>`;
+    
    </script>
    
    <?php
@@ -374,7 +383,8 @@ if ($_POST['clubB']) {
      if (setFlagB) {
      setFlagB.removeChild(setFlagB.firstElementChild);
     }
-     console.log(nameTeamA);
+     document.getElementById('flagA').innerHTML = `<div id="setClubA"> ${nameTeamA}</div>`;
+  
      </script>
    
    <?php
@@ -393,18 +403,19 @@ echo'
    
 <div id="winner"> </div>
 
+
 <div style="position: relative">
-<button id="btn_restart">Begin opnieuw</button>
+
+<form action="./" method="post">
+
+<input type="hidden" name="reload" value="yes">
+
+<input type="submit" id="btn_restart" value="Begin opnieuw">
+</form>
+
 </div>';
 
 ?>
-
-<script>
-  document.getElementById('btn_restart').addEventListener('click', () => {
-  location.reload();
-  })
-</script>
-
 
 </body>
 

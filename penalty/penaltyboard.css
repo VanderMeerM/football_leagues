@@ -100,9 +100,9 @@ input[type="radio"] {
 }
 
 #btn_restart {
-background-color: blue;
-color: white;
+background-color: #cdd1d0;
 padding: 1%;
+color:#000;
 position: absolute;
 right: 10%;
 }
@@ -150,5 +150,10 @@ right: 10%;
   #flagA, 
   #flagB {
     width: 50px;
+  }
+
+  #setClubA, 
+  #setClubB {
+    font-size: medium;
   }
  }
