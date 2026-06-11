@@ -138,6 +138,8 @@ echo '
 
     <h2>Selecteer land of voer (club)naam in </h2>
 
+<div class="container_countries_teams_startingteam">
+
 <div class="main_container_countries_teams">
 
  <div class="container_team_A">
@@ -240,7 +242,7 @@ echo '
 </div>
 <div>
 
-   <h3> Welk team start? </h3>'; 
+   <h4> Welk team begint? </h4>'; 
 
 if ($_POST['countryA']) {
     
@@ -320,9 +322,12 @@ echo '<div id="startingTeam">
 </div>
 </div>
 </div>
+</div>
 
 
 <div class="main_container_penalty"> 
+
+<div id="round"></div>
 
 <div class="container_playerA">
  <div id="flagA">';
@@ -358,8 +363,11 @@ echo '
 </div>       
 
 <div id="playerA">
-
 </div>
+
+<div id="scoreA">
+</div>
+
 </div>
 
 <div class="container_playerB">
@@ -394,8 +402,11 @@ echo'
 </div>
 
 <div id="playerB">
-  
 </div>
+
+<div id="scoreB">
+</div>
+
 </div>
 
 </div>

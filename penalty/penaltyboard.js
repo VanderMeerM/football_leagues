@@ -10,8 +10,11 @@ const clubA = document.getElementById('clubA');
 const clubB = document.getElementById('clubB');
 const teamA = document.getElementById('Team_A');
 const teamB = document.getElementById('Team_B');
+const scoreA = document.getElementById('scoreA');
+const scoreB = document.getElementById('scoreB');
 
 const startingTeam = document.getElementById('startingTeam');
+const round = document.getElementById('round');
 
 let totalScorePlayerA = [];
 let totalScorePlayerB = [];
@@ -97,7 +100,11 @@ function switchBackground() {
 
 function setCircles(player, array, num, filteredarray) {
 
-          
+   if (totalScorePlayerA.length == totalScorePlayerB.length) {
+    round.textContent = 'Ronde: ' + (totalScorePlayerB.length + 1)
+        };
+
+                  
  function gameOver() {
        sessionStorage.clear();
         [...playerA.querySelectorAll('div')].filter(arr => !arr.clicked).map(ar => ar.style.visibility = 'hidden');
@@ -105,6 +112,22 @@ function setCircles(player, array, num, filteredarray) {
     }
 
     function evaluateScore() {
+
+        // Ronde weergeven..
+
+        if (totalScorePlayerA.length == totalScorePlayerB.length) {
+    round.textContent = 'Ronde: ' + (totalScorePlayerB.length + 1)
+        };
+
+        // Gescoorde penalty's weergeven..
+        
+        if (filteredArrayA.length > 0 ) {
+        scoreA.textContent = filteredArrayA.length;
+        }
+
+        if (filteredArrayB.length > 0 ) {
+        scoreB.textContent = filteredArrayB.length;
+        }
 
         if (filteredArrayB.length - filteredArrayA.length > (num - totalScorePlayerB.length)) {
 
