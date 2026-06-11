@@ -157,6 +157,13 @@ right: 10%;
   }
 }
 
+@media (max-width: 600px) {
+
+ #winner {
+  font-size: large;
+  }
+}
+
 @media (max-width: 420px) {
 
   h2 {
@@ -179,7 +186,4 @@ right: 10%;
     font-size: medium;
   }
 
-  #winner {
-  font-size: large;
-  }
  }
