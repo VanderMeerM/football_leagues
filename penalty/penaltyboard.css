@@ -107,9 +107,11 @@ input[type="radio"] {
 
 #scoreA, 
 #scoreB {
-  padding:2%;
-  background-color: white;
-  
+ padding: 2%;
+ margin-left: 5%;
+ background-color: white;
+ align-content: center;
+ font-size: x-large;
 }
 
 #winner {

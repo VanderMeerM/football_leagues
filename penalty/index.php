@@ -365,7 +365,7 @@ echo '
 <div id="playerA">
 </div>
 
-<div id="scoreA">
+<div id="scoreA">0
 </div>
 
 </div>
@@ -404,7 +404,7 @@ echo'
 <div id="playerB">
 </div>
 
-<div id="scoreB">
+<div id="scoreB">0
 </div>
 
 </div>
