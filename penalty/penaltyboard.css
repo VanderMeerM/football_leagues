@@ -17,10 +17,11 @@ input[type="radio"] {
   display: flex;
   flex-direction: column;
   background-color: #cdd1d0;
+  width: 80%;
+  padding-bottom: 1%;
 }
 
 .main_container_countries_teams {
-  width: 80%;
   display: flex;
   margin: 0 auto;
   }
