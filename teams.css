@@ -2,7 +2,7 @@
 :root {
     --lightgray:  rgba(231, 229, 229, 0.888);
     --blue: blue;
-    --black: rgb(31, 28, 28);
+    --black: #000000c9;
     --grassgreen: #7ee26e;
     --bg_today_match: #e4cd84;
 }
@@ -218,7 +218,6 @@ margin: 0;
 }
 
 ul li a {
-/* background-color: var(--black); */
 display: block;
 padding: 10px 0px;
 color:white;
@@ -705,7 +704,7 @@ img {
 }
 
 .black_color {
-    color: black;
+    color: var(--black);
 }
 
 .p_shootout {
