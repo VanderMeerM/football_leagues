@@ -18,13 +18,13 @@ input[type="radio"] {
   flex-direction: column;
   background-color: #cdd1d0;
   width: 80%;
+  margin: 0 auto;
   padding-bottom: 1%;
 }
 
 .main_container_countries_teams {
   display: flex;
-  margin: 0 auto;
-  }
+ }
 
 .main_container_countries_teams div {
     padding:2% 2% 0 2%;
@@ -103,6 +103,13 @@ input[type="radio"] {
   width: 150px;
   height: auto;
   vertical-align: baseline;
+}
+
+#scoreA, 
+#scoreB {
+  padding:2%;
+  background-color: white;
+  
 }
 
 #winner {
