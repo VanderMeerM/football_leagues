@@ -324,6 +324,7 @@ echo '<div id="startingTeam">
 </div>
 </div>
 
+<div id="winner"> </div>
 
 <div class="main_container_penalty"> 
 
@@ -412,8 +413,6 @@ echo'
 </div>
 </div>
    
-<div id="winner"> </div>
-
 
 <div style="position: relative">
 
