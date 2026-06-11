@@ -51,7 +51,7 @@ input[type="radio"] {
  }
 
  .main_container_penalty {
- margin: 3% auto;
+ margin: 0 auto 3%;
  align-items: baseline;
  background-color: #000000c9;
  padding: 3% 0%;
@@ -117,6 +117,7 @@ input[type="radio"] {
 #winner {
   font-weight: bold;
   color: red;
+  padding: 2%;
 }
 
 #btn_restart {
