@@ -242,7 +242,7 @@ echo '
 </div>
 <div>
 
-   <h4> Welk team begint? </h4>'; 
+   <h5> Welk team begint? </h5>'; 
 
 if ($_POST['countryA']) {
     
