@@ -116,6 +116,7 @@ input[type="radio"] {
 
 #winner {
   font-weight: bold;
+  font-size: x-large;
   color: red;
   padding: 2%;
 }
