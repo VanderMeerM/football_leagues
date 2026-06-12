@@ -114,6 +114,18 @@ function setCircles(player, array, num, filteredarray) {
         [...playerB.querySelectorAll('div')].filter(arr => !arr.clicked).map(ar => ar.style.visibility = 'hidden');
     }
 
+    function teamBWins () {
+            if (sessionStorage.getItem('B')) {
+                   
+                    winner.textContent = `${sessionStorage.getItem('B')} heeft gewonnen.`
+                }
+                else {
+
+            winner.textContent = `${nameTeamB} heeft gewonnen!`;
+
+                }
+    }
+
     function evaluateScore() {
 
         // Ronde weergeven..
@@ -138,29 +150,26 @@ function setCircles(player, array, num, filteredarray) {
         console.log(`B ${filteredArrayB.length}`);
         console.log(`Tot. B: ${totalScorePlayerB.length}`);
 
-        // B begint 3-0 > 5-3
+     
+        // voor geval dat Team B begint en eerste drie raak schiet en A eerste drie mist
+        
+          if  ( filteredArrayB.length == 3 && filteredArrayA.length == 0 && (totalScorePlayerA.length == 3)) {
+              console.log('test');
+              teamBWins();
+              gameOver();
+              return;
+            }
 
-        // A begint 3-0 > 5-2
+            else if ( filteredArrayB.length - filteredArrayA.length > (num -  (totalScorePlayerB.length)) 
+            && (totalScorePlayerA.length == totalScorePlayerB.length) )  
+            {
 
-
-          if ( 
-            (filteredArrayB.length - filteredArrayA.length > (num -  totalScorePlayerB.length)) 
-          // && (totalScorePlayerB.length == totalScorePlayerA.length) // specifiek voor geval dat Team B begint en eerste drie raak schiet en A drie mist
-            ) {
-
-                if (sessionStorage.getItem('B')) {
-                   
-                    winner.textContent = `${sessionStorage.getItem('B')} heeft gewonnen.`
-                }
-                else {
-
-            winner.textContent = `${nameTeamB} heeft gewonnen!`;
-
-                }
-            gameOver()
-            return
+             teamBWins(); 
+             gameOver();
+             return;
         }
 
+             
         else if
             (filteredArrayA.length - filteredArrayB.length > (num - totalScorePlayerB.length)) {
 

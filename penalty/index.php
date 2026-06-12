@@ -20,7 +20,7 @@
 - check op zelfde land of club (alert) - en vlag niet invullen 
 - stippen in overflow
 
-- flow met penalty's (m.n. als team B begint..)
+- flow met penalty's (m.n. als team B begint en met ingang 5e ronde een goal voor staat (bijv. 2-3)..)
 */
 
 // Menu 
