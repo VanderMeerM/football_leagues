@@ -145,13 +145,8 @@ function setCircles(player, array, num, filteredarray) {
 
           if ( 
             (filteredArrayB.length - filteredArrayA.length > (num -  totalScorePlayerB.length)) 
-           // specifiek voor geval dat Team B begint en eerste drie raak schiet en A drie mist
-             
-            || 
-            (filteredArrayB.length == 3 && filteredArrayA.length == 0  && (totalScorePlayerB.length == totalScorePlayerA.length))
-            
-            ) 
-            {
+          // && (totalScorePlayerB.length == totalScorePlayerA.length) // specifiek voor geval dat Team B begint en eerste drie raak schiet en A drie mist
+            ) {
 
                 if (sessionStorage.getItem('B')) {
                    
