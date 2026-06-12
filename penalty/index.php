@@ -20,7 +20,7 @@
 - check op zelfde land of club (alert) - en vlag niet invullen 
 - stippen in overflow
 
-- flow met penalty's nog beter checken  (m.n. als team B begint..)
+- flow met penalty's (m.n. als team B begint..)
 */
 
 // Menu 
@@ -330,7 +330,10 @@ echo '<div id="startingTeam">
 
 <div id="round"></div>
 
+<div class="main_container_player">
+
 <div class="container_playerA">
+
  <div id="flagA">';
 
 if ( ($_COOKIE['CountryA'] !='') || ($_POST['countryA'] != 'Selecteer land:') ) {
@@ -365,13 +368,17 @@ echo '
 
 <div id="playerA">
 </div>
+</div>
 
 <div id="scoreA">0
 </div>
 
 </div>
 
+<div class="main_container_player"> 
+
 <div class="container_playerB">
+
 <div id="flagB">';
 
 if ( ($_COOKIE['CountryB'] !='') || ($_POST['countryB'] != 'Selecteer land:') ) {
@@ -403,6 +410,7 @@ echo'
 </div>
 
 <div id="playerB">
+</div>
 </div>
 
 <div id="scoreB">0

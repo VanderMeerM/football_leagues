@@ -43,6 +43,7 @@ input[type="radio"] {
   display: flex;
   margin-left: 30px;
   overflow: auto;
+  margin-top: 2%;
 }
 
  #countryA, 
@@ -63,13 +64,19 @@ input[type="radio"] {
   padding-bottom: 2%;
  }
 
+ .main_container_player,
 .container_playerA, 
 .container_playerB {
   display: flex;
   justify-content: center;
   padding: 1%;
-  width: 70%;
   margin: auto;
+ }
+
+ .main_container_penalty {
+    max-width: 700px;
+    width: 70%;
+    padding: 2%;
  }
 
 .right,
@@ -107,11 +114,10 @@ input[type="radio"] {
 
 #scoreA, 
 #scoreB {
- padding: 2%;
- margin-left: 5%;
+ padding: 2% 3%;
  background-color: white;
  align-content: center;
- font-size: x-large;
+ font-size: xx-large;
 }
 
 #winner {

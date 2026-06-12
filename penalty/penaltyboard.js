@@ -21,8 +21,8 @@ let totalScorePlayerB = [];
 let filteredArrayA = [];
 let filteredArrayB = [];
 
+let realTotalScoreB;
 let highlightBackground = true;
-
 let highlightColor = "#aac59b";
 
 
@@ -74,17 +74,20 @@ switchBackground();
 
 // Stel achtergrond in voor het land/team dat begint...
 
+if (winner.textContent != '') {
+
 document.getElementById('startingTeam').addEventListener('click', () => {
 
-   if (document.getElementById('Team_B').checked) {
+   if (teamB.checked) {
     highlightBackground = !highlightBackground;
     switchBackground();
 } 
-else if (document.getElementById('Team_A').checked) {
+else if (team_A.checked) {
     highlightBackground = true;
     switchBackground();
 }
 })
+}
 
 
 function switchBackground() {
@@ -129,7 +132,21 @@ function setCircles(player, array, num, filteredarray) {
         scoreB.textContent = filteredArrayB.length;
         }
 
-        if (filteredArrayB.length - filteredArrayA.length > (num - totalScorePlayerB.length)) {
+        console.log(`A ${filteredArrayA.length}`);
+        console.log(`Tot. A: ${totalScorePlayerA.length}`);
+
+        console.log(`B ${filteredArrayB.length}`);
+        console.log(`Tot. B: ${totalScorePlayerB.length}`);
+
+        // B begint 3-0 > 5-3
+
+        // A begint 3-0 > 5-2
+
+
+          if ( 
+            (filteredArrayB.length - filteredArrayA.length > (num -  totalScorePlayerB.length)) 
+           && (totalScorePlayerB.length == totalScorePlayerA.length) // specifiek voor geval dat Team B begint en eerste drie raak schiet en A drie mist
+            ) {
 
                 if (sessionStorage.getItem('B')) {
                    
@@ -192,8 +209,11 @@ function setCircles(player, array, num, filteredarray) {
         player.appendChild(newDivLeft);
     }
 
+
+
     const divArray = [...player.querySelectorAll('div')]
     divArray.map((arr, idx) => {
+
         arr.addEventListener('click', () => {
 
             // Deactiveer dropdown-menu voor landen en invoer club bij beginnen penaltyreeks..
@@ -238,5 +258,7 @@ function setCircles(player, array, num, filteredarray) {
        })
     })
 }
+
+
 
 
