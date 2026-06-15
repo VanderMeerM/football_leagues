@@ -15,12 +15,15 @@
 
 <?php 
 
-/* To do:
+/* Wishlist:
 
 - check op zelfde land of club (alert) - en vlag niet invullen 
+
 - stippen in overflow
 
-- flow met penalty's (m.n. als team B begint en met ingang 5e ronde een goal voor staat (bijv. 2-3)..)
+- geen winner-melding als team B begint
+   - en met ingang 5e ronde Team B een goal voor staat (bijv. 2-3) en de vijfde raak schiet 
+   - bij om-en-om (v.a. ronde 6 en Team A wint) 
 */
 
 // Menu 
@@ -328,6 +331,19 @@ echo '<div id="startingTeam">
 
 <div class="main_container_penalty"> 
 
+<div class="container_reload"">
+
+<form action="./" method="post">
+
+<input type="hidden" name="reload" value="yes">
+
+<input type="image" src="../img/refresh.png" name="submit" id="btn_restart">
+
+</form>
+
+</div>
+
+
 <div id="round"></div>
 
 <div class="main_container_player">
@@ -419,18 +435,6 @@ echo'
 </div>
 
 </div>
-</div>
-   
-
-<div style="position: relative">
-
-<form action="./" method="post">
-
-<input type="hidden" name="reload" value="yes">
-
-<input type="submit" id="btn_restart" value="Begin opnieuw">
-</form>
-
 </div>';
 
 ?>

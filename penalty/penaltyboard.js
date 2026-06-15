@@ -21,6 +21,8 @@ let totalScorePlayerB = [];
 let filteredArrayA = [];
 let filteredArrayB = [];
 
+let roundPenA = 0;
+let roundPenB = 0;
 let realTotalScoreB;
 let highlightBackground = true;
 let highlightColor = "#aac59b";
@@ -128,10 +130,22 @@ function setCircles(player, array, num, filteredarray) {
 
     function evaluateScore() {
 
+         roundPenA = playerA.childElementCount / 2;
+            roundPenB = playerB.childElementCount / 2;
+            
+        console.log(`PenA: ${roundPenA}`);
+        console.log(`PenB: ${roundPenB}`);
+
+        
         // Ronde weergeven..
 
-        if (totalScorePlayerA.length == totalScorePlayerB.length) {
-    round.textContent = 'Ronde: ' + (totalScorePlayerB.length + 1)
+        if ((roundPenA > 5) && (roundPenA = roundPenB)) {
+            
+          round.textContent = 'Ronde: ' + roundPenA;
+        }
+
+        else if (totalScorePlayerA.length == totalScorePlayerB.length) {
+        round.textContent = 'Ronde: ' + (totalScorePlayerB.length + 1)
         };
 
         // Gescoorde penalty's weergeven..
@@ -154,7 +168,6 @@ function setCircles(player, array, num, filteredarray) {
         // voor geval dat Team B begint en eerste drie raak schiet en A eerste drie mist
         
           if  ( filteredArrayB.length == 3 && filteredArrayA.length == 0 && (totalScorePlayerA.length == 3)) {
-              console.log('test');
               teamBWins();
               gameOver();
               return;
@@ -189,11 +202,13 @@ function setCircles(player, array, num, filteredarray) {
 
         else if
             (totalScorePlayerB.length == num &&
-            filteredArrayB.length - filteredArrayA.length == (num - totalScorePlayerB.length)) {
+            filteredArrayB.length - filteredArrayA.length == (num - totalScorePlayerB.length))     
+            {
             totalScorePlayerA = [];
             totalScorePlayerB = [];
             filteredArrayA = [];
             filteredArrayB = [];
+            
             setCircles(playerA, totalScorePlayerA, 1, filteredArrayA);
             setCircles(playerB, totalScorePlayerB, 1, filteredArrayB);
 
