@@ -23,6 +23,8 @@ let filteredArrayB = [];
 
 let roundPenA = 0;
 let roundPenB = 0;
+let roundNum = 0;
+
 let realTotalScoreB;
 let highlightBackground = true;
 let highlightColor = "#aac59b";
@@ -103,11 +105,21 @@ function switchBackground() {
     }
 }
 
+function showRound() {
+
+    roundNum++; 
+
+    if (totalScorePlayerA.length == totalScorePlayerB.length) { 
+
+         round.textContent = 'Ronde: ' + (totalScorePlayerB.length + 1);
+        };
+
+        console.log(`Ronde: ${roundNum}`);
+}
+
 function setCircles(player, array, num, filteredarray) {
 
-   if (totalScorePlayerA.length == totalScorePlayerB.length) {
-    round.textContent = 'Ronde: ' + (totalScorePlayerB.length + 1)
-        };
+   showRound();
 
                   
  function gameOver() {
@@ -119,7 +131,7 @@ function setCircles(player, array, num, filteredarray) {
     function teamBWins () {
             if (sessionStorage.getItem('B')) {
                    
-                    winner.textContent = `${sessionStorage.getItem('B')} heeft gewonnen.`
+                    winner.textContent = `${sessionStorage.getItem('B')} heeft gewonnen!`;
                 }
                 else {
 
@@ -131,22 +143,13 @@ function setCircles(player, array, num, filteredarray) {
     function evaluateScore() {
 
          roundPenA = playerA.childElementCount / 2;
-            roundPenB = playerB.childElementCount / 2;
+         roundPenB = playerB.childElementCount / 2;
             
         console.log(`PenA: ${roundPenA}`);
         console.log(`PenB: ${roundPenB}`);
 
         
-        // Ronde weergeven..
-
-        if ((roundPenA > 5) && (roundPenA = roundPenB)) {
-            
-          round.textContent = 'Ronde: ' + roundPenA;
-        }
-
-        else if (totalScorePlayerA.length == totalScorePlayerB.length) {
-        round.textContent = 'Ronde: ' + (totalScorePlayerB.length + 1)
-        };
+       showRound();
 
         // Gescoorde penalty's weergeven..
         
@@ -182,7 +185,8 @@ function setCircles(player, array, num, filteredarray) {
              return;
         }
 
-             
+        // Team A wint..
+                     
         else if
             (filteredArrayA.length - filteredArrayB.length > (num - totalScorePlayerB.length)) {
 
@@ -208,7 +212,7 @@ function setCircles(player, array, num, filteredarray) {
             totalScorePlayerB = [];
             filteredArrayA = [];
             filteredArrayB = [];
-            
+                        
             setCircles(playerA, totalScorePlayerA, 1, filteredArrayA);
             setCircles(playerB, totalScorePlayerB, 1, filteredArrayB);
 

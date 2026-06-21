@@ -17,9 +17,12 @@
 
 /* Wishlist:
 
-- check op zelfde land of club (alert) - en vlag niet invullen 
+- ronde en scores na 5e ronde 
 
 - stippen in overflow
+
+
+- check op zelfde land of club (alert) - en vlag niet invullen 
 
 - geen winner-melding als team B begint
    - en met ingang 5e ronde Team B een goal voor staat (bijv. 2-3) en de vijfde raak schiet 
