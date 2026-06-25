@@ -85,12 +85,12 @@ document.getElementById('startingTeam').addEventListener('click', () => {
    if (teamB.checked) {
     highlightBackground = !highlightBackground;
     switchBackground();
-} 
-else if (team_A.checked) {
-    highlightBackground = true;
-    switchBackground();
-}
-})
+    } 
+        else if (team_A.checked) {
+        highlightBackground = true;
+        switchBackground();
+    }
+    })
 }
 
 
@@ -105,21 +105,22 @@ function switchBackground() {
     }
 }
 
-function showRound() {
-
-    roundNum++; 
+function showRound() {  
 
     if (totalScorePlayerA.length == totalScorePlayerB.length) { 
+            
+        roundNum++;   console.log(`Ronde: ${roundNum -1}`);
 
-         round.textContent = 'Ronde: ' + (totalScorePlayerB.length + 1);
+        // round.textContent = 'Ronde: ' + (totalScorePlayerB.length + 1);
+         round.textContent = `Ronde: ${roundNum -1}`;
+
         };
-
-        console.log(`Ronde: ${roundNum}`);
+       
 }
 
 function setCircles(player, array, num, filteredarray) {
 
-   showRound();
+      showRound();
 
                   
  function gameOver() {
@@ -161,12 +162,13 @@ function setCircles(player, array, num, filteredarray) {
         scoreB.textContent = filteredArrayB.length;
         }
 
+        /*
         console.log(`A ${filteredArrayA.length}`);
         console.log(`Tot. A: ${totalScorePlayerA.length}`);
 
         console.log(`B ${filteredArrayB.length}`);
         console.log(`Tot. B: ${totalScorePlayerB.length}`);
-
+        */
      
         // voor geval dat Team B begint en eerste drie raak schiet en A eerste drie mist
         
@@ -212,7 +214,8 @@ function setCircles(player, array, num, filteredarray) {
             totalScorePlayerB = [];
             filteredArrayA = [];
             filteredArrayB = [];
-                        
+
+            console.log('click');
             setCircles(playerA, totalScorePlayerA, 1, filteredArrayA);
             setCircles(playerB, totalScorePlayerB, 1, filteredArrayB);
 
