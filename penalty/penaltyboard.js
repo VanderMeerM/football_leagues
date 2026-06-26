@@ -21,9 +21,9 @@ let totalScorePlayerB = [];
 let filteredArrayA = [];
 let filteredArrayB = [];
 
-let roundPenA = 0;
-let roundPenB = 0;
 let roundNum = 0;
+let scoredAftFiveA = 0;
+let scoredAftFiveB = 0;
 
 let realTotalScoreB;
 let highlightBackground = true;
@@ -109,10 +109,9 @@ function showRound() {
 
     if (totalScorePlayerA.length == totalScorePlayerB.length) { 
             
-        roundNum++;   console.log(`Ronde: ${roundNum -1}`);
+        roundNum++;
 
-        // round.textContent = 'Ronde: ' + (totalScorePlayerB.length + 1);
-         round.textContent = `Ronde: ${roundNum -1}`;
+        round.textContent = `Ronde: ${roundNum -1}`;
 
         };
        
@@ -120,8 +119,10 @@ function showRound() {
 
 function setCircles(player, array, num, filteredarray) {
 
-      showRound();
-
+     if (num != 1) {
+        showRound();
+     }
+      
                   
  function gameOver() {
        sessionStorage.clear();
@@ -143,23 +144,17 @@ function setCircles(player, array, num, filteredarray) {
 
     function evaluateScore() {
 
-         roundPenA = playerA.childElementCount / 2;
-         roundPenB = playerB.childElementCount / 2;
-            
-        console.log(`PenA: ${roundPenA}`);
-        console.log(`PenB: ${roundPenB}`);
-
-        
+         
        showRound();
 
         // Gescoorde penalty's weergeven..
         
         if (filteredArrayA.length > 0 ) {
-        scoreA.textContent = filteredArrayA.length;
+        scoreA.textContent = filteredArrayA.length + scoredAftFiveA;
         }
 
         if (filteredArrayB.length > 0 ) {
-        scoreB.textContent = filteredArrayB.length;
+        scoreB.textContent = filteredArrayB.length + scoredAftFiveB;
         }
 
         /*
@@ -210,10 +205,14 @@ function setCircles(player, array, num, filteredarray) {
             (totalScorePlayerB.length == num &&
             filteredArrayB.length - filteredArrayA.length == (num - totalScorePlayerB.length))     
             {
+            scoredAftFiveA = parseInt(scoreA.textContent);
+            scoredAftFiveB = parseInt(scoreB.textContent);
             totalScorePlayerA = [];
             totalScorePlayerB = [];
             filteredArrayA = [];
             filteredArrayB = [];
+            console.log(scoredAftFiveA)
+            
 
             console.log('click');
             setCircles(playerA, totalScorePlayerA, 1, filteredArrayA);
