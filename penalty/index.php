@@ -17,10 +17,6 @@
 
 /* Wishlist:
 
-- ronde en scores na 5e ronde 
-
-- stippen in overflow
-
 
 - check op zelfde land of club (alert) - en vlag niet invullen 
 
