@@ -157,14 +157,7 @@ function setCircles(player, array, num, filteredarray) {
         scoreB.textContent = filteredArrayB.length + scoredAftFiveB;
         }
 
-        /*
-        console.log(`A ${filteredArrayA.length}`);
-        console.log(`Tot. A: ${totalScorePlayerA.length}`);
-
-        console.log(`B ${filteredArrayB.length}`);
-        console.log(`Tot. B: ${totalScorePlayerB.length}`);
-        */
-     
+        
         // voor geval dat Team B begint en eerste drie raak schiet en A eerste drie mist
         
           if  ( filteredArrayB.length == 3 && filteredArrayA.length == 0 && (totalScorePlayerA.length == 3)) {
@@ -211,10 +204,7 @@ function setCircles(player, array, num, filteredarray) {
             totalScorePlayerB = [];
             filteredArrayA = [];
             filteredArrayB = [];
-            console.log(scoredAftFiveA)
-            
-
-            console.log('click');
+           
             setCircles(playerA, totalScorePlayerA, 1, filteredArrayA);
             setCircles(playerB, totalScorePlayerB, 1, filteredArrayB);
 
@@ -244,6 +234,8 @@ function setCircles(player, array, num, filteredarray) {
     const divArray = [...player.querySelectorAll('div')]
     divArray.map((arr, idx) => {
 
+       let numPen = divArray.length;
+       
         arr.addEventListener('click', () => {
 
             // Deactiveer dropdown-menu voor landen en invoer club bij beginnen penaltyreeks..
@@ -259,6 +251,14 @@ function setCircles(player, array, num, filteredarray) {
          switchBackground()
 
             if (!divArray[idx].clicked) {
+
+
+             // indien er meer dan 5 penalty's worden genomen, worden maximaal 6 cirkels getoond..
+
+              if (numPen > 10) {
+                    divArray[numPen-12].style.display = 'none';
+                    divArray[numPen-11].style.display = 'none';
+                    }
 
                 if (idx % 2 == 0) {
                     divArray[idx + 1].style.background = 'green';

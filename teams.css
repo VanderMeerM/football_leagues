@@ -807,14 +807,12 @@ color: rgb(75, 230, 75);
     .align-left {
         margin-left: 5%;
     }
-}
 
-@media (max-width: 650px) {
-
-  .position_circle_left {
-        left: 15%;
+    .position_circle_left {
+       left: 0%;
     }
 }
+
 
 @media (max-width: 700px) {
 
