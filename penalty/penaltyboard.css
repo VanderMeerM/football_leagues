@@ -49,9 +49,8 @@ input[type="radio"] {
 #playerA, 
 #playerB {
   display: flex;
-  margin-left: 30px;
-  overflow: auto;
-  margin-top: 2%;
+  margin: 2% 0 0 30px;
+  /* width: 470px; */
 }
 
  #countryA, 
