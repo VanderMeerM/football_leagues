@@ -158,7 +158,7 @@ function setCircles(player, array, num, filteredarray) {
         }
 
         
-        // voor geval dat Team B begint en eerste drie raak schiet en A eerste drie mist
+        // voor geval dat Team B begint en eerste drie raak schiet en A eerste drie mist..
         
           if  ( filteredArrayB.length == 3 && filteredArrayA.length == 0 && (totalScorePlayerA.length == 3)) {
               teamBWins();
@@ -213,6 +213,7 @@ function setCircles(player, array, num, filteredarray) {
 
     }
 
+    // Aantal cirkels opbouwen op basis van aantal in num...
 
     for (x = 1; x < num + 1; x++) {
 
@@ -230,11 +231,18 @@ function setCircles(player, array, num, filteredarray) {
     }
 
 
-
     const divArray = [...player.querySelectorAll('div')]
-    divArray.map((arr, idx) => {
 
-       let numPen = divArray.length;
+    let numPen = divArray.length;
+
+    // indien er meer dan 5 penalty's worden genomen, blijven hooguit 5 cirkels zichtbaar..
+
+        if (numPen > 10) {
+            divArray[numPen-12].style.display = 'none';
+            divArray[numPen-11].style.display = 'none';
+        }
+
+    divArray.map((arr, idx) => {
        
         arr.addEventListener('click', () => {
 
@@ -251,14 +259,6 @@ function setCircles(player, array, num, filteredarray) {
          switchBackground()
 
             if (!divArray[idx].clicked) {
-
-
-             // indien er meer dan 5 penalty's worden genomen, worden maximaal 6 cirkels getoond..
-
-              if (numPen > 10) {
-                    divArray[numPen-12].style.display = 'none';
-                    divArray[numPen-11].style.display = 'none';
-                    }
 
                 if (idx % 2 == 0) {
                     divArray[idx + 1].style.background = 'green';
