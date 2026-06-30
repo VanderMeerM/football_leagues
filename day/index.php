@@ -345,12 +345,14 @@ echo
 
           if ($matchStatus === 'PEN') {
             if ($matches_on_selected_day[$i]['teams']['home']['winner'] == 1) { 
-                echo '<div class="white_color">
+                echo '<div class= 
+                ' .(date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? "black_color" : "white_color") .'>
                 ' . (array_key_exists($homeTeam, $array_countries) ? $array_countries[$homeTeam] : $homeTeam). '
                 w.n.s. <br>'; 
                 }
                 elseif ($matches_on_selected_day[$i]['teams']['away']['winner'] == 1) { 
-                   echo '<div class="white_color">
+                   echo '<div class=
+                  ' .(date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? "black_color" : "white_color") .'>
                   ' . (array_key_exists($awayTeam, $array_countries) ? $array_countries[$awayTeam] : $awayTeam). '
                    w.n.s.<br>'; 
                 }
