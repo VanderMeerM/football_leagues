@@ -4,11 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Speler</title>
 </head>
 <body>
     
-
 
 <?php
 
@@ -45,8 +44,7 @@ $IntlDateFormatter = new IntlDateFormatter(
       CURLOPT_CUSTOMREQUEST => 'GET',
       CURLOPT_HTTPHEADER => array(
       'x-rapidapi-key: ' . $api_key .'',
-      //'x-rapidapi-key: 863bcd048478f98225b64bced629b376',
-        'x-rapidapi-host: v3.football.api-sports.io',
+      'x-rapidapi-host: v3.football.api-sports.io',
         
       ),
     ));
@@ -60,7 +58,8 @@ $IntlDateFormatter = new IntlDateFormatter(
     ?>
     <script>
      document.title= <?php echo json_encode($response_player['response'][0]['player']['name']); ?>;
-</script>
+     localStorage.setItem("lineup", true);
+    </script>
 
 <?php
 
@@ -80,8 +79,7 @@ $IntlDateFormatter = new IntlDateFormatter(
       CURLOPT_CUSTOMREQUEST => 'GET',
       CURLOPT_HTTPHEADER => array(
       'x-rapidapi-key: ' . $api_key .'',
-     //'x-rapidapi-key: 863bcd048478f98225b64bced629b376',
-        'x-rapidapi-host: v3.football.api-sports.io',
+      'x-rapidapi-host: v3.football.api-sports.io',
         
       ),
     ));
@@ -181,6 +179,8 @@ foreach (array_reverse($array_teams[$i]['seasons']) as $seasons) {
 echo 
 '</td></tr>
 </table>';
+
+
 
 
  

@@ -279,10 +279,14 @@ else {
           if ($matchStatus === 'PEN') {
             
             if ($response['response'][$i]['teams']['home']['winner'] == 1) { 
-                echo '<div class="white_color">'. $homeTeam . ' w.n.s. <br>'; 
+                echo '<div class="white_color">
+                 ' . (array_key_exists($homeTeam, $array_countries) ? $array_countries[$homeTeam] : $homeTeam). '
+                w.n.s. <br>'; 
                 }
                 elseif ($response['response'][$i]['teams']['away']['winner'] == 1) { 
-                   echo '<div class="white_color">'. $awayTeam . ' w.n.s.<br>'; 
+                   echo '<div class="white_color">
+                  ' . (array_key_exists($awayTeam, $array_countries) ? $array_countries[$awayTeam] : $awayTeam). '
+                   w.n.s.<br>'; 
                 } 
                  echo '(' . $response['response'][$i]['score']['penalty']['home']. ' - 
                 ' .$response['response'][$i]['score']['penalty']['away'] . ')</div>';

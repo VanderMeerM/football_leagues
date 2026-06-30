@@ -222,19 +222,34 @@ for ($i = 0; $i < $num_lineups; $i++) {
     const showHideId = document.querySelector('#show_hide');
 
     showHideLineup.innerText = 'Toon opstellingen';
-    showHideId.setAttribute('class', 'hide');
+
+    function hideLineUp() {
+          showHideId.removeAttribute('class', 'hide');
+    showHideLineup.innerText = 'Verberg opstellingen';
+    }
+
+     function showLineUp() {
+       showHideId.setAttribute('class', 'hide');
+    showHideLineup.innerText = 'Toon opstellingen';
+    }
+
+    if (localStorage.getItem("lineup")) {
+      hideLineUp();
+    showLineup = !showLineup;
+    } 
+    else {
+   showLineUp();
+    }
 
     showHideLineup.addEventListener('click', () => {
 
         showLineup = !showLineup;
 
         if (showLineup) {
-            showHideId.setAttribute('class', 'hide');
-            showHideLineup.innerText = 'Toon opstellingen';       
+           showLineUp();   
         } 
         else {
-            showHideId.removeAttribute('class', 'hide');
-            showHideLineup.innerText = 'Verberg opstellingen';
+           hideLineUp();
         }       
 
         })

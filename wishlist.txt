@@ -1,6 +1,10 @@
 
 
-- penalty's 
+- api uit harde code halen (verwijzen naar api-bestand) 
+ uitgecommentarieerde hardcoded regel met API-key verwijderen 
+
+- tailwind op server (Strato) installeren 
+
 
 
 
@@ -22,9 +26,6 @@ Day
  (bug: switch naar competitie werkt pas bij tweede keer) 
 
 
-Teams 
-
-
 
 Standen 
 
@@ -43,14 +44,6 @@ Standen
 
 - virtuele stand inbouwen 
 
-
-
---- geheel op eind 
-
-- api uit harde code halen (verwijzen naar api-bestand) 
- uitgecommentarieerde hardcoded regel met API-key verwijderen 
-
-- tailwind op server (Strato) installeren 
 
 
 Afgerond: 

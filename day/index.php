@@ -345,10 +345,14 @@ echo
 
           if ($matchStatus === 'PEN') {
             if ($matches_on_selected_day[$i]['teams']['home']['winner'] == 1) { 
-                echo '<div class="white_color">'. $homeTeam . ' w.n.s. <br>'; 
+                echo '<div class="white_color">
+                ' . (array_key_exists($homeTeam, $array_countries) ? $array_countries[$homeTeam] : $homeTeam). '
+                w.n.s. <br>'; 
                 }
                 elseif ($matches_on_selected_day[$i]['teams']['away']['winner'] == 1) { 
-                   echo '<div class="white_color">'. $awayTeam . ' w.n.s.<br>'; 
+                   echo '<div class="white_color">
+                  ' . (array_key_exists($awayTeam, $array_countries) ? $array_countries[$awayTeam] : $awayTeam). '
+                   w.n.s.<br>'; 
                 }
                  echo '(' . $matches_on_selected_day[$i]['score']['penalty']['home']. ' - 
                 ' .$matches_on_selected_day[$i]['score']['penalty']['away'] . ')</div>';
@@ -410,7 +414,6 @@ echo
    </div>';
       };
 
-//   if (!$_GET['id']) {
    echo '</div>
    <div style="height: 10px"></div>';
 
@@ -442,6 +445,7 @@ array_multisort($miR_sorted, SORT_ASC, $matchesInRound);
 </script>
 
 <script defer>
+  localStorage.removeItem("lineup");
 
 if (document.getElementById('arrow_up') !=null) {
 
