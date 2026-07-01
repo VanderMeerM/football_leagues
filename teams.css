@@ -445,6 +445,7 @@ font-size: large;
 
 #season_title {
     margin-top: 50px;
+    font-weight: bold;
 }
 
 
@@ -457,7 +458,6 @@ font-size: large;
     width: 80%;
     margin: auto;
     text-align: center;
-    /* margin: 2% 0 0 25%;*/
 }
 
 .block_class {
@@ -690,7 +690,7 @@ img {
 }
 
 .pd_score {
- padding: 5% 10%;
+ padding: 10%;
 }
 
 .vs {

@@ -58,10 +58,19 @@ $IntlDateFormatter = new IntlDateFormatter(
     ?>
     <script>
      document.title= <?php echo json_encode($response_player['response'][0]['player']['name']); ?>;
-     localStorage.setItem("lineup", true);
     </script>
 
 <?php
+
+// Opstelling blijft getoond, zodra de afzonderlijke pagina voor de speler vanuit de opstelling weer wordt gesloten.. 
+
+if ($_POST['openLineup'] === 'yes') {
+    ?> 
+    <script>
+         localStorage.setItem("lineup", true);
+       </script>
+    <?php
+};
 
 // Teams van speler ophalen...
 
@@ -114,6 +123,7 @@ td {
 </style>
 
 <?php 
+
 
 echo '<br> 
 

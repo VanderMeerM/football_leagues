@@ -9,6 +9,7 @@
 
 body {
     width: 100%;
+    margin: 0;
 }
 
 .menubar
@@ -482,15 +483,12 @@ form {
     display: inline-flex;
 }
 
-/*.btn_container a, */
 #datepicker, select, option {
     background-color: white;
     color: var(--red);
-    margin: 5px;
     padding: 3px;
-    width: fit-content;
     text-align: center;
-    font-weight: bold;
+    font-size: 20px;
     border: 0px;
 }
 

@@ -1,11 +1,5 @@
 
 
-- api uit harde code halen (verwijzen naar api-bestand) 
- uitgecommentarieerde hardcoded regel met API-key verwijderen 
-
-- tailwind op server (Strato) installeren 
-
-
 
 
 - cirkeltje voor live verversen iets kleiner en betere code 
@@ -47,6 +41,8 @@ Standen
 
 
 Afgerond: 
+
+- cdn tailwind verwijderen v 
 
 - onder teams Engelse, Italiaanse en Spaanse competities toevoegen  
 (afzonderlijke wedstrijden onder Teams werken niet altijd) v 

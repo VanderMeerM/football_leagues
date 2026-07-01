@@ -92,11 +92,6 @@ echo '<div class="container_leagues">';
 
 for ($i=0; $i < sizeof($response_teams_in_league); $i++) {
 
-// inbouwen, gebaseerd op teams..
- /*<img '.($team['value'] == $selected_team_logo ? setcookie('teams_team_selection', $team['value'], time() + 3600, '/', '', true)
- : null) . ' src= "https://media.api-sports.io/football/teams/'. $team['value']. '.png"/> 
- */
-
 echo '
 
 <div id="logo_club">

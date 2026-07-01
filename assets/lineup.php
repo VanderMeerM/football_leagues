@@ -169,13 +169,19 @@ for ($i = 0; $i < $num_lineups; $i++) {
         <tr>
         
         <td>
-        <a href="../assets/players.php?id='.$home_startXI[$i]['id'].'" target=_blank> ' . $home_startXI[$i]['number'] . '. ' . $home_startXI[$i]['name'] . '
+        <form method="post" action="../assets/players.php?id='.$home_startXI[$i]['id'].'" target="_blank">
+        <input type="hidden" name="openLineup" value ="yes">
+        <button type="submit" style="color: black">' . $home_startXI[$i]['number'] . '. ' . $home_startXI[$i]['name'] . '</button>              
+        </form>
         </td> 
-        
-        <td>
-        <a href="../assets/players.php?id='.$away_startXI[$i]['id'].'" target=_blank> ' .  $away_startXI[$i]['number'] . '. ' . $away_startXI[$i]['name'] . '
-        </td>
-        
+
+          <td>
+        <form method="post" action="../assets/players.php?id='.$away_startXI[$i]['id'].'" target="_blank">
+        <input type="hidden" name="openLineup" value ="yes">
+        <button type="submit" style="color: black">' . $away_startXI[$i]['number'] . '. ' . $away_startXI[$i]['name'] . '</button>              
+        </form>
+        </td> 
+               
         </tr>'; 
      }
 
@@ -197,14 +203,25 @@ for ($i = 0; $i < $num_lineups; $i++) {
 
        echo  '
         <tr>
-        <td> 
-        <a href="../assets/players.php?id='. $home_sub[$i]['id'].'" target=_blank> ' . $home_sub[$i]['number'] . '. ' . $home_sub[$i]['name'] . '</td> 
-        <td>
-        <a href="../assets/players.php?id='.$away_sub[$i]['id'].'" target=_blank> ' . $away_sub[$i]['number'] . '. ' . $away_sub[$i]['name'] . '</div>';
-        echo '</tr>'; 
+
+      <td>
+        <form method="post" action="../assets/players.php?id='.$home_sub[$i]['id'].'" target="_blank">
+        <input type="hidden" name="openLineup" value ="yes">
+        <button type="submit" style="color: black">' . $home_sub[$i]['number'] . '. ' . $home_sub[$i]['name'] . '</button>              
+        </form>
+        </td> 
+
+       <td>
+        <form method="post" action="../assets/players.php?id='.$away_sub[$i]['id'].'" target="_blank">
+        <input type="hidden" name="openLineup" value ="yes">
+        <button type="submit" style="color: black">' . $away_sub[$i]['number'] . '. ' . $away_sub[$i]['name'] . '</button>              
+        </form>
+        </td>'; 
      }
 
-     echo '</table>';
+     echo '
+     </tr>
+     </table>';
 
     }
     else {
@@ -231,6 +248,8 @@ for ($i = 0; $i < $num_lineups; $i++) {
      function showLineUp() {
        showHideId.setAttribute('class', 'hide');
     showHideLineup.innerText = 'Toon opstellingen';
+      localStorage.removeItem("lineup");
+
     }
 
     if (localStorage.getItem("lineup")) {

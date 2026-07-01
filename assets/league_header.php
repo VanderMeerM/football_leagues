@@ -2,7 +2,7 @@
 <?php 
 
 echo "
-<div class='fixed fixed_menubar' style='background-color:  $array_bgcolor_menubar[$league_id]; '>
+<div class='fixed_menubar' style='background-color:  $array_bgcolor_menubar[$league_id]; '>
 <div class='center_buttons'>
 
 <div class='menubar'>
@@ -82,18 +82,6 @@ echo
 <input type='submit' style='display: none'>
 </form>
 </div>";
-
- // Menu EK/WK 
-
- /*
- echo 
-'<div class="menubuttons"> 
-<select class="menu_sel_item" style=background-color:' .  $array_bgcolor_menubar[$league_id] . ' name="EKWK" onchange="window.open(this.value);">
-  <option class="menu_option" selected disabled value="">EK/WK</option>
-  <option class="menu_option" value="../EK">EK</option>
-  <option class="menu_option" value="../WK">WK</option>
-  </select>';
-*/
 
  echo '
 </ul>
