@@ -99,18 +99,9 @@ $away_team_goals = [];
                     
         for($i=0; $i < sizeof($all_team_events); $i++) {
 
-        echo '<tr>';
+        echo '<tr><td>';
 
-          if ($all_team_events[$i]['team'] === $homeTeam) {
-            
-          echo '<td>'; 
-          }
-
-            else if ($all_team_events[$i]['team'] === $awayTeam) {
-            echo '<td>
-            <td>'; 
-;
-            }
+       echo ($all_team_events[$i]['team'] === $awayTeam ? '<td>' : null);
          
             if (array_key_exists($all_team_events[$i]['type'], $array_type)
              || array_key_exists($all_team_events[$i]['detail'], $array_type)

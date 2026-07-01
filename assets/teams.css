@@ -648,7 +648,8 @@ img {
 #type_pic {
     width: 20px;
     height: auto;
-   /* margin: 0; */
+    margin: 0 auto 3%;
+    display: block;
 }
 
 #play_min {
