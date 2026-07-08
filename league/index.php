@@ -411,7 +411,20 @@ if ( (date('Y') >  ($selected_season + 1)) ||
 };
 
 
+// Switch naar Penalty-pagina (nog alleen voor landen gemaakt)..
+
    if ($_GET['id']) {
+
+   /*
+   echo '
+   <div class="to_pen">
+   <form method="get" action="../penalty">
+   <input type="hidden" name="homeTeamToPen" value="'.$array_countries[$homeTeam].'">
+   <input type="hidden" name="awayTeamToPen" value="'.$array_countries[$awayTeam].'">
+   <input type="submit" value="P">
+   </form>
+   </div>';
+*/
    include ('../assets/events.php');
    include ('../assets/lineup.php');
    }

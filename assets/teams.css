@@ -704,10 +704,15 @@ img {
  padding: 10%;
 }
 
-.vs {
+.vs, 
+.to_pen {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.to_pen {
+    margin-top: 3px;
 }
 
 .red {

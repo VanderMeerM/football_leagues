@@ -135,6 +135,17 @@ for ($i=0; $i < sizeof($response); $i++) {
 array_multisort(array_column($array_countries_nl, 'country'), SORT_ASC, $array_countries_nl);
 
 
+if ($_GET['homeTeamToPen'])  {
+
+   for ($i=0; $i < sizeof($array_countries_nl); $i++) {
+
+  if ($_GET['homeTeamToPen'] === $array_countries_nl[$i]['country']) {
+    $selca = $array_countries_nl[$i]['flag']; 
+  }
+  }
+}
+
+
 echo '
 <body class="text-center">
 
@@ -191,6 +202,19 @@ echo '
 
    </script>
 <?php
+
+
+// tweede land/vlag plaatsen werkt op een of andere manier nog niet...
+
+if ($_GET['awayTeamToPen']) {
+
+     for ($i=0; $i < sizeof($array_countries_nl); $i++) {
+
+     if ($_GET['awayTeamToPen'] === $array_countries_nl[$i]['country']) {
+     $selcb = $array_countries_nl[$i]['flag']; 
+  }
+  }
+}
 
 echo '
 <div class="container_team_B">

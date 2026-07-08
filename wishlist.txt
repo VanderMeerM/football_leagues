@@ -1,5 +1,11 @@
 
 
+- tweede land/vlag plaatsen naar penalty-pagina v.a. league werkt op een of andere manier niet...
+    bij voorkeur met POST inrichten (ipv GET)
+    voorwaarde alleen indien strafschoppenserie en bij internationale competities (EK/WK + EL, CL etc.)
+
+
+
 
 
 - cirkeltje voor live verversen iets kleiner en betere code 
