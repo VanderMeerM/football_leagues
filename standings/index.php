@@ -12,7 +12,7 @@
    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-   <link rel="stylesheet" type="text/css" href="../teams.css" />   
+   <link rel="stylesheet" type="text/css" href="../assets/teams.css" />   
   
 </head>
 <body>

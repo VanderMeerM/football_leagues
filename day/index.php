@@ -6,7 +6,6 @@
     <title>Leagues</title>  
     <link rel="shortcut icon" href="https://www.api-football.com/public/img/favicon.ico">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/smoothness/jquery-ui.css">
-    <!--<script src="https://cdn.tailwindcss.com"></script> -->
  
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
@@ -224,6 +223,7 @@ for ($i=0; $i < sizeof($matches_on_selected_day); $i++) {
 if (sizeof(array_unique($num_leagues)) > 1) {
 
 echo ' 
+
 <div class= "container_sortby_league_time">
 <form method="post" action=" '.($_GET['datum'] ? '?datum='. $_GET['datum'] : null) . '">
 

@@ -12,6 +12,10 @@ body {
     margin: 0;
 }
 
+input[type="radio"] {
+    width: 20px;
+}
+
 .menubar
 .main_container,
 .main_container_lineup_coach,
@@ -159,9 +163,9 @@ height: 2px;
 .container_league_logo_name, 
 .container_sortby_league_time {
     display: flex;
-   /*  width: 600px; */
-     justify-content: center; 
-     margin: 30px auto 0px;
+    justify-content: center; 
+    margin: 30px auto 0px;
+    align-items: center;
 }
 
 #ob_time, #ob_league {
@@ -178,6 +182,7 @@ height: 2px;
 #space_cont_league_logo {
     padding: 5px 0px;
     cursor: none;
+    align-items: center;
 }
 
 #league_logo, 
@@ -429,6 +434,7 @@ button {
 .event_container, 
 .event_container,
 .lineup_container, 
+.container_sortby_league_time,
 #start_sub_team, 
 #play_min, 
 #no_found_matches,
@@ -903,8 +909,6 @@ margin-top: 20px;
 
 @media (max-width: 550px) {
 
-.menubuttons,
-.menubuttons a,
 #table_txt 
 {
     width: fit-content;
