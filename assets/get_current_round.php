@@ -139,7 +139,7 @@ for ($i=1; $i < sizeof($array_dates_round_sorted); $i++) {
      (date('Y-m-d', ($array_dates_round_sorted[$i][0] + ($diff * (3600 * 24)))) >= date('Y-m-d', strtotime('Today'))) 
      
     { 
-     array_push($round_determination, ($i+1 . '-' . $array_dates_round_sorted[$i][$num_dates-1]));
+     array_push($round_determination, ($i . '-' . $array_dates_round_sorted[$i][$num_dates-1]));
    }
    }
 }

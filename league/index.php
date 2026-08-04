@@ -105,7 +105,6 @@ $numGames = $response['results'];
 
 include('../assets/get_current_round.php');
 
-//print_r($array_playoffs_round);
 
 if ($_GET['round_selection'] === 'Playoffs') {
   
