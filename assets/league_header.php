@@ -31,7 +31,7 @@ $view = 'hidden';
 
 if (($_GET['id']) && (in_array($league_to_fixture, $array_extra_leagues))) // bij tonen afzonderlijke bekerwedstrijd.. 
   {
-    echo '<li><a href= "#" style= "color: lightgray; cursor: none">Toon stand</a></li>';
+    echo '<li><a href= "#" style= "color: lightgray; cursor: none">Stand</a></li>';
    
 
   } 

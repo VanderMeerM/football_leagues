@@ -89,11 +89,11 @@ height: 2px;
 }
 
 #table_txt::after {
-    content: "Toon stand";
+    content: "Stand";
 } 
 
 #prog_txt::after {
-    content: "Toon programma";
+    content: "Programma";
 } 
 
 #agenda, #shirt {
