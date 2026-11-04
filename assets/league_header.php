@@ -19,6 +19,13 @@ echo "
 <li><a href= "../penalty">P</a></li>
 </div>';
 
+// Menu Find 
+
+ echo 
+'<div class="menubuttons">
+<li><a href= "../find">F</a></li>
+</div>';
+
 
 // Menu teams (met shirtje) 
 
