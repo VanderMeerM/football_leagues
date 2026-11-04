@@ -28,6 +28,16 @@ document.addEventListener("visibilitychange", function() {
 });
 </script>
 
+<style>
+
+  .selection_teams {
+    display: flex;
+    justify-content: left;
+    margin: 5%;
+
+  }
+</style>
+
 <?php 
 
 /*
@@ -37,7 +47,9 @@ error_reporting(E_ALL);
 */
 
 $all_teams = [];
+$all_teams_response = [];
 $name_teams = [];
+$ind = 0; 
 
 require('../assets/api.php');
 
@@ -55,7 +67,6 @@ include('../assets/getTZ.php');
 for ($i=0; $i < sizeof($array_reg_leagues); $i++) { 
    $cur_url = 'https://v3.football.api-sports.io/teams?league='. $array_reg_leagues[$i] . '&season='. $current_season;
    
-  
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
@@ -81,27 +92,121 @@ $response = json_decode($response, true);
 array_push($all_teams, $response);
 }
 
-print_r($all_teams[0]); //= array_values($all_teams)[1]['response']);
 
+// Teams van competities in array plaatsen... 
 
 for ($i=0; $i < sizeof($all_teams); $i++) {
 
-  array_push($name_teams, ['id'=> $all_teams[$i]['team']['id'], 'name' => $array_values_all_teams[$i]['team']['name']]);
+array_push($all_teams_response, $all_teams[$i]['response']);
+
 }
 
-echo '<div id="top"></div>
 
-<select>
-<option selected disabled placeholder="Selecteer een team"></option>';
+// in array met id en naam team...
+
+while ($ind < sizeof($all_teams_response)) {
+
+for ($i=0; $i < sizeof($all_teams_response[$ind]); $i++) {
+
+  array_push($name_teams, ['id'=> $all_teams_response[$ind][$i]['team']['id'], 'name' => $all_teams_response[$ind][$i]['team']['name']]);
+  
+  }
+
+  $ind++;
+}
+
+echo "
+<div class='fixed fixed_menubar' style='background-color: #002e61;'>
+<div class='center_buttons'>
+
+<div class='menubar'>
+<div class='menubuttons'>
+</div>
+</div>
+
+<ul>";
+
+// Menu Penalty's 
+
+ echo 
+'<div class="menubuttons">
+<li><a href= "../penalty">P</a></li>
+</div>';
+
+
+// Menu Find 
+
+ echo 
+'<div class="menubuttons">
+<li><a href= "../find">F</a></li>
+</div>';
+
+
+// Menu teams (met shirtje) 
+
+(str_contains($current_page, $menu_teams) ? $link_teams = './' : $link_teams = './teams');  
+
+echo 
+"<div class='menubuttons'>
+<a style='padding: 0px' href= $link_teams > <img id='shirt' style='cursor:pointer' src='../img/shirt.png'></a>
+</div>";
+
+
+// Menu Stand
+
+if (!in_array($league_to_fixture, $array_cup_leagues)) { // Alleen tonen indien geen bekerwedstrijd 
+
+echo '<li><a id="table_txt" href="../standings?league='. $selected_leage_team .'&season=' . $selected_season_team . '&team='.$team_id.'"></a></li>';
+
+
+}
+
+// Menu Vandaag 
+
+$today = strtotime('today');
+
+echo 
+  "<div class='menubuttons'>
+<form method='post' action='../day'>
+<input type='image' id='agenda' style='cursor:pointer' src='../img/agenda.png'>
+<input type='hidden' name='sel_day' value=$today>
+<input type='submit' style='display: none'>
+</form>
+</div>";
+
+echo '
+</ul>
+</div>
+</div>
+</div>';
+
+if ($_POST['first_team']) {
+  
+echo '
+<div>
+  <img src="https://media.api-sports.io/football/teams/'.$_POST['first_team'].'.png">
+</div>';  
+ 
+}
+
+
+echo '<div class="selection_teams">
+
+<form method="post">
+
+<select name="first_team" onchange="this.form.submit()">
+
+<option selected disabled> Selecteer een team </option>';
 
 for ($i=0; $i < sizeof($name_teams); $i++) {
   echo '<option value='.$name_teams[$i]['id'].'> ' .$name_teams[$i]['name']. '</option>';
 }
 
 echo '
-</select>';
+</select>
+</form>
+</div>';
 
-//include('../assets/league_header.php'); 
 
 /*
 if (sizeof($matches_on_selected_day) == 0) {
