@@ -54,6 +54,8 @@ $array_reg_leagues = [88, 89, 78, 79, 80, 135, 140, 94, 39, 40, 179, 408, 61, 14
 // In league om wel/niet menu voor stand te tonen..
 $array_cup_leagues = [81, 90, 137, 143, 45]; // 81 - DFB Pokal, 90 - KNVB beker
 
+$array_clel =  [2, 3, 848];
+
 $array_intern_leagues = [2, 3, 848, 1, 4]; // 2, 3, 848 (CL, EL & Conf. League) 1 + 4 WK / EK 
 
 // In day (32 WK-Kwalificatie Europa, 960 EK-kwalificatie, 5 Nations League)..

@@ -29,12 +29,36 @@ document.addEventListener("visibilitychange", function() {
 </script>
 
 <style>
+  
+.main_container_teams {
+  display: flex;
+}
 
-  .selection_teams {
+.container_teamA, 
+.container_teamB {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    margin: 5% auto;
+    align-items: center;
+}
+
+.selection_teams {
     display: flex;
     justify-content: left;
     margin: 5%;
+  }
 
+.container_search {
+    margin: auto;
+    width: fit-content;
+  }
+
+  #btn_search {
+ background-color: #002e61;
+ padding: 2%;
+ width: 100px;
+ color: white;
   }
 </style>
 
@@ -47,6 +71,18 @@ error_reporting(E_ALL);
 */
 
 $all_teams = [];
+
+// Deze regels straks weer verwijderen/uitcommentarieren...
+
+$team_json_file = './all_teams.json';
+$teams = fopen($team_json_file, 'r');
+fclose($teams);
+$response_json = file_get_contents($team_json_file, true);
+$response = json_decode($response_json, true);
+array_push($all_teams, $response);
+
+
+
 $all_teams_response = [];
 $name_teams = [];
 $ind = 0; 
@@ -63,6 +99,11 @@ include('../assets/getTZ.php');
 // Teams uit competitie ophalen...
 
  //$array_all_leagues = array_merge($array_leagues, $array_cup_leagues, $array_extra_leagues);
+
+ 
+ /*
+
+Deze regels weer uitcommentariëren..
 
 for ($i=0; $i < sizeof($array_reg_leagues); $i++) { 
    $cur_url = 'https://v3.football.api-sports.io/teams?league='. $array_reg_leagues[$i] . '&season='. $current_season;
@@ -91,6 +132,7 @@ $response = json_decode($response, true);
 
 array_push($all_teams, $response);
 }
+*/
 
 
 // Teams van competities in array plaatsen... 
@@ -101,111 +143,156 @@ array_push($all_teams_response, $all_teams[$i]['response']);
 
 }
 
-
 // in array met id en naam team...
 
 while ($ind < sizeof($all_teams_response)) {
 
 for ($i=0; $i < sizeof($all_teams_response[$ind]); $i++) {
 
-  array_push($name_teams, ['id'=> $all_teams_response[$ind][$i]['team']['id'], 'name' => $all_teams_response[$ind][$i]['team']['name']]);
-  
+  array_push($name_teams, [
+  'id'=> $all_teams_response[$ind][$i]['team']['id'], 
+  'name' => $all_teams_response[$ind][$i]['team']['name'], 
+  'country' => $all_teams_response[$ind][$i]['team']['country'], 
+  'main_league' => $all_teams[$ind]['parameters']['league']
+  ]);
+
+  array_multisort(array_column($name_teams, 'name'), SORT_ASC, $name_teams);
+
   }
 
   $ind++;
 }
 
-echo "
-<div class='fixed fixed_menubar' style='background-color: #002e61;'>
-<div class='center_buttons'>
-
-<div class='menubar'>
-<div class='menubuttons'>
-</div>
-</div>
-
-<ul>";
-
-// Menu Penalty's 
-
- echo 
-'<div class="menubuttons">
-<li><a href= "../penalty">P</a></li>
-</div>';
+include('./menu_find.php');
 
 
-// Menu Find 
+if ($_POST['TeamA'] != 'Selecteer een team:') {   
+setcookie("TeamA", $_POST['TeamA'], time() + 3600, "/", '', true);
+}
 
- echo 
-'<div class="menubuttons">
-<li><a href= "../find">F</a></li>
-</div>';
-
-
-// Menu teams (met shirtje) 
-
-(str_contains($current_page, $menu_teams) ? $link_teams = './' : $link_teams = './teams');  
-
-echo 
-"<div class='menubuttons'>
-<a style='padding: 0px' href= $link_teams > <img id='shirt' style='cursor:pointer' src='../img/shirt.png'></a>
-</div>";
-
-
-// Menu Stand
-
-if (!in_array($league_to_fixture, $array_cup_leagues)) { // Alleen tonen indien geen bekerwedstrijd 
-
-echo '<li><a id="table_txt" href="../standings?league='. $selected_leage_team .'&season=' . $selected_season_team . '&team='.$team_id.'"></a></li>';
-
+if ($_POST['TeamB'] != 'Selecteer een team:') {   
+setcookie("TeamB", $_POST['TeamB'], time() + 3600, "/", '', true);
 
 }
 
-// Menu Vandaag 
-
-$today = strtotime('today');
-
-echo 
-  "<div class='menubuttons'>
-<form method='post' action='../day'>
-<input type='image' id='agenda' style='cursor:pointer' src='../img/agenda.png'>
-<input type='hidden' name='sel_day' value=$today>
-<input type='submit' style='display: none'>
-</form>
-</div>";
 
 echo '
-</ul>
-</div>
-</div>
-</div>';
+<div class="main_container_teams">
 
-if ($_POST['first_team']) {
+<div class="container_teamA">';
+
+if ($_POST['TeamA']) {
+
+  $image_id = $_POST['TeamA'];
+
+} else {
+  $image_id = $_COOKIE['TeamA']; 
+}
+
+if ($image_id != '') {
   
 echo '
 <div>
-  <img src="https://media.api-sports.io/football/teams/'.$_POST['first_team'].'.png">
+  <img src="https://media.api-sports.io/football/teams/'.$image_id.'.png">
 </div>';  
- 
 }
 
-
-echo '<div class="selection_teams">
+echo '
+<div class="selection_teams">
 
 <form method="post">
 
-<select name="first_team" onchange="this.form.submit()">
+<select name="TeamA" onchange="this.form.submit()">
 
 <option selected disabled> Selecteer een team </option>';
 
+ if ($_POST['TeamA'] ) {
+           $selta = $_POST['TeamA']; 
+            }
+            elseif ( ($_COOKIE['TeamA']) && ($_COOKIE['TeamA'] != '') ) {
+               $selta = $_COOKIE['TeamA'];  
+            }
+
 for ($i=0; $i < sizeof($name_teams); $i++) {
-  echo '<option value='.$name_teams[$i]['id'].'> ' .$name_teams[$i]['name']. '</option>';
+  echo '<option ' . ($name_teams[$i]['id'] == $selta ? 'selected' : null) .' 
+  value='.$name_teams[$i]['id'].'> ' .$name_teams[$i]['name']. '</option>';
 }
 
 echo '
 </select>
 </form>
+</div>
+</div>
+
+
+<div class="container_teamB">';
+
+  if ($_POST['TeamB']) {
+
+  $image_id_b = $_POST['TeamB'];
+
+} else {
+  $image_id_b = $_COOKIE['TeamB']; 
+}
+
+if ($image_id_b != '') {
+  
+echo '
+<div>
+  <img src="https://media.api-sports.io/football/teams/'.$image_id_b.'.png">
+</div>';  
+}
+
+echo '
+<div class="selection_teams">
+
+<form method="post">
+
+<select name="TeamB" onchange="this.form.submit()">
+
+<option selected disabled> Selecteer een team </option>';
+
+ if ($_POST['TeamB'] ) {
+           $seltb = $_POST['TeamB']; 
+            }
+            elseif ( ($_COOKIE['TeamB']) && ($_COOKIE['TeamB'] != '') ) {
+               $seltb = $_COOKIE['TeamB'];  
+            }
+
+for ($i=0; $i < sizeof($name_teams); $i++) {
+
+  if ($name_teams[$i]['id'] != $_POST['TeamA']) {
+
+  echo '<option ' . ($name_teams[$i]['id'] == $seltb ? 'selected' : null) .' 
+  value='.$name_teams[$i]['id'].'> ' .$name_teams[$i]['name']. '</option>';
+}
+}
+
+echo '
+</select>
+</form>
+</div> 
+</div>
+</div>
+
+<div class="container_search">
+
+<form method="post"> 
+
+<input name="Inp_teamA" type="hidden" value='. $_COOKIE['TeamA']. '>
+<input name="Inp_teamB" type="hidden" value='. $_POST['TeamB']. '>
+
+<input id="btn_search" type="submit" value="Zoeken">
+
+
+</form>
 </div>';
+
+if ($_POST['Inp_teamA'] && $_POST['Inp_teamB']) {
+
+include ('./search_matches.php');
+ 
+}
 
 
 /*
