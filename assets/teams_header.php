@@ -32,7 +32,7 @@ echo "
 
  echo 
 '<div class="menubuttons">
-<li><a href= "../find">F</a></li>
+<li><a href= "../history">H</a></li>
 </div>';
 
 

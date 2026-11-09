@@ -26,7 +26,7 @@ echo "
 
  echo 
 '<div class="menubuttons">
-<li><a href= "../find">F</a></li>
+<li><a href= "../history">H</a></li>
 </div>';
 
 
@@ -39,15 +39,6 @@ echo
 <a style='padding: 0px' href= $link_teams > <img id='shirt' style='cursor:pointer' src='../img/shirt.png'></a>
 </div>";
 
-
-// Menu Stand
-
-if (!in_array($league_to_fixture, $array_cup_leagues)) { // Alleen tonen indien geen bekerwedstrijd 
-
-echo '<li><a id="table_txt" href="../standings?league='. $selected_leage_team .'&season=' . $selected_season_team . '&team='.$team_id.'"></a></li>';
-
-
-}
 
 // Menu Vandaag 
 
