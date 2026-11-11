@@ -32,7 +32,7 @@ echo "
 
 // Menu teams (met shirtje) 
 
-(str_contains($current_page, $menu_teams) ? $link_teams = './' : $link_teams = './teams');  
+(str_contains($current_page, $menu_teams) ? $link_teams = '../' : $link_teams = '../teams');  
 
 echo 
 "<div class='menubuttons'>
