@@ -77,14 +77,14 @@ $array_leagues_found_matches = [];
 $ind = 0; 
 
 // Deze regels straks weer verwijderen/uitcommentarieren...
-
+/*
 $team_json_file = './all_teams.json';
 $teams = fopen($team_json_file, 'r');
 fclose($teams);
 $response_json = file_get_contents($team_json_file, true);
 $response = json_decode($response_json, true);
 array_push($all_teams, $response);
-
+*/
 
 
 require('../assets/api.php');
@@ -97,7 +97,7 @@ include('../assets/getTZ.php');
 
 
 // Deze regels eventueel uitcommentariëren (bij inzet json boven)..
-/*
+
 for ($i=0; $i < sizeof($array_reg_leagues); $i++) { 
    $cur_url = 'https://v3.football.api-sports.io/teams?league='. $array_reg_leagues[$i] . '&season='. $current_season;
    
@@ -125,7 +125,7 @@ $response = json_decode($response, true);
 
 array_push($all_teams, $response);
 }
-*/
+
 
 // Teams van competities in array plaatsen... 
 
