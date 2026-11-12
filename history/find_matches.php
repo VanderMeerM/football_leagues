@@ -12,11 +12,6 @@ document.addEventListener("visibilitychange", function() {
 
 <?php 
 
-/*
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-*/
 
 // Alle wedstrijden van thuis-team ophalen over alle seizoenen (eigenlijk zelfde werking als in Teams)..
 
@@ -137,13 +132,18 @@ $all_matches_leagues = $all_matches_leagues_sorted;
 
 // Vind confrontaties met Team B...
 
-for ($i=0; $i < sizeof($all_matches_leagues); $i++) {
+for ($i=0; $i <= sizeof($all_matches_leagues); $i++) {
 
 if (
   ($all_matches_leagues[$i]['teams']['home']['id'] == (explode('-', $_POST['Inp_teamB'])[0])) ||
   ($all_matches_leagues[$i]['teams']['away']['id'] == (explode('-', $_POST['Inp_teamB'])[0]))
-  ){
+  )
+  {
   array_push($found_matches, $all_matches_leagues[$i]);
+  
+  array_push ($array_leagues_found_matches, 
+  [ $all_matches_leagues[$i]['league']['id'] => $all_matches_leagues[$i]['league']['name'] 
+  ]);
 }
 }
 

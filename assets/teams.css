@@ -801,6 +801,19 @@ color: rgb(75, 230, 75);
     font-size: xx-large;
     }
 
+
+    /* Voor History-pagina */ 
+
+.container_checkbox_leagues {
+    display: flex;
+    justify-content: center;
+    margin: 2%;
+ }
+
+.container_checkbox_leagues input {
+    margin: 0 1%;
+ }
+
 @media (max-width: 1500px) {
 .align-left {
     margin-left: 20%;
