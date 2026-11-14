@@ -879,6 +879,9 @@ table {
    margin: 10px auto;
 }
 
+select, option {
+   font-size: 15px;
+}
 
 .container_big_logo_league a {
     padding: 0px;

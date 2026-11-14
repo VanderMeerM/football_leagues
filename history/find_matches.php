@@ -140,12 +140,16 @@ if (
   )
   {
   array_push($found_matches, $all_matches_leagues[$i]);
-  
+
   array_push ($array_leagues_found_matches, 
-  [ $all_matches_leagues[$i]['league']['id'] => $all_matches_leagues[$i]['league']['name'] 
-  ]);
+  ($all_matches_leagues[$i]['league']['id'].'-'.$all_matches_leagues[$i]['league']['name']));
+  }
 }
-}
+
+
+$array_leagues_found_matches = array_unique($array_leagues_found_matches, SORT_REGULAR);
+
+$array_leagues_found_matches = array_values(array_unique($array_leagues_found_matches));
 
 $all_matches_leagues = $found_matches;
 

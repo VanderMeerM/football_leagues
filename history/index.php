@@ -86,7 +86,6 @@ $response = json_decode($response_json, true);
 array_push($all_teams, $response);
 */
 
-
 require('../assets/api.php');
 
 include('../assets/variables.php');
@@ -364,23 +363,22 @@ $numGames = sizeof($all_matches_leagues);
 
 // Indien meer dan 1 verschillende competities, deze in checkboxes weergeven.. 
 
-$array_leagues_found_matches = array_unique($array_leagues_found_matches, SORT_REGULAR);
-
 if (sizeof($array_leagues_found_matches) > 1) {
 
 echo '<div class="container_checkbox_leagues">';
 
-foreach($array_leagues_found_matches as $key => $value) { 
-  $league_id = array_keys(($value))[0]; 
+for ($i=0; $i < sizeof($array_leagues_found_matches); $i++) { 
+  $league_id = explode('-', $array_leagues_found_matches[$i])[0]; 
   
-  $league_name = array_values(($value))[0];
+  $league_name = explode('-', $array_leagues_found_matches[$i])[1];
 
   echo '
-  <input checked type="checkbox" value="'. $league_id .'"> ' .$league_name . ''; 
+  <input checked onclick="filterMatches('.$league_id.');" type="checkbox" value="'. $league_id .'"> ' .$league_name . ''; 
 
 }
 
-echo '</div>';
+echo '</div>
+ <div id="container_matches">';
 }
 
 
@@ -406,7 +404,9 @@ if ($numGames > 0 ) {
     echo '<div id="focus"></div>';
 }
 
- echo '<div class="main_container extra_padding" '. ($_GET['id'] ? 'style="display:flex"' : null) . '>'; 
+ echo '
+
+ <div id="match_block_'.$all_matches_leagues[$i]['league']['id'].'" class="main_container extra_padding" '. ($_GET['id'] ? 'style="display:flex"' : null) . '>'; 
 
 
   if (!$_GET['id']) {
@@ -518,8 +518,7 @@ echo'
     echo '</a>';
    }
 
-     
-
+    
    // Scoreverloop en opstellingen ophalen (alleen op afzonderlijke wedstrijdpagina)...
 
    if ($_GET['id']) {
@@ -530,7 +529,9 @@ echo'
   }}
   }}
   
-    echo '<div class="white_background" style="padding: 0" id="arrow_up">↑</div>';
+    echo '
+    </div>
+    <div class="white_background" style="padding: 0" id="arrow_up">↑</div>';
 }
 
 ?>
@@ -544,6 +545,43 @@ echo'
   
 });
 
+</script>
+
+
+<script>
+function filterMatches(num) {
+
+const containerMatches = document.getElementById('container_matches');
+console.dir(containerMatches.children.length);
+
+for (let i=0; i<20; i++) {
+
+for (let i=0; i<20; i++) {
+  if (containerMatches.children[i].id === `match_block_${num}`) {
+    document.getElementById(`match_block_${num}`).setAttribute('display', 'none');
+  }
+  //console.log(containerMatches.children[i]);
+
+}
+  console.log(containerMatches.children[i]);
+
+}
+
+/*
+
+if (
+  (document.querySelector('#match_block_39').style.display === '') ||
+  (document.querySelector('#match_block_39').style.display === 'block') 
+) {
+//  console.log(`match_block_${num}`);
+  document.querySelectorAll('#match_block_39')[1].style.display = 'none';
+}
+else {
+  document.querySelector('#match_block_39').style.display = 'block';
+}
+
+*/
+}
 </script>
 
 <?php
