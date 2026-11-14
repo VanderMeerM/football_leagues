@@ -73,11 +73,15 @@ error_reporting(E_ALL);
 $all_teams = [];
 $all_teams_response = [];
 $name_teams = [];
-$name_dt_teams = [];
-$dutch_leagues =[];
 $array_leagues_found_matches = [];
+
+$name_eredivisie = [];
+$name_kkd = [];
+$dutch_league1 =[];
+$dutch_league2 = [];
 $ind = 0; 
 $indd = 0;
+$indkkd = 0;
 
 // Deze regels straks weer verwijderen/uitcommentarieren...
 /*
@@ -138,35 +142,57 @@ array_push($all_teams_response, $all_teams[$i]['response']);
 }
 
 
- // Nederlandse clubs bovenaan in selectie.. 
+ // Eerst Eredivisie en KKD (bovenaan in selectie).. 
 
-array_push($dutch_leagues, $all_teams_response[0], $all_teams_response[1]);
+array_push($dutch_league1, $all_teams_response[0]);
+array_push($dutch_league2, $all_teams_response[1]);
 
 $all_teams_response = array_slice($all_teams_response,2);
 
-
 // Nederlandse clubs in array met id, land en naam team...
 
-while ($indd < sizeof($dutch_leagues)) {
+while ($indd < sizeof($dutch_league1)) {
 
-for ($i=0; $i < sizeof($dutch_leagues[$ind]); $i++) {
+for ($i=0; $i < sizeof($dutch_league1[$ind]); $i++) {
 
-  array_push($name_dt_teams, [
-  'id'=> $dutch_leagues[$indd][$i]['team']['id'], 
-  'name' => $dutch_leagues[$indd][$i]['team']['name'], 
-  'country' => $dutch_leagues[$indd][$i]['team']['country'], 
-  'main_league' => $dutch_leagues[$indd]['parameters']['league']
+  array_push($name_eredivisie, [
+  'id'=> $dutch_league1[$indd][$i]['team']['id'], 
+  'name' => $dutch_league1[$indd][$i]['team']['name'], 
+  'country' => $dutch_league1[$indd][$i]['team']['country'], 
+  'main_league' => $dutch_league1[$indd]['parameters']['league']
   ]);
-
   
-  $names = array_column($name_dt_teams, 'name');
-  $countries = array_column($name_dt_teams, 'country');
+  $names = array_column($name_eredivisie, 'name');
+  $countries = array_column($name_eredivisie, 'country');
 
-  array_multisort($countries, SORT_ASC, $names, SORT_ASC, $name_dt_teams);
+  array_multisort($countries, SORT_ASC, $names, SORT_ASC, $name_eredivisie);
   }
 
   $indd++;
 }
+
+
+while ($indkkd < sizeof($dutch_league2)) {
+
+for ($i=0; $i < sizeof($dutch_league2[$indkkd]); $i++) {
+
+  array_push($name_kkd, [
+  'id'=> $dutch_league2[$indkkd][$i]['team']['id'], 
+  'name' => $dutch_league2[$indkkd][$i]['team']['name'], 
+  'country' => $dutch_league2[$indkkd][$i]['team']['country'], 
+  'main_league' => $dutch_league2[$inkkdd]['parameters']['league']
+  ]);
+
+  
+  $names = array_column($name_kkd, 'name');
+  $countries = array_column($name_kkd, 'country');
+
+  array_multisort($countries, SORT_ASC, $names, SORT_ASC, $name_kkd);
+  }
+
+  $indkkd++;
+}
+
 
 // En de overige competities..
 
@@ -192,7 +218,7 @@ for ($i=0; $i < sizeof($all_teams_response[$ind]); $i++) {
 }
 
 
-$name_teams = array_merge($name_dt_teams, $name_teams);
+$name_teams = array_merge($name_eredivisie, $name_kkd, $name_teams);
 
 include('./menu_history.php');
 
