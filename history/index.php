@@ -73,8 +73,11 @@ error_reporting(E_ALL);
 $all_teams = [];
 $all_teams_response = [];
 $name_teams = [];
+$name_dt_teams = [];
+$dutch_leagues =[];
 $array_leagues_found_matches = [];
 $ind = 0; 
+$indd = 0;
 
 // Deze regels straks weer verwijderen/uitcommentarieren...
 /*
@@ -137,52 +140,40 @@ array_push($all_teams_response, $all_teams[$i]['response']);
 
  // Nederlandse clubs bovenaan in selectie.. 
 
- /*
-$dutch_leagues = $all_teams_response[0]; 
+array_push($dutch_leagues, $all_teams_response[0], $all_teams_response[1]);
 
-$dt_names = array_column($dutch_leagues, 'name');
-//$dt_leagues = array_column($dutch_leagues, 'main_league');
-
- array_multisort($dt_names, SORT_ASC, $dutch_leagues);
+$all_teams_response = array_slice($all_teams_response,2);
 
 
-$rest_leagues = unset($all_teams_response[0], $all_teams_response[1]); 
+// Nederlandse clubs in array met id, land en naam team...
 
- $names = array_column($rest_leagues, 'name');
- $leagues = array_column($rest_leagues, 'main_league');
+while ($indd < sizeof($dutch_leagues)) {
 
- array_multisort($leagues, SORT_ASC, $names, SORT_ASC, $rest_leagues); 
+for ($i=0; $i < sizeof($dutch_leagues[$ind]); $i++) {
 
-$leagues_sorted = array_merge($dutch_leagues, $rest_leagues);
-*/
+  array_push($name_dt_teams, [
+  'id'=> $dutch_leagues[$indd][$i]['team']['id'], 
+  'name' => $dutch_leagues[$indd][$i]['team']['name'], 
+  'country' => $dutch_leagues[$indd][$i]['team']['country'], 
+  'main_league' => $dutch_leagues[$indd]['parameters']['league']
+  ]);
 
-// in array met id, land en naam team...
+  
+  $names = array_column($name_dt_teams, 'name');
+  $countries = array_column($name_dt_teams, 'country');
+
+  array_multisort($countries, SORT_ASC, $names, SORT_ASC, $name_dt_teams);
+  }
+
+  $indd++;
+}
+
+// En de overige competities..
 
 while ($ind < sizeof($all_teams_response)) {
 
 for ($i=0; $i < sizeof($all_teams_response[$ind]); $i++) {
 
-
- // Nederlandse clubs bovenaan in selectie (vervolg).. 
-
-/*
-if ($all_teams_response[$ind][$i]['team']['country'] === 'Netherlands') {
-
-  array_push($dutch_leagues, [
-  'id'=> $all_teams_response[$ind][$i]['team']['id'], 
-  'name' => $all_teams_response[$ind][$i]['team']['name'], 
-  'country' => $all_teams_response[$ind][$i]['team']['country'], 
-  'main_league' => $all_teams[$ind]['parameters']['league']
-  ]);
-
-  $dutch_names = array_column($dutch_leagues, 'name');
-  $dutch_main_leagues = array_column($dutch_leagues, 'main_league');
-
-  array_multisort($dutch_main_leagues, SORT_ASC, $dutch_names, SORT_ASC, $dutch_leagues);
- } 
- 
- else {
-  */
   array_push($name_teams, [
   'id'=> $all_teams_response[$ind][$i]['team']['id'], 
   'name' => $all_teams_response[$ind][$i]['team']['name'], 
@@ -200,6 +191,8 @@ if ($all_teams_response[$ind][$i]['team']['country'] === 'Netherlands') {
   $ind++;
 }
 
+
+$name_teams = array_merge($name_dt_teams, $name_teams);
 
 include('./menu_history.php');
 
@@ -549,39 +542,30 @@ echo'
 
 
 <script>
+
+document.getElementById('btn_search').textContent === 'Zoekt...'; 
+
 function filterMatches(num) {
 
-const containerMatches = document.getElementById('container_matches');
-console.dir(containerMatches.children.length);
+const containerMatches = document.querySelectorAll(`#container_matches div#match_block_${num}.main_container.extra_padding`);
 
-for (let i=0; i<20; i++) {
+const numChildren = containerMatches.length;
 
-for (let i=0; i<20; i++) {
-  if (containerMatches.children[i].id === `match_block_${num}`) {
-    document.getElementById(`match_block_${num}`).setAttribute('display', 'none');
+for (let i=0; i< numChildren; i++) {
+  
+if ( (containerMatches[i].style.display === 'block') ||
+    (containerMatches[i].style.display === '') ) {
+
+    containerMatches[i].style.display = 'none';
+   } 
+   else {
+    containerMatches[i].style.display = 'block';
+
+   }
+   
   }
-  //console.log(containerMatches.children[i]);
-
-}
-  console.log(containerMatches.children[i]);
-
 }
 
-/*
-
-if (
-  (document.querySelector('#match_block_39').style.display === '') ||
-  (document.querySelector('#match_block_39').style.display === 'block') 
-) {
-//  console.log(`match_block_${num}`);
-  document.querySelectorAll('#match_block_39')[1].style.display = 'none';
-}
-else {
-  document.querySelector('#match_block_39').style.display = 'block';
-}
-
-*/
-}
 </script>
 
 <?php
