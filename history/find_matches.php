@@ -56,7 +56,7 @@ echo '<div id="top"></div>';
 
 // Wedstrijden over laatste 10 seizoenen ophalen...
 
-$first_season = $season - 3;
+$first_season = $season - 10;
 
 while ($first_season <= $season) {
 
