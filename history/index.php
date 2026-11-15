@@ -101,6 +101,9 @@ include('../assets/translations.php');
 
 include('../assets/getTZ.php');
 
+// 3. Bundesliga, Championship en N-Ierse competitie weglaten...
+ 
+$array_reg_leagues = array_diff($array_reg_leagues, [80, 40, 408]);
 
 // Deze regels eventueel uitcommentariëren (bij inzet json boven)..
 
