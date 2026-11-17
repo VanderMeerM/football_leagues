@@ -6,6 +6,8 @@ $status_live = array('1H', 'HT', '2H', 'ET', 'P', 'SUSP', 'INT');
 $status_nl = array('1e helft', 'Rust', '2e helft', 'Verlenging', 'Penalties', 'Stilgelegd', 
 'Tijd. stilgelegd');
 
+$status_show_halftime = array('2H', 'ET', 'BT','P', 'FT', 'AET', 'PEN', 'ABD');
+
 $status_cancel_abbrev = array('PST', 'ABD'); 
 
 $status_cancel_nl = array('Uitgesteld', 'Afgelast');

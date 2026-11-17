@@ -520,6 +520,21 @@ echo'
 
             }
 
+      
+        if ($_GET['id']) {
+          echo '<div>';
+        }
+
+        if ( ($all_matches_leagues[$i]['score']['fulltime']['home'])  + 
+             ($all_matches_leagues[$i]['score']['fulltime']['away'] > 0) ) {
+            echo '<p style="color: white;"> Rust: ' . $all_matches_leagues[$i]['score']['halftime']['home'] . ' - ' . $all_matches_leagues[$i]['score']['halftime']['away'] . '</p>';
+             }
+      
+
+        if ($_GET['id']) {
+          echo '</div>';
+        }
+
         echo '</div>';
 
           if ($_GET['id']) {

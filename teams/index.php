@@ -303,15 +303,28 @@ echo'
 
             }
 
-        echo '</div>';
+         if (
+          in_array($matchStatus, $status_show_halftime)
+           && 
+            (
+             ($all_matches_leagues[$i]['score']['fulltime']['home'])  + 
+             ($all_matches_leagues[$i]['score']['fulltime']['away'] > 0)
+            ) 
+          )  { 
+          echo '<div><p>Rust: '. $all_matches_leagues[$i]['score']['halftime']['home']. ' - '. $all_matches_leagues[$i]['score']['halftime']['away'] .'</div>';
 
-          if ($_GET['id']) {
+           }
+
+      
+        if ($_GET['id']) {
           echo '</div>';
         }
-         
-   echo '
+
+  echo '
+  </div>               
+   
   <div class="country_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') . '">
- <div class="flag_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'">
+  <div class="flag_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'">
    <img src="'. $all_matches_leagues[$i]['teams']['away']['logo'] . '"/></div>
    <p>
       ' . (array_key_exists($awayTeam, $array_countries) ? $array_countries[$awayTeam] : $awayTeam). ' 

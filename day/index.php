@@ -396,6 +396,22 @@ echo
            }            
 
       }
+
+      if   (
+            in_array($matchStatus, $status_show_halftime) 
+            && 
+            (
+             ($matches_on_selected_day[$i]['score']['fulltime']['home'])  + 
+             ($matches_on_selected_day[$i]['score']['fulltime']['away'] > 0)
+            ) 
+                   
+            )           
+            
+           { 
+          echo '<div><p>Rust: '.$matches_on_selected_day[$i]['score']['halftime']['home'].'-'.$matches_on_selected_day[$i]['score']['halftime']['away'].'</div>';
+
+           }
+
         echo '</div>';
 
         if ($_GET['id']) {

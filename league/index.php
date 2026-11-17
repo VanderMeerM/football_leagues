@@ -364,9 +364,27 @@ else {
            }*/
  
         }
-        echo '
-        </div>';
+                
+if ( 
+  (in_array($matchStatus, $status_show_halftime))  && 
+            (
+             ($response['response'][$i]['score']['fulltime']['home'])  + 
+             ($response['response'][$i]['score']['fulltime']['away'] > 0)
+            ) 
+           ){  
 
+        if ($_GET['id']) {
+          echo '<div>';
+        }
+     echo '<p style="color: white;"> Rust: ' . $response['response'][$i]['score']['halftime']['home'] . ' - ' .$response['response'][$i]['score']['halftime']['away']. '</p>';
+      
+        if ($_GET['id']) {
+          echo '</div>';
+        }
+           }
+
+      echo '</div>';
+    
         if ($_GET['id']) {
           echo '</div>';
         }
@@ -376,10 +394,8 @@ else {
    <img src="'.$response['response'][$i]['teams']['away']['logo'] . '"/>
    <p>
      ' . (array_key_exists($awayTeam, $array_countries) ? $array_countries[$awayTeam] : $awayTeam). '
-   </div>'; 
-
- 
-   echo '</div>
+   </div>
+   </div>
    </div>';
 
    if (!$_GET['id']) {
