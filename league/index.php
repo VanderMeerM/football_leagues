@@ -368,16 +368,18 @@ else {
 if ( 
   (in_array($matchStatus, $status_show_halftime))  && 
             (
-             ($response['response'][$i]['score']['fulltime']['home'])  + 
-             ($response['response'][$i]['score']['fulltime']['away'] > 0)
+             ($response['response'][$i]['goals']['home'])  + 
+             ($response['response'][$i]['goals']['away'] > 0)
             ) 
            ){  
 
         if ($_GET['id']) {
           echo '<div>';
         }
-     echo '<p style="color: white;"> Rust: ' . $response['response'][$i]['score']['halftime']['home'] . ' - ' .$response['response'][$i]['score']['halftime']['away']. '</p>';
+     echo '<p class='. (date('d-m-Y') === $date ? 'black_color' : 'white_color') .'> Rust: ' . $response['response'][$i]['score']['halftime']['home'] . ' - ' .$response['response'][$i]['score']['halftime']['away']. '</p>';
       
+
+
         if ($_GET['id']) {
           echo '</div>';
         }
@@ -385,9 +387,9 @@ if (
 
       echo '</div>';
     
-        if ($_GET['id']) {
-          echo '</div>';
-        }
+  if ($_GET['id']) {
+    echo '</div>';
+      }
          
    echo '<div class="country_container">
    <div class="flag_container' . (date('d-m-Y') === $date ? ' black_color' : ' white_color') .'">
@@ -420,26 +422,33 @@ if ( (date('Y') >  ($selected_season + 1)) ||
 
 }}
 
- echo '<div class="stats_main_container">';
+if ($_GET['id'] && $matchStatus === 'FT') {
+
+echo '<div class="stats_main_container">';
 
 echo '<div class="stats_home">
 
+<div style="padding-left: 2%">
 Balbezit: '. $response['response'][$i]['statistics'][0]['statistics'][15]['value'] .'<br>
 Expected goals: '. $response['response'][$i]['statistics'][0]['statistics'][16]['value'] .' <br>
 Corners: '. $response['response'][$i]['statistics'][0]['statistics'][12]['value'] .'<br>
 Overtredingen: '. $response['response'][$i]['statistics'][0]['statistics'][13]['value'] .' <br>
 Vrije trappen: '. $response['response'][$i]['statistics'][0]['statistics'][4]['value'] .'<br>
-Buitenspel: '. $response['response'][$i]['statistics'][0]['statistics'][8]['value'] .' <br>
+Buitenspel: '. $response['response'][$i]['statistics'][0]['statistics'][8]['value'] .' 
 
-Passes: '. $response['response'][$i]['statistics'][0]['statistics'][0]['value'] .' / '
+<br><br>
+
+Passes (accuraat / totaal): <br> '. $response['response'][$i]['statistics'][0]['statistics'][0]['value'] .' / '
 . $response['response'][$i]['statistics'][0]['statistics'][9]['value'].' 
 ('. (round(($response['response'][$i]['statistics'][0]['statistics'][0]['value'] / 
 $response['response'][$i]['statistics'][0]['statistics'][9]['value']), 2) * 100) .'%)
+
 <br><br>
 
-Schoten <br>(op goal/niet op goal/geblokt): '. $response['response'][$i]['statistics'][0]['statistics'][5]['value'] .'/'
-. $response['response'][$i]['statistics'][0]['statistics'][7]['value']. '/' .$response['response'][$i]['statistics'][0]['statistics'][3]['value'] . '<br>
+Schoten (op goal / <br>niet op goal / geblokt): '. $response['response'][$i]['statistics'][0]['statistics'][5]['value'] .' / '
+. $response['response'][$i]['statistics'][0]['statistics'][7]['value']. ' / ' .$response['response'][$i]['statistics'][0]['statistics'][3]['value'] . '<br>
  
+</div>
 </div>
 
 <div class="stats_away">
@@ -449,21 +458,29 @@ Expected goals: '. $response['response'][$i]['statistics'][1]['statistics'][16][
 Corners: '. $response['response'][$i]['statistics'][1]['statistics'][12]['value'] .'<br>
 Overtredingen: '. $response['response'][$i]['statistics'][1]['statistics'][13]['value'] .' <br>
 Vrije trappen: '. $response['response'][$i]['statistics'][1]['statistics'][4]['value'] .'<br>
-Buitenspel: '. $response['response'][$i]['statistics'][1]['statistics'][8]['value'] .' <br>
+Buitenspel: '. $response['response'][$i]['statistics'][1]['statistics'][8]['value'] .' 
 
-Passes: '. $response['response'][$i]['statistics'][1]['statistics'][0]['value'] .' / '
-. $response['response'][$i]['statistics'][1]['statistics'][9]['value'].' 
-('. (round(($response['response'][$i]['statistics'][1]['statistics'][0]['value'] / 
-$response['response'][$i]['statistics'][1]['statistics'][9]['value']), 2) * 100) .'%)
 <br><br>
 
-Schoten <br>(op goal/niet op goal/geblokt): '. $response['response'][$i]['statistics'][1]['statistics'][5]['value'] .'/'
-. $response['response'][$i]['statistics'][1]['statistics'][7]['value']. '/' .$response['response'][$i]['statistics'][1]['statistics'][3]['value'] . '<br>
+Passes (accuraat / totaal): <br> '. $response['response'][$i]['statistics'][1]['statistics'][0]['value'] .' / '
+. $response['response'][$i]['statistics'][1]['statistics'][9]['value'].''; 
+
+/*
+('. (round(($response['response'][$i]['statistics'][1]['statistics'][0]['value'] / 
+$response['response'][$i]['statistics'][1]['statistics'][9]['value']), 2) * 100) .'%)
+*/
+echo '
+<br><br>
+
+
+Schoten (op goal / <br>niet op goal / geblokt): '. $response['response'][$i]['statistics'][1]['statistics'][5]['value'] .' / '
+. $response['response'][$i]['statistics'][1]['statistics'][7]['value']. ' / ' .$response['response'][$i]['statistics'][1]['statistics'][3]['value'] . '<br>
 
 
 </div>
 
 </div>';
+  }
   }
 
  if ( (sizeof($matchesInRound) > 3) || ($_GET['id']) ) {

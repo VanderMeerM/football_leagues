@@ -258,6 +258,7 @@ text-align: center;
 
 .stats_main_container {
     padding: 2% 0;
+    background-color: #55585c;
 }
 
 .container_circle {
@@ -462,6 +463,7 @@ label {
 .stats_away {
     width: 50%;
     color: white;
+    line-height: 1.5;
 }
 
 #season_title {
@@ -569,8 +571,8 @@ margin: 0 auto;
 
 /*.main_container_event,*/
 .main_container,
-.main_container a,
-.stats_main_container {
+.main_container a
+ {
     background-color: var(--black);
     cursor: pointer;
 }

@@ -401,8 +401,8 @@ echo
             in_array($matchStatus, $status_show_halftime) 
             && 
             (
-             ($matches_on_selected_day[$i]['score']['fulltime']['home'])  + 
-             ($matches_on_selected_day[$i]['score']['fulltime']['away'] > 0)
+             ($matches_on_selected_day[$i]['goals']['home'])  + 
+             ($matches_on_selected_day[$i]['goals']['away'] > 0)
             ) 
                    
             )           
