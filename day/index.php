@@ -408,7 +408,7 @@ echo
             )           
             
            { 
-          echo '<div><p>Rust: '.$matches_on_selected_day[$i]['score']['halftime']['home'].'-'.$matches_on_selected_day[$i]['score']['halftime']['away'].'</div>';
+          echo '<div><p class="ht_margin_mob '. (date('d-m-Y') === date('d-m-Y', $_POST['sel_day']) ? ' black_color' : ' white_color').'">Rust: '.$matches_on_selected_day[$i]['score']['halftime']['home'].'-'.$matches_on_selected_day[$i]['score']['halftime']['away'] .'</div>';
 
            }
 
@@ -435,7 +435,7 @@ echo
    echo '</div>
    <div style="height: 10px"></div>';
 
-
+  
    if ( (sizeof($matches_on_selected_day) > 3) || ($_GET['id']) ) {
   echo '
   <div id="arrow_up">↑</div>';

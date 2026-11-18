@@ -18,6 +18,7 @@ input[type="radio"] {
 
 .menubar
 .main_container,
+.stats_main_container,
 .main_container_lineup_coach,
  a  {
     display: flex;
@@ -246,6 +247,7 @@ text-align: center;
 
 
 .main_container, 
+.stats_main_container,
 .main_container_event
  {
     width: 600px;
@@ -254,6 +256,9 @@ text-align: center;
     align-content: center;
 }
 
+.stats_main_container {
+    padding: 2% 0;
+}
 
 .container_circle {
     width: 600px;
@@ -434,6 +439,7 @@ button {
 .event_container, 
 .event_container,
 .lineup_container, 
+.stats_main_container,
 .container_sortby_league_time,
 #start_sub_team, 
 #play_min, 
@@ -452,13 +458,11 @@ label {
     font-size: medium;
 }
 
-/*
-#oncoming_match {
-width: 600px; 
-margin: 0 auto;
-font-size: large;
+.stats_home, 
+.stats_away {
+    width: 50%;
+    color: white;
 }
-*/
 
 #season_title {
     margin-top: 50px;
@@ -539,6 +543,7 @@ td a,
 }
 
 .main_container,
+.stats_main_container,
 .main_container_event,
 .main_container_lineup,
 .main_container_lineup_coach,
@@ -564,7 +569,8 @@ margin: 0 auto;
 
 /*.main_container_event,*/
 .main_container,
-.main_container a {
+.main_container a,
+.stats_main_container {
     background-color: var(--black);
     cursor: pointer;
 }
@@ -873,6 +879,7 @@ color: rgb(75, 230, 75);
 .menu_dates,
 .title_container, 
 .main_container,
+.stats_main_container,
 .main_container_event,
 .main_container_lineup,
 table {
@@ -916,12 +923,6 @@ select, option {
 margin-top: 20px;
 }
 
-/*
-.fixed_menubar {
-  width: 400px;
-  left: 59%;
-}
-  */
 }
 
 @media (max-width: 550px) {
@@ -968,6 +969,10 @@ margin-top: 20px;
     content: "Programma";
 } 
 
+.ht_margin_mob {
+margin: 10px;
+}
+
 
 
 table {
@@ -981,6 +986,7 @@ table {
 
  .container_logos,
 .main_container, 
+.stats_main_container,
 .main_container_event,
 .main_container_lineup,
 .container_circle {
