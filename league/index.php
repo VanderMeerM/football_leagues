@@ -511,7 +511,7 @@ Schoten (op goal / <br>niet op goal / geblokt): '. $response['response'][$i]['st
 
  /*  
 
-Binnenhalen einddata seizoenen (seizoen invullen in url; include league_header uitcommentariëren (zie r. 156))
+Binnenhalen einddata seizoenen (seizoen invullen in url; include league_header uitcommentariëren (zie r. 168))
 
 
 $array_leagues = [88, 89, 78, 79, 135, 140, 39, 40, 179, 408]; // 357 = Ierse competitie

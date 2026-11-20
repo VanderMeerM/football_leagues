@@ -1,4 +1,10 @@
 
+<style>
+#pointer:hover {
+   cursor: pointer;
+}   
+</style>
+
 <?php
 
 require('../assets/api.php');
@@ -12,30 +18,9 @@ if ($_GET['id'] && file_exists($json_lineup_path)) {
 }
 
 else { 
+ 
+$response_lineup = $response['response'][0]['lineups'];
 
-    $curl_lineup = curl_init();
-    
-    curl_setopt_array($curl_lineup, array(
-      CURLOPT_URL => 'https://v3.football.api-sports.io/fixtures/lineups?fixture=' . $_GET['id'], 
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => '',
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 0,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => 'GET',
-      CURLOPT_HTTPHEADER => array(
-        'x-rapidapi-key: ' . $api_key . '',
-        'x-rapidapi-host: v3.football.api-sports.io',
-        
-      ),
-    ));
-    
-    $response_lineup = curl_exec($curl_lineup);
-    
-    curl_close($curl_lineup);
-
-    $response_lineup = json_decode($response_lineup, true);
 
     // Sla opstelling op als wedstrijd bestaat... 
 
@@ -53,7 +38,7 @@ else {
 }
 
   
- $num_lineups = $response_lineup['results'];
+$num_lineups = sizeof($response_lineup);
 
 $home_team_lineup = array();
 $away_team_lineup = array();
@@ -64,69 +49,71 @@ $away_startXI = array();
 $home_sub = array();
 $away_sub = array();
 
-if (($response_lineup['response'][0]['startXI'] > 0 ) || 
-($response_lineup['response'][0]['startXI'] >0 )) {
+if (($response_lineup[0]['startXI'] > 0 ) || 
+($response_lineup[0]['startXI'] >0 )) {
 
-for ($i=0; $i < sizeof($response_lineup['response'][0]['startXI']); $i++) {
+for ($i=0; $i < sizeof($response_lineup[0]['startXI']); $i++) {
 
     array_push($home_startXI, [
-    'id' => $response_lineup['response'][0]['startXI'][$i]['player']['id'],
-    'name' => $response_lineup['response'][0]['startXI'][$i]['player']['name'],
-    'number' => $response_lineup['response'][0]['startXI'][$i]['player']['number'],
-    'position' => $response_lineup['response'][0]['startXI'][$i]['player']['pos']
+    'id' => $response_lineup[0]['startXI'][$i]['player']['id'],
+    'name' => $response_lineup[0]['startXI'][$i]['player']['name'],
+    'number' => $response_lineup[0]['startXI'][$i]['player']['number'],
+    'position' => $response_lineup[0]['startXI'][$i]['player']['pos'],
+    'grid' => $response_lineup[0]['startXI'][$i]['player']['grid']
     ]);
 }
 
-for ($i=0; $i < sizeof($response_lineup['response'][1]['startXI']); $i++) {
+for ($i=0; $i < sizeof($response_lineup[1]['startXI']); $i++) {
 
     array_push($away_startXI, [
-    'id' => $response_lineup['response'][1]['startXI'][$i]['player']['id'],
-    'name' => $response_lineup['response'][1]['startXI'][$i]['player']['name'],
-    'number' => $response_lineup['response'][1]['startXI'][$i]['player']['number'],
-    'position' => $response_lineup['response'][1]['startXI'][$i]['player']['pos']
+    'id' => $response_lineup[1]['startXI'][$i]['player']['id'],
+    'name' => $response_lineup[1]['startXI'][$i]['player']['name'],
+    'number' => $response_lineup[1]['startXI'][$i]['player']['number'],
+    'position' => $response_lineup[1]['startXI'][$i]['player']['pos'],
+    'grid' => $response_lineup[1]['startXI'][$i]['player']['grid']
     ]);
 }
 
-for ($i=0; $i < sizeof($response_lineup['response'][0]['substitutes']); $i++) {
+for ($i=0; $i < sizeof($response_lineup[0]['substitutes']); $i++) {
 
     array_push($home_sub, [
-    'id' => $response_lineup['response'][0]['substitutes'][$i]['player']['id'],
-    'name' => $response_lineup['response'][0]['substitutes'][$i]['player']['name'],
-    'number' => $response_lineup['response'][0]['substitutes'][$i]['player']['number'],
-    'position' => $response_lineup['response'][0]['substitutes'][$i]['player']['pos']
+    'id' => $response_lineup[0]['substitutes'][$i]['player']['id'],
+    'name' => $response_lineup[0]['substitutes'][$i]['player']['name'],
+    'number' => $response_lineup[0]['substitutes'][$i]['player']['number'],
+    'position' => $response_lineup[0]['substitutes'][$i]['player']['pos']
     ]);
 }
 
-for ($i=0; $i < sizeof($response_lineup['response'][1]['substitutes']); $i++) {
+for ($i=0; $i < sizeof($response_lineup[1]['substitutes']); $i++) {
 
     array_push($away_sub, [
-    'id' => $response_lineup['response'][1]['substitutes'][$i]['player']['id'],
-    'name' => $response_lineup['response'][1]['substitutes'][$i]['player']['name'],
-    'number' => $response_lineup['response'][1]['substitutes'][$i]['player']['number'],
-    'position' => $response_lineup['response'][1]['substitutes'][$i]['player']['pos']
+    'id' => $response_lineup[1]['substitutes'][$i]['player']['id'],
+    'name' => $response_lineup[1]['substitutes'][$i]['player']['name'],
+    'number' => $response_lineup[1]['substitutes'][$i]['player']['number'],
+    'position' => $response_lineup[1]['substitutes'][$i]['player']['pos']
     ]);
 }
 
 
 for ($i = 0; $i < $num_lineups; $i++) {
       
-    if ($response_lineup['response'][$i]['team']['name'] === $homeTeam) 
+    if ($response_lineup[$i]['team']['name'] === $homeTeam) 
        {
         array_push($home_team_lineup, [ 
         'team' => $homeTeam,
-        'formation' => $response_lineup['response'][$i]['formation'], 
-        'coach' => $response_lineup['response'][$i]['coach']['name'],
-        'coach_img' => $response_lineup['response'][$i]['coach']['photo'] 
+        'formation' => $response_lineup[$i]['formation'], 
+        'coach' => $response_lineup[$i]['coach']['name'],
+        'coach_img' => $response_lineup[$i]['coach']['photo'] 
        ]);
     }
 
-    if ($response_lineup['response'][$i]['team']['name'] === $awayTeam) 
+    if ($response_lineup[$i]['team']['name'] === $awayTeam) 
     {
      array_push($away_team_lineup, [ 
      'team' => $awayTeam,
-     'formation' => $response_lineup['response'][$i]['formation'], 
-     'coach' => $response_lineup['response'][$i]['coach']['name'],
-     'coach_img' => $response_lineup['response'][$i]['coach']['photo'] 
+     'formation' => $response_lineup[$i]['formation'], 
+     'coach' => $response_lineup[$i]['coach']['name'],
+     'coach_img' => $response_lineup[$i]['coach']['photo'] 
         ]);
     }
   }
@@ -171,14 +158,14 @@ for ($i = 0; $i < $num_lineups; $i++) {
         <td>
         <form method="post" action="../assets/players.php?id='.$home_startXI[$i]['id'].'" target="_blank">
         <input type="hidden" name="openLineup" value ="yes">
-        <button type="submit" style="color: black">' . $home_startXI[$i]['number'] . '. ' . $home_startXI[$i]['name'] . '</button>              
+        <button id="pointer" type="submit" style="color: black">' . $home_startXI[$i]['number'] . '. ' . $home_startXI[$i]['name'] . '/'.$home_startXI[$i]['grid'].'</button>              
         </form>
         </td> 
 
           <td>
         <form method="post" action="../assets/players.php?id='.$away_startXI[$i]['id'].'" target="_blank">
         <input type="hidden" name="openLineup" value ="yes">
-        <button type="submit" style="color: black">' . $away_startXI[$i]['number'] . '. ' . $away_startXI[$i]['name'] . '</button>              
+        <button id="pointer" type="submit" style="color: black">' . $away_startXI[$i]['number'] . '. ' . $away_startXI[$i]['name'] . '/'.$away_startXI[$i]['grid']. '</button>              
         </form>
         </td> 
                
@@ -207,14 +194,14 @@ for ($i = 0; $i < $num_lineups; $i++) {
       <td>
         <form method="post" action="../assets/players.php?id='.$home_sub[$i]['id'].'" target="_blank">
         <input type="hidden" name="openLineup" value ="yes">
-        <button type="submit" style="color: black">' . $home_sub[$i]['number'] . '. ' . $home_sub[$i]['name'] . '</button>              
+        <button id="pointer" type="submit" style="color: black">' . $home_sub[$i]['number'] . '. ' . $home_sub[$i]['name'] . '</button>              
         </form>
         </td> 
 
        <td>
         <form method="post" action="../assets/players.php?id='.$away_sub[$i]['id'].'" target="_blank">
         <input type="hidden" name="openLineup" value ="yes">
-        <button type="submit" style="color: black">' . $away_sub[$i]['number'] . '. ' . $away_sub[$i]['name'] . '</button>              
+        <button id="pointer" type="submit" style="color: black">' . $away_sub[$i]['number'] . '. ' . $away_sub[$i]['name'] . '</button>              
         </form>
         </td>'; 
      }

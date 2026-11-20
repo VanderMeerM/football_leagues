@@ -8,40 +8,16 @@ if ($_GET['id'] && file_exists($json_events_path)) {
   $response_event = json_decode($response_json_event, true);
 
 }
-   
-  else {
- 
-    $curl_event = curl_init();
-    
-    curl_setopt_array($curl_event, array(
-      CURLOPT_URL => 'https://v3.football.api-sports.io/fixtures/events?fixture=' . $_GET['id'], 
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => '',
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 0,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => 'GET',
-      CURLOPT_HTTPHEADER => array(
-      'x-rapidapi-key: ' . $api_key .'',
-      'x-rapidapi-host: v3.football.api-sports.io',
-        
-      ),
-    ));
-    
-    $response_event = curl_exec($curl_event);
+else {
 
-    curl_close($curl_event);
-
-    $response_event = json_decode($response_event, true);
-
+$response_event = $response['response'][0]['events'];
   }
-    
-$num_events = $response_event['results'];
+
+$num_events = sizeof($response_event);
 
 $min_playing_minute = 
-$response_event['response'][$num_events-1]['time']['elapsed'] + 
-$response_event['response'][$num_events-1]['time']['extra'];
+$response_event[$num_events-1]['time']['elapsed'] + 
+$response_event[$num_events-1]['time']['extra'];
 
 $home_team_events = [];
 $away_team_events = [];
@@ -52,36 +28,36 @@ $away_team_goals = [];
 
  for ($i = 0; $i < $num_events; $i++) {
       
-    if (($response_event['response'][$i]['team']['name'] === $homeTeam) && 
-        ($response_event['response'][$i]['type'] === 'Goal' || 
-        $response_event['response'][$i]['type'] === 'Card' ||
-        $response_event['response'][$i]['type'] === 'subst')) {
+    if (($response_event[$i]['team']['name'] === $homeTeam) && 
+        ($response_event[$i]['type'] === 'Goal' || 
+        $response_event[$i]['type'] === 'Card' ||
+        $response_event[$i]['type'] === 'subst')) {
         array_push($all_team_events, [ 
         'team' => $homeTeam,
-        'type' => $response_event['response'][$i]['type'], 
-        'detail' => $response_event['response'][$i]['detail'],
-        'elapsed' => $response_event['response'][$i]['time']['elapsed'] + $response_event['response'][$i]['time']['extra'], 
-        'name' => $response_event['response'][$i]['player']['name'],
-        'id' => $response_event['response'][$i]['player']['id'],
-        'assist_name' => $response_event['response'][$i]['assist']['name'],
-        'comments' => $response_event['response'][$i]['comments']
+        'type' => $response_event[$i]['type'], 
+        'detail' => $response_event[$i]['detail'],
+        'elapsed' => $response_event[$i]['time']['elapsed'] + $response_event[$i]['time']['extra'], 
+        'name' => $response_event[$i]['player']['name'],
+        'id' => $response_event[$i]['player']['id'],
+        'assist_name' => $response_event[$i]['assist']['name'],
+        'comments' => $response_event[$i]['comments']
         ]);
     }
 
-     if (($response_event['response'][$i]['team']['name'] === $awayTeam) && 
-        ($response_event['response'][$i]['type'] === 'Goal' || 
-        $response_event['response'][$i]['type'] === 'Card' || 
-        $response_event['response'][$i]['type'] === 'subst')) {
+     if (($response_event[$i]['team']['name'] === $awayTeam) && 
+        ($response_event[$i]['type'] === 'Goal' || 
+        $response_event[$i]['type'] === 'Card' || 
+        $response_event[$i]['type'] === 'subst')) {
         array_push($all_team_events, [ 
        'team' => $awayTeam,
-        'type' => $response_event['response'][$i]['type'], 
-        'detail' => $response_event['response'][$i]['detail'],
-        'elapsed' => $response_event['response'][$i]['time']['elapsed'] + $response_event['response'][$i]['time']['extra'], 
-        'name' => $response_event['response'][$i]['player']['name'],
-        'id' => $response_event['response'][$i]['player']['id'],
-        'assist_id' => $response_event['response'][$i]['assist']['id'],
-        'assist_name' => $response_event['response'][$i]['assist']['name'],
-        'comments' => $response_event['response'][$i]['comments']
+        'type' => $response_event[$i]['type'], 
+        'detail' => $response_event[$i]['detail'],
+        'elapsed' => $response_event[$i]['time']['elapsed'] + $response_event[$i]['time']['extra'], 
+        'name' => $response_event[$i]['player']['name'],
+        'id' => $response_event[$i]['player']['id'],
+        'assist_id' => $response_event[$i]['assist']['id'],
+        'assist_name' => $response_event[$i]['assist']['name'],
+        'comments' => $response_event[$i]['comments']
         ]);
     }
   }
