@@ -22,7 +22,7 @@ else {
 $response_lineup = $response['response'][0]['lineups'];
 
 
-    // Sla opstelling op als wedstrijd bestaat... 
+// Sla opstelling op als wedstrijd bestaat... 
 
     if ( file_exists($json_fixture) && (!file_exists($json_lineup_path)) )
 
@@ -49,8 +49,10 @@ $away_startXI = array();
 $home_sub = array();
 $away_sub = array();
 
+// Basiselftal en wisselspelers ophalen..
+
 if (($response_lineup[0]['startXI'] > 0 ) || 
-($response_lineup[0]['startXI'] >0 )) {
+($response_lineup[0]['startXI'] > 0 )) {
 
 for ($i=0; $i < sizeof($response_lineup[0]['startXI']); $i++) {
 
@@ -118,6 +120,9 @@ for ($i = 0; $i < $num_lineups; $i++) {
     }
   }
 
+$lineup_lines_home = str_replace("-","", $home_team_lineup[0]['formation']);
+$lineup_lines_away = str_replace("-","", $home_team_lineup[1]['formation']);
+
 
   echo '
 
@@ -126,13 +131,16 @@ for ($i = 0; $i < $num_lineups; $i++) {
   </div>
   
   <div id="show_hide"> 
+  
   <table>
   <tr><td>';
 
+  // Blok coaches.. 
+
  echo 
- $home_team_lineup[0]['formation'] . '<br> 
+ $home_team_lineup[0]['formation'] . '<br>'; 
   
-  <u>Coach:</u> ' . $home_team_lineup[0]['coach'] . '<br>    
+  echo '<u>Coach:</u> ' . $home_team_lineup[0]['coach'] . '<br>    
   <img class="img_coach" src=' . $home_team_lineup[0]['coach_img'] . '></td> 
 
   <td>' 
@@ -142,27 +150,98 @@ for ($i = 0; $i < $num_lineups; $i++) {
   <img class="img_coach" src=' . $away_team_lineup[0]['coach_img'] . '></td>
   </tr>'; 
 
-  echo '<tr><td colspan="2"> <strong>Basiselftal</strong></td></tr>';
+  
+  echo '<tr><td colspan="2"> <strong>Basiselftal</strong></td></tr>
+  </table>';
 
      $prevent_loop = true;
 
-     echo '<div class="main_container_lineup">';
+     echo '<div class="main_container_lineup">
+     <table>';
 
+// Keeper thuisteam.. 
+      echo 
+      '<tr>
+      <td colspan="2">
+      <form method="post" action="../assets/players.php?id='.$home_startXI[0]['id'].'" target="_blank">
+      <input type="hidden" name="openLineup" value ="yes">
+      <button id="pointer" type="submit" style="color: black">' . $home_startXI[0]['number'] . '. ' . $home_startXI[0]['name'] . '/'.$home_startXI[0]['grid'].'</button>              
+      </form>
+      </td>
+      </tr>'; 
 
-     for ($i=0; $i < sizeof($home_startXI); $i++ ) {
+     $num_formation_home = intval(strlen($lineup_lines_home));
+   
+     echo '<tr>';
 
-
-        echo  '
-        <tr>
-        
+      for ($i=1; $i<= $lineup_lines_home[0]; $i++ ) {
+     
+        echo  '             
         <td>
         <form method="post" action="../assets/players.php?id='.$home_startXI[$i]['id'].'" target="_blank">
         <input type="hidden" name="openLineup" value ="yes">
-        <button id="pointer" type="submit" style="color: black">' . $home_startXI[$i]['number'] . '. ' . $home_startXI[$i]['name'] . '/'.$home_startXI[$i]['grid'].'</button>              
+        <button id="pointer" type="submit" style="color: black">' . $home_startXI[$i]['number'] . '. ' . $home_startXI[$i]['name'] . '/'. $home_startXI[$i]['grid'] .'</button>              
         </form>
-        </td> 
+        </td>'; 
+     }
+ 
+    echo '</tr>';
 
-          <td>
+   echo '<tr>';
+
+      for ($i=($lineup_lines_home[0]+1); $i<= ($lineup_lines_home[0] + $lineup_lines_home[1]); $i++ ) {
+     
+        echo  '             
+        <td>
+        <form method="post" action="../assets/players.php?id='.$home_startXI[$i]['id'].'" target="_blank">
+        <input type="hidden" name="openLineup" value ="yes">
+        <button id="pointer" type="submit" style="color: black">' . $home_startXI[$i]['number'] . '. ' . $home_startXI[$i]['name'] . '/'. $home_startXI[$i]['grid'] .'</button>              
+        </form>
+        </td>'; 
+     }
+ 
+    echo '</tr>';
+
+  echo '<tr>';
+
+      for ($i=($lineup_lines_home[0] + $lineup_lines_home[1] + 1); 
+      $i<= ($lineup_lines_home[2] + $lineup_lines_home[1] + $lineup_lines_home[0]); $i++ ) {
+     
+        echo  '             
+        <td>
+        <form method="post" action="../assets/players.php?id='.$home_startXI[$i]['id'].'" target="_blank">
+        <input type="hidden" name="openLineup" value ="yes">
+        <button id="pointer" type="submit" style="color: black">' . $home_startXI[$i]['number'] . '. ' . $home_startXI[$i]['name'] . '/'. $home_startXI[$i]['grid'] .'</button>              
+        </form>
+        </td>'; 
+     }
+ 
+    echo '</tr>';
+
+    echo '<tr>';
+
+      for ($i=($lineup_lines_home[0] + $lineup_lines_home[1] + $lineup_lines_home[2] + 1); 
+      $i<= ($lineup_lines_home[3] + $lineup_lines_home[2] + $lineup_lines_home[1] + $lineup_lines_home[0]); $i++ ) {
+     
+        echo  '             
+        <td>
+        <form method="post" action="../assets/players.php?id='.$home_startXI[$i]['id'].'" target="_blank">
+        <input type="hidden" name="openLineup" value ="yes">
+        <button id="pointer" type="submit" style="color: black">' . $home_startXI[$i]['number'] . '. ' . $home_startXI[$i]['name'] . '/'. $home_startXI[$i]['grid'] .'</button>              
+        </form>
+        </td>'; 
+     }
+ 
+    echo '</tr>';
+
+
+
+
+    
+     
+     /*
+
+        <td>
         <form method="post" action="../assets/players.php?id='.$away_startXI[$i]['id'].'" target="_blank">
         <input type="hidden" name="openLineup" value ="yes">
         <button id="pointer" type="submit" style="color: black">' . $away_startXI[$i]['number'] . '. ' . $away_startXI[$i]['name'] . '/'.$away_startXI[$i]['grid']. '</button>              
@@ -170,7 +249,7 @@ for ($i = 0; $i < $num_lineups; $i++) {
         </td> 
                
         </tr>'; 
-     }
+     }*/
 
      echo '</table>';
 
