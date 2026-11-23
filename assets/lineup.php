@@ -171,10 +171,17 @@ $lineup_lines_away = str_replace("-","", $home_team_lineup[1]['formation']);
       </tr>'; 
 
      $num_formation_home = intval(strlen($lineup_lines_home));
-   
+
+     $x =0;
+     $num = 0;
+
+     do {
+  echo $num += $lineup_lines_home[$x];
+  $x++;
+
      echo '<tr>';
 
-      for ($i=1; $i<= $lineup_lines_home[0]; $i++ ) {
+      for ($i=1; $i<= $lineup_lines_home[$x]; $i++ ) {
      
         echo  '             
         <td>
@@ -186,7 +193,11 @@ $lineup_lines_away = str_replace("-","", $home_team_lineup[1]['formation']);
      }
  
     echo '</tr>';
+    
+} while ($x < $num_formation_home);
 
+     /* 
+  
    echo '<tr>';
 
       for ($i=($lineup_lines_home[0]+1); $i<= ($lineup_lines_home[0] + $lineup_lines_home[1]); $i++ ) {

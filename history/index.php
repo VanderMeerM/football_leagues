@@ -108,7 +108,16 @@ $array_reg_leagues = array_diff($array_reg_leagues, [80, 40, 408]);
 // Deze regels eventueel uitcommentariëren (bij inzet json boven)..
 
 for ($i=0; $i < sizeof($array_reg_leagues); $i++) { 
-   $cur_url = 'https://v3.football.api-sports.io/teams?league='. $array_reg_leagues[$i] . '&season='. $current_season;
+
+if (file_exists($json_league_season_path)) {
+
+  $response_json_season = file_get_contents($json_league_season_path, true);
+
+  $response = json_decode($response_json_season, true);
+
+} else {
+
+$cur_url = 'https://v3.football.api-sports.io/teams?league='. $array_reg_leagues[$i] . '&season='. $current_season;
    
 $curl = curl_init();
 
@@ -131,6 +140,7 @@ curl_setopt_array($curl, array(
 $response = curl_exec($curl);
 
 $response = json_decode($response, true);
+}
 
 array_push($all_teams, $response);
 }
