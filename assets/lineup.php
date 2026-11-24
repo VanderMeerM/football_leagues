@@ -7,6 +7,9 @@
 
 <?php
 
+$idx_home = 1;
+$idx_away = 5;
+
 require('../assets/api.php');
 
 if ($_GET['id'] && file_exists($json_lineup_path)) {
@@ -121,7 +124,22 @@ for ($i = 0; $i < $num_lineups; $i++) {
   }
 
 $lineup_lines_home = str_replace("-","", $home_team_lineup[0]['formation']);
-$lineup_lines_away = str_replace("-","", $home_team_lineup[1]['formation']);
+$lineup_lines_away = str_replace("-","", $away_team_lineup[0]['formation']);
+
+$max_num_formation_home = $lineup_lines_home[0]; 
+$max_num_formation_away = $lineup_lines_away[0]; 
+
+for ($i=1; $i<strlen($lineup_lines_home); $i++) {
+   if ($lineup_lines_home[$i] > $max_num_formation_home) {
+      $max_num_formation_home = $lineup_lines_home[$i];
+   }  
+}
+
+for ($i=1; $i<strlen($lineup_lines_away); $i++) {
+   if ($lineup_lines_away[$i] > $max_num_formation_away) {
+      $max_num_formation_away = $lineup_lines_away[$i];
+   }  
+}
 
 
   echo '
@@ -154,115 +172,86 @@ $lineup_lines_away = str_replace("-","", $home_team_lineup[1]['formation']);
   echo '<tr><td colspan="2"> <strong>Basiselftal</strong></td></tr>
   </table>';
 
-     $prevent_loop = true;
+  $prevent_loop = true;
 
-     echo '<div class="main_container_lineup">
-     <table>';
+      echo '<div class="main_container_lineup">
+     <table class="home">';
 
 // Keeper thuisteam.. 
       echo 
-      '<tr>
-      <td colspan="2">
+      '<div class="center_formation">
+      <div>
       <form method="post" action="../assets/players.php?id='.$home_startXI[0]['id'].'" target="_blank">
+      <img id="pic_player" src="https://media.api-sports.io/football/players/'.$home_startXI[0]['id'].'.png">
       <input type="hidden" name="openLineup" value ="yes">
-      <button id="pointer" type="submit" style="color: black">' . $home_startXI[0]['number'] . '. ' . $home_startXI[0]['name'] . '/'.$home_startXI[0]['grid'].'</button>              
+      <button id="pointer" type="submit" style="color: black">' . $home_startXI[0]['number'] . '. ' . $home_startXI[0]['name'] . '</button>              
       </form>
-      </td>
-      </tr>'; 
+      </div>
+      </div>'; 
 
-     $num_formation_home = intval(strlen($lineup_lines_home));
 
-     $x =0;
-     $num = 0;
+   // Verdere opstelling thuisteam..
 
-     do {
-  echo $num += $lineup_lines_home[$x];
-  $x++;
+   echo '<div>';
 
-     echo '<tr>';
+   while ($idx_home <= 5) {
 
-      for ($i=1; $i<= $lineup_lines_home[$x]; $i++ ) {
-     
-        echo  '             
-        <td>
+     echo '<div class="center_formation">';
+   
+     for ($i=1; $i < sizeof($home_startXI); $i++) {
+        if (explode(':', $home_startXI[$i]['grid'])[0] == $idx_home) {
+       echo '
+       <div style="padding: 1% 0;"> 
         <form method="post" action="../assets/players.php?id='.$home_startXI[$i]['id'].'" target="_blank">
+        <img id="pic_player" src="https://media.api-sports.io/football/players/'.$home_startXI[$i]['id'].'.png">
         <input type="hidden" name="openLineup" value ="yes">
-        <button id="pointer" type="submit" style="color: black">' . $home_startXI[$i]['number'] . '. ' . $home_startXI[$i]['name'] . '/'. $home_startXI[$i]['grid'] .'</button>              
+        <button id="pointer" type="submit" style="color: black">' . $home_startXI[$i]['number'] . '. ' . $home_startXI[$i]['name'] . '</button>              
         </form>
-        </td>'; 
+        </div>';
+         }
+      }
+     echo '</div>'; 
+      $idx_home++;
      }
- 
-    echo '</tr>';
-    
-} while ($x < $num_formation_home);
-
-     /* 
-  
-   echo '<tr>';
-
-      for ($i=($lineup_lines_home[0]+1); $i<= ($lineup_lines_home[0] + $lineup_lines_home[1]); $i++ ) {
-     
-        echo  '             
-        <td>
-        <form method="post" action="../assets/players.php?id='.$home_startXI[$i]['id'].'" target="_blank">
-        <input type="hidden" name="openLineup" value ="yes">
-        <button id="pointer" type="submit" style="color: black">' . $home_startXI[$i]['number'] . '. ' . $home_startXI[$i]['name'] . '/'. $home_startXI[$i]['grid'] .'</button>              
-        </form>
-        </td>'; 
-     }
- 
-    echo '</tr>';
-
-  echo '<tr>';
-
-      for ($i=($lineup_lines_home[0] + $lineup_lines_home[1] + 1); 
-      $i<= ($lineup_lines_home[2] + $lineup_lines_home[1] + $lineup_lines_home[0]); $i++ ) {
-     
-        echo  '             
-        <td>
-        <form method="post" action="../assets/players.php?id='.$home_startXI[$i]['id'].'" target="_blank">
-        <input type="hidden" name="openLineup" value ="yes">
-        <button id="pointer" type="submit" style="color: black">' . $home_startXI[$i]['number'] . '. ' . $home_startXI[$i]['name'] . '/'. $home_startXI[$i]['grid'] .'</button>              
-        </form>
-        </td>'; 
-     }
- 
-    echo '</tr>';
-
-    echo '<tr>';
-
-      for ($i=($lineup_lines_home[0] + $lineup_lines_home[1] + $lineup_lines_home[2] + 1); 
-      $i<= ($lineup_lines_home[3] + $lineup_lines_home[2] + $lineup_lines_home[1] + $lineup_lines_home[0]); $i++ ) {
-     
-        echo  '             
-        <td>
-        <form method="post" action="../assets/players.php?id='.$home_startXI[$i]['id'].'" target="_blank">
-        <input type="hidden" name="openLineup" value ="yes">
-        <button id="pointer" type="submit" style="color: black">' . $home_startXI[$i]['number'] . '. ' . $home_startXI[$i]['name'] . '/'. $home_startXI[$i]['grid'] .'</button>              
-        </form>
-        </td>'; 
-     }
- 
-    echo '</tr>';
 
 
+ // Opstelling uitteam..
 
+ echo '<div style="margin-top: 5%;">';
 
-    
-     
-     /*
+    while ($idx_away > 1) {
+   
+   echo '<div class="center_formation">';
 
-        <td>
+     for ($i=1; $i < sizeof($away_startXI); $i++) {
+        if (explode(':', $away_startXI[$i]['grid'])[0] == $idx_away) {
+       echo '
+       <div style="padding: 1% 0;">
         <form method="post" action="../assets/players.php?id='.$away_startXI[$i]['id'].'" target="_blank">
+        <img id="pic_player" src="https://media.api-sports.io/football/players/'.$away_startXI[$i]['id'].'.png">
         <input type="hidden" name="openLineup" value ="yes">
-        <button id="pointer" type="submit" style="color: black">' . $away_startXI[$i]['number'] . '. ' . $away_startXI[$i]['name'] . '/'.$away_startXI[$i]['grid']. '</button>              
+        <button id="pointer" type="submit" style="color: black">' . $away_startXI[$i]['number'] . '. ' . $away_startXI[$i]['name'] . '</button>              
         </form>
-        </td> 
-               
-        </tr>'; 
-     }*/
+      </div>';
+         }
+      }
+      echo '</div>';
+      $idx_away--;
+     }
 
-     echo '</table>';
+
+     // Keeper uitteam.. 
+   echo 
+      '<div class="center_formation">
+      <div>
+      <form method="post" action="../assets/players.php?id='.$away_startXI[0]['id'].'" target="_blank">
+      <img id="pic_player" src="https://media.api-sports.io/football/players/'.$away_startXI[0]['id'].'.png">
+      <input type="hidden" name="openLineup" value ="yes">
+      <button id="pointer" type="submit" style="color: black">' . $away_startXI[0]['number'] . '. ' . $away_startXI[0]['name'] . '</button>              
+      </form>
+      </div>
+      </div>'; 
+
 
   echo '
   <table>
