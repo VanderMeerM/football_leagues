@@ -1,7 +1,6 @@
 
 :root {
     --lightgray:  rgba(231, 229, 229, 0.888);
-    --blue: blue;
     --black: rgb(31, 28, 28);
     --grassgreen: #7ee26e;
     --bg_today_match: #e4cd84;
@@ -19,6 +18,7 @@ input[type="radio"] {
 .menubar
 .main_container,
 .stats_main_container,
+.events_main_container,
 .main_container_lineup_coach,
  a  {
     display: flex;
@@ -236,7 +236,6 @@ margin: 0;
 }
 
 ul li a {
-/* background-color: var(--black); */
 display: block;
 padding: 10px 0px;
 color:white;
@@ -248,12 +247,18 @@ text-align: center;
 
 .main_container, 
 .stats_main_container,
+.events_main_container,
 .main_container_event
  {
     width: 600px;
     margin: 1% auto 0px;
     flex-wrap: wrap;
     align-content: center;
+}
+
+.events_main_container {
+    margin: 0 auto;
+    background-color: var(--black);
 }
 
 .stats_main_container {
@@ -375,6 +380,7 @@ table {
     width: 600px;
 }
 
+/*
 tr:nth-child(odd) {
     background-color: rgb(229, 223, 223);
 }
@@ -382,7 +388,7 @@ tr:nth-child(odd) {
 tr:nth-child(even) {
     background-color: rgb(221, 212, 212);
 }
-
+*/
 .center_formation {
     display: flex;
     justify-content: center;
@@ -453,11 +459,13 @@ button {
 .event_container,
 .lineup_container, 
 .stats_main_container,
+.events_main_container,
 .container_sortby_league_time,
 #start_sub_team, 
 #play_min, 
 #no_found_matches,
 #send_cc,
+#subst_lineup,
 label, td {
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -558,9 +566,11 @@ td a,
 
 .main_container,
 .stats_main_container,
+.events_main_container,
 .main_container_event,
 .main_container_lineup,
 .main_container_lineup_coach,
+.coach_container,
 #startteam,
  a {
     justify-content: center;
@@ -569,11 +579,16 @@ td a,
     */
 }
 
-.main_container_lineup_coach {
+.main_container_lineup_coach, 
+.coach_container {
 width: 600px;
 margin: 0 auto;
 }
 
+.coach_container{
+    background-color: #efefef;
+    margin-top: 2%;
+}
 
 #start_sub_team {
     text-align: center;
@@ -593,11 +608,12 @@ margin: 0 auto;
     background-color: var(--bg_today_match);
 }
 
-.btn_lineup {
-    background-color: rgb(247, 244, 244);
+.btn_sub_players {
     width: 600px;
-    margin: 0 auto;
+    margin: 1% auto 0;
     position: relative;
+    display: flex;
+    justify-content: center;
     height: 80px;
 }
 
@@ -793,10 +809,10 @@ color: rgb(75, 230, 75);
     font-style: italic;
 }
 
-#show_hide_lineup, 
+#show_hide_sub_players, 
 #show_league {
     margin-left: 3%;
-    background-color: var(--blue);
+    background-color: var(--black);
     color: white;
     border: 0px;
     padding: 10px;
@@ -867,7 +883,7 @@ color: rgb(75, 230, 75);
 
 @media (max-width: 700px) {
 
-     #show_hide_lineup {
+     #show_hide_sub_players {
         margin: 3% 0 0 5%;
     }
 
@@ -894,6 +910,7 @@ color: rgb(75, 230, 75);
 .title_container, 
 .main_container,
 .stats_main_container,
+.events_main_container,
 .main_container_event,
 .main_container_lineup,
 table {
@@ -967,7 +984,7 @@ margin-top: 20px;
 
 @media (max-width: 500px) {
 
-    .btn_lineup { 
+    .btn_sub_players { 
         width: 500px;
     }
 
@@ -1001,6 +1018,7 @@ table {
  .container_logos,
 .main_container, 
 .stats_main_container,
+.events_main_container,
 .main_container_event,
 .main_container_lineup,
 .container_circle {

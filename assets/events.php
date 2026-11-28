@@ -22,6 +22,7 @@ $response_event[$num_events-1]['time']['extra'];
 $home_team_events = [];
 $away_team_events = [];
 $all_team_events = [];
+$all_team_subst = [];
 
 $home_team_goals = [];
 $away_team_goals = [];
@@ -30,8 +31,8 @@ $away_team_goals = [];
       
     if (($response_event[$i]['team']['name'] === $homeTeam) && 
         ($response_event[$i]['type'] === 'Goal' || 
-        $response_event[$i]['type'] === 'Card' ||
-        $response_event[$i]['type'] === 'subst')) {
+        $response_event[$i]['type'] === 'Card'         
+        )) {
         array_push($all_team_events, [ 
         'team' => $homeTeam,
         'type' => $response_event[$i]['type'], 
@@ -44,10 +45,24 @@ $away_team_goals = [];
         ]);
     }
 
+    if (($response_event[$i]['team']['name'] === $homeTeam) && ($response_event[$i]['type'] === 'subst')) {
+
+       array_push($all_team_subst, [ 
+        'team' => $homeTeam,
+        'elapsed' => $response_event[$i]['time']['elapsed'] + $response_event[$i]['time']['extra'], 
+        'name' => $response_event[$i]['player']['name'],
+        'id' => $response_event[$i]['player']['id'],
+        'assist_name' => $response_event[$i]['assist']['name'],
+        'assist_id' => $response_event[$i]['assist']['id'],
+        'comments' => $response_event[$i]['comments']
+        ]);
+
+    }
+
      if (($response_event[$i]['team']['name'] === $awayTeam) && 
         ($response_event[$i]['type'] === 'Goal' || 
-        $response_event[$i]['type'] === 'Card' || 
-        $response_event[$i]['type'] === 'subst')) {
+        $response_event[$i]['type'] === 'Card' 
+        )) {
         array_push($all_team_events, [ 
        'team' => $awayTeam,
         'type' => $response_event[$i]['type'], 
@@ -57,9 +72,26 @@ $away_team_goals = [];
         'id' => $response_event[$i]['player']['id'],
         'assist_id' => $response_event[$i]['assist']['id'],
         'assist_name' => $response_event[$i]['assist']['name'],
+        'assist_id' => $response_event[$i]['assist']['id'],
         'comments' => $response_event[$i]['comments']
         ]);
     }
+
+    if (($response_event[$i]['team']['name'] === $awayTeam) && ($response_event[$i]['type'] === 'subst')) {
+
+       array_push($all_team_subst, [ 
+        'team' => $awayTeam,
+        'detail' => $response_event[$i]['detail'],
+        'elapsed' => $response_event[$i]['time']['elapsed'] + $response_event[$i]['time']['extra'], 
+        'name' => $response_event[$i]['player']['name'],
+        'id' => $response_event[$i]['player']['id'],
+        'assist_id' => $response_event[$i]['assist']['id'],
+        'assist_name' => $response_event[$i]['assist']['name'],
+        'comments' => $response_event[$i]['comments']
+        ]);
+
+    }
+
   }
  
   usort($all_team_events, function($a, $b) {
@@ -68,24 +100,25 @@ $away_team_goals = [];
 
     $prevent_loop = true; 
     
-    echo '<div class="main_container_event">';
+   // echo '<div class="main_container_event">';
 
                 
-    echo '<table>';
+   echo '<table style="background-color: ' . (date('d-m-Y') === $date ? $backgr_today_match : null) . '">';
                     
         for($i=0; $i < sizeof($all_team_events); $i++) {
 
-        echo '<tr><td>';
+        echo '<tr><td style="color: ' . (date('d-m-Y') === $date ? "black" : "white") . '; width: 50%;">';
 
-       echo ($all_team_events[$i]['team'] === $awayTeam ? '<td>' : null);
+       echo ($all_team_events[$i]['team'] === $awayTeam ? '
+       <td style="color: ' . (date('d-m-Y') === $date ? "black" : "white") . '; width: 50%;">' : null);
          
             if (array_key_exists($all_team_events[$i]['type'], $array_type)
              || array_key_exists($all_team_events[$i]['detail'], $array_type)
             ) 
             {
 
+            
             if ($all_team_events[$i]['type'] !== 'subst') {
-
 
                echo
               
@@ -100,10 +133,11 @@ $away_team_goals = [];
  
                 $all_team_events[$i]['elapsed']) . "' " .
 
-              '<a href= "../assets/players.php?id='.$all_team_events[$i]['id'] .'" target=_blank>'
-              . ($all_team_events[$i]['type'] === 'subst' ?  '<span id="arrow_red"> → </span>' : null) 
+              '<a style="color: ' . (date('d-m-Y') === $date ? "black" : "white") . '" href= "../assets/players.php?id='.$all_team_events[$i]['id'] .'" target=_blank>'
+              //. ($all_team_events[$i]['type'] === 'subst' ?  '<span id="arrow_red"> → </span>' : null) 
               . $all_team_events[$i]['name'] . '</a>';
 
+               /*
                if ($all_team_events[$i]['type'] === 'subst') {
 
                 if (is_null($all_team_events[$i]['assist_id'])) {
@@ -116,7 +150,7 @@ $away_team_goals = [];
               <span id="arrow_green"> ← </span>'. $all_team_events[$i]['assist_name'] . '</a>';
                }
                }
-               
+               */
 
                if ($all_team_events[$i]['comments']) {
 
@@ -134,7 +168,7 @@ $away_team_goals = [];
            
             if (array_key_exists($all_team_events[$i]['detail'], $array_goal) &&
             ($all_team_events[$i]['comments'] != 'Penalty Shootout'))
-                 { echo ' (' . $array_goal[$all_team_events[$i]['detail']] . ')'; 
+                 { echo '<i> (' . $array_goal[$all_team_events[$i]['detail']] . ')</i>'; 
                }
 
           if ($all_team_events[$i]['team'] === $homeTeam) {
@@ -145,8 +179,8 @@ $away_team_goals = [];
         
        echo '
       </table> 
-       </div>
-     </div>';
+       </div>';
+    
 
        // Event opslaan als de wedstrijd ook is opgeslagen (en dus minstens een dag in het verleden ligt..)
 

@@ -40,7 +40,25 @@ $response_lineup = $response['response'][0]['lineups'];
    }
 }
 
-  
+// Aanvoerders bepalen...
+
+$players_home = $response['response'][0]['players'][0]['players'];
+$players_away = $response['response'][0]['players'][1]['players'];
+
+for ($i=0; $i < sizeof($players_home); $i++) {
+   if ($players_home[$i]['statistics'][0]['games']['captain']) {
+        $home_captain = $players_home[$i]['player']['id'];
+   }
+}
+
+
+for ($i=0; $i < sizeof($players_away); $i++) {
+   if ($players_away[$i]['statistics'][0]['games']['captain']) {
+      echo $away_captain = $players_away[$i]['player']['id'];
+   }
+}
+
+
 $num_lineups = sizeof($response_lineup);
 
 $home_team_lineup = array();
@@ -143,12 +161,7 @@ for ($i=1; $i<strlen($lineup_lines_away); $i++) {
 
 
   echo '
-
-  <div class="btn_lineup">
-  <button id="show_hide_lineup"> </button>
-  </div>
-  
-  <div id="show_hide"> 
+  <div class="coach_container">
   
   <table>
   <tr><td>';
@@ -166,12 +179,11 @@ for ($i=1; $i<strlen($lineup_lines_away); $i++) {
   
   <u>Coach:</u> ' . $away_team_lineup[0]['coach'] . '<br>
   <img class="img_coach" src=' . $away_team_lineup[0]['coach_img'] . '></td>
-  </tr>'; 
+  </tr>
+  </table>
+  </div>'; 
 
   
-  echo '<tr><td colspan="2"> <strong>Basiselftal</strong></td></tr>
-  </table>';
-
   $prevent_loop = true;
 
       echo '<div class="main_container_lineup">
@@ -185,7 +197,13 @@ for ($i=1; $i<strlen($lineup_lines_away); $i++) {
       <img id="pic_player" src="https://media.api-sports.io/football/players/'.$home_startXI[0]['id'].'.png">
       <input type="hidden" name="openLineup" value ="yes">
       <button id="pointer" type="submit" style="color: black">' . $home_startXI[0]['number'] . '. ' . $home_startXI[0]['name'] . '</button>              
-      </form>
+      </form>';
+       for ($s= 0; $s< sizeof($all_team_subst); $s++) {
+         if ($home_startXI[0]['id'] == $all_team_subst[$s]['id']) { 
+            echo '<div id="subst_lineup"><strong>' . $all_team_subst[$s]['elapsed'] . '"</strong>-' . $all_team_subst[$s]['assist_name'] . '</div>';
+            }
+      }
+      echo '
       </div>
       </div>'; 
 
@@ -201,13 +219,22 @@ for ($i=1; $i<strlen($lineup_lines_away); $i++) {
      for ($i=1; $i < sizeof($home_startXI); $i++) {
         if (explode(':', $home_startXI[$i]['grid'])[0] == $idx_home) {
        echo '
-       <div style="padding: 1% 0;"> 
+       <div style="padding: 1% 0; text-align: center;">
         <form method="post" action="../assets/players.php?id='.$home_startXI[$i]['id'].'" target="_blank">
         <img id="pic_player" src="https://media.api-sports.io/football/players/'.$home_startXI[$i]['id'].'.png">
         <input type="hidden" name="openLineup" value ="yes">
-        <button id="pointer" type="submit" style="color: black">' . $home_startXI[$i]['number'] . '. ' . $home_startXI[$i]['name'] . '</button>              
-        </form>
-        </div>';
+        <button id="pointer" type="submit" style="color: black">' . $home_startXI[$i]['number'] . '. ' . $home_startXI[$i]['name'] . '
+        '. ($home_captain == $home_startXI[$i]['id'] ? '<strong>(C)</strong>' : null) .'</button>              
+        </form>';
+
+       
+      
+      for ($s= 0; $s< sizeof($all_team_subst); $s++) {
+         if ($home_startXI[$i]['id'] == $all_team_subst[$s]['id']) { 
+            echo '<div id="subst_lineup"><strong>' . $all_team_subst[$s]['elapsed'] . '"</strong>-' . $all_team_subst[$s]['assist_name'] . '</div>';
+            }
+      }
+       echo '</div>';
          }
       }
      echo '</div>'; 
@@ -217,7 +244,7 @@ for ($i=1; $i<strlen($lineup_lines_away); $i++) {
 
  // Opstelling uitteam..
 
- echo '<div style="margin-top: 5%;">';
+ echo '<div style="margin-top: 2%;">';
 
     while ($idx_away > 1) {
    
@@ -226,13 +253,19 @@ for ($i=1; $i<strlen($lineup_lines_away); $i++) {
      for ($i=1; $i < sizeof($away_startXI); $i++) {
         if (explode(':', $away_startXI[$i]['grid'])[0] == $idx_away) {
        echo '
-       <div style="padding: 1% 0;">
+       <div style="padding: 1% 0; text-align: center;">
         <form method="post" action="../assets/players.php?id='.$away_startXI[$i]['id'].'" target="_blank">
         <img id="pic_player" src="https://media.api-sports.io/football/players/'.$away_startXI[$i]['id'].'.png">
         <input type="hidden" name="openLineup" value ="yes">
-        <button id="pointer" type="submit" style="color: black">' . $away_startXI[$i]['number'] . '. ' . $away_startXI[$i]['name'] . '</button>              
-        </form>
-      </div>';
+        <button id="pointer" type="submit" style="color: black">' . $away_startXI[$i]['number'] . '. ' . $away_startXI[$i]['name'] . '
+        '. ($away_captain == $away_startXI[$i]['id'] ? '<strong>(C)</strong>' : null) .'</button>              
+        </form>';
+         for ($s= 0; $s< sizeof($all_team_subst); $s++) {
+         if ($away_startXI[$i]['id'] == $all_team_subst[$s]['id']) { 
+            echo '<div id="subst_lineup"><strong>' . $all_team_subst[$s]['elapsed'] . '"</strong>-' . $all_team_subst[$s]['assist_name'] . '</div>';
+            }
+      }
+      echo '</div>';
          }
       }
       echo '</div>';
@@ -248,14 +281,26 @@ for ($i=1; $i<strlen($lineup_lines_away); $i++) {
       <img id="pic_player" src="https://media.api-sports.io/football/players/'.$away_startXI[0]['id'].'.png">
       <input type="hidden" name="openLineup" value ="yes">
       <button id="pointer" type="submit" style="color: black">' . $away_startXI[0]['number'] . '. ' . $away_startXI[0]['name'] . '</button>              
-      </form>
+      </form>';
+       for ($s= 0; $s< sizeof($all_team_subst); $s++) {
+         if ($away_startXI[0]['id'] == $all_team_subst[$s]['id']) { 
+            echo '<div id="subst_lineup"><strong>' . $all_team_subst[$s]['elapsed'] . '"</strong>-' . $all_team_subst[$s]['assist_name'] . '</div>';
+            }
+      }
+      echo '
       </div>
       </div>'; 
 
 
-  echo '
-  <table>
-  <tr><td colspan="2"> <strong>Wisselspelers</strong></td></tr>
+
+// Knop tonen/verbergen wisselspelers...
+
+echo '
+  <div class="btn_sub_players">
+  <button id="show_hide_sub_players"> </button>
+  </div>
+  
+  <table id="show_hide">
   
   <div class="main_container_lineup">';
 
@@ -298,39 +343,39 @@ for ($i=1; $i<strlen($lineup_lines_away); $i++) {
 ?>
 
 <script>
-    let showLineup = true;
+    let showSubPlayers = true;
 
-    const showHideLineup = document.getElementById('show_hide_lineup');
+    const showHideSubPlayers = document.getElementById('show_hide_sub_players');
 
     const showHideId = document.querySelector('#show_hide');
 
-    showHideLineup.innerText = 'Toon opstellingen';
+    showHideSubPlayers.innerText = 'Toon wisselspelers';
 
     function hideLineUp() {
           showHideId.removeAttribute('class', 'hide');
-    showHideLineup.innerText = 'Verberg opstellingen';
+    showHideSubPlayers.innerText = 'Verberg wisselspelers';
     }
 
      function showLineUp() {
        showHideId.setAttribute('class', 'hide');
-    showHideLineup.innerText = 'Toon opstellingen';
+    showHideSubPlayers.innerText = 'Toon wisselspelers';
       localStorage.removeItem("lineup");
 
     }
 
     if (localStorage.getItem("lineup")) {
       hideLineUp();
-    showLineup = !showLineup;
+    showSubPlayers = !showSubPlayers;
     } 
     else {
    showLineUp();
     }
 
-    showHideLineup.addEventListener('click', () => {
+    showHideSubPlayers.addEventListener('click', () => {
 
-        showLineup = !showLineup;
+        showSubPlayers = !showSubPlayers;
 
-        if (showLineup) {
+        if (showSubPlayers) {
            showLineUp();   
         } 
         else {
